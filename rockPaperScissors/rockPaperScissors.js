@@ -1,5 +1,8 @@
 /*
 * Write a function that generates every sequence of throws a single
+
+/*
+* Write a function that generates every sequence of throws a single
 * player could throw over a three-round game of rock-paper-scissors.
 *
 * Your output should look something like:
@@ -17,34 +20,35 @@
 * rockPaperScissors(5); // => ['RRRRR', 'RRRRP', 'RRRRS', etc...]
 *
 */
-//Pseoducode
-/*
-Input : the number of round
-output: A result array of the number arrays that they can have of the number of round.
+/* It is combination problems
+Input: there are 3 possible plays in an array called.
+Output : return a matrix is stored in variable called
+There are 3 possible play in the first round, 3 posible play in the second, 3 posible play in the third
+We will hava an array : 3x3x3 = 27 arrays
 
-// We have option array  = [Rock, Paper, Scissors]
-
-// the result of 2 rounds would be R
-  // We will interate over the option array : R P S  -> round = [[RR], [RP], [RS],[PR],[PP], [PS], [SR],[SP], [SS]]
-  // We will interate over the round array : [[RRRP, .....]]
-    // We count the round number and push into the result array.
-    // if the round number  =  number of round
-    // we return result array
-    // else continue count the round number and push to the result array
-// return the result array
-
-
+ Basic of the structer recursion
+ - We will put the recurson subroutin called with the emptyArray for 1 playedSofa and 1 round for 1 round left
+  - If the roundLeft === 0
+  - pushed the playedSofa to the outcomes
+  - if there is still left we will keep gathering plays
+  - and add to the outcomes
 */
-var rockPaperScissors = function (numOfRound) {
-  var option = [R, P, S];
-  var result = [];
-  // We shound have a inner function to recusive: roundChoice()
-  // Base case will be
-  var roundChoice = function ()
-    for (var i = 0; i < option.length; i++) {
 
+
+var rockPaperScissors = function (rounds) {
+  rounds = rounds || 3;
+  var outcomes = [];
+  var plays = ['R', 'P', 'S'];
+  var getOutcomes = function (playedSoFar, roundsLeft) {
+    if (roundsLeft === 0) {
+      outcomes.push(playedSoFar);
     }
-
-  return result
+    else {
+      for (var i = 0; i < plays.length; i++) {
+        getOutcomes(playedSoFar.concat(plays[i]), roundsLeft - 1);
+      }
+    }
+  };
+  getOutcomes([], rounds);
+  return outcomes;
 };
-
