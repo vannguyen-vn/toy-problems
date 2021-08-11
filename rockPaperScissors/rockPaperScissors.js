@@ -18,19 +18,22 @@
 *
 */
 
-var rockPaperScissors = function (
-  ) {
-    var result = [];
-    var out = ['R', 'P', 'S'];
-    for(var i = 0; i < 3; i++) {
-      for(var j = 0; j < 3; j++) {
-        for(var k = 0; k < 3; k++) {
-          result.push(out[i]+out[j]+out[k]);
-        }
+var rockPaperScissors = function (rounds) {
+  var rounds = rounds || 3;
+  var result = [];
+  var plays = ['R', 'P', 'S'];
+  var helpFunction = function(played, roundsLeft) {
+    if (roundsLeft === 0) {
+      result.push(played);
+    } else {
+      for (var i = 0; i < plays.length; i++) {
+        helpFunction(played+plays[i], roundsLeft-1);
       }
     }
-    return result;
-  };
+  }
+  helpFunction('', rounds);
+  return result;
+}
 
 
 
