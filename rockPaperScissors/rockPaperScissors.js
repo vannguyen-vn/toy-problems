@@ -18,8 +18,31 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
-};
+var rockPaperScissors = function (numRounds) {
 
+  //Input: 3 for three rounds
+  //Output: 3 round game for three options so = 3 (3! + 1) = 27
+
+  //Make a container array of played throws
+  var containedThrows = [];
+  //generate a random 'picker' through an initial array that has [R,P,S];
+  var plays = ['R', 'P', 'S'];
+  //convert the parition into a string
+  // var stringify = '';
+  //put those generators into the array only if that partion does not exists in the container
+  //iterate through selectFrom options and make a callback function to add to stringify;
+  var generateThrows = function(throwsUsed,roundsLeft) {
+    //base case
+    if (roundsLeft == 0) {
+      containedThrows.push(throwsUsed);
+    } else {
+      for (var i = 0; i < plays.length; i++) {
+        var currentThrow = plays[i];
+        generateThrows((throwsUsed.concat(currentThrow), roundsLeft--)
+      }
+    }
+  };
+  generateThrows([], numRounds);
+  //return the partitions of RPS
+  return containedThrows;
+};
