@@ -19,6 +19,10 @@
 */
 
 var rockPaperScissors = function (n) {
+  if (n === undefined) {
+    return rockPaperScissors(3);
+  }
+
   if (n === 1) {
     return ["R", "P", "S"];
   }
