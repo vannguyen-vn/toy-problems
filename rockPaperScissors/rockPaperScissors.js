@@ -18,41 +18,31 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
+var rockPaperScissors = function (n) {
 
    // TODO: your solution here
 
 
   /********************************
 
-  ---------- brute force ---------
+  ---------- Recursion ---------
 
   *********************************/
-  var input = ['R', 'S', 'P'];
-  var newString = newString || '';
   var result = [];
-  var temp1 = '';
-  var temp2 = '';
+  var input = ['R','S','P'];
 
-  for(var i = 0; i < input.length; i++) {
-    newString = '';
-    newString += input[i];
-    temp1 = newString;
-    for(var j = 0; j < input.length; j++) {
-      newString = temp1;
-      newString += input[j];
-      temp2 = newString;
-        for(var k = 0; k < input.length; k++) {
-          newString = temp2;
-          newString += input[k];
-          if(newString.length === 3) {
-            result.push(newString);
-          }
+  if (n === 1) {
+    return input;
+  };
 
-        }
-      }
+  for (var i = 0; i < input.length; i++) {
+    var temp = rockPaperScissors(n-1);
+
+    for (var j = 0; j < temp.length; j++) {
+      result.push(input[i]+temp[j]);
+    }
   }
+
   return result;
 };
 
