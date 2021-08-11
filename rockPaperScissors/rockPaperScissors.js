@@ -26,7 +26,7 @@ var rockPaperScissors = function (
 
   /********************************
 
-  ---------- brutal force ---------
+  ---------- brute force ---------
 
   *********************************/
   var input = ['R', 'S', 'P'];
