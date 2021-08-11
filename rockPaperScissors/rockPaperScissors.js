@@ -12,7 +12,6 @@
 *
 * Extra credit:
 *   - Make your function return answers for any number of rounds.
-*
 * Example:
 * rockPaperScissors(5); // => ['RRRRR', 'RRRRP', 'RRRRS', etc...]
 *
@@ -32,7 +31,7 @@ var rockPaperScissors = function () {
       //loop over the RPS array
       for (var k = 0; k < optionArray.length; k++) {
       //push array[i][j][k] into the array
-        combinations.push(array[i]+array[j]+array[k])
+        combinations.push(optionArray[i]+optionArray[j]+optionArray[k])
       }
     }
   }
