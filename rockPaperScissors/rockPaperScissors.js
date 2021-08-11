@@ -18,8 +18,31 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
+var rockPaperScissors = function(rounds) {
+  let rspOption = ['R', 'P', 'S'];
+
+  let result = [];
+  var rounds = rounds || 3;
+
+
+  let plays = function(counter, string) {
+
+    if (counter === rounds) {
+      result.push(string);
+      return;
+    }
+
+    counter++;
+
+    for (let i = 0; i < rspOption.length; i++) {
+      currentElementString = string +  rspOption[i];
+      plays(counter, currentElementString);
+    }
+  }
+  plays(0, '');
+
+  return result;
 };
 
+
+// console.log(rockPaperScissors(2));
