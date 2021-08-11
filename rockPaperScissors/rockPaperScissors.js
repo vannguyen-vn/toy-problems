@@ -19,19 +19,18 @@
 */
 
 var rockPaperScissors = function (rounds) {
-  var rounds = rounds || 3;
-  var result = [];
-  var addCharToString = function(string) {
-    string = string || '';
-    if (string.length === rounds) {
-      result.push(string);
-      return;
-    }
-    ['R', 'P', 'S'].forEach(function(item) {
-      addCharToString(string + item);
-    });
+  if (rounds === 1) {
+    return ['R', 'P', 'S'];
   }
-  addCharToString();
+
+  var preArr = rockPaperScissors(rounds - 1);
+  var result = [];
+  preArr.forEach(function(item) {
+    var string = item;
+    result.push(string + 'R');
+    result.push(string + 'P');
+    result.push(string + 'S');
+  })
   return result;
 };
 
