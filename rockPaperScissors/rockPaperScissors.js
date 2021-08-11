@@ -18,35 +18,18 @@
 *
 */
 
-var rockPaperScissors = function (combo, rounds) {
+var rockPaperScissors = function(combo) {
   var result = [];
   var combo = combo || '';
-  var rounds = rounds || 0;
-  // base
-  // if combo length is 3
+
   if (combo.length === 3) {
-    // add into the result
     result.push(combo);
     return result;
   }
 
-  rounds++;
-
-
-  // recursion
-  // ['R', 'P', 'S']
   var comboMoves = ['R', 'P', 'S'];
-  // add a character into our combo
   for (var i = 0; i < comboMoves.length; i++) {
-    combo += comboMoves[i];
-    result = result.concat(rockPaperScissors(combo, rounds));
-    rounds++;
-    if (rounds >= 3) {
-      return result;
-    }
+    result = result.concat(rockPaperScissors(combo + comboMoves[i]));
   }
-    // run our function on that combo
-
   return result;
 };
-
