@@ -31,6 +31,7 @@ var rockPaperScissors = function (rounds) {
     } else {
       for (var i = 0; i < choices.length; i++) {
         currentGame = game + choices[i];
+        //if you change the value of game here, game = game + choices[i], and pass in game to genCombos, it breaks
         genCombos(currentGame);
       }
     }
