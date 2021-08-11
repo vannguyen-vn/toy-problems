@@ -36,12 +36,13 @@ var rockPaperScissors = function (
   var temp2 = '';
 
   for(var i = 0; i < input.length; i++) {
+    newString = '';
     newString += input[i];
-    var temp1 = newString;
+    temp1 = newString;
     for(var j = 0; j < input.length; j++) {
       newString = temp1;
       newString += input[j];
-      var temp2 = newString;
+      temp2 = newString;
         for(var k = 0; k < input.length; k++) {
           newString = temp2;
           newString += input[k];
