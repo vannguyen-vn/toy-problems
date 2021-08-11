@@ -18,8 +18,22 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
+var rockPaperScissors = function (value) {
+  var results = [];
+  var options = ['R', 'P', 'S'];
+
+  if (!value) {
+    return [];
+  } else if (value === 1) {
+    return options;
+  } else {
+    var recurseRound = rockPaperScissors(value - 1);
+    for(var i = 0; i < options.length; i++) {
+      for( var j = 0; j < recurseRound.length; j++) {
+        results.push(options[i] + recurseRound[j]);
+      }
+    }
+  }
+  return results;
 };
 
