@@ -17,9 +17,20 @@
 * rockPaperScissors(5); // => ['RRRRR', 'RRRRP', 'RRRRS', etc...]
 *
 */
-
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
+var rockPaperScissors = function (rounds) {
+  var playOptions = ['R', 'P', 'S'];
+  var gamesPlayed = [];
+  var playGame = function(rounds, currentSequence) {
+    if (rounds === 0) {
+      gamesPlayed.push(currentSequence);
+    } else {
+      for (var i = 0; i < playOptions.length; i ++) {
+        playGame(rounds - 1, currentSequence + playOptions[i]);
+      }
+    }
+  };
+  playGame(rounds, '');
+  return gamesPlayed;
 };
+
 
