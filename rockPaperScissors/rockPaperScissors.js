@@ -19,19 +19,20 @@
 */
 
 var rockPaperScissors = function (numberOfRounds) {
+  numberOfRounds = numberOfRounds || 3;
   var options = ['R', 'P', 'S'];
   var results = [];
-  var first, second, third;
-  var helperFunction = function(first, second, third) {
-    results.push(`${first}${second}${third}`);
+  var recursiveFunction  = function (string) {
+    if (string.length === numberOfRounds) {
+      results.push(string);
+    } else {
+      options.forEach(function (letter) {
+        recursiveFunction(string + letter);
+      });
+    }
   }
-  options.forEach(function (first) {
-    options.forEach(function (second) {
-      options.forEach(function (third) {
-        helperFunction(first, second, third);
-      })
-    });
+  options.forEach(function (letter) {
+    recursiveFunction(letter);
   });
-  if (!numberOfRounds) { return results; }
-  return results.slice(0, numberOfRounds);
+  return results;
 };
