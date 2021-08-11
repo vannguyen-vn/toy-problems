@@ -24,14 +24,15 @@ var rockPaperScissors = function (rounds) {
   }
 
   var preArr = rockPaperScissors(rounds - 1);
-  var result = [];
-  preArr.forEach(function(item) {
-    var string = item;
-    result.push(string + 'R');
-    result.push(string + 'P');
-    result.push(string + 'S');
+
+  preArr.forEach(function(item, i) {
+    var ele = preArr[i];
+    preArr[i] = ele + 'R';
+    preArr.push(ele + 'P');
+    preArr.push(ele + 'S');
   })
-  return result;
+  return preArr;
 };
+
 
 
