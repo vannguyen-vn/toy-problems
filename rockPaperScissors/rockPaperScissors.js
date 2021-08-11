@@ -18,27 +18,19 @@
 *
 */
 
-var rockPaperScissors = function (number) {
+var rockPaperScissors = function (rounds) {
   // Create a result array
   var combos = [];
-  // Create a combo string
-  var comboString = '';
   // Establish player options (array)
   var playerOptions = ['R', 'P', 'S'];
   // Iterate through player options array
   for (var i = 0; i < playerOptions.length; i++) {
-    // Push value at i into combo string
-    comboString += playerOptions[i];
     // Iterate again
     for (var j = 0; j < playerOptions.length; j++) {
-      // Push into combo string again
-      comboString += playerOptions[j];
       // Iterate again
       for (var k = 0; k < playerOptions.length; k++) {
-        // Push into combo string again
-        comboString += playerOptions[k];
         // Push combo string into result array
-        combos.push(comboString);
+        combos.push(playerOptions[i] + playerOptions[k] + playerOptions[j]);
       }
     }
   }
