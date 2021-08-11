@@ -19,6 +19,7 @@
 */
 
 var rockPaperScissors = function(rounds) {
+  var rounds = rounds || 3;
   var choices = ['R', 'P', 'S'];
   var results = [];
   var string = '';
