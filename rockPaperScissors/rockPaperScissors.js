@@ -18,18 +18,48 @@
 *
 */
 
-  var rockPaperScissors = function (item) {
+  // var rockPaperScissors = function (item) {
+  //   // declare a result array
+  //   var storage = [];
+  //   // declare a var to store the three rounds
+  //   var rounds = item || '';
+  //   // declare game variables
+  //   var gameVariables = ['R', 'P', 'S'];
+
+  //   // check if rounds have a length of three
+  //   if (rounds.length === 3) {
+  //     // push it to storage array
+  //     return rounds;
+  // //     return;
+  //   }
+
+  //   // iterate over game variables
+  //   for (var i = 0; i < gameVariables.length; i++) {
+  //     // recursively call rockPaperScissors on each variable
+  //     var currentItem = gameVariables[i];
+  // //     rounds = rounds.concat(rockPaperScissors(currentItem));
+  //        storage = storage.concat(rockPaperScissors(rounds + currentItem));
+  // //     rounds += currentItem;
+  //   }
+
+  //   // retun storage
+  //   return storage;
+  // };
+
+  // rockPaperScissors();
+
+  var rockPaperScissors = function (rounds, item) {
     // declare a result array
     var storage = [];
     // declare a var to store the three rounds
-    var rounds = item || '';
+    var item = item || '';
     // declare game variables
     var gameVariables = ['R', 'P', 'S'];
 
     // check if rounds have a length of three
-    if (rounds.length === 3) {
+    if (item.length === rounds) {
       // push it to storage array
-      return rounds;
+      return item;
   //     return;
     }
 
@@ -38,7 +68,7 @@
       // recursively call rockPaperScissors on each variable
       var currentItem = gameVariables[i];
   //     rounds = rounds.concat(rockPaperScissors(currentItem));
-         storage = storage.concat(rockPaperScissors(rounds + currentItem));
+         storage = storage.concat(rockPaperScissors(rounds, item + currentItem));
   //     rounds += currentItem;
     }
 
@@ -46,4 +76,4 @@
     return storage;
   };
 
-  rockPaperScissors();
+  rockPaperScissors(3);
