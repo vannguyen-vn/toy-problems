@@ -18,8 +18,30 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
+var rockPaperScissors = function (value) {
+  // Variables
+  var results = [];
+  var base = ['R', 'P', 'S'];
+  var rounds = value;
+
+  //Base Case
+  if (value === 1) {
+    return base;
+  }
+  // Iterate through each option
+  for(var i = 0; i < choices.length; i++) {
+    for(var j = 0; j < rounds; j++) {
+
+    }
+  }
+
+  return results;
 };
 
+/*
+['R', 'P', 'S']
+
+[RR, RP, RS, PR, PP, PS, SR, SP, SS]
+
+[]
+*/
