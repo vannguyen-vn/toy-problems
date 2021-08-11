@@ -17,9 +17,40 @@
 * rockPaperScissors(5); // => ['RRRRR', 'RRRRP', 'RRRRS', etc...]
 *
 */
+// input: optional number
+// output: array of string
 
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
+// use inner function? need to save results outside of recursion somehow
+
+// create result array
+// set rounds if there is input
+// create array to iterate through
+
+// use inner function that takes in input of the string so far
+// if there is no input then start with an empty string
+// iterate over the array
+  // use recursion to add each element to the string and input that into the inner function
+
+var rockPaperScissors = function (rounds) {
+  var result = [];
+  if (rounds === undefined) {
+    rounds = 3;
+  }
+  var rounds = rounds;
+  var choices = ['R', 'P', 'S'];
+
+  var innerFunc = function(resultStr) {
+    if (resultStr === undefined) {
+      resultStr = '';
+    }
+    if (resultStr.length === rounds) {
+      result.push(resultStr);
+      return;
+    }
+    for (var i = 0; i < choices.length; i++) {
+      innerFunc(resultStr + choices[i]);
+    }
+  }
+  innerFunc();
+  return result;
 };
-
