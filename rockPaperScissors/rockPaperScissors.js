@@ -18,8 +18,19 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
+var rockPaperScissors = function(rounds) {
   // TODO: your solution here
+  var result = '';
+  for (var i = 0; i < rounds; i++) {
+    var randomNum = Math.floor(Math.random() * 3);
+    if (randomNum === 0) {
+      result += 'R';
+    } else if (randomNum === 1) {
+      result += 'P';
+    } else {
+      result += 'S';
+    }
+  }
+  return result;
 };
 
