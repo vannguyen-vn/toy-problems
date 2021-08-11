@@ -18,18 +18,19 @@
 *
 */
 
-var rockPaperScissors = function(combo) {
+var rockPaperScissors = function(rounds, combo) {
   var result = [];
   var combo = combo || '';
+  var rounds = rounds || 3;
 
-  if (combo.length === 3) {
+  if (combo.length === rounds) {
     result.push(combo);
     return result;
   }
 
   var comboMoves = ['R', 'P', 'S'];
   for (var i = 0; i < comboMoves.length; i++) {
-    result = result.concat(rockPaperScissors(combo + comboMoves[i]));
+    result = result.concat(rockPaperScissors(rounds, combo + comboMoves[i]));
   }
   return result;
 };
