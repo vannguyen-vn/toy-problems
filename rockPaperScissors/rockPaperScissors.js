@@ -18,8 +18,19 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
-};
 
+var rockPaperScissors = function (rounds) {
+  var choices = ['R', 'P', 'S'];
+  var results = [];
+  var getResults = function (playedSoFar, rounds) {
+    if (rounds === 0) {
+      results.push(playedSoFar)
+    } else {
+      for (var i = 0; i < choices.length; i++) {
+        getResults(playedSoFar.concat(choices[i]), rounds - 1)
+      }
+    }
+  }
+  getResults([], rounds);
+  return results;
+};
