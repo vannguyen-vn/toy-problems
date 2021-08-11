@@ -18,8 +18,35 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
+var rockPaperScissors = function (n) {
+  if (n === 1) {
+    return ["R", "P", "S"];
+  }
+
+  return inductionStep(rockPaperScissors(n - 1));
+};
+
+function inductionStep (game) {
+    var res = [];
+    for (var i = 0; i < game.length; i++) {
+      res.push("R" + game[i]);
+      res.push("P" + game[i]);
+      res.push("S" + game[i]);
+    }
+    return res;
+
+  // for (var i = 0; i < res.length; i++) {
+  //   finalRes.push("R" + res[i]);
+  //   finalRes.push("P" + res[i]);
+  //   finalRes.push("S" + res[i]);
+  // }
+
+  // for (var i = 0; i < finalRes.length; i++) {
+  //   nextRes.push("R" + finalRes[i]);
+  //   nextRes.push("P" + finalRes[i]);
+  //   nextRes.push("S" + finalRes[i]);
+  // }
+
+  // return nextRes;
 };
 
