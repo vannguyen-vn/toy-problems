@@ -31,7 +31,7 @@ var rockPaperScissors = function () {
     // currentCombo += throws[i];
     for (var j = 0; j < throws.length; j++) {
       // currentCombo += throws[j]
-      for (var k = 0; k < throws.length; ++) {
+      for (var k = 0; k < throws.length; k++) {
         // currentCombo += throws[k];
         combinations.push(throws[i] + throws[j] + throws[k]);
       }
