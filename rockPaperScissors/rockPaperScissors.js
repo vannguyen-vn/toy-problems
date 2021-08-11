@@ -18,8 +18,24 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
-};
+var rockPaperScissors = function (rounds) {
+  var result = [];
+  var rounds = rounds || 3;
+  var options = ['R', 'P', 'S'];
 
+  var playSet = function(count, str) {
+
+    if (count === rounds) {
+      result.push(str);
+      return;
+    }
+    count++;
+    for (var x = 0; x < options.length; x++) {
+      currentStr = str + options[x];
+      playSet(count, currentStr);
+    }
+  };
+
+  playSet(0, '');
+  return result;
+};
