@@ -18,8 +18,33 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
-};
+var rockPaperScissors = function (rounds) {
+  //set default four "rounds" to three
+  rounds = rounds || 3;
+  var roundsPlayed = 0;
+  var throws = ['R', 'P', 'S'];
+  var combinations = [];
+  // iterate across possible throws array
+  var findCombos = function() {
+    for (var i = 0; i < throws.length; i++) {
+      // make a string with that letter first
+      var combo = throws[i];
+      roundsPlayed++
+      if (roundsPlayed < rounds) {
+        combo += findCombos(throws)
+      } else {
+        roundsPlayed = 0
+      }
+      if (combo.length = rounds) {
+        combinations.push(combo);
+      }
+      return combo;
+    }
+
+  findCombos();
+
+  return combinations;
+
+  };
+}
 
