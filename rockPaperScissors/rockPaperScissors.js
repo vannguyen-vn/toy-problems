@@ -18,8 +18,20 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
+var rockPaperScissors = function(rounds) {
+  var choices = ['R', 'P', 'S'];
+  var results = [];
+  var string = '';
+  var innerFunc = function(string) {
+    if (string.length === rounds) {
+      results.push(string);
+    } else {
+      choices.forEach(function(item){
+        var newString = string + item;
+        innerFunc(newString);
+      });
+    }
+  };
+  innerFunc(string);
+  return results;
 };
-
