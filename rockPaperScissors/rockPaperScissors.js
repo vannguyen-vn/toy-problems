@@ -23,7 +23,7 @@
 var rockPaperScissors = function (roundsToPlay) {
   var possibleCombos = [];
   var playerOptions = ['R', 'P', 'S']
-
+  var roundsToPlay = roundsToPlay || 3
 
   var stillInPlay = function (currentGame) {
     var currentGame = currentGame || '';
@@ -44,4 +44,4 @@ var rockPaperScissors = function (roundsToPlay) {
   return possibleCombos;
 };
 
-rockPaperScissors(5)
+rockPaperScissors()
