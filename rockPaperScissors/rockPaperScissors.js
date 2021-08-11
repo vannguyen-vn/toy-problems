@@ -31,7 +31,7 @@ var rockPaperScissors = function () {
       //loop over the RPS array
       for (var k = 0; k < optionArray.length; k++) {
       //push array[i][j][k] into the array
-        combinations.push(optionArray[i]+optionArray[j]+optionArray[k])
+        combinations.push()
       }
     }
   }
