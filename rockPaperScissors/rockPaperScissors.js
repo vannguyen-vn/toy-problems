@@ -18,8 +18,30 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
+// input: none
+// output: array with all combinations of R P and S
+var rockPaperScissors = function (roundsToPlay) {
+  var possibleCombos = [];
+  var playerOptions = ['R', 'P', 'S']
+
+
+  var stillInPlay = function (currentGame) {
+    var currentGame = currentGame || '';
+
+    if (currentGame.length === roundsToPlay) {
+      // add the game to our possible combos list
+      return possibleCombos.push(currentGame)
+    }
+    // loop through player options
+    for (var i = 0; i < playerOptions.length; i++) {
+      currentMove = playerOptions[i];
+        // check if game is still in play after adding the next move
+        stillInPlay(currentGame + currentMove)
+    }
+  }
+
+  stillInPlay()
+  return possibleCombos;
 };
 
+rockPaperScissors(5)
