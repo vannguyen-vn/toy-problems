@@ -28,6 +28,7 @@ var rockPaperScissors = function (n) {
   ---------- Recursion ---------
 
   *********************************/
+  n = n || 3;
   var result = [];
   var input = ['R','S','P'];
 
