@@ -18,8 +18,26 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
+var rockPaperScissors = function () {
+  //Create a return array
+  var combinations = [];
+
+  //Create and RPS array
+  var optionArray = ['R', 'P', 'S'];
+
+  //loop over the RPS array
+  for (var i = 0; i < optionArray.length; i++) {
+  //loop over the RPS array
+    for (var j = 0; j < optionArray.length; j++) {
+      //loop over the RPS array
+      for (var k = 0; k < optionArray.length; k++) {
+      //push array[i][j][k] into the array
+        combinations.push(array[i]+array[j]+array[k])
+      }
+    }
+  }
+
+  //return the array
+  return combinations;
 };
 
