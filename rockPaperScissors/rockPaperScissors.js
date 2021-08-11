@@ -21,6 +21,7 @@
 var rockPaperScissors = function (value) {
   var results = [];
   var options = ['R', 'P', 'S'];
+  value = value || 3;
 
   if (!value) {
     return [];
