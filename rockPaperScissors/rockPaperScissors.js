@@ -20,6 +20,7 @@
 
 var rockPaperScissors = function (rounds, string, array
 ) {
+  rounds = (rounds !== undefined) ? rounds : 3;
   string = string || '';
   array = array || [];
   if (string.length === rounds) {
