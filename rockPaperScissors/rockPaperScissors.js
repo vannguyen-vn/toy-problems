@@ -18,10 +18,10 @@
 *
 */
 
-var rockPaperScissors = function (rounds) {
+var rockPaperScissors = function () {
   //set default four "rounds" to three
-  rounds = rounds || 3;
-  var roundsPlayed = 0;
+  // rounds = rounds || 3;
+  // var roundsPlayed = 0;
   var throws = ['R', 'P', 'S'];
   var combinations = [];
   // iterate across possible throws array
@@ -31,7 +31,7 @@ var rockPaperScissors = function (rounds) {
     // currentCombo += throws[i];
     for (var j = 0; j < throws.length; j++) {
       // currentCombo += throws[j]
-      for (var k = 0; k < throws.length; ++) {
+      for (var k = 0; k < throws.length; k++) {
         // currentCombo += throws[k];
         combinations.push(throws[i] + throws[j] + throws[k]);
       }
