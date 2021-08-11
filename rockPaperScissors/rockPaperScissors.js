@@ -19,6 +19,7 @@
 */
 
 var rockPaperScissors = function (rounds) {
+  if (rounds === undefined) { rounds = 3; }
   // Number of rounds === the length of each string in the array
   // [ 'R', 'P', 'S' ]
   // ^ We want to iterate through each handsign for every character in a permutation, for every combination
