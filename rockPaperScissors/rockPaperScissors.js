@@ -38,7 +38,7 @@ var rockPaperScissors = function (numRounds) {
     } else {
       for (var i = 0; i < plays.length; i++) {
         var currentThrow = plays[i];
-        generateThrows((throwsUsed.concat(currentThrow), roundsLeft--)
+        generateThrows((throwsUsed.concat(currentThrow), roundsLeft - 1))
       }
     }
   };
