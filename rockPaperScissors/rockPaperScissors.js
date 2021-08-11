@@ -19,14 +19,18 @@
 */
 
 var rockPaperScissors = function (
-) {
-  var result = [];
-  var out = ['R', 'P', 'S'];
-  for(var i = 0; i < 3; i++) {
-    for(var j = 0; j < 3; j++) {
-      result.push(out[i]+out[j]);
+  ) {
+    var result = [];
+    var out = ['R', 'P', 'S'];
+    for(var i = 0; i < 3; i++) {
+      for(var j = 0; j < 3; j++) {
+        for(var k = 0; k < 3; k++) {
+          result.push(out[i]+out[j]+out[k]);
+        }
+      }
     }
-  }
-  return result;
-};
+    return result;
+  };
+
+
 
