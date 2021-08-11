@@ -22,16 +22,17 @@ var rockPaperScissors = function (value) {
   // Variables
   var results = [];
   var base = ['R', 'P', 'S'];
-  var rounds = value;
 
   //Base Case
   if (value === 1) {
     return base;
   }
+  // Store recursion
+  var recursive = rockPaperScissors(value - 1);
   // Iterate through each option
-  for(var i = 0; i < choices.length; i++) {
-    for(var j = 0; j < rounds; j++) {
-
+  for(var i = 0; i < base.length; i++) {
+    for(var j = 0; j < recursive.length; j++) {
+      results.push(base[i] + recursive[j]);
     }
   }
 
@@ -39,9 +40,19 @@ var rockPaperScissors = function (value) {
 };
 
 /*
-['R', 'P', 'S']
+rockPaperScissor(3);
 
-[RR, RP, RS, PR, PP, PS, SR, SP, SS]
+[R, P, S]
 
-[]
+[R
+P,
+S]
+
+[RR, RP, RS,
+ PR, PP, PS,
+ SR, SP, SS]
+
+[RRR, ...
+PRR, ...
+SRR, ...]
 */
