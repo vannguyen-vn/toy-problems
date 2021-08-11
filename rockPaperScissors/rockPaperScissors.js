@@ -18,8 +18,21 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
+var rockPaperScissors = function (rounds) {
+  var rounds = rounds || 3;
+  var result = [];
+  var addCharToString = function(string) {
+    string = string || '';
+    if (string.length === rounds) {
+      result.push(string);
+      return;
+    }
+    ['R', 'P', 'S'].forEach(function(item) {
+      addCharToString(string + item);
+    });
+  }
+  addCharToString();
+  return result;
 };
+
 
