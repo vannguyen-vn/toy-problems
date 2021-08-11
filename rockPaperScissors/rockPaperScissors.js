@@ -31,6 +31,7 @@ var rockPaperScissors = function (rounds) {
       }
     }
   }
-  getResults([], rounds);
+  getResults('', rounds);
   return results;
 };
+// console.log(rockPaperScissors(5))
