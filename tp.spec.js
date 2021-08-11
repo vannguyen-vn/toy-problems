@@ -1,7 +1,7 @@
 const add = require("./exampleModule").add;
 const multiply = require("./exampleModule").multiply;
 
-const rockPaperScissors = require("./rockPaperScissors/rockPaperScissors.js");
+const rockPaperScissors = require("./rockPaperScissors/rockPaperScissors");
 /*
 A "describe" block can be used to group together multiple tests
 which check the same nodule or function.
@@ -30,12 +30,12 @@ You'll need to remove the "only" from the block above. You can use that method t
 on the toy problem you're currently working on. https://jestjs.io/docs/en/api#describeonlyname-fn
 */
 describe.only("rockPaperScissors Tests", function(){
-  test("Make tests to pass describing functionality of rockPaperScissors", function(){
+  test("rockPaperScissors is a function that is defined", function(){
 
     // It's possible to have multiple expects in a single test like this. However, it is often unhelpful.
     // Just write two tests referring to the "Example Suites" example above for reference.
-    expect(rockPaperScissors).toHaveReturned();
-    // expect(add(1,0)).toBe(0);
-    // expect(multiply(1,1)).toBe(1);
+    //rockPaperScissors();
+    expect(rockPaperScissors).toBeDefined();
+
   });
 });

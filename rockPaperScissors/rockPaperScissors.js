@@ -22,7 +22,7 @@ var rockPaperScissors = function (rounds) {
   var moveSet = ['R', 'P', 'S'];
   // could we iterate across the array and push the move into the current rounds array
   // only if that move doesnt exist at that round index?
-  return;
+  return [];
 };
 
 module.exports = rockPaperScissors;
