@@ -18,8 +18,14 @@
 *
 */
 
-var rockPaperScissors = function (
+var rockPaperScissors = function (rounds, string, array
 ) {
-  // TODO: your solution here
+  string = string || '';
+  array = array || [];
+  if (string.length === rounds) {
+    array.push(string);
+    return;
+  }
+  ['R', 'P', 'S'].forEach(hand => rockPaperScissors(rounds, string + hand, array));
+  return array;
 };
-
