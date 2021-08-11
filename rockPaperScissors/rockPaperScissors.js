@@ -25,26 +25,21 @@ var rockPaperScissors = function (rounds) {
   var throws = ['R', 'P', 'S'];
   var combinations = [];
   // iterate across possible throws array
-  var findCombos = function() {
-    for (var i = 0; i < throws.length; i++) {
-      // make a string with that letter first
-      var combo = throws[i];
-      roundsPlayed++
-      if (roundsPlayed < rounds) {
-        combo += findCombos(throws)
-      } else {
-        roundsPlayed = 0
+  // var currentCombo = ''
+  for (var i = 0; i < throws.length; i++) {
+    // make a string with that letter first
+    // currentCombo += throws[i];
+    for (var j = 0; j < throws.length; j++) {
+      // currentCombo += throws[j]
+      for (var k = 0; k < throws.length; ++) {
+        // currentCombo += throws[k];
+        combinations.push(throws[i] + throws[j] + throws[k]);
       }
-      if (combo.length = rounds) {
-        combinations.push(combo);
-      }
-      return combo;
     }
-
-  findCombos();
+  }
 
   return combinations;
 
-  };
+
 }
 
