@@ -21,10 +21,9 @@
 var rockPaperScissors = function (value) {
   var results = [];
   var options = ['R', 'P', 'S'];
+  value = value || 3;
 
-  if (!value) {
-    return [];
-  } else if (value === 1) {
+  if (value === 1) {
     return options;
   } else {
     var recurseRound = rockPaperScissors(value - 1);
