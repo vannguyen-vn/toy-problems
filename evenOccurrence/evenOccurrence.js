@@ -11,6 +11,7 @@
 */
 
 var evenOccurrence = function(arr) {
+  arr = arr || [];
   var dictionary = {};
   arr.forEach(num => { dictionary[num] |= 0; dictionary[num] += 1; });
   for (var i = 0; i < arr.length; i++) {
