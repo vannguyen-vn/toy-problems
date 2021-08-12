@@ -1,6 +1,6 @@
 /*
  * Find the first item that occurs an even number of times in an array.
- * Remember to handle multiple even-occurrence items and return the first one. 
+ * Remember to handle multiple even-occurrence items and return the first one.
  * Return null if there are no even-occurrence items.
 */
 
@@ -11,5 +11,19 @@
 */
 
 var evenOccurrence = function(arr) {
-  // Your code here.
+  var obj = {};
+  for (var i = 0; i < arr.length; i++) {
+    var ele = arr[i];
+    if (!obj[ele]) {
+      obj[ele] = 1;
+    } else {
+      obj[ele] += 1;
+    }
+  }
+  for (var key in obj) {
+    if (obj[key] % 2 === 0) {
+      return key;
+    }
+  }
+  return null;
 };
