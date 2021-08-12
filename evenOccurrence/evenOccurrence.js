@@ -13,13 +13,12 @@
 // input: array
 // output: number
 // constraints: first item that occurs even times
-let evenOccurrence = function(arr) {
-  let numberOccurences = {}
+var evenOccurrence = function(arr) {
+  var numberOccurences = {}
   // loop through array
-  for (let i = 0; i < arr.length; i++) {
-    // let occurances = 0;
+  for (var i = 0; i < arr.length; i++) {
     // for each number
-    let number = arr[i]
+    var number = arr[i]
     // if number is not in obj
     if (numberOccurences[number] === undefined) {
       // add it as a key with a value of 1
@@ -30,7 +29,7 @@ let evenOccurrence = function(arr) {
   }
 
   // loop through obj
-  for (let number in numberOccurences) {
+  for (var number in numberOccurences) {
     // if value is even
     if (numberOccurences[number] % 2 === 0) {
       // return value
@@ -41,6 +40,6 @@ let evenOccurrence = function(arr) {
 };
 
 // examples
-let onlyEven = evenOccurrence([1, 7, 2, 4, 5, 6, 8, 9, 6, 4]);
+var onlyEven = evenOccurrence([1, 7, 2, 4, 5, 6, 8, 9, 6, 4]);
 console.log(onlyEven); //  4
 console.log(evenOccurrence([2, 1, 7, 8, 2, 7, 7, 7, 5])) // 2
