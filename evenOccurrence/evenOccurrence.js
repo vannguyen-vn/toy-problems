@@ -28,13 +28,8 @@ var evenOccurrence = function(arr) {
   //now we have the object with the desired keys;
   //iterate through the array and if that value in the array matches the object and if its undefined add 1 else +1;
   if (Object.values(arrayValueObj)) {
-    return getKeyByTheValue(arrayValueObj, 2)
+    return getKeyByTheValue(arrayValueObj, 2) || null;
   }
-
-  if (Object.values(arrayValueObj) !== 2) {
-    return null;
-  }
-
 
   //once thats done, we want to grab all the value of the object that are === 2,
   //lets find the indexOf those keys and see which index comes first,
