@@ -35,6 +35,9 @@ var evenOccurrence = function(arr) {
   //  if it's there an even number of times
   //    push into results array
   //return results[0]
+  if (itemsWithEvenCount.length < 1) {
+    return null;
+  }
   return itemsWithEvenCount[0];
 
 };
