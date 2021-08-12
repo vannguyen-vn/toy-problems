@@ -19,7 +19,6 @@ var evenOccurrence = function(arr) {
     var curElem = arr[i];
     if (res[curElem] === undefined) {
       res[curElem] = 1;
-      loc[curElem] = i;
     } else {
       res[curElem]++;
     }
