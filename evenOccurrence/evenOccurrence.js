@@ -23,8 +23,10 @@ var evenOccurrence = function(arr) {
 
   for (var num in occurred) {
     if (occurred[num] % 2 === 0) {
-      return num;
+      return parseInt(num);
     }
   }
   return null;
 };
+
+// module.exports = evenOccurrence;

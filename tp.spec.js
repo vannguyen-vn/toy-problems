@@ -2,6 +2,7 @@ const add = require("./exampleModule").add;
 const multiply = require("./exampleModule").multiply;
 
 const rockPaperScissors = require("./rockPaperScissors/rockPaperScissors");
+const evenOccurrence = require("./evenOccurrence/evenOccurrence");
 /*
 A "describe" block can be used to group together multiple tests
 which check the same nodule or function.
@@ -29,7 +30,7 @@ Notice the method "only" above. Because it is there, the describe block below wo
 You'll need to remove the "only" from the block above. You can use that method to only run tests
 on the toy problem you're currently working on. https://jestjs.io/docs/en/api#describeonlyname-fn
 */
-describe.only("rockPaperScissors Tests", function(){
+describe("rockPaperScissors Tests", function(){
   test("rockPaperScissors is a function that is defined", function(){
 
     // It's possible to have multiple expects in a single test like this. However, it is often unhelpful.
@@ -37,5 +38,24 @@ describe.only("rockPaperScissors Tests", function(){
     //rockPaperScissors();
     expect(rockPaperScissors).toBeDefined();
 
+  });
+});
+
+describe.only("evenOccurrence Tests", function(){
+  test("evenOccurrence is a function that is defined", function(){
+
+    // It's possible to have multiple expects in a single test like this. However, it is often unhelpful.
+    // Just write two tests referring to the "Example Suites" example above for reference.
+    //rockPaperScissors();
+    expect(evenOccurrence).toBeDefined();
+
+  });
+  it("Should return the first number that occurred an even number of times", function(){
+    expect(evenOccurrence([1, 7, 2, 4, 5, 6, 8, 9, 6, 4])).toBe(4);
+    expect(evenOccurrence([1, 4, 7, 2, 4, 5, 6, 8, 9, 6, 4])).toBe(6)
+  });
+  it("Should return null when there are no even occurrences", function(){
+    expect(evenOccurrence([1, 7, 2, 4, 5, 8, 9, 6])).toBe(null);
+    expect(evenOccurrence([1, 4, 7, 4, 2, 4, 5, 6, 8, 6, 9, 4, 6, 4])).toBe(null)
   });
 });
