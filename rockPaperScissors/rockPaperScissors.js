@@ -21,7 +21,7 @@
 var rockPaperScissors = function () {
 
   var results = [];
-  var rsp = ['R','S','P']
+  var rsp = ['R','P','S']
 
 
     for(var r = 0; r < rsp.length; r++) {
