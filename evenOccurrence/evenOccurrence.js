@@ -17,7 +17,7 @@ var evenOccurrence = function(arr) {
     storage[val] = storage[val] + 1 || 1;
   });
   for (let i = 0; i < arr.length; i++) {
-    var curr = arr[i];
+    let curr = arr[i];
     if (storage[curr] % 2 === 0) return curr;
   }
   return null;
