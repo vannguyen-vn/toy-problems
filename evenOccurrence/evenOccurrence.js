@@ -21,6 +21,7 @@
 */
 
 var evenOccurrence = function (arr) {
+
   var storage = {};
   for (var num of arr) {
     storage[num] = storage[num] + 1 || 1;
@@ -31,4 +32,5 @@ var evenOccurrence = function (arr) {
       return current;
     }
   }
+  return null;
 };
