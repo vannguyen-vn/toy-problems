@@ -10,17 +10,18 @@
  * console.log(onlyEven); //  4
 */
 
-var evenOccurrence = function(arr) {
+var evenOccurrence = arr => {
   var storage = {};
   var returnEle;
 
-  arr.forEach(function(element) {
-  if (storage[element] !== undefined) {
-    returnEle = element;
-  } else {
-    storage[element] = 1;
-  }
+  arr.forEach(element => {
+    if (storage[element] !== undefined) {
+      returnEle = element;
+    } else {
+      storage[element] = 1;
+    }
   });
+
   return returnEle
 
 };
