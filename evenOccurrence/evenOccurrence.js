@@ -11,10 +11,8 @@
 */
 
 var evenOccurrence = function(arr) {
-  // Your code here.
   var counters = {};
   var itemsWithEvenCount = [];
-  //iterate across array
   for (var i = 0; i < arr.length; i++) {
     var key = arr[i];
     if (counters[key] === undefined) {
@@ -26,10 +24,10 @@ var evenOccurrence = function(arr) {
   for (var key in counters) {
     if (counters[key] % 2 === 0){
       var keyIndex = arr.indexOf(Number(key));
-      console.log(keyIndex)
       itemsWithEvenCount.push(arr[keyIndex]);
     }
   }
+  //iterate across array
   //  if it exists in the object
   //    update the count
   //  else
