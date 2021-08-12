@@ -12,10 +12,20 @@
 
 var evenOccurrence = function(arr) {
   for (var i = 0; i < arr.length; i++) {
-    var checkArr = arr.slice(i + 1);
-    if (checkArr.includes(arr[i])) {
+    var numOccur = occurences(arr[i], arr);
+    if (numOccur % 2 === 0) {
       return arr[i];
     }
   }
   return null;
 };
+
+var occurences = function(value, array) {
+  var result = 0;
+  for (var i = 0; i < array.length; i++) {
+    if (value === array[i]){
+      result++;
+    }
+  }
+  return result;
+}
