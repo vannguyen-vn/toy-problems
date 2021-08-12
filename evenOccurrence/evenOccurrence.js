@@ -14,7 +14,7 @@ var evenOccurrence = function(arr) {
   if (arr.length === 0) {
     return null;
   }
-  var valueOccurances = [arr[0], 1];
+  var valueOccurances = [[arr[0], 1]];
   for (var i = 1; i < arr.length; i++) {
     for (var j = 0; j < valueOccurances.length; j++) {
       if (valueOccurances[j][0] === arr[i]) {
