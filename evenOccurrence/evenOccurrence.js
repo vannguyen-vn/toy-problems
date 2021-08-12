@@ -10,7 +10,7 @@
  * console.log(onlyEven); //  4
 */
 
-var evenOccurrence = function(arr) {
+var evenOccurrence = function (arr) {
 
   var storage = {};
 
@@ -24,14 +24,14 @@ var evenOccurrence = function(arr) {
 
   var first = null;
   for (var j = 0; j < arr.length; j++) {
-      for (var key in storage) {
-          if (storage[key] >= 2) {
-            if (arr[j] === Number(key)) {
-              first = arr[j];
-              return first;
-            }
-          }
+    for (var key in storage) {
+      if (storage[key] >= 2 && storage[key] % 2 === 0) {
+        if (arr[j] === Number(key)) {
+          first = arr[j];
+          return first;
+        }
       }
+    }
   }
 
   return first;
