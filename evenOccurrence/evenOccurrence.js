@@ -28,12 +28,17 @@ var evenOccurrence = function(arr) {
       evenOcc.push(Number(key));
     }
   }
-  var first = arr.indexOf(evenOcc[0]);
-  for (var i = 0; i < evenOcc.length; i++) {
-    if (first > arr.indexOf(evenOcc[i])) {
-      first = arr.indexOf(evenOcc[i]);
+
+  if (evenOcc.length > 0) {
+    var first = arr.indexOf(evenOcc[0]);
+    for (var i = 0; i < evenOcc.length; i++) {
+      if (first > arr.indexOf(evenOcc[i])) {
+        first = arr.indexOf(evenOcc[i]);
+      }
     }
+    return arr[first];
+  } else {
+    return null;
   }
-  return arr[first];
 
 };
