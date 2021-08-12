@@ -21,9 +21,18 @@ var evenOccurrence = function(arr) {
     }
   }
   //search through the occurance storage to find the first even number
+  var even = [];
   for (var key in occurance) {
     if (occurance[key] % 2 === 0) {
-      return key;
+      even.push(key);
     }
   }
+  //compare the indexes of evens, choose the first
+  var occurance = arr.length;
+  for (var i = 0; i < even.length; i++) {
+    if (arr.indexOf(Number(even[i])) < occurance) {
+      occurance = arr.indexOf(Number(even[i]));
+    }
+  }
+  return arr[occurance];
 };
