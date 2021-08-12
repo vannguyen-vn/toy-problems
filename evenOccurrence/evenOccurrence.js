@@ -27,7 +27,7 @@ var evenOccurrence = function(arr) {
     //i believe each value in the array is converted into a string once added to the object;
   //now we have the object with the desired keys;
   //iterate through the array and if that value in the array matches the object and if its undefined add 1 else +1;
-  if (Object.values(arrayValueObj) === 2) {
+  if (Object.values(arrayValueObj)) {
     return getKeyByTheValue(arrayValueObj, 2)
   }
 
