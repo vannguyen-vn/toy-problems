@@ -1,6 +1,6 @@
 /*
  * Find the first item that occurs an even number of times in an array.
- * Remember to handle multiple even-occurrence items and return the first one. 
+ * Remember to handle multiple even-occurrence items and return the first one.
  * Return null if there are no even-occurrence items.
 */
 
@@ -11,5 +11,16 @@
 */
 
 var evenOccurrence = function(arr) {
-  // Your code here.
+  var storage = {};
+  var returnEle;
+
+  arr.forEach(function(element) {
+  if (storage[element] !== undefined) {
+    returnEle = element;
+  } else {
+    storage[element] = 1;
+  }
+  });
+  return returnEle
+
 };
