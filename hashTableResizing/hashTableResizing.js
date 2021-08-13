@@ -40,7 +40,8 @@ var makeHashTable = function () {
 
     check if need to resize
       adding to hash table
-      call resize when the total number of items stored is greater than 3/4th of the number of slots in the storage array.
+      double limit by calling resize when the total number of items stored is greater than 3/4th of the
+      number of slots in the storage array.
     */
 
     var index = getIndexBelowMaxForKey(key, storageLimit);
@@ -59,7 +60,7 @@ var makeHashTable = function () {
     }
 
     if (storage.size > (0.75 * storageLimit)) {
-      storage.resize();
+      storage.resize(2 * storageLimit);
     }
   };
 
@@ -98,9 +99,50 @@ var makeHashTable = function () {
       loop through bucket
         check if key in bucket equals the input key
         if matched
+          spice by one at the index
+          decrement size
+
+    check if need to resize
+      half storage limit by calling resize by half whenever utilization drops below 1/4.
     */
 
+    var index = getIndexBelowMaxForKey(key, storageLimit);
+    var bucket = storage[index];
+
+    if (bucket) {
+      for (var i = 0; i < bucket.size; i++) {
+        if (bucket[i][0] === key) {
+          bucket.splice(i, 1);
+          size--;
+        }
+      }
+    }
+
+    if (storage.size < (0.25 * storageLimit)) {
+      storage.resize(0.5 * storageLimit);
+    }
   };
+
+
+  result.resize = function (newLimit) {
+    /*
+    save reference to storage
+    set storage limit to new limit
+    empty storage array
+
+    loop through old storage
+      for every key value pair
+      
+
+    */
+
+
+    var oldStorage = storage;
+    storageLimit = newLimit;
+    storage = [];
+
+  }
+
 
   return result;
 };
