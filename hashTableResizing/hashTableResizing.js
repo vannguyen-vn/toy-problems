@@ -21,25 +21,54 @@ var getIndexBelowMaxForKey = function(str, max) {
 };
 
 var makeHashTable = function() {
-  var result = {};
-  var storage = [];
-  var storageLimit = 4;
-  var size = 0;
-  
-  result.insert = function(/*...*/ 
-) {
-    // TODO: implement `insert`
+  var newHashTable = {};
+  newHashTable.storage = [];
+  newHashTable.storageLimit = 4;
+  newHashTable.size = 0;
+  newHashTable.storageCopy = null;
+
+  newHashTable.doubleHash = function() {
+    this.size = 0;
+    this.storageLimit *= 2;
+    this.storageCopy = this.storage;
+    this.storage = [];
+    for (var i = 0; i < this.storageCopy.length; i++) {
+      for (var tuple in this.storageCopy[i]) {
+        if (!this.storageCopy[i]) { continue; }
+        for(var value in this.storageCopy[i][tuple]) {
+          this.insert(this.storageCopy[i][tuple][value]);
+        }
+      }
+    }
+  }
+
+  newHashTable.insert = function(value) {
+    if (!this.storage[getIndexBelowMaxForKey(value, this.storageLimit)]) {
+      this.storage[getIndexBelowMaxForKey(value, this.storageLimit)] = [{[value]: value}];
+    } else {
+      this.storage[getIndexBelowMaxForKey(value, this.storageLimit)].push({[value]: value});
+    }
+    this.size++;
+    if (this.size > this.storageLimit * 0.75) { this.doubleHash(); }
   };
 
-  result.retrieve = function(/*...*/ 
-) {
-    // TODO: implement `retrieve`
+  newHashTable.retrieve = function() {
   };
 
-  result.remove = function(/*...*/ 
-) {
-    // TODO: implement `remove`
+  newHashTable.remove = function() {
   };
 
-  return result;
+  return newHashTable;
 };
+
+// var hash = makeHashTable();
+// console.log(hash);
+// hash.insert('kevin')
+// console.log(hash);
+// hash.insert('kevin')
+// console.log(hash);
+// hash.insert('kevin')
+// console.log(hash);
+// // debugger;
+// hash.insert('kevin')
+// console.log(hash);
