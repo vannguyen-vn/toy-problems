@@ -25,20 +25,30 @@ var makeHashTable = function() {
   var storage = [];
   var storageLimit = 4;
   var size = 0;
-  
-  result.insert = function(/*...*/ 
-) {
+
+  result.insert = function(key, value) {
     // TODO: implement `insert`
+    //add the key and value as a nested array in the bucket (also an array, the value of a given key)
+    var bucketIndex = getIndexBelowMaxForKey(key, storageLimit);
+    if (result[bucketIndex]) {
+      result[bucketIndex].push([key, value]);
+    } else {
+      result[bucketIndex] = [[key, value]];
+    }
+    storage.splice(bucketIndex);
+    //check storageLimit size
   };
 
-  result.retrieve = function(/*...*/ 
-) {
+  result.retrieve = function(key) {
     // TODO: implement `retrieve`
+    // given a key, convert the key to an index and then search the array at that index for the key/value pair
   };
 
-  result.remove = function(/*...*/ 
-) {
+  result.remove = function(key) {
     // TODO: implement `remove`
+    // retrieve the key-value pair
+    // change it or delete [I DON'T REMEMBER HOW ANY OF THIS WORKS]
+    //
   };
 
   return result;
