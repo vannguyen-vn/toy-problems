@@ -20,10 +20,7 @@ var getIndexBelowMaxForKey = function(str, max) { //return an index less than th
   return hash % max;
 };
 
-var makeHashTable = function() { //functional
-
-  console.log('------_A_NEW_DAY_--------------------------------------------------')
-
+var makeHashTable = function() {
   var result = {};
   result.storage = [];
   result.storageLimit = 4;
@@ -34,28 +31,26 @@ var makeHashTable = function() { //functional
   }
 
   result._resize = function(increaseOrDecrease, oldLimit) {
-    console.log(`resizig with ${increaseOrDecrease}!`)
     var oldLimit = oldLimit;
     var oldStorage = result.storage;
 
-    //determines if increasing
+    //determines if increasing or decreasing size
     if (increaseOrDecrease === 'increase') {
       result.storageLimit = oldLimit * 2;
     } else if (increaseOrDecrease === 'decrease') {
       result.storageLimit = oldLimit * 0.5;
     }
 
-    console.log('BEFORE REASSIGN', result.storage)
+    //recreates table of appropriate size
     result.storage = [];
     result.size = 0;
     while(result.storage.length < result.storageLimit) {
       result.storage.push([])
     }
-    console.log('EMPTY RESIZE', result.storage)
 
+    //transfers values
     for (var i = 0; i < oldStorage.length; i++) {
-      for (var j = 0; j < oldStorage[i].length; j++) { //skip if empty?
-
+      for (var j = 0; j < oldStorage[i].length; j++) {
         var tuple = oldStorage[i][j]
         var key = tuple[0];
         var value = tuple[1];
@@ -67,13 +62,14 @@ var makeHashTable = function() { //functional
 
   result.insert = function(key, value, _resize) {
 
-
-
+    //generates index for top-level storage
     var index = getIndexBelowMaxForKey(key, result.storageLimit);
+
+    //pushes tuple into correct storage array and increments table size
     result.storage[index].push([key, value]);
     result.size ++;
 
-
+    //checks to confirm size of table is within bounds
     if ((!_resize) && result.size > result.storageLimit*0.75) {
       result._resize('increase', result.storageLimit)
     }
@@ -81,56 +77,51 @@ var makeHashTable = function() { //functional
 
   result.retrieve = function(key) {
 
+    //generates index for top-level storage
     var index = getIndexBelowMaxForKey(key, result.storageLimit)
 
+    //iterates over tuples at appropriate index
     for (var i = 0; i < result.storage[index].length; i++) {
       var storedKey = result.storage[index][i][0]
       if (storedKey === key) {
-        return result.storage[index][i][1] //value
+        return result.storage[index][i][1] //returns value associated with key
       }
     }
     return 'Key undefined' //return this string if key is not found
-
   };
 
   result.remove = function(key) {
+
+    //generates top-storage index
     var index = getIndexBelowMaxForKey(key, result.storageLimit)
 
+    //iterates over array at apropriate index
       for (var i = 0; i < result.storage[index].length; i++) {
          var storedKey = result.storage[index][i][0]
             if (storedKey === key) {
-              result.storage[index].splice(i, 1) //value
+              //removes tuple from array and decrments size
+              result.storage[index].splice(i, 1)
+              result.size --;
 
               if (result.size < (result.storageLimit*0.25)) {
                 result._resize('decrease', result.storageLimit)
               }
-
             }
         }
       return 'Key undefined' //if the key is not found in the table, return this string
   };
-  return result;
+
+  return result; //instance of hash table
 };
 
-var test = makeHashTable();
-// console.log('emptyTest:', test);
-test.insert('1', 1)
-test.insert('2', 2)
-test.insert('3', 3)
-test.insert('4', 4)
-
-// console.log('End of First Rebalance', test.storage)
-test.insert('5', 5)
-
-// console.log('After adding fifth element', test.storage)
-test.insert('6', 6)
-// console.log('After adding sixth element', test.storage)
-test.insert('7', 7)
-// console.log('After adding seventh element', test.storage)
-test.remove('7')
-// console.log('After removing seventh element', test.storage)
-test.remove('6')
-// console.log('After removing sixth element', test.storage)
-test.remove('5')
-test.remove('4')
-console.log('After removing fourth element', test.storage)
+//For Tests
+// var test = makeHashTable();
+// test.insert('1', 1)
+// test.insert('2', 2)
+// test.insert('3', 3)
+// test.insert('4', 4)
+// console.log('After adding fourth element', test.storage)
+// test.remove('4')
+// test.remove('3', 3)
+// test.remove('2', 2)
+// console.log('After removing second element', test.storage)
