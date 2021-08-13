@@ -10,7 +10,8 @@
 // This is a "hashing function". You don't need to worry about it, just use it
 // to turn any string into an integer that is well-distributed between
 // 0 and max - 1
-var getIndexBelowMaxForKey = function(str, max) {
+
+var getIndexBelowMaxForKey = function (str, max) {
   var hash = 0;
   for (var i = 0; i < str.length; i++) {
     hash = (hash << 5) + hash + str.charCodeAt(i);
@@ -20,25 +21,85 @@ var getIndexBelowMaxForKey = function(str, max) {
   return hash % max;
 };
 
-var makeHashTable = function() {
+var makeHashTable = function () {
   var result = {};
   var storage = [];
   var storageLimit = 4;
   var size = 0;
-  
-  result.insert = function(/*...*/ 
-) {
-    // TODO: implement `insert`
+
+  result.insert = function (key, value) {
+    /*
+    get index via hashing function
+    update size
+    get bucket
+    if exists, override
+      loop through storage and override with newly inputted key value pairs
+    if does not exist
+      create new bucket
+      add value into newly created bucket
+
+    check if need to resize
+      adding to hash table
+      call resize when the total number of items stored is greater than 3/4th of the number of slots in the storage array.
+    */
+
+    var index = getIndexBelowMaxForKey(key, storageLimit);
+    var bucket = storage[index];
+    size++;
+
+    if (bucket) {
+      for (var i = 0; i < bucket.size; i++) {
+        if (storage[i][0] === key) {
+          storage[i][1] = value;
+        }
+      }
+    } else {
+      storage[index] = [];
+      storage[index].push([key, value]);
+    }
+
+    if (storage.size > (0.75 * storageLimit)) {
+      storage.resize();
+    }
   };
 
-  result.retrieve = function(/*...*/ 
-) {
-    // TODO: implement `retrieve`
+  result.retrieve = function (key) {
+    /*
+    get index via hash function
+    get bucket corresponding to hashed index
+
+    if bucket exists
+      loop through bucket size
+        check if the bucket key matches the input key
+          if matched, return value
+
+    return undefined
+    */
+
+    var index = getIndexBelowMaxForKey(key, storageLimit);
+    var bucket = storage[index];
+
+    if (bucket) {
+      for (var i = 0; i < bucket.size; i++) {
+        if (storage[i][0] === key) {
+          return storage[i][1];
+        }
+      }
+    }
+    return undefined;
   };
 
-  result.remove = function(/*...*/ 
-) {
-    // TODO: implement `remove`
+  result.remove = function (key) {
+    /*
+    get hashed index via hashing function
+    get bucket in storage
+
+    if bucket exists
+      loop through bucket
+        check if key in bucket equals the input key
+        if matched
+    */
+
   };
 
   return result;
