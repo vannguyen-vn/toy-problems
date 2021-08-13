@@ -45,7 +45,7 @@ var makeHashTable = function() {
    }
  };
 
-  result.retrieve = function(key, value) {
+  result.retrieve = function(key) {
     var index = getIndexBelowMaxForKey(key, storageLimit);
 
     var bucket = storage[index];
@@ -62,20 +62,26 @@ var makeHashTable = function() {
     }
   };
 
-  result.remove = function(key, value) {
+  result.remove = function(key) {
     var index = getIndexBelowMaxForKey(key, storageLimit);
 
     var bucket = storage[index];
     // grab bucket
-    // iterate through bucket and match the key to tuple
-      // splice(index, 1)
-      // return value
-
-    // return null
+    if (bucket) {
+      for (var i = 0; i < bucket.length; i++) {
+        var tuple = bucket[i];
+        if (tuple[0] === k) {
+          bucket.splice(i, 1);
+          return tuple[1];
+        }
+      }
+    } else {
+      return null;
+    }
   };
 
   return result;
 };
 
 console.log(getIndexBelowMaxForKey('z', 4)); // -> 2
-// console.log(makeHashTable.result.insert('a', 'b')); -> trying to get this to work
+// console.log(makeHashTable.result.insert('a', 'b'));
