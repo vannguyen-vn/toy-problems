@@ -33,20 +33,38 @@ var makeHashTable = function() {
       storage[bucketIndex] = [];
       storage[bucketIndex].push(tuple);
     } else {
+      var found = false;
       var bucket = storage[bucketIndex];
       for (var i = 0; i < bucket.length; i++) {
         if(bucket[i][0] === key) {
           bucket[i][1] === value;
-          return;
+          found = true;
         }
       }
-      bucket.push(tuple);
+      if (!found) {
+        bucket.push(tuple);
+      }
+    }
+    size++;
+    if (size / storageLimit > 3 / 4) {
+      var oldSolution = solution.slice();
+      storageLimit = storageLimit * 2;
+      solution = [];
+      for (var j = 0; j < oldSolution.length; j++) {
+        var oldBucket = oldSolution[j];
+        if (oldBucket.length > 0) {
+          for(var k = 0; k < oldBucket.length; k++) {
+            var oldTuple = oldBucket[k];
+            this.insert(oldTuple[0], oldTuple[1]);
+          }
+        }
+      }
     }
   };
 
-  result.retrieve = function(/*...*/
-) {
-    // TODO: implement `retrieve`
+  result.retrieve = function(key) {
+    var result;
+    var bucketIndex = getIndexBelowMaxForKey(key, storageLimit);
   };
 
   result.remove = function(/*...*/
