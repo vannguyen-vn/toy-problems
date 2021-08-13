@@ -27,13 +27,13 @@ var rockPaperScissors = function (rounds) {
       result.push(played);
     } else {
       for (var i = 0; i < plays.length; i++) {
-        helpFunction(played+plays[i], roundsLeft-1);
+        helpFunction(played + plays[i], roundsLeft - 1);
       }
     }
-  }
+  };
   helpFunction('', rounds);
   return result;
-}
+};
 
 
 

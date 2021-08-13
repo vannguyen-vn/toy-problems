@@ -25,21 +25,34 @@ var makeHashTable = function() {
   var storage = [];
   var storageLimit = 4;
   var size = 0;
-  
-  result.insert = function(/*...*/ 
-) {
-    // TODO: implement `insert`
+
+  result.insert = function(key, value
+  ) {
+    var index = getIndexBelowMaxForKey(key, storageLimit);
+    if (!result.storage[index]) {
+      result.storage[index].push([key, value]);
+    }
+    return index;
   };
 
-  result.retrieve = function(/*...*/ 
-) {
-    // TODO: implement `retrieve`
+  result.retrieve = function(key
+  ) {
+    var index = getIndexBelowMaxForKey(key, storageLimit);
+    if (!result.storage[index]) {
+      return null;
+    }
+    for (var i = 0; i < result.storage[index].length; i++) {
+      if (result.storage[index][0]) {
+        return result.storage[index][1];
+      }
+    }
   };
 
-  result.remove = function(/*...*/ 
-) {
+  result.remove = function(/*...*/
+  ) {
     // TODO: implement `remove`
   };
-
+  // if the size too large, double storage Limit
+  // if the size too small, half storage limit
   return result;
 };
