@@ -102,7 +102,7 @@ var makeHashTable = function() {
         if (oldBucket) {
           for (var k = 0; k < oldBucket.length; k++) {
             var oldTuple = oldBucket[k];
-            result.insert(oldTuple[0]; oldTuple[1]);
+            result.insert(oldTuple[0], oldTuple[1]);
           }
         }
       }
