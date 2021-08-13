@@ -25,21 +25,59 @@ var makeHashTable = function() {
   var storage = [];
   var storageLimit = 4;
   var size = 0;
-  
-  result.insert = function(/*...*/ 
-) {
-    // TODO: implement `insert`
+  var count = 0;
+
+  result.insert = function(key, value) {
+    var index = getIndexBelowMaxForKey(key);
+    if (storage[index] === undefined) {
+      storage[index] = [[key, value]];
+    } else {
+      var tuples = storage[index];
+      var keyPos;
+      for (var i = 0; i < tuples.length; i++) {
+        if (tuples[i][0] === key) {
+          keyPos = i;
+          break;
+        }
+      }
+      if (keyPos !== undefined) {
+        tuples[keyPos][1] = value;
+      } else {
+        tuples.push([key, value]);
+      }
+    }
   };
 
-  result.retrieve = function(/*...*/ 
-) {
-    // TODO: implement `retrieve`
+  result.retrieve = function(key) {
+    var index = getIndexBelowMaxForKey(key);
+    var tuples = storage[index];
+    if (tuples !== undefined) {
+      for (var i = 0; i < tuples.length; i++) {
+        if (tuples[i][0] === key) {
+          return tuples[i][1];
+        }
+      }
+    }
+    return undefined;
   };
 
-  result.remove = function(/*...*/ 
-) {
-    // TODO: implement `remove`
+  result.remove = function(key) {
+    var index = getIndexBelowMaxForKey(key);
+    var tuples = storage[index];
+    if (tuples !== undefined) {
+      var removeInd;
+      for (var i = 0; i < tuples.length; i++) {
+        if (tuples[i][0] === key) {
+          removeInd = i;
+          break;
+        }
+      }
+      tuples.splice(removeInd, 1);
+    }
   };
+
+  result.resize = function() {
+  }
 
   return result;
 };
