@@ -53,4 +53,4 @@ var makeHashTable = function() {
   return result;
 };
 
-console.log(makeHashTable.insert(1));
+// console.log(makeHashTable.insert(1));
