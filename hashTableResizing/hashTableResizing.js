@@ -20,26 +20,76 @@ var getIndexBelowMaxForKey = function(str, max) {
   return hash % max;
 };
 
-var makeHashTable = function() {
+var makeHashTable = function(limit) {
   var result = {};
-  var storage = [];
-  var storageLimit = 4;
-  var size = 0;
-  
-  result.insert = function(/*...*/ 
-) {
-    // TODO: implement `insert`
+  result.storage = [];
+  result.storageLimit = limit || 4;
+  result.size = 0;
+
+  result.insert = function(key, value) {
+    var index = getIndexBelowMaxForKey(key, this.storageLimit);
+    var tuple = [key, value];
+    if(this.storage[index] !== undefined) {
+      this.storage[index].push(tuple);
+    } else {
+      this.storage[index] = [tuple];
+    }
+    this.size ++;
+    if (this.size > this.storageLimit * .75) {
+      var newHash = makeHashTable(this.storageLimit * 2)
+      for (var i = 0; i < this.storage.length; i ++) {
+        if (this.storage[i]) {
+          for (var j = 0; j < this.storage[i].length; j ++) {
+            var tuple = this.storage[i][j]
+            newHash.insert(tuple[0], tuple[1]);
+          }
+        }
+      }
+      this.storage = newHash.storage;
+      this.storageLimit = newHash.storageLimit;
+      this.size = newHash.size;
+    }
   };
 
-  result.retrieve = function(/*...*/ 
-) {
-    // TODO: implement `retrieve`
+  result.retrieve = function(key) {
+    var index = getIndexBelowMaxForKey(key, this.storageLimit);
+    for (var i = 0; i < this.storage[index].length; i++) {
+      if(this.storage[index][i][0] === key) {
+        return this.storage[index][i][1];
+      }
+    }
+    return undefined;
   };
 
-  result.remove = function(/*...*/ 
-) {
-    // TODO: implement `remove`
+  result.remove = function(key) {
+    var index = getIndexBelowMaxForKey(key, this.storageLimit);
+    for (var i = 0; i < this.storage[index].length; i++) {
+      if (this.storage[index][i][0] === key) {
+        var returnVal = this.storage[index][i][1];
+        this.storage[index].splice(i, 1);
+        break;
+      }
+    }
+    this.size --;
+    if (this.size < this.storageLimit * .25) {
+      var newHash = makeHashTable(this.storageLimit / 2);
+      for (var i = 0; i < this.storage.length; i++) {
+        if (this.storage[i]) {
+          for (var j = 0; j < this.storage[i].length; j ++) {
+            var tuple = this.storage[i][j]
+            newHash.insert(tuple[0], tuple[1]);
+          }
+        }
+      }
+      this.storage = newHash.storage;
+      this.storageLimit = newHash.storageLimit;
+      this.size = newHash.size;
+    }
+    return returnVal;
+
   };
 
   return result;
 };
+module.exports = makeHashTable;
+module.exports = getIndexBelowMaxForKey
