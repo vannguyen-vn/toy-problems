@@ -65,3 +65,27 @@
     return storage;
   };
   rockPaperScissors(3);
+
+
+  var rockPaperScissors = function(rounds) {
+    var combosArr = [];
+    var rounds = rounds;
+    var combo = '';
+    var options = ['R', 'P', 'S'];
+
+    var innerFunction = function(combo) {
+      if (combo.length === rounds) {
+        combosArr.push(combo);
+        return;
+      }
+
+      for (var i = 0; i < options.length; i++) {
+        var letter = options[i];
+        innerFunction(combo + letter);
+      }
+    }
+    innerFunction(combo);
+    return combosArr;
+  }
+
+  rockPaperScissors(4);
