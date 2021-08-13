@@ -39,4 +39,7 @@ var rockPaperScissors = function () {
   //return the array
   return combinations;
 };
+console.log(rockPaperScissors());
 
+//PRACTICE: recursive - master for databses
+//Remember to remove comments from code after implementing
