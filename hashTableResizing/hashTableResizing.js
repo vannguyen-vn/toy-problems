@@ -22,24 +22,36 @@ var getIndexBelowMaxForKey = function(str, max) {
 
 var makeHashTable = function() {
   var result = {};
-  var storage = [];
-  var storageLimit = 4;
-  var size = 0;
-  
-  result.insert = function(/*...*/ 
-) {
-    // TODO: implement `insert`
+  result.storage = [];
+  result.storageLimit = 4;
+  result.size = 0;
+
+  result.insert = function(key, value) {
+    var index = getIndexBelowMaxForKey(key, result.storageLimit);
+    if (result.storage[index] === undefined) {
+      result.storage[index] = [];
+      result.storage[index].push([key, value]);
+      result.size++;
+    } else {
+     result.storage[index].push([key, value]);
+    }
+
+    if (result.size \ result.storageLimit > 0.75) {
+      result.storageLimit = result.storageLimit * 2;
+    } else if (result.size \ result.storageLimit < 0.25) {
+      result.storageLimit = result.storageLimit \ 2;
+    }
   };
 
-  result.retrieve = function(/*...*/ 
-) {
-    // TODO: implement `retrieve`
+  result.retrieve = function(key) {
+    var index = getIndexBelowMaxForKey(key, result.storageLimit);
   };
 
-  result.remove = function(/*...*/ 
-) {
-    // TODO: implement `remove`
+  result.remove = function(key) {
+    var index = getIndexBelowMaxForKey(key, result.storageLimit);
   };
 
   return result;
 };
+
+//var hashTable1 = makeHashTable();
