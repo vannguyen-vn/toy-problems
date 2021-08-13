@@ -25,18 +25,31 @@ var makeHashTable = function() {
   var storage = [];
   var storageLimit = 4;
   var size = 0;
-  
-  result.insert = function(/*...*/ 
-) {
-    // TODO: implement `insert`
+
+  result.insert = function(key, value) {
+    var bucketIndex = getIndexBelowMaxForKey(key, storageLimit);
+    var tuple = [key, value];
+    if (storage[bucketIndex] === undefined) {
+      storage[bucketIndex] = [];
+      storage[bucketIndex].push(tuple);
+    } else {
+      var bucket = storage[bucketIndex];
+      for (var i = 0; i < bucket.length; i++) {
+        if(bucket[i][0] === key) {
+          bucket[i][1] === value;
+          return;
+        }
+      }
+      bucket.push(tuple);
+    }
   };
 
-  result.retrieve = function(/*...*/ 
+  result.retrieve = function(/*...*/
 ) {
     // TODO: implement `retrieve`
   };
 
-  result.remove = function(/*...*/ 
+  result.remove = function(/*...*/
 ) {
     // TODO: implement `remove`
   };
