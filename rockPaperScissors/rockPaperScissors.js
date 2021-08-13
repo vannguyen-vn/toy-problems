@@ -29,7 +29,7 @@ var rockPaperScissors = function (rounds) {
       }
     }
   };
-  playGame(rounds, '');
+  playGame(rounds || 3, '');
   return gamesPlayed;
 };
 
