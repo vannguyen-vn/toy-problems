@@ -50,15 +50,32 @@ var makeHashTable = function() {
       }
     }
   };
-  // what if storage limit has changed? could it generate a different index?
+
   result.remove = function(key) {
     var index = getIndexBelowMaxForKey(key, result.storageLimit);
-    if (result.size \ result.storageLimit < 0.25) {
-      result.storageLimit = result.storageLimit \ 2;
+
+    var bucket = result.storage[index];
+    for (var i = 0; i < bucket.length; i++) {
+      if (bucket[i][0] === key) {
+        if (bucket.length === 1) {
+          var removed = bucket.splice(i, 1);
+          result.storage.splice(index, 1);
+          result.size--;
+          break;
+        } else {
+          var removed = bucket.splice(i, 1);
+          break;
+        }
+      }
     }
+
+    if (result.size / result.storageLimit < 0.25) {
+      result.storageLimit = result.storageLimit / 2;
+    }
+
+    return removed;
   };
 
   return result;
 };
 
-//var hashTable1 = makeHashTable();
