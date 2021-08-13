@@ -47,11 +47,12 @@ var makeHashTable = function() {
     }
     size++;
     if (size / storageLimit > 3 / 4) {
-      var oldSolution = solution.slice();
+      var oldStorage = storage.slice();
       storageLimit = storageLimit * 2;
-      solution = [];
-      for (var j = 0; j < oldSolution.length; j++) {
-        var oldBucket = oldSolution[j];
+      storage = [];
+      size = 0;
+      for (var j = 0; j < oldStorage.length; j++) {
+        var oldBucket = oldStorage[j];
         if (oldBucket.length > 0) {
           for(var k = 0; k < oldBucket.length; k++) {
             var oldTuple = oldBucket[k];
@@ -65,6 +66,15 @@ var makeHashTable = function() {
   result.retrieve = function(key) {
     var result;
     var bucketIndex = getIndexBelowMaxForKey(key, storageLimit);
+    if (storage[bucketIndex]) {
+        var bucket = storage[bucketIndex];
+        for (var i = 0; i < bucket.length; i++) {
+            if (bucket[i][0] === key) {
+                result = bucket[i][1];
+            }
+        }
+    }
+    return result;
   };
 
   result.remove = function(/*...*/
