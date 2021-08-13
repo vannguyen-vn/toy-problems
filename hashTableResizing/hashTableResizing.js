@@ -46,7 +46,6 @@ var makeHashTable = function () {
 
     var index = getIndexBelowMaxForKey(key, storageLimit);
     var bucket = storage[index];
-    size++;
 
     if (bucket) {
       for (var i = 0; i < bucket.size; i++) {
@@ -57,9 +56,10 @@ var makeHashTable = function () {
     } else {
       storage[index] = [];
       storage[index].push([key, value]);
+      size++;
     }
 
-    if (storage.size > (0.75 * storageLimit)) {
+    if (size >= (0.75 * storageLimit)) {
       storage.resize(2 * storageLimit);
     }
   };
@@ -118,7 +118,7 @@ var makeHashTable = function () {
       }
     }
 
-    if (storage.size < (0.25 * storageLimit)) {
+    if (size < (0.25 * storageLimit)) {
       storage.resize(0.5 * storageLimit);
     }
   };
@@ -131,9 +131,15 @@ var makeHashTable = function () {
     empty storage array
 
     loop through old storage
-      for every key value pair
-      
-
+      get old bucket
+        loop through bucket
+          get new hashed index using the new limit
+          get bucket with hashed index from new storage
+            if bucket exists
+              push key value pair
+            else
+              create new array
+              then push key value pair
     */
 
 
