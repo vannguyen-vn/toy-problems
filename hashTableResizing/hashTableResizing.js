@@ -75,7 +75,9 @@ var makeHashTable = function() {
     for (var i = 0; i < storage.length; i++) {
     //  count the nested arrays in each bucket (use .length)
     //  add to total items storedItems variable
-      storedItems += storage[i].length;
+      if (storage[i]) {
+        storedItems += storage[i].length;
+      }
     }
     console.log('stored items:', storedItems);
     if (storedItems > (0.75 * slots)) {
