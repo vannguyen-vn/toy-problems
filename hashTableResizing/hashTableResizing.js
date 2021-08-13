@@ -25,21 +25,25 @@ var makeHashTable = function() {
   var storage = [];
   var storageLimit = 4;
   var size = 0;
-  
-  result.insert = function(/*...*/ 
-) {
-    // TODO: implement `insert`
+
+  result.insert = function(value, storageLimit) {
+    //make an index variable with the hasing function(valueOfString, limit)
+    let index = getIndexBelowMaxForKey(value, storageLimit);
+    //create a bucket variable
+    let bucket = [];
+    //`set` the value at the curernt index
   };
 
-  result.retrieve = function(/*...*/ 
-) {
-    // TODO: implement `retrieve`
+  result.retrieve = function(value, storageLimit) {
+    //make an index variable with the hasing function(valueOfString, limit)
+    let index = getIndexBelowMaxForKey(value, storageLimit);
+    //`get` the value at the current Index
+    return storageLimit.get(index);
   };
 
-  result.remove = function(/*...*/ 
-) {
-    // TODO: implement `remove`
+  result.remove = function(value, storageLimit) {
+    //make an index variable with the hasing function(valueOfString, limit)
+    let index = getIndexBelowMaxForKey(value, storageLimit);
   };
-
   return result;
 };

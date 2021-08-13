@@ -29,7 +29,7 @@ var rockPaperScissors = function (numRounds) {
 
   //put those generators into the array only if that partion does not exists in the container
   //iterate through selectFrom options and make a callback function to add to stringify;
-  var generateThrows = function(throwsUsed,roundsLeft) {
+  var generateThrows = function(throwsUsed, roundsLeft) {
     //base case
     if (roundsLeft == 0) {
       containedThrows.push(throwsUsed);
