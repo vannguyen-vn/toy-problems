@@ -82,7 +82,7 @@ var makeHashTable = function() {
   result.remove = function(key) {
     for (var i = 0; i < storage.length; i++) {
       for (var j = 0; j < storage[i].length; j++) {
-        if (storage[i][j][0]) === key) {
+        if (storage[i][j][0] === key) {
           storage[i].splice(j, 1);
         }
       }
