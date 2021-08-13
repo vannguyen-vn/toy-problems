@@ -25,20 +25,84 @@ var makeHashTable = function() {
   var storage = [];
   var storageLimit = 4;
   var size = 0;
-  
-  result.insert = function(/*...*/ 
-) {
-    // TODO: implement `insert`
+
+  result.insert = function(key, value) {
+    var tuple = [];
+    var index = getIndexBelowMaxForKey(key, storageLimit);
+    if (storage[index].length === undefined) {
+      storage[index] = tuple;
+    }
+    var found = false;
+
+    for (var i = 0; i < storage.length; i++) {
+      for (var j = 0; j < storage[i].length; j++) {
+        if (storage[i][j][0] === key) {
+          storage[i][j][1] = value;
+          found = true;
+        }
+      }
+    }
+
+    if (found) {
+      storage[index].push([key, value]);
+    }
+
+
+    size++;
+
+    if (size > 0.75 * storageLimit) {
+      var newStorage = [];
+      var newStorageLimit = storageLimit * 2;
+      var newTuple = []
+      for (var i = 0; i < storage.length; i++) {
+        for (var j = 0; j < storage[i].length; j++) {
+          var newInd = getIndexBelowMaxForKey(storage[i][j][0], newStorageLimit);
+          newTuple.push(storage[i][j]);
+          newStorage[newIndex] = newTuple;
+        }
+      }
+      storage = newStorage;
+      storageLimit = newStorageLimit;
+    }
+
+
   };
 
-  result.retrieve = function(/*...*/ 
-) {
-    // TODO: implement `retrieve`
+  result.retrieve = function(key) {
+    for (var i = 0; i < storage.length; i++) {
+      for (var j = 0; j < storage[i].length; j++) {
+        if (storage[i][j][0] === key) {
+          return storage[i][j][1];
+        }
+      }
+    }
+    return null;
   };
 
-  result.remove = function(/*...*/ 
-) {
-    // TODO: implement `remove`
+  result.remove = function(key) {
+    for (var i = 0; i < storage.length; i++) {
+      for (var j = 0; j < storage[i].length; j++) {
+        if (storage[i][j][0]) === key) {
+          storage[i].splice(j, 1);
+        }
+      }
+    }
+    size--;
+
+    if (size < 0.25 * storageLimit) {
+      var newStorage = [];
+      var newStorageLimit = storageLimit * 2;
+      var newTuple = []
+      for (var i = 0; i < storage.length; i++) {
+        for (var j = 0; j < storage[i].length; j++) {
+          var newInd = getIndexBelowMaxForKey(storage[i][j][0]), newStorageLimit);
+          newTuple.push(storage[i][j]);
+          newStorage[newIndex] = newTuple;
+        }
+      }
+      storage = newStorage;
+      storageLimit = newStorageLimit;
+    }
   };
 
   return result;
