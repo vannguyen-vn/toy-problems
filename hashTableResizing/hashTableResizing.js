@@ -39,7 +39,7 @@ var makeHashTable = function() {
   };
 
   result.retrieve = function(string) {
-    let index = getIndexBelowMaxForKey(string, limit);
+    let index = getIndexBelowMaxForKey(string, storageLimit);
    if (storage[index]) return storage[index][1];
    return null;
   };
@@ -52,5 +52,3 @@ var makeHashTable = function() {
   };
   return result;
 };
-
-// console.log(makeHashTable.insert(1));
