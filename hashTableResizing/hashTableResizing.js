@@ -1,3 +1,4 @@
+
 /**
  * Create a hash table with `insert()`, `retrieve()`, and `remove()` methods.
  * Be sure to handle hashing collisions correctly.
@@ -66,8 +67,8 @@ var makeHashTable = function() {
   result.retrieve = function(key) {
     var result;
     var bucketIndex = getIndexBelowMaxForKey(key, storageLimit);
-    if (storage[bucketIndex]) {
-        var bucket = storage[bucketIndex];
+    var bucket = storage[bucketIndex];
+    if (bucket) {
         for (var i = 0; i < bucket.length; i++) {
             if (bucket[i][0] === key) {
                 result = bucket[i][1];
@@ -77,9 +78,19 @@ var makeHashTable = function() {
     return result;
   };
 
-  result.remove = function(/*...*/
-) {
-    // TODO: implement `remove`
+  result.remove = function(key) {
+    var bucketIndex = getIndexBelowMaxForKey(key, storageLimit);
+    var bucket = storage[bucketIndex];
+    if (bucket) {
+        for (var i = 0; i < bucket.length; i++) {
+            if (bucket[i][0] === key) {
+                bucket.splice(i, 1);
+                size--;
+            }
+        }
+    } else {
+        return;
+    }
   };
 
   return result;
