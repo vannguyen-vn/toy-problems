@@ -81,7 +81,28 @@ var makeHashTable = function() { //functional
         //end loop
 
         //return undefined if no value matches
-  };
+
+        var index = getIndexBelowMaxForKey(key, result.storageLimit)
+
+        //Access the storageArray[index]==>result.storage[index]
+          //iterate over each index in the level one (vertical array)
+        for (var i = 0; i < result.storage[index].length; i++) {
+          //check the value at index 0 (key) //if this matches the key for retrieval,
+            var storedKey = result.storage[index][i][0]
+            if (storedKey === key) {
+              //Check to make sure size of table is within bounds (implement later)
+
+              console.log(`deleted KEY:${result.storage[index][i][0]}, VALUE:${result.storage[index][i][1]} `)
+              result.storage[index].splice(i, 1) //value
+
+            }
+
+
+
+        }
+
+
+      };
 
   return result;
 };
@@ -95,3 +116,5 @@ test.insert('3', 5)
 test.insert('4', 6)
 console.log(test.storage)
 console.log('true buddy:', test.retrieve('true'))
+test.remove('true')
+console.log(test.storage)
