@@ -36,7 +36,7 @@ var makeHashTable = function() {
     } else {
       storage[bucketIndex] = [[key, value]];
     }
-    //check storage
+    this.checkStorageAndResize();
   };
 
   result.retrieve = function(key) {
@@ -53,9 +53,18 @@ var makeHashTable = function() {
 
   result.remove = function(key) {
     // TODO: implement `remove`
-    // retrieve the key-value pair
+    // retrieve the key-value pair [or retrieve the whole bucket?]
+    var bucketIndex = getIndexBelowMaxForKey(key, storageLimit);
+    var bucket = storage[bucketIndex];
+    for (var i = 0; i < bucket.length; i++) {
+      if (bucket[i][0] === key) {
+        bucket.splice(i, 1);
+      }
+    }
+    console.log('bucket after remove', bucket)
+    storage[bucketIndex] = bucket;
     // change it or delete [I DON'T REMEMBER HOW ANY OF THIS WORKS]
-    //
+    // [replace the whole bucket?]
   };
 
   result.checkStorageAndResize = function() {
