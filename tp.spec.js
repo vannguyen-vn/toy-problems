@@ -7,7 +7,7 @@ const evenOccurrence = require("./evenOccurrence/evenOccurrence");
 A "describe" block can be used to group together multiple tests
 which check the same nodule or function.
  */
-describe("Example tests", function(){
+describe.skip("Example tests", function(){
 
   // Individual tests can be run using the "it" or "test" methods, they are aliased and are equivalent
   it("Should add small numbers", function(){
@@ -30,7 +30,7 @@ Notice the method "only" above. Because it is there, the describe block below wo
 You'll need to remove the "only" from the block above. You can use that method to only run tests
 on the toy problem you're currently working on. https://jestjs.io/docs/en/api#describeonlyname-fn
 */
-describe("rockPaperScissors Tests", function(){
+describe.skip("rockPaperScissors Tests", function(){
   test("rockPaperScissors is a function that is defined", function(){
 
     // It's possible to have multiple expects in a single test like this. However, it is often unhelpful.
@@ -41,7 +41,7 @@ describe("rockPaperScissors Tests", function(){
   });
 });
 
-describe.only("evenOccurrence Tests", function(){
+describe.skip("evenOccurrence Tests", function(){
   test("evenOccurrence is a function that is defined", function(){
 
     // It's possible to have multiple expects in a single test like this. However, it is often unhelpful.
