@@ -38,7 +38,7 @@ var makeHashTable = function() {
       var tuple = storage[index][i];
       if (tuple[0] === k) {
         keyExists = true;
-        storage[index][i] = v;
+        storage[index][i][1] = v;
       }
     }
 
