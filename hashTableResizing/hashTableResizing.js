@@ -25,18 +25,43 @@ var makeHashTable = function() {
   var storage = [];
   var storageLimit = 4;
   var size = 0;
-  
-  result.insert = function(/*...*/ 
-) {
-    // TODO: implement `insert`
+
+  result.insert = function(key, value) {
+    // Access hashing function via variable
+    var index = getIndexBelowMaxForKey(key, storageLimit);
+    // Create a bucket
+    var bucket = storage[index];
+    // If no bucket exists
+    if (!bucket) {
+      // Create a bucket
+      bucket = [];
+    }
+    // Iterate over the bucket
+    for (var i = 0; i < bucket.length; i++) {
+      var tuple = bucket[i];
+      // If our key exists in the bucket
+      if (tuple[0] === key) {
+        // Set the second position of the tuple equal to the value
+        tuple[1] = value;
+        // Break the if statement
+        break;
+      }
+    }
+    // If the tuple does not exist
+    if (!tuple) {
+      // Push the tuple in to the bucket
+      bucket.push([key, value]);
+    }
+    // Handle resizing
+    //
   };
 
-  result.retrieve = function(/*...*/ 
+  result.retrieve = function(/*...*/
 ) {
     // TODO: implement `retrieve`
   };
 
-  result.remove = function(/*...*/ 
+  result.remove = function(/*...*/
 ) {
     // TODO: implement `remove`
   };
