@@ -21,8 +21,11 @@ var getIndexBelowMaxForKey = function(str, max) { //return an index less than th
 };
 
 var makeHashTable = function() { //functional
+
+  console.log('------_A_NEW_DAY_--------------------------------------------------')
+
   var result = {};
-  result.storage = []; //Add sub-arrays to this, equal to the storage limit
+  result.storage = [];
   result.storageLimit = 4;
   result.size = 0;
 
@@ -30,91 +33,104 @@ var makeHashTable = function() { //functional
     result.storage.push([]);
   }
 
+  result._resize = function(increaseOrDecrease, oldLimit) {
+    console.log(`resizig with ${increaseOrDecrease}!`)
+    var oldLimit = oldLimit;
+    var oldStorage = result.storage;
 
-  console.log('result', result);
-
-  result.insert = function(key, value) {
-  // Check to make sure size is within bounds (implement this step later)
-
-  // // Run the key through the hashing function.
-  var index = getIndexBelowMaxForKey(key, result.storageLimit);
-  // // Go to the index found at the key, access the level 1 (vertical) array
-  // // Push a tupple containing key and value into vertical array
-  result.storage[index].push([key, value]);
-
-};
-
-  result.retrieve = function(key) {
-    //set var index equal to running key through hashing function
-    var index = getIndexBelowMaxForKey(key, result.storageLimit)
-
-    //Access the storageArray[index]==>result.storage[index]
-      //iterate over each index in the level one (vertical array)
-    for (var i = 0; i < result.storage[index].length; i++) {
-      //check the value at index 0 (key) //if this matches the key for retrieval,
-        var storedKey = result.storage[index][i][0]
-        if (storedKey === key) {
-          //Check to make sure size of table is within bounds (implement later)
-
-
-          return result.storage[index][i][1] //value
-
-        }
-
-
-
+    //determines if increasing
+    if (increaseOrDecrease === 'increase') {
+      result.storageLimit = oldLimit * 2;
+    } else if (increaseOrDecrease === 'decrease') {
+      result.storageLimit = oldLimit * 0.5;
     }
 
+    console.log('BEFORE REASSIGN', result.storage)
+    result.storage = [];
+    result.size = 0;
+    while(result.storage.length < result.storageLimit) {
+      result.storage.push([])
+    }
+    console.log('EMPTY RESIZE', result.storage)
 
-        //end loop
+    for (var i = 0; i < oldStorage.length; i++) {
+      for (var j = 0; j < oldStorage[i].length; j++) { //skip if empty?
 
-        //return undefined if no value matches
+        var tuple = oldStorage[i][j]
+        var key = tuple[0];
+        var value = tuple[1];
+
+        result.insert(key, value, 'resize');
+      }
+    }
+  }
+
+  result.insert = function(key, value, _resize) {
+
+
+
+    var index = getIndexBelowMaxForKey(key, result.storageLimit);
+    result.storage[index].push([key, value]);
+    result.size ++;
+
+
+    if ((!_resize) && result.size > result.storageLimit*0.75) {
+      result._resize('increase', result.storageLimit)
+    }
+  };
+
+  result.retrieve = function(key) {
+
+    var index = getIndexBelowMaxForKey(key, result.storageLimit)
+
+    for (var i = 0; i < result.storage[index].length; i++) {
+      var storedKey = result.storage[index][i][0]
+      if (storedKey === key) {
+        return result.storage[index][i][1] //value
+      }
+    }
+    return 'Key undefined' //return this string if key is not found
+
   };
 
   result.remove = function(key) {
-    //set var index equal to running key through hashing function
-    //Access the storageArray[index]
-      //iterate over each index in the level one (vertical array)
-        //check the value at index 0 (key)
-        //if this matches the key for retrieval,
-          //delete the tuple
-        //end loop
+    var index = getIndexBelowMaxForKey(key, result.storageLimit)
 
-        //return undefined if no value matches
-
-        var index = getIndexBelowMaxForKey(key, result.storageLimit)
-
-        //Access the storageArray[index]==>result.storage[index]
-          //iterate over each index in the level one (vertical array)
-        for (var i = 0; i < result.storage[index].length; i++) {
-          //check the value at index 0 (key) //if this matches the key for retrieval,
-            var storedKey = result.storage[index][i][0]
+      for (var i = 0; i < result.storage[index].length; i++) {
+         var storedKey = result.storage[index][i][0]
             if (storedKey === key) {
-              //Check to make sure size of table is within bounds (implement later)
-
-              console.log(`deleted KEY:${result.storage[index][i][0]}, VALUE:${result.storage[index][i][1]} `)
               result.storage[index].splice(i, 1) //value
 
+              if (result.size < (result.storageLimit*0.25)) {
+                result._resize('decrease', result.storageLimit)
+              }
+
             }
-
-
-
         }
-
-
-      };
-
+      return 'Key undefined' //if the key is not found in the table, return this string
+  };
   return result;
 };
 
 var test = makeHashTable();
-console.log('emptyTest:', test);
-test.insert('cat', 'dog')
-test.insert('1', 2)
-test.insert('true', false)
-test.insert('3', 5)
-test.insert('4', 6)
-console.log(test.storage)
-console.log('true buddy:', test.retrieve('true'))
-test.remove('true')
-console.log(test.storage)
+// console.log('emptyTest:', test);
+test.insert('1', 1)
+test.insert('2', 2)
+test.insert('3', 3)
+test.insert('4', 4)
+
+// console.log('End of First Rebalance', test.storage)
+test.insert('5', 5)
+
+// console.log('After adding fifth element', test.storage)
+test.insert('6', 6)
+// console.log('After adding sixth element', test.storage)
+test.insert('7', 7)
+// console.log('After adding seventh element', test.storage)
+test.remove('7')
+// console.log('After removing seventh element', test.storage)
+test.remove('6')
+// console.log('After removing sixth element', test.storage)
+test.remove('5')
+test.remove('4')
+console.log('After removing fourth element', test.storage)
