@@ -11,33 +11,28 @@
 */
 
 var evenOccurrence = function(arr) {
-  var res = {};
+  var res = [];
   var evenList = [];
   var firstInd = +Infinity;
 
   for (var i = 0; i < arr.length; i++) {
     var curElem = arr[i];
-    if (res[curElem] === undefined) {
-      res[curElem] = 1;
+    if (res.indexOf(curElem) === -1) {
+      res.push(curElem, 1);
     } else {
-      res[curElem]++;
+      res[res.indexOf(curElem) + 1]++;
     }
   }
 
-  for (var key in res) {
-    if (res[key] % 2 === 0) {
-      evenList.push(key);
+  for (var i = 1; i < arr.length; i+=1) {
+    if (arr[i] % 2 === 0) {
+      evenList.push(arr[i - 1]);
     }
-  }
-
-  if (evenList.length === 0) {
-    return null;
   }
 
   for (var i = 0; i < evenList.length; i++) {
-    var value = Number(evenList[i]);
-    if (arr.indexOf(value) < firstInd) {
-      firstInd = arr.indexOf(value);
+    if (arr.indexOf(evenList[i]) < firstInd) {
+      firstInd = arr.indexOf(evenList[i]);
     }
   }
 
