@@ -31,17 +31,24 @@ var makeHashTable = function() {
     //add the key and value as a nested array in the bucket (also an array, the value of a given key)
     var bucketIndex = getIndexBelowMaxForKey(key, storageLimit);
     if (result[bucketIndex]) {
-      result[bucketIndex].push([key, value]);
+      console.log(bucketIndex);
+      storage[bucketIndex].push([key, value]);
     } else {
-      result[bucketIndex] = [[key, value]];
+      storage[bucketIndex] = [[key, value]];
     }
-    storage.splice(bucketIndex);
-    //check storageLimit size
+    //check storage
   };
 
   result.retrieve = function(key) {
     // TODO: implement `retrieve`
     // given a key, convert the key to an index and then search the array at that index for the key/value pair
+    var bucketIndex = getIndexBelowMaxForKey(key, storageLimit);
+    var bucket = storage[bucketIndex];
+    for (var i = 0; i < bucket.length; i++) {
+      if (bucket[i][0] === key) {
+        return bucket[i][1];
+      }
+    }
   };
 
   result.remove = function(key) {
@@ -50,6 +57,26 @@ var makeHashTable = function() {
     // change it or delete [I DON'T REMEMBER HOW ANY OF THIS WORKS]
     //
   };
+
+  result.checkStorageAndResize = function() {
+    var slots = storage.length;
+    console.log('slots in storage:', slots);
+    var storedItems = 0;
+    // iterate across storage
+    for (var i = 0; i < storage.length; i++) {
+    //  count the nested arrays in each bucket (use .length)
+    //  add to total items storedItems variable
+      storedItems += storage[i].length;
+    }
+    console.log('stored items:', storedItems);
+    if (storedItems > (0.75 * slots)) {
+      storageLimit *= 2;
+    }
+    if (storedItems < (0.25 * slots)) {
+      storageLimit /= 2;
+    }
+
+  }
 
   return result;
 };
