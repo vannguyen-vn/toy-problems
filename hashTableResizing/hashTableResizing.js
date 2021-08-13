@@ -30,12 +30,14 @@ var makeHashTable = function() {
     // TODO: implement `insert`
     //add the key and value as a nested array in the bucket (also an array, the value of a given key)
     var bucketIndex = getIndexBelowMaxForKey(key, storageLimit);
-    if (result[bucketIndex]) {
+    if (storage[bucketIndex] !== undefined) {
+      console.log('there\'s a bucket there, so it should push');
       console.log(bucketIndex);
       storage[bucketIndex].push([key, value]);
     } else {
       storage[bucketIndex] = [[key, value]];
     }
+    size++;
     this.checkStorageAndResize();
   };
 
@@ -63,27 +65,31 @@ var makeHashTable = function() {
     }
     console.log('bucket after remove', bucket)
     storage[bucketIndex] = bucket;
+    size--;
     // change it or delete [I DON'T REMEMBER HOW ANY OF THIS WORKS]
     // [replace the whole bucket?]
   };
 
   result.checkStorageAndResize = function() {
-    var slots = storage.length;
-    console.log('slots in storage:', slots);
-    var storedItems = 0;
-    // iterate across storage
-    for (var i = 0; i < storage.length; i++) {
-    //  count the nested arrays in each bucket (use .length)
-    //  add to total items storedItems variable
-      if (storage[i]) {
-        storedItems += storage[i].length;
-      }
-    }
-    console.log('stored items:', storedItems);
-    if (storedItems > (0.75 * slots)) {
+    // var slots = storage.length;
+    // if (slots < storageLimit) {
+    //   slots = storageLimit;
+    // }
+    // console.log('slots in storage:', slots);
+    // var storedItems = 0;
+    // // iterate across storage
+    // for (var i = 0; i < storage.length; i++) {
+    // //  count the nested arrays in each bucket (use .length)
+    // //  add to total items storedItems variable
+    //   if (storage[i]) {
+    //     storedItems += storage[i].length;
+    //   }
+    // }
+    // console.log('stored items:', storedItems);
+    if (size > (0.75 * storageLimit)) {
       storageLimit *= 2;
     }
-    if (storedItems < (0.25 * slots)) {
+    if (size < (0.25 * storageLimit)) {
       storageLimit /= 2;
     }
 
