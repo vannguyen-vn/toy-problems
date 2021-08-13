@@ -25,21 +25,61 @@ var makeHashTable = function() {
   var storage = [];
   var storageLimit = 4;
   var size = 0;
-  
-  result.insert = function(/*...*/ 
-) {
-    // TODO: implement `insert`
+
+  result.insert = function(key, value) {
+    var index = getIndexBelowMaxForKey(key, storageLimit);
+
+    var bucket = storage[index] || [];
+
+    if (bucket.length === 0) {
+      storage[index].push([key, value]);
+      size++;
+    } else {
+      for (var i = 0; i < bucket.length; i++) {
+        if (bucket[i][0] === key) {
+          bucket[i][1] = value;
+        }
+      }
+      bucket.push([key, value]);
+    }
+
+
+
   };
 
-  result.retrieve = function(/*...*/ 
-) {
-    // TODO: implement `retrieve`
+  result.retrieve = function(key) {
+    var index = getIndexBelowMaxForKey(key, storageLimit);
+
+    if (storage[index]) {
+      for (var i = 0; i < storage[index].length; i++) {
+        if (storage[index][i][0] === key) {
+          return storage[index][i][1];
+        }
+      }
+    } else {
+      return null;
+    }
   };
 
-  result.remove = function(/*...*/ 
-) {
-    // TODO: implement `remove`
+  result.remove = function(key) {
+    var index = getIndexBelowMaxForKey(key, storageLimit);
+
+    if (storage[index]) {
+      for (var i = 0; i < storage[index].length; i++) {
+        if (storage[index][i][0] === key) {
+          storage[index].splice(i, 1);
+        }
+      }
+    }
+
+    // if storage[index] not holding any tuples
+    // size--
+
   };
 
   return result;
 };
+
+////// resizing ///////////
+
+// iterate
