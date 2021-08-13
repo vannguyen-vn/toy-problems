@@ -19,16 +19,16 @@ var getIndexBelowMaxForKey = function(str, max) { //return an index less than th
   }
   return hash % max;
 };
-console.log('console')
+
 var makeHashTable = function() { //functional
   var result = {};
   var storage = []; //Add sub-arrays to this, equal to the storage limit
   var storageLimit = 4;
   var size = 0;
+
   while (storage.length < storageLimit) {
     storage.push([]);
   }
-  console.log(storage)
 
 
 
@@ -36,24 +36,39 @@ var makeHashTable = function() { //functional
   // Check to make sure size is within bounds (implement this step later)
 
   // Run the key through the hashing function.
-  // Go to the index found at the key
-  // Access the level 1 (vertical) array
+  var index = getIndexBelowMaxForKey(key, storageLimit);
+  // Go to the index found at the key, access the level 1 (vertical) array
   // Push a tupple containing key and value into vertical array
+  storage[index].push([key, value]);
 
 };
 
-  result.retrieve = function(/*...*/
-) {
-    // TODO: implement `retrieve`
+  result.retrieve = function(key) {
+    //set var index equal to running key through hashing function
+    //Access the storageArray[index]
+      //iterate over each index in the level one (vertical array)
+        //check the value at index 0 (key)
+        //if this matches the key for retrieval,
+          //return the key
+        //end loop
+
+        //return undefined if no value matches
   };
 
-  result.remove = function(/*...*/
-) {
-    // TODO: implement `remove`
+  result.remove = function(key) {
+    //set var index equal to running key through hashing function
+    //Access the storageArray[index]
+      //iterate over each index in the level one (vertical array)
+        //check the value at index 0 (key)
+        //if this matches the key for retrieval,
+          //delete the tuple
+        //end loop
+
+        //return undefined if no value matches
   };
 
   return result;
 };
 
 var test = makeHashTable();
-console.log(test);
+console.log('emptyTest:', test);
