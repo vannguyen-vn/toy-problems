@@ -25,20 +25,29 @@ var makeHashTable = function() {
   var storage = [];
   var storageLimit = 4;
   var size = 0;
-  
-  result.insert = function(/*...*/ 
-) {
+
+  result.insert = function(key, value) {
     // TODO: implement `insert`
+
+    // after handling the logic of inserting the k/v pair into the table
+    // increment the size variable
+    // if size is 3/4 of the storage limit
+      // run a helper function that doubles the size of the table
   };
 
-  result.retrieve = function(/*...*/ 
-) {
+  result.retrieve = function(key) {
     // TODO: implement `retrieve`
+
+    // we can retrieve values in peace no table flipping or size adjustments here!
   };
 
-  result.remove = function(/*...*/ 
-) {
+  result.remove = function(key) {
     // TODO: implement `remove`
+
+    //after handling the logic of removing the k/v pair associated with key
+    // decrement the size variable
+    // if size is 1/4 of the storage limit
+      // run a helper function that halves the size of the table
   };
 
   return result;
