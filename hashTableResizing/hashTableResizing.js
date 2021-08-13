@@ -33,26 +33,33 @@ var makeHashTable = function() {
     this.storageCopy = this.storage;
     this.storage = [];
     for (var i = 0; i < this.storageCopy.length; i++) {
-      for (var tuple in this.storageCopy[i]) {
-        if (!this.storageCopy[i]) { continue; }
-        for(var value in this.storageCopy[i][tuple]) {
-          this.insert(this.storageCopy[i][tuple][value]);
-        }
+      if (!this.storageCopy[i]) { continue; }
+      for (var j = 0; j < this.storageCopy[i].length; j++) {
+        this.insert(this.storageCopy[i][j][0], this.storageCopy[i][j][1]);
       }
     }
+    this.storageCopy = null;
   }
 
-  newHashTable.insert = function(value) {
-    if (!this.storage[getIndexBelowMaxForKey(value, this.storageLimit)]) {
-      this.storage[getIndexBelowMaxForKey(value, this.storageLimit)] = [{[value]: value}];
+  newHashTable.insert = function(key, value) {
+    if (!this.storage[getIndexBelowMaxForKey(key, this.storageLimit)]) {
+      this.storage[getIndexBelowMaxForKey(key, this.storageLimit)] = [[key, value]];
     } else {
-      this.storage[getIndexBelowMaxForKey(value, this.storageLimit)].push({[value]: value});
+      this.storage[getIndexBelowMaxForKey(key, this.storageLimit)].push([key, value]);
     }
     this.size++;
     if (this.size > this.storageLimit * 0.75) { this.doubleHash(); }
   };
 
-  newHashTable.retrieve = function() {
+  newHashTable.retrieve = function(key) {
+    var result = null;
+    this.storage.forEach(bucket => {
+      if (!bucket) { return; }
+      bucket.forEach(tuple => {
+        if (tuple[0] === key) { result = tuple[1]; }
+      });
+    });
+    return result;
   };
 
   newHashTable.remove = function() {
