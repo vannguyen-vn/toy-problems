@@ -26,28 +26,46 @@ var makeHashTable = function() {
   var storageLimit = 4;
   var size = 0;
 
-  result.insert = function(/*...*/
-) {
-   // run hash
-   // grab bucket
-   // if bucket exists,
-     // iterate over it to see if we are updating a value
-     // update or push
-   // otherwise
-     // create bucket and push tuple
+  result.insert = function(key, value) {
+   var index = getIndexBelowMaxForKey(key, storageLimit);
+
+   var bucket = storage[index];
+
+   if (bucket) {
+     for (var i = 0; i < bucket.length; i++) {
+       var tuple = bucket[i];
+       if (tuple[0] === key) {
+         tuple[1] = value;
+       }
+     }
+     bucket.push([key], [value]);
+   } else {
+     bucket = [];
+     bucket.push([key], [value]);
+   }
+ };
+
+  result.retrieve = function(key, value) {
+    var index = getIndexBelowMaxForKey(key, storageLimit);
+
+    var bucket = storage[index];
+
+    if (bucket) {
+      for (var i = 0; i < bucket.length; i++) {
+        var tuple = bucket[i];
+        if (tuple[0] === key) {
+          return tuple[1]
+        }
+      }
+    } else {
+      return null;
+    }
   };
 
-  result.retrieve = function(/*...*/
-) {
-    // grab bucket
-    // iterate through bucket and match the key to tuple
-      // pull out value
+  result.remove = function(key, value) {
+    var index = getIndexBelowMaxForKey(key, storageLimit);
 
-    // return null
-  };
-
-  result.remove = function(/*...*/
-) {
+    var bucket = storage[index];
     // grab bucket
     // iterate through bucket and match the key to tuple
       // splice(index, 1)
@@ -58,3 +76,6 @@ var makeHashTable = function() {
 
   return result;
 };
+
+console.log(getIndexBelowMaxForKey('z', 4)); // -> 2
+// console.log(makeHashTable.result.insert('a', 'b')); -> trying to get this to work
