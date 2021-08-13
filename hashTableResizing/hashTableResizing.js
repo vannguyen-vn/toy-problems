@@ -95,7 +95,7 @@ var makeHashTable = function() {
       var newTuple = []
       for (var i = 0; i < storage.length; i++) {
         for (var j = 0; j < storage[i].length; j++) {
-          var newInd = getIndexBelowMaxForKey(storage[i][j][0]), newStorageLimit);
+          var newInd = getIndexBelowMaxForKey(storage[i][j][0], newStorageLimit);
           newTuple.push(storage[i][j]);
           newStorage[newIndex] = newTuple;
         }
