@@ -24,10 +24,14 @@ var evenOccurrence = function(arr) {
     }
   }
 
-  for (var i = 1; i < arr.length; i+=1) {
-    if (arr[i] % 2 === 0) {
-      evenList.push(arr[i - 1]);
+  for (var i = 1; i < res.length; i+=2) {
+    if (res[i] % 2 === 0) {
+      evenList.push(res[i - 1]);
     }
+  }
+
+  if (evenList.length === 0) {
+    return null;
   }
 
   for (var i = 0; i < evenList.length; i++) {
