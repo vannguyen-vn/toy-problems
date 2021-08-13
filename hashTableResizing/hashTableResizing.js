@@ -10,7 +10,7 @@
 // This is a "hashing function". You don't need to worry about it, just use it
 // to turn any string into an integer that is well-distributed between
 // 0 and max - 1
-var getIndexBelowMaxForKey = function(str, max) {
+var getIndexBelowMaxForKey = function(str, max) { //return an index less than the length of the table at level 0
   var hash = 0;
   for (var i = 0; i < str.length; i++) {
     hash = (hash << 5) + hash + str.charCodeAt(i);
@@ -19,27 +19,41 @@ var getIndexBelowMaxForKey = function(str, max) {
   }
   return hash % max;
 };
-
-var makeHashTable = function() {
+console.log('console')
+var makeHashTable = function() { //functional
   var result = {};
-  var storage = [];
+  var storage = []; //Add sub-arrays to this, equal to the storage limit
   var storageLimit = 4;
   var size = 0;
-  
-  result.insert = function(/*...*/ 
-) {
-    // TODO: implement `insert`
-  };
+  while (storage.length < storageLimit) {
+    storage.push([]);
+  }
+  console.log(storage)
 
-  result.retrieve = function(/*...*/ 
+
+
+  result.insert = function(key, value) {
+  // Check to make sure size is within bounds (implement this step later)
+
+  // Run the key through the hashing function.
+  // Go to the index found at the key
+  // Access the level 1 (vertical) array
+  // Push a tupple containing key and value into vertical array
+
+};
+
+  result.retrieve = function(/*...*/
 ) {
     // TODO: implement `retrieve`
   };
 
-  result.remove = function(/*...*/ 
+  result.remove = function(/*...*/
 ) {
     // TODO: implement `remove`
   };
 
   return result;
 };
+
+var test = makeHashTable();
+console.log(test);
