@@ -18,10 +18,11 @@
 *
 */
 
-var rockPaperScissors = function () {
+var rockPaperScissors = function (rounds) {
   var moveSet = ['R', 'P', 'S'];
   var moveCombos = [];
-  var rounds = 3;
+  // if no value for rounds is passed in we can default to 3
+  rounds = rounds || 3;
 
   // could we iterate across the array and push the move into the current rounds array
   var possibleMoves = function(currentMoves) {
@@ -42,4 +43,4 @@ var rockPaperScissors = function () {
   return moveCombos;
 };
 
-module.exports = rockPaperScissors;
+// module.exports = rockPaperScissors;
