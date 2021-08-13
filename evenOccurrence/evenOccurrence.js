@@ -30,26 +30,34 @@
 
 var evenOccurrence = function(arr) {
   var occurs = {};
-  var evens = [];
-  var first = Number.POSITIVE_INFINITY;
+  var firstIndex = Number.POSITIVE_INFINITY;
+  var returnVal;
 
   for (var i = 0; i < arr.length; i++) {
-    if (!occurs.hasOwnProperty(arr[i])) {
-      occurs[arr[i]] = [1, i];
+    var item = arr[i];
+    if (!occurs.hasOwnProperty(item)) {
+      occurs[item] = [1, i, false];
       continue;
     }
 
-    occurs[arr[i]][0]++;
-    if (occurs[arr[i]][0] % 2 === 0) {
-      evens.push([arr[i], occurs[arr[i]][1]]);
+    occurs[item][0]++;
+    if (occurs[item][0] % 2 === 0) {
+      occurs[item][2] = true;
+    } else {
+      occurs[item][2] = false;
     }
   }
 
-  for (var i = 0; i < evens.length; i++) {
-    if (evens[i][1] < first) {
-      first = evens[i][0];
+  for (var key in occurs) {
+    var isEven = occurs[key][2];
+    if (!isEven) { continue; }
+
+    var currentIndex = occurs[key][1];
+    if (currentIndex < firstIndex) {
+      firstIndex = currentIndex;
+      returnVal = key;
     }
   }
 
-  return first;
+  return returnVal !== undefined ? returnVal : null;
 };
