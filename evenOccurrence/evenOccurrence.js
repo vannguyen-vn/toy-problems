@@ -11,28 +11,18 @@
 */
 
 var evenOccurrence = function(arr) {
-  var evenOccurrence = function(arr) {
-    // Create a counter obj
-    var counterObj = {};
-    // Iterate over array
-    for (var i = 0; i < arr.length; i++) {
-      // If value is not in obj
-      if (counterObj[arr[i]] === undefined) {
-        // Add into obj with a value of one
-        counterObj[arr[i]] = 1;
-        // Else
-      } else {
-        // Add to current count
-        counterObj[arr[i]]+= 1;
-      }
+  var counterObj = {};
+  for (var i = 0; i < arr.length; i++) {
+    var currentIndex = arr[i];
+    if (counterObj[currentIndex] === undefined) {
+        counterObj[currentIndex] = 1;
+    } else {
+      counterObj[currentIndex]+= 1;
     }
-    // Loop through obj
-    for (key in counterObj) {
-      // If obj[key] & 2 == 0
-      if (counterObj[key] % 2 === 0) {
-      // Return key
-      return key;
-      }
+  }
+  for (currentIndex in counterObj) {
+    if (counterObj[currentIndex] % 2 === 0) {
+      return currentIndex;
     }
-  };
+  }
 };
