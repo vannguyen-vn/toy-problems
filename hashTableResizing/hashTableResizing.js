@@ -38,17 +38,24 @@ var makeHashTable = function() {
 
     if (result.size \ result.storageLimit > 0.75) {
       result.storageLimit = result.storageLimit * 2;
-    } else if (result.size \ result.storageLimit < 0.25) {
-      result.storageLimit = result.storageLimit \ 2;
     }
   };
 
   result.retrieve = function(key) {
     var index = getIndexBelowMaxForKey(key, result.storageLimit);
+    var bucket = result.storage[index];
+    for (var tupple of bucket) {
+      if (tupple[0] === key) {
+        return tupple[1];
+      }
+    }
   };
-
+  // what if storage limit has changed? could it generate a different index?
   result.remove = function(key) {
     var index = getIndexBelowMaxForKey(key, result.storageLimit);
+    if (result.size \ result.storageLimit < 0.25) {
+      result.storageLimit = result.storageLimit \ 2;
+    }
   };
 
   return result;
