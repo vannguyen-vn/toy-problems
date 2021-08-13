@@ -22,24 +22,25 @@ var getIndexBelowMaxForKey = function(str, max) { //return an index less than th
 
 var makeHashTable = function() { //functional
   var result = {};
-  var storage = []; //Add sub-arrays to this, equal to the storage limit
-  var storageLimit = 4;
-  var size = 0;
+  result.storage = []; //Add sub-arrays to this, equal to the storage limit
+  result.storageLimit = 4;
+  result.size = 0;
 
-  while (storage.length < storageLimit) {
-    storage.push([]);
+  while (result.storage.length < result.storageLimit) {
+    result.storage.push([]);
   }
 
 
+  console.log('result', result);
 
   result.insert = function(key, value) {
   // Check to make sure size is within bounds (implement this step later)
 
-  // Run the key through the hashing function.
-  var index = getIndexBelowMaxForKey(key, storageLimit);
-  // Go to the index found at the key, access the level 1 (vertical) array
-  // Push a tupple containing key and value into vertical array
-  storage[index].push([key, value]);
+  // // Run the key through the hashing function.
+  var index = getIndexBelowMaxForKey(key, result.storageLimit);
+  // // Go to the index found at the key, access the level 1 (vertical) array
+  // // Push a tupple containing key and value into vertical array
+  result.storage[index].push([key, value]);
 
 };
 
@@ -72,3 +73,7 @@ var makeHashTable = function() { //functional
 
 var test = makeHashTable();
 console.log('emptyTest:', test);
+test.insert('cat', 'dog')
+test.insert('1', 2)
+test.insert('true', false)
+console.log(test.storage)
