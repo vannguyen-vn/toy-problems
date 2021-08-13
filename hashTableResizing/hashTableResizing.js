@@ -54,7 +54,7 @@ var makeHashTable = function() {
       size = 0;
       for (var j = 0; j < oldStorage.length; j++) {
         var oldBucket = oldStorage[j];
-        if (oldBucket.length > 0) {
+        if (oldBucket) {
           for(var k = 0; k < oldBucket.length; k++) {
             var oldTuple = oldBucket[k];
             this.insert(oldTuple[0], oldTuple[1]);
@@ -90,6 +90,22 @@ var makeHashTable = function() {
         }
     } else {
         return;
+    }
+
+    if (size / storageLimit < 1 / 4) {
+      var oldStorage = storage.slice();
+      storage = [];
+      storageLimit = storageLimit / 2;
+      size = 0;
+      for (var j = 0; j < oldStorage.length; j++) {
+        var oldBucket = oldStorage[j];
+        if (oldBucket) {
+          for (var k = 0; k < oldBucket.length; k++) {
+            var oldTuple = oldBucket[k];
+            result.insert(oldTuple[0]; oldTuple[1]);
+          }
+        }
+      }
     }
   };
 
