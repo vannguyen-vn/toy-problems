@@ -25,21 +25,87 @@ var makeHashTable = function() {
   var storage = [];
   var storageLimit = 4;
   var size = 0;
-  
-  result.insert = function(/*...*/ 
-) {
-    // TODO: implement `insert`
+
+  result.insert = function(key, value) {
+    var index = getIndexBelowMaxForKey(key, storageLimit);
+    var tuple = [key, value];
+    var collided = true;
+
+    if (!storage[index]) {
+      storage[index] = [];
+    }
+
+    for (var i = 0; i < storage[index].length; i++) {
+      if (storage[index][i][0] === key) {
+        storage[index][i] = tuple;
+        return;
+      }
+    }
+
+    storage[index].push(tuple);
+    size++;
+
+    if (size > (storageLimit * .75)) {
+      result.resize(storageLimit * 2);
+    }
   };
 
-  result.retrieve = function(/*...*/ 
-) {
-    // TODO: implement `retrieve`
+
+  result.retrieve = function(key) {
+    var index = getIndexBelowMaxForKey(key, storageLimit);
+    var bucket = storage[index];
+
+    if (bucket) {
+      for (var i = 0; i < bucket.length; i++) {
+        if (bucket[i][0] === key) {
+          return bucket[i][1];
+        }
+      }
+    }
+
+    return null;
   };
 
-  result.remove = function(/*...*/ 
-) {
-    // TODO: implement `remove`
-  };
+  result.remove = function(key) {
+    var index = getIndexBelowMaxForKey(key, storageLimit);
+    var bucket = storage[index];
+    var secondBucket = [];
+
+    if (bucket) {
+      for (var i = 0; i < bucket.length; i++) {
+        if (bucket[i][0] === key || bucket[i][0] === undefined) {
+          size--;
+          continue;
+        }
+        secondBucket.push(bucket[i]);
+      }
+    }
+
+    storage[index] = secondBucket.length === 0 ? undefined : secondBucket;
+
+    if (size < (storageLimit * .25)) {
+      result.resize(storageLimit / 2);
+    }
+  }
+
+  result.resize = function(newLimit) {
+    size = 0;
+    storageLimit = newLimit;
+    var oldStorage = storage;
+    storage = [];
+
+    for (var i = 0; i <  oldStorage.length; i++) {
+      var bucket = oldStorage[i];
+
+      if (!bucket) { continue; }
+
+      for (var j = 0; j < bucket.length; j++) {
+        var key = bucket[j][0];
+        var value = bucket[j][1];
+        result.insert(key, value);
+      }
+    }
+  }
 
   return result;
 };
