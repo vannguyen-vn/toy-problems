@@ -25,20 +25,35 @@ var makeHashTable = function() {
   var storage = [];
   var storageLimit = 4;
   var size = 0;
-  
-  result.insert = function(/*...*/ 
+
+  result.insert = function(/*...*/
 ) {
-    // TODO: implement `insert`
+   // run hash
+   // grab bucket
+   // if bucket exists,
+     // iterate over it to see if we are updating a value
+     // update or push
+   // otherwise
+     // create bucket and push tuple
   };
 
-  result.retrieve = function(/*...*/ 
+  result.retrieve = function(/*...*/
 ) {
-    // TODO: implement `retrieve`
+    // grab bucket
+    // iterate through bucket and match the key to tuple
+      // pull out value
+
+    // return null
   };
 
-  result.remove = function(/*...*/ 
+  result.remove = function(/*...*/
 ) {
-    // TODO: implement `remove`
+    // grab bucket
+    // iterate through bucket and match the key to tuple
+      // splice(index, 1)
+      // return value
+
+    // return null
   };
 
   return result;
