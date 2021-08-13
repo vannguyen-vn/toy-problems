@@ -39,9 +39,20 @@ var makeHashTable = function() {
        }
      }
      bucket.push([key], [value]);
+     size++;
+
+     if (size > storageLimit * 0.75) {
+       resize(storageLimit * 2);
+     };
+
    } else {
      bucket = [];
      bucket.push([key], [value]);
+
+     size++;
+     if (size > storageLimit * 0.75) {
+       resize(storageLimit * 2);
+     };
    }
  };
 
@@ -66,12 +77,17 @@ var makeHashTable = function() {
     var index = getIndexBelowMaxForKey(key, storageLimit);
 
     var bucket = storage[index];
-    // grab bucket
+
     if (bucket) {
       for (var i = 0; i < bucket.length; i++) {
         var tuple = bucket[i];
         if (tuple[0] === k) {
           bucket.splice(i, 1);
+
+          size--;
+          if (size < storageLimit * 0.25) {
+            resize(storageLimit / 2);
+          }
           return tuple[1];
         }
       }
@@ -80,8 +96,24 @@ var makeHashTable = function() {
     }
   };
 
+  result.resize = function(limit) {
+    var savedData = storage;
+
+    storageLimit = limit;
+    storage = [];
+    size = 0;
+
+    for (var i = 0; i < savedData.length; i++) {
+      var bucket = savedData[i];
+      if (bucket === undefined) {
+        continue;
+      }
+      for (var j = 0; j < bucket.length; j++) {
+        var tuple = bucket[j];
+        insert(tuple[0], tuple[1]);
+      }
+    }
+  }
+
   return result;
 };
-
-console.log(getIndexBelowMaxForKey('z', 4)); // -> 2
-// console.log(makeHashTable.result.insert('a', 'b'));
