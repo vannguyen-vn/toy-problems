@@ -66,6 +66,7 @@ var makeHashTable = function() {
     let result;
     let index = getIndexBelowMaxForKey(key, storageLimit);
     if (storage[index]) {
+      let bucket = storage[index]
         for (let i = 0; i < bucket.length; i++) {
             if (bucket[i][0] === key) {
                 result = bucket[i][1];
