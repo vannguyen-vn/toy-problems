@@ -17,20 +17,23 @@
 /**
   * Stack Class
   */
- class Stack {
+class Stack {
   constructor() {
     this.storage = [];
-    this.smallest = Number.POSITIVE_INFINITY;
+    this.smalls = [Number.POSITIVE_INFINITY];
   }
 
   push(value) {
-    if (value < this.smallest) { this.smallest = value; }
+    if (value <= this.min()) { this.smalls.push(value); }
     this.storage.push(value);
   }
 
-  pop() { this.storage.pop(); }
+  pop() {
+    var value = this.storage.pop();
+    if (value === this.min()) { this.smalls.pop(); }
+  }
 
-  min() { return this.smallest; }
+  min() { return this.smalls[this.smalls.length - 1]; }
 
   size() { return this.storage.length; }
 }
