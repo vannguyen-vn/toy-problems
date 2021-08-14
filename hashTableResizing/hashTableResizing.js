@@ -45,11 +45,12 @@ var makeHashTable = function() {
       }
     }
     bucket.push(tuple);
-    }
+
     size++;
     if (size >= 0.75 * storageLimit) {
       storageLimit *= 2;
     }
+  };
 
   result.retrieve = function(key) {
     var index = getIndexBelowMaxForKey(key, storageLimit);
