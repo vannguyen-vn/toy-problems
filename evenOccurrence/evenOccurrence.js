@@ -33,7 +33,7 @@ var evenOccurrence = function(arr) {
 
   for (var item in obj) {
     if (obj[item] % 2 === 0) {
-      if(isNan(Number(item))) {
+      if(Number.isNan(Number(item))) {
         return item;
       } else {
 
