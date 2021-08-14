@@ -32,6 +32,7 @@ var makeHashTable = function() {
     //create a bucket variable
     let bucket = [];
     //`set` the value at the curernt index
+    //set a condition if size is 3/4s of current size, the call remove
   };
 
   result.retrieve = function(value, storageLimit) {
@@ -44,6 +45,7 @@ var makeHashTable = function() {
   result.remove = function(value, storageLimit) {
     //make an index variable with the hasing function(valueOfString, limit)
     let index = getIndexBelowMaxForKey(value, storageLimit);
+    //reduce the value amount if
   };
   return result;
 };
