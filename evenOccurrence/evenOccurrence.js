@@ -31,9 +31,23 @@ var evenOccurrence = function(arr) {
     obj[arr[i]] = count;
   }
 
+  var values = Object.values(obj);
+
+  var max = 0;
+
+  for(var i = 0; i < values.length; i++) {
+
+      if (values[i] > max) {
+          max = values[i]
+      }
+
+  }
+
+
+
   for (var item in obj) {
-    if (obj[item] % 2 === 0) {
-      if(Number.isNan(Number(item))) {
+    if (obj[item] % 2 === 0 && obj[item] >= max) {
+      if(Number.isNaN(Number(item))) {
         return item;
       } else {
 
