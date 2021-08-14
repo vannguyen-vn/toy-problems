@@ -31,7 +31,7 @@
         // Push input value
         this.minVal.push(value);
       } else {
-        if (value <= this.minVal[this.minVal[this.minVal.length - 1]]) {
+        if (value <= this.minVal[this.minVal.length - 1]) {
           this.minVal.push(value);
         }
       }
@@ -52,7 +52,7 @@
         // Decrement counter
         this.counter--;
         // Declare a popped variable equal to counter at storage
-        var poppedVal = this.stroage[this.counter];
+        var poppedVal = this.storage[this.counter];
         // Check if popped value is the minimum
         if (poppedVal === this.minVal[this.minVal.length - 1]) {
           this.minVal.pop()
@@ -69,6 +69,6 @@
 
   // return the minimum value in the stack
     Stack.prototype.min = function() {
-      return this.minVal[this.minVal.length - 1]
+      return this.minVal[this.minVal.length - 1];
     };
 
