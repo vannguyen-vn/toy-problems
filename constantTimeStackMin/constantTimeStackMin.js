@@ -1,6 +1,6 @@
 /**
  * Write a stack using your preferred instantiation pattern. Implement a min function
- * that returns the minimum value of all the elements in the stack in constant time.stack.  
+ * that returns the minimum value of all the elements in the stack in constant time.stack.
 
  * All of the functions in the Stack should run in constant time!
  *
@@ -17,24 +17,18 @@
 /**
   * Stack Class
   */
-  var Stack = function() {
+ class Stack {
+  constructor() {
+    this.storage = [];
+    this.smallest = Number.POSITIVE_INFINITY;
+  }
 
-  // add an item to the top of the stack
-    this.push = function(value) {
-    };
+  push(value) {
+    if (value < this.smallest) { this.smallest = value; }
+    this.storage.push(value);
+  }
 
-  // remove an item from the top of the stack
-    this.pop = function() {
-    };
+  pop() { this.storage.pop(); }
 
-  // return the number of items in the stack
-    this.size = function() {
-    };
-  
-  // return the minimum value in the stack
-    this.min = function() {
-
-    };
-
-  };
-
+  min() { return this.smallest; }
+}
