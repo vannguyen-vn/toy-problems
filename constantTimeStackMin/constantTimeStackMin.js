@@ -46,7 +46,7 @@ Stack.prototype.pop = function () {
   }
 
   var pop =  this.storage[this.count];
-  delete this.mini[(this.storage[this.count])];
+  //delete this.mini[(this.storage[this.count])];
   delete this.storage[this.count]
   return pop;
 
