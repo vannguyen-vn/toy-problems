@@ -38,7 +38,7 @@ var makeHashTable = function() {
       var bucket = storage[bucketIndex];
       for (var i = 0; i < bucket.length; i++) {
         if(bucket[i][0] === key) {
-          bucket[i][1] === value;
+          bucket[i][1] = value;
           found = true;
         }
       }
