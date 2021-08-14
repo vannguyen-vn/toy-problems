@@ -68,7 +68,6 @@ var makeHashTable = function() {
 
   result.remove = function(k, v) {
     // TODO: implement `remove`
-    if
     // use hash function with key to get the index
     var index = getIndexBelowMaxForKey(k, storageLimit);
     // iterate through index
