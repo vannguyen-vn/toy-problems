@@ -41,9 +41,10 @@ var makeHashTable = function() {
 
   };
 
-  result.retrieve = function(/*...*/
-) {
+  result.retrieve = function(key) {
     // TODO: implement `retrieve`
+    var min = 1/4;
+    var hashKey = getIndexBelowMaxForKey(key, this.storageLimit);
   };
 
   result.remove = function(/*...*/
