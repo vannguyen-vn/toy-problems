@@ -31,18 +31,16 @@ var Stack = function() {
 
   // add an item to the top of the stack
 Stack.prototype.push = function(value) {
-  var previousMin = null;
+  var currentMin = null;
 
-  if ( this._size === 0 ) {
-    previousMin = null;
-  } else if (this._size === 1) {
-    previousMin = this._storage[0][0];
-  } else {
-    var lastStackEle = this._storage[this._size - 1];
-    previousMin = Math.min(lastStackEle[0], lastStackEle[1]);
+  if (this._size === 0) {
+    currentMin = value;
+  } else if (this._size > 0) {
+    var currentTail = this._storage[this._size - 1];
+    currentMin = Math.min(value, currentTail[1]);
   }
 
-  this._storage.push([value, previousMin]);
+  this._storage.push([value, currentMin]);
 
   this._size++;
 
@@ -62,9 +60,7 @@ Stack.prototype.size = function() {
 
 // return the minimum value in the stack
 Stack.prototype.min = function() {
-  var lastEle = this._storage[this._size - 1];
-  if (lastEle[1 === null]) { return lastEle[0] };
-  return Math.min(lastEle[0], lastEle[1]);
+  return this._storage[this._size - 1][1];
 };
 
 module.exports = {Stack: Stack};
