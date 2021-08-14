@@ -41,6 +41,20 @@ var makeHashTable = function() {
     this.storageCopy = null;
   }
 
+  newHashTable.halfHash = function() {
+    this.size = 0;
+    this.storageLimit /= 2;
+    this.storageCopy = this.storage;
+    this.storage = [];
+    this.storageCopy.forEach(bucket => {
+      if (!bucket) { return; }
+      bucket.forEach(tuple => {
+        this.insert(tuple[0], tuple[1]);
+      });
+    });
+    this.storageCopy = null;
+  }
+
   newHashTable.insert = function(key, value) {
     if (!this.storage[getIndexBelowMaxForKey(key, this.storageLimit)]) {
       this.storage[getIndexBelowMaxForKey(key, this.storageLimit)] = [[key, value]];
@@ -53,16 +67,20 @@ var makeHashTable = function() {
 
   newHashTable.retrieve = function(key) {
     var result = null;
-    this.storage.forEach(bucket => {
-      if (!bucket) { return; }
-      bucket.forEach(tuple => {
-        if (tuple[0] === key) { result = tuple[1]; }
-      });
+    this.storage[getIndexBelowMaxForKey(key, this.storageLimit)].forEach(tuple => {
+      if (tuple[0] === key) { result = tuple[1]; }
     });
     return result;
   };
 
-  newHashTable.remove = function() {
+  newHashTable.remove = function(key) {
+    this.storage[getIndexBelowMaxForKey(key, this.storageLimit)].forEach((tuple, index, collection) => {
+      if (tuple[0] === key) {
+        collection.splice(index, 1);
+        this.size--;
+      }
+    });
+    if (this.size < this.storageLimit * 0.25) { this.halfHas(); }
   };
 
   return newHashTable;
