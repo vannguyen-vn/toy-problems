@@ -13,22 +13,28 @@
 var evenOccurrence = function(arr) {
 
   // counter variable
-  var count = 0;
+
 
   //result obj
   var obj = {};
 
   for (var i = 0; i < arr.length; i++) {
-
+    var count = 0;
     for (var j = 0; j < arr.length; j++) {
       if(arr[j] === arr[i]) {
         count++;
       }
     }
-    if (count % 2 === 0) {
-      return arr[i];
+  //  if (count % 2 === 0) {
+  //    return arr[i];
+   // }
+    obj[arr[i]] = count;
+  }
+
+  for (var item in obj) {
+    if (obj[item] % 2 === 0) {
+      return item;
     }
-    obj[i] = count;
   }
   return null;
 
