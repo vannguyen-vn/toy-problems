@@ -10,17 +10,23 @@
  * console.log(onlyEven); //  4
 */
 
-var evenOccurrence = function(arr) {
+var evenOccurrence = (arr) => {
   var obj = {};
   var container = [];
 
-  arr.forEach(function(item) {
+  arr.forEach((item) => {
       if (obj[item] === undefined) {
-        obj[item] = true;
+        obj[item] = 1;
       } else {
-        container.push(item);
+        obj[item]++;
       }
   });
+
+  for (var key in obj) {
+    if (obj[key] % 2 == 0) {
+      container.push(Number(key))
+    }
+  }
 
   for (var i = 0; i < arr.length; i ++){
     var currentValue = arr[i];
