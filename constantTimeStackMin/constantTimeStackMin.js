@@ -27,7 +27,7 @@
   // add an item to the top of the stack
     this.push = function(value) {
       // if stack is empty
-      (if this.stack.length === 0) {
+      if (this.stack.length === 0) {
         // add value to stack and assign to minimum value
         this.minStack.push(value);
         this.minElement = value;
@@ -50,11 +50,18 @@
   // remove an item from the top of the stack
     this.pop = function() {
       // declare var for last element
+      var last = this.stack[this.stack.length - 1];
       // if last element is equal minimum element
+      if (last === this.minElement) {
         // pop from minStack
+        this.minStack.pop();
         // reassign minElement to last item of minstack
+        this.minElement = this.minStack[this.minStack.length - 1];
+      }
       // pop from main stack
+      this.stack.pop();
       // decrement count
+      this.count--;
     };
 
   // return the number of items in the stack
