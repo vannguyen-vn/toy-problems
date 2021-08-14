@@ -41,8 +41,8 @@ var makeHashTable = function() {
           found = true;
         }
       }
-      if {
-        (!found) bucket.push(tuple);
+      if (!found) {
+        bucket.push(tuple);
       }
     }
     size++;
