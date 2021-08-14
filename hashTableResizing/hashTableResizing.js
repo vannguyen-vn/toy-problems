@@ -36,7 +36,7 @@ var makeHashTable = function() {
      result.storage[index].push([key, value]);
     }
 
-    if (result.size \ result.storageLimit > 0.75) {
+    if (result.size / result.storageLimit > 0.75) {
       result.storageLimit = result.storageLimit * 2;
     }
   };
