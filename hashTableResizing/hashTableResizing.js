@@ -29,7 +29,8 @@ var makeHashTable = function() {
   result.insert = function(key, value
   ) {
     var index = getIndexBelowMaxForKey(key, storageLimit);
-    if (!result.storage[index]) {
+    var bucket = storage[index];
+    if (bucket) {
       result.storage[index].push([key, value]);
     }
     return index;
