@@ -27,85 +27,56 @@ var makeHashTable = function() {
   var size = 0;
 
   result.insert = function(key, value) {
-    // Access hashing function via variable
     var index = getIndexBelowMaxForKey(key, storageLimit);
-    // Create a bucket
     var bucket = storage[index];
-    // If no bucket exists
     if (!bucket) {
-      // Create a bucket
       bucket = [];
-      // Store bucket
       storage.set(index, bucket);
     }
-    // Iterate over the bucket
     for (var i = 0; i < bucket.length; i++) {
       var tuple = bucket[i];
-      // If our key exists in the bucket
       if (tuple[0] === undefined) {
         tuple[0] = key;
         tuple[1] = value;
       }
       if (tuple[0] === key) {
-        // Reassign the value
         tuple[1] = value;
-        // Break the if statement
         break;
       }
     }
-      // Push the tuple in to the bucket
     bucket.push(tuple);
     }
-      // Handle resizing
     size++;
-      // If size is 75% of storageLimit
     if (size >= 0.75 * storageLimit) {
-      // Double the storage
       storageLimit *= 2;
     }
 
   result.retrieve = function(key) {
-    // Access hashing function
     var index = getIndexBelowMaxForKey(key, storageLimit);
-    // If no bucket exists
     if (!bucket) {
-      // Return null
       return null;
     }
-    // Iterate over the bucket
     for (var i = 0; i < bucket.length; i++) {
       var tuple = bucket[i];
-      // If our key exists in the bucket
       if (tuple[0] === key) {
-      // return the value
       return tuple[1];
       }
     }
-    // Return null
     return null;
   };
 
   result.remove = function(key) {
-    // Access the hashing function
     var index = getIndexBelowMaxForKey(key, storageLimit);
-    // If no bucket exists
     if (!bucket) {
-    // Return null
     return null;
     }
-    // Iterate over bucket
     for (var i = 0; i < bucket.length; i++) {
-      // Create tuple alias
       var tuple = bucket[i];
-      // If key exists
       if (tuple[0] === key) {
-        // Remove key
         var removedkey = bucket.splice(i, 1);
-        // decrement size
         size--;
       }
     }
-     // Resize storageLimit
     if (size < .25 * storageLimit) {
       storageLimit /= 2;
     }
