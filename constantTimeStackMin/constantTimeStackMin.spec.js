@@ -1,6 +1,5 @@
 const Stack = require("./constantTimeStackMin").Stack;
 
-
 describe("Find the minimum value in a stack using constant time", function(){
 
   var stack;
@@ -8,6 +7,10 @@ describe("Find the minimum value in a stack using constant time", function(){
   beforeEach(function() {
     stack = new Stack();
   })
+
+    test("empty stack", function(){
+      expect(stack.size()).toBe(0);
+    });
 
     test("push an element to a stack", function(){
       stack.push(4);
@@ -21,6 +24,7 @@ describe("Find the minimum value in a stack using constant time", function(){
       expect(stack.size()).toBe(3);
       expect(stack.pop()).toBe(6);
       expect(stack.size()).toBe(2);
+      expect(stack.min()).toBe(4);
     });
 
     test("get minimum after push", function(){
@@ -39,7 +43,7 @@ describe("Find the minimum value in a stack using constant time", function(){
 
     test("get minimum after pop", function(){
       stack.push(3);
-      stack.push(2);
+      stack.push(4);
       stack.push(2)
       expect(stack.min()).toBe(2);
     });
