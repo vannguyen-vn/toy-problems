@@ -91,5 +91,5 @@ var makeHashTable = function(limit) {
 
   return result;
 };
-module.exports = makeHashTable;
-module.exports = getIndexBelowMaxForKey
+//module.exports = makeHashTable;
+//module.exports = getIndexBelowMaxForKey
