@@ -26,29 +26,90 @@ var makeHashTable = function() {
   var storageLimit = 4;
   var size = 0;
 
-  result.insert = function(string) {
-    let index = getIndexBelowMaxForKey(string, storageLimit);
-    if (size <= storageLimit * 3 / 4) {
-      storage[index] = [index, string];
-      size++;
-    } else if (size > storageLimit * 3 / 4) {
-      storageLimit *= 2;
-      storage[index] = [index, string];
-      size++;
+  result.insert = function(key, val) {
+    let index = getIndexBelowMaxForKey(key, storageLimit);
+    let tuple = [key, val];
+    if (storage[index] === undefined) {
+      storage[index] = [];
+      storage[index].push(tuple);
+    } else {
+      let found = false;
+      let bucket = storage[index];
+      for (let i = 0; i < bucket.length; i++) {
+        if(bucket[i][0] === key) {
+          bucket[i][1] = val;
+          found = true;
+        }
+      }
+      if {
+        (!found) bucket.push(tuple);
+      }
+    }
+    size++;
+    if (size / storageLimit > 3/4) {
+      let oldStorage = storage.slice();
+      storageLimit = storageLimit * 2;
+      storage = [];
+      size = 0;
+      for (let i = 0; i < oldStorage.length; i++) {
+        if (oldStorage[i]) {
+          for(let j = 0; j < oldStorage[i].length; j++) {
+            let old = oldStorage[i][j];
+            this.insert(old[0], old[1]);
+          }
+        }
+      }
     }
   };
 
-  result.retrieve = function(string) {
-    let index = getIndexBelowMaxForKey(string, storageLimit);
-   if (storage[index]) return storage[index][1];
-   return null;
+  result.retrieve = function(key) {
+    let result;
+    let index = getIndexBelowMaxForKey(key, storageLimit);
+    if (storage[index]) {
+        for (let i = 0; i < bucket.length; i++) {
+            if (bucket[i][0] === key) {
+                result = bucket[i][1];
+            }
+        }
+    }
+    return result;
   };
 
-  result.remove = function(string) {
-    let index = getIndexBelowMaxForKey(string, storageLimit);
-    delete storage[index];
-    size--;
-    if (size < storageLimit / 4) storageLimit /= 2;
+  result.remove = function(key) {
+    let index = getIndexBelowMaxForKey(key, storageLimit);
+    let bucket = storage[index];
+    if (bucket) {
+      for (let i = 0; i < bucket.length; i++) {
+        if (bucket[i][0] === key) {
+          bucket.splice(i, 1);
+          size--;
+        }
+      }
+    } else {
+      return;
+    }
+    if (size / storageLimit < 1/4) {
+      let oldStorage = storage.slice();
+      storage = [];
+      storageLimit = storageLimit / 2;
+      size = 0;
+      for (let i = 0; i < oldStorage.length; i++) {
+        if (oldStorage[i]) {
+          for (let j = 0; j < oldStorage[i].length; j++) {
+            let oldTuple = oldStorage[i][j];
+            result.insert(oldTuple[0], oldTuple[1]);
+          }
+        }
+      }
+    }
   };
+
   return result;
 };
+
+let ex = new makeHashTable();
+console.log(ex.insert(1, 'one'));
+console.log(ex.insert(2, 'two'));
+console.log(ex.insert(3, 'three'));
+console.log(ex.retrieve(2));
+console.log(ex.remove(1));
