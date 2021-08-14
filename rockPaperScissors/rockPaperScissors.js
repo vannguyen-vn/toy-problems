@@ -18,8 +18,65 @@
 *
 */
 
-var rockPaperScissors = function (
-) {
-  // TODO: your solution here
+var rockPaperScissors = function (n) {
+
+   // TODO: your solution here
+
+
+  /********************************
+
+  ---------- Recursion ---------
+
+  *********************************/
+  n = n || 3;
+  var result = [];
+  var input = ['R','S','P'];
+
+  if (n === 1) {
+    return input;
+  };
+
+  for (var i = 0; i < input.length; i++) {
+    var temp = rockPaperScissors(n-1);
+
+    for (var j = 0; j < temp.length; j++) {
+      result.push(input[i]+temp[j]);
+    }
+  }
+
+  return result;
 };
 
+// Other thoughts:
+
+  // use a tree structure to resolve the question
+  // create a tree with n+1 layers
+  // traverse the tree and record each of the combination
+
+  // what is the time complexity?
+
+  /*
+  var newString = '';
+  var result = [];
+/*
+  var helperFn = function(item) {
+    if (newString.length === 3) {
+      return newString;
+    } else {
+      newString += item;
+    }
+  };
+
+  var generateOutcome = function() {
+    ['R', 'S', 'P'].forEach(function(item) {
+      if (newString.length < 3) {
+        newString += item;
+        generateOutcome();
+      } else {
+        result.push(newString);
+      }
+    });
+  }
+
+  generateOutcome();
+  */
