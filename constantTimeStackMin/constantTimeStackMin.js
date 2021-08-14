@@ -26,7 +26,7 @@
   this.minValue;
 
 // add an item to the top of the stack
-  instance.prototype.push = function(value) {
+  Stack.prototype.push = function(value) {
     if (!this.minValue) {
       this.minValue = value;
     } else {
@@ -41,7 +41,7 @@
   };
 
 // remove an item from the top of the stack
-  instance.prototype.pop = function() {
+  Stack.prototype.pop = function() {
     if (this.plates > 0) {
       this.plates--;
       var removedItem = this.storage.pop();
@@ -50,15 +50,13 @@
   };
 
 // return the number of items in the stack
-  instance.prototype.size = function() {
+  Stack.prototype.size = function() {
     return this.storage.length;
   };
 
 // return the minimum value in the stack
-  instance.prototype.min = function() {
+  Stack.prototype.min = function() {
    return this.storage[this.minIndex];
 
   };
-
-  return instance;
 };
