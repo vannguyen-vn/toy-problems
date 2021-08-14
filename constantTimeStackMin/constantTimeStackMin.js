@@ -20,11 +20,16 @@
   var Stack = function() {
     this._index = 0;
     this._storage = {};
-    this._min = Number.MAX_SAFE_INTEGER;
+    this._mins = [];
 
   // add an item to the top of the stack
     this.push = function(value) {
-      this._min = Math.min(value, this._min);
+      if (!this._mins.length) {
+        this._mins.push(value);
+      }
+      if (value < this._mins[this._mins.length - 1]) {
+        this._mins.push(value);
+      }
       this._storage[String(this._index)] = value;
       this._index += 1;
     };
@@ -34,6 +39,9 @@
       var res = this._storage[String(this._index - 1)];
       delete this._storage[String(this._index - 1)];
       this._index -= 1;
+      if (res === this._mins[this._mins.length - 1]) {
+        this._mins.pop();
+      }
       return res;
     };
 
@@ -44,7 +52,7 @@
 
   // return the minimum value in the stack
     this.min = function() {
-      return this._min;
+      return this._mins[this._mins.length - 1];
     };
 
   };
