@@ -25,20 +25,73 @@ var makeHashTable = function() {
   var storage = [];
   var storageLimit = 4;
   var size = 0;
-  
-  result.insert = function(/*...*/ 
-) {
-    // TODO: implement `insert`
+
+  // initialization
+  for (var i = 0; i < this.storageLimit; i++) {
+    if (this.storage[i] === undefined) { this.storage.push([]); }
+  }
+
+  result.insert = function(key, value) {
+
+    var hash = getIndexBelowMaxForKey(key, this.storageLimit);
+    var hashStorage = this.storage[hash];
+
+    for (var i = 0; i < hashStorage.length; i++) {
+      if (hashStorage[i][0] === key) {
+        hashStorage[i][0] = value;
+        return;
+      }
+    }
+
+    hashStorage.push([key, value]);
+    this.size++;
+
+    if (this.size > (3/4) * this.storageLimit) {
+      this.resize(this.storageLimit * 2);
+     }
   };
 
-  result.retrieve = function(/*...*/ 
-) {
-    // TODO: implement `retrieve`
+  result.retrieve = function(key) {
+    var hash = getIndexBelowMaxForKey(key);
+    var hashContainer = this.storage[hash];
+    for (var i = 0; i < hashContainer.length; i++) {
+      if (hashContainer[i][0] === key) {
+        return hashContainer[i][1];
+      }
+    }
+    return null;
   };
 
-  result.remove = function(/*...*/ 
-) {
-    // TODO: implement `remove`
+  result.remove = function(key) {
+    var hash = getIndexBelowMaxForKey(key);
+    var hashContainer = this.storage[hash];
+    for (var i = 0; i < hashContainer.length; i++) {
+      if (hashContainer[i][0] === key) {
+        hashContainer.splice(i, 1);
+        this.size--;
+      }
+    }
+
+    if (this.size < (1/4) * this.storageLimit) {
+      this.resize(this.storageLimit * (1/2));
+    }
+  };
+
+  result.resize = function(newSize) {
+    var oldStorage = this.storage;
+    var oldStorageLimit = this.storageLimit;
+
+    this.storageLimit = newSize;
+    this.storage= [];
+    for (var i = 0; i < newSize; i++) {
+      newStorage.push([]);
+    }
+
+    for (var i = 0; i < oldStorageLimit; i++) {
+      for (var j = 0; j < oldStorage[i].length; j++) {
+        this.insert(oldStorage[i][j][0], oldStorage[i][j][1]);
+      }
+    }
   };
 
   return result;
