@@ -27,11 +27,13 @@
       if (value < min) {
         min = value;
       }
+      size += 1;
       stack.unshift(value);
     };
 
   // remove an item from the top of the stack
     this.pop = function() {
+      size += 1;
       return stack.shift();
     };
 
