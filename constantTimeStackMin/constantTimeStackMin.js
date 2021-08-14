@@ -31,4 +31,6 @@
   pop() { this.storage.pop(); }
 
   min() { return this.smallest; }
+
+  size() { return this.storage.length; }
 }
