@@ -24,15 +24,18 @@
   this.plates = 0;
   this.minIndex = 0;
   this.minValue;
+  this.minIndexArray = [];
 
 // add an item to the top of the stack
   Stack.prototype.push = function(value) {
     if (!this.minValue) {
       this.minValue = value;
+      this.minIndexArray.push(this.minIndex);
     } else {
       if (this.minValue > value) {
         this.minValue = value;
-        this.minIndex = plates;
+        this.minIndex = this.plates;
+        this.minIndexArray.push(this.minIndex)
       }
     }
 
@@ -44,6 +47,16 @@
   Stack.prototype.pop = function() {
     if (this.plates > 0) {
       this.plates--;
+
+      if (this.plates === this.minIndex && this.plates > 0) {
+        this.minIndexArray.pop();
+        this.minIndex = this.minIndexArray.length - 1;
+        this.minValue = this.storage[this.minIndex];
+      } else {
+        this.minIndexArray = [];
+        this.minIndex = 0;
+        this.minValue = null;
+      }
       var removedItem = this.storage.pop();
       return removedItem;
     }
