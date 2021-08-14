@@ -24,7 +24,11 @@ var evenOccurrence = (arr) => {
 
   for (var key in obj) {
     if (obj[key] % 2 == 0) {
-      container.push(Number(key))
+      if (isNaN(key)) {
+        container.push(key)
+      } else {
+        container.push(Number(key))
+      }
     }
   }
 
