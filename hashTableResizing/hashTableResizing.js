@@ -67,6 +67,7 @@ var makeHashTable = function() {
 
   newHashTable.retrieve = function(key) {
     var result;
+    if (!this.storage[getIndexBelowMaxForKey(key, this.storageLimit)]) { return result; }
     this.storage[getIndexBelowMaxForKey(key, this.storageLimit)].forEach(tuple => {
       if (tuple[0] === key) { result = tuple[1]; }
     });
