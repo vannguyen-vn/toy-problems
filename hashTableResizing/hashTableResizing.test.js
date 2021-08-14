@@ -11,6 +11,10 @@ describe.only("hashTableResizing Tests", function(){
 
   });
 
+  it('Should store values that are retrievable'), function() {
+
+  });
+
   // it("Should return the first number that occurred an even number of times", function(){
   //   expect(evenOccurrence([1, 7, 2, 4, 5, 6, 8, 9, 6, 4])).toBe(4);
   //   expect(evenOccurrence([1, 4, 7, 2, 4, 5, 6, 8, 9, 6, 4])).toBe(6)
