@@ -22,19 +22,19 @@ var getIndexBelowMaxForKey = function(str, max) {
 
 var makeHashTable = function() {
   var result = {};
-  var storage = [];
-  var storageLimit = 4;
-  var size = 0;
+  result.storage = [];
+  result.storageLimit = 4;
+  result.size = 0;
 
   // initialization
-  for (var i = 0; i < this.storageLimit; i++) {
-    if (this.storage[i] === undefined) { this.storage.push([]); }
+  for (var i = 0; i < result.storageLimit; i++) {
+    if (result.storage[i] === undefined) { result.storage.push([]); }
   }
 
   result.insert = function(key, value) {
 
-    var hash = getIndexBelowMaxForKey(key, this.storageLimit);
-    var hashStorage = this.storage[hash];
+    var hash = getIndexBelowMaxForKey(key, result.storageLimit);
+    var hashStorage = result.storage[hash];
 
     for (var i = 0; i < hashStorage.length; i++) {
       if (hashStorage[i][0] === key) {
@@ -44,16 +44,16 @@ var makeHashTable = function() {
     }
 
     hashStorage.push([key, value]);
-    this.size++;
+    result.size++;
 
-    if (this.size > (3/4) * this.storageLimit) {
-      this.resize(this.storageLimit * 2);
+    if (result.size > (3/4) * result.storageLimit) {
+      result.resize(result.storageLimit * 2);
      }
   };
 
   result.retrieve = function(key) {
-    var hash = getIndexBelowMaxForKey(key);
-    var hashContainer = this.storage[hash];
+    var hash = getIndexBelowMaxForKey(key, result.storageLimit);
+    var hashContainer = result.storage[hash];
     for (var i = 0; i < hashContainer.length; i++) {
       if (hashContainer[i][0] === key) {
         return hashContainer[i][1];
@@ -63,36 +63,41 @@ var makeHashTable = function() {
   };
 
   result.remove = function(key) {
-    var hash = getIndexBelowMaxForKey(key);
-    var hashContainer = this.storage[hash];
+    var hash = getIndexBelowMaxForKey(key, result.storageLimit);
+    var hashContainer = result.storage[hash];
     for (var i = 0; i < hashContainer.length; i++) {
       if (hashContainer[i][0] === key) {
         hashContainer.splice(i, 1);
-        this.size--;
+        result.size--;
       }
     }
 
-    if (this.size < (1/4) * this.storageLimit) {
-      this.resize(this.storageLimit * (1/2));
+    if (result.size < (1/4) * result.storageLimit) {
+      result.resize(result.storageLimit * (1/2));
     }
   };
 
   result.resize = function(newSize) {
-    var oldStorage = this.storage;
-    var oldStorageLimit = this.storageLimit;
+    var oldStorage = result.storage;
+    var oldStorageLimit = result.storageLimit;
 
-    this.storageLimit = newSize;
-    this.storage= [];
+    result.storageLimit = newSize;
+    result.storage= [];
     for (var i = 0; i < newSize; i++) {
       newStorage.push([]);
     }
 
     for (var i = 0; i < oldStorageLimit; i++) {
       for (var j = 0; j < oldStorage[i].length; j++) {
-        this.insert(oldStorage[i][j][0], oldStorage[i][j][1]);
+        result.insert(oldStorage[i][j][0], oldStorage[i][j][1]);
       }
     }
   };
 
   return result;
 };
+
+var hashTable = new makeHashTable();
+console.log(hashTable.insert('a', 1));
+//console.log(hashTable.retrieve('a'));
+console.log(hashTable.storageLimit);
