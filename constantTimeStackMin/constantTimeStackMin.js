@@ -32,6 +32,7 @@
           auxiliaryStack.unshift(value);
         }
       }
+      size += 1;
       return stack;
     };
 
@@ -45,8 +46,8 @@
       if (top === auxiliaryStack[0]){
         auxiliaryStack.shift();
       }
-      return top;
       size -= 1;
+      return top;
     };
 
 
