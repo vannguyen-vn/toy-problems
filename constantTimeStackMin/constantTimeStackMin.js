@@ -49,19 +49,3 @@
     };
 
   };
-
-
-var example = new Stack()
-example.push(4)
-example.push(3)
-console.log(example.min() === 3)
-example.push(3)
-example.push(2)
-example.push(2)
-console.log(example.size());
-console.log(example.min() === 2)
-example.pop()
-example.pop()
-example.pop()
-console.log(example.min() === 2)
-console.log(example.size());
