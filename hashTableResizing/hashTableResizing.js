@@ -53,4 +53,4 @@ var makeHashTable = function() {
   return result;
 };
 
-module.exports = makeHashTable, getIndexBelowMaxForKey;
+// module.exports = makeHashTable, getIndexBelowMaxForKey;
