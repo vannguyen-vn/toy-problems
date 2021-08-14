@@ -48,7 +48,7 @@
       //check how many object values are in the value
         //compare the smallest value to those in the array
       var numKeysArray = Object.values(this.storage);
-      var minValue = numberKeysArray[0];
+      var minValue = numKeysArray[0];
       for (let i = 1; i < numKeysArray.length; i++) {
         let currentKey = numKeysArray[i];
         if (minValue > currentKey) {
