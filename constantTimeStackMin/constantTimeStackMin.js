@@ -17,29 +17,42 @@
 /**
   * Stack Class
   */
-  var Stack = function() {
+var Stack = function() {
+  var instance = {};
 
-    var instance = {};
-    var storage = {};
-    var plates = 0;
+  var storage = [];
+  var plates = 0;
+  var minIndex = 0;
+  var minValue;
 
-  // add an item to the top of the stack
-    instance.push = function(value) {
-    };
-
-  // remove an item from the top of the stack
-    instance.pop = function() {
-    };
-
-  // return the number of items in the stack
-    instance.size = function() {
-    };
-
-  // return the minimum value in the stack
-    instance.min = function() {
-
-    };
-
-    return instance;
+  instance.push = function(value) {
+    if (!minValue) {
+      minValue = value;
+    } else {
+      if (minValue > value) {
+        minValue = value;
+        minIndex = plates;
+      }
+    }
+    storage.push(value);
+    plates++;
   };
 
+  instance.pop = function() {
+    if (plates > 0) {
+      plates--;
+      var removedItem = storage.pop();
+      return removedItem;
+    }
+  };
+
+  instance.size = function() {
+    return storage.length;
+  };
+
+  instance.min = function() {
+    return storage[minIndex];
+  };
+
+  return instance;
+};
