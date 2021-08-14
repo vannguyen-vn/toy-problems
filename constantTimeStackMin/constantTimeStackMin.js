@@ -19,12 +19,10 @@
   */
  var Stack = function() {
   this.storage = [];
-  this.smallest;
 
 // add an item to the top of the stack
   this.push = function(value) {
     this.storage.push(value);
-    this.smallest = value;
   };
 
 // remove an item from the top of the stack
@@ -39,10 +37,7 @@
 
 // return the minimum value in the stack
   this.min = function() {
-    this.storage.forEach(value => {
-      if (value < this.smallest) { this.smallest = value; }
-    });
-    return this.smallest;
+    return Math.min(...this.storage);
   };
 };
 
