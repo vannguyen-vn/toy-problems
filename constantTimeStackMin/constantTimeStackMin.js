@@ -21,15 +21,16 @@
     this.storage = {};
     this.secMinVal = +Infinity;
     this.minVal = +Infinity;
+    this.countNum = 1;
   };
 
   // add an item to the top of the stack
   Stack.prototype.push = function(value) {
-    var countNum = 1;
-    this.storage[countNum] = value;
-    countNum++;
+    this.storage[this.countNum] = value;
+    this.countNum++;
 
     if (value < this.minVal) {
+      this.secMinVal = this.minVal;
       this.minVal = value;
     } else if (value < this.secMinVal) {
       this.secMinVal = value;
