@@ -19,16 +19,17 @@
   */
   var Stack = function() {
     this.storage = [];
-    this.minNum = {};
+    this.minNum;
 
   // add an item to the top of the stack
     this.push = function(value) {
       this.storage.push(value);
-      if (this.minNum.value === undefined) {
-        this.minNum.value = value;
+
+      if (this.minNum === undefined) {
+        this.minNum = value;
       }
-      if (this.minNum.value > value) {
-        this.minNum.value = value;
+      if (this.minNum > value) {
+        this.minNum = value;
       }
     };
 
@@ -44,7 +45,7 @@
 
   // return the minimum value in the stack
     this.min = function() {
-      return this.minNum.value;
+      return this.minNum;
     };
 
   };
