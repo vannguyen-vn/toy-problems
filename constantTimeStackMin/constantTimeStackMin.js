@@ -32,7 +32,8 @@ Stack.prototype.push = function(value) {
 // remove an item from the top of the stack
 Stack.prototype.pop = function() {
   //var result = storage.count;
-  delete this.storage[this.count--];
+  this.count && this.count--;
+  delete this.storage[this.count];
   //this.count--;
   //return result;
 };
