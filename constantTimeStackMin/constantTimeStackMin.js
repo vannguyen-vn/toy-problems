@@ -19,32 +19,50 @@
   */
   var Stack = function() {
     var stack = [];
+    var auxiliaryStack = [];
     var size = 0;
-    var min = Number.MAX_VALUE;
 
   // add an item to the top of the stack
     this.push = function(value) {
-      if (value < min) {
-        min = value;
-      }
-      size += 1;
       stack.unshift(value);
+      if (auxiliaryStack.length === 0) {
+        auxiliaryStack.unshift(value);
+      } else {
+        if (auxiliaryStack[0] >= value) {
+          auxiliaryStack.unshift(value);
+        }
+      }
+      return stack;
     };
 
   // remove an item from the top of the stack
     this.pop = function() {
-      size += 1;
-      return stack.shift();
+      if (stack.length === 0) {
+        return -1;
+      }
+      var top = stack[0];
+      stack.shift();
+      if (top === auxiliaryStack[0]){
+        auxiliaryStack.shift();
+      }
+      return top;
+      size -= 1;
     };
+
 
   // return the number of items in the stack
     this.size = function() {
       return size;
     };
 
+
   // return the minimum value in the stack
     this.min = function() {
-      return min;
+      if (auxiliaryStack.length === 0) {
+        return -1;
+      } else {
+        return auxiliaryStack[0];
+      }
     };
   };
 
