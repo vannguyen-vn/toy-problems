@@ -17,42 +17,59 @@
 /**
   * Stack Class
   */
-var Stack = function() {
-  var instance = {};
+ var Stack = function() {
+  this.instance = {};
 
-  var storage = [];
-  var plates = 0;
-  var minIndex = 0;
-  var minValue;
+  this.storage = [];
+  this.plates = 0;
+  this.minIndex = 0;
+  this.minValue;
+  this.minIndexArray = [];
 
-  instance.push = function(value) {
-    if (!minValue) {
-      minValue = value;
+// add an item to the top of the stack
+  Stack.prototype.push = function(value) {
+    if (!this.minValue) {
+      this.minValue = value;
+      this.minIndexArray.push(this.minIndex);
     } else {
-      if (minValue > value) {
-        minValue = value;
-        minIndex = plates;
+      if (this.minValue > value) {
+        this.minValue = value;
+        this.minIndex = this.plates;
+        this.minIndexArray.push(this.minIndex)
       }
     }
-    storage.push(value);
-    plates++;
+
+    this.storage.push(value);
+    this.plates++;
   };
 
-  instance.pop = function() {
-    if (plates > 0) {
-      plates--;
-      var removedItem = storage.pop();
+// remove an item from the top of the stack
+  Stack.prototype.pop = function() {
+    if (this.plates > 0) {
+      this.plates--;
+
+      if (this.plates === this.minIndex && this.plates > 0) {
+        this.minIndexArray.pop();
+        this.minIndex = this.minIndexArray.length - 1;
+        this.minValue = this.storage[this.minIndex];
+      } else {
+        this.minIndexArray = [];
+        this.minIndex = 0;
+        this.minValue = null;
+      }
+      var removedItem = this.storage.pop();
       return removedItem;
     }
   };
 
-  instance.size = function() {
-    return storage.length;
+// return the number of items in the stack
+  Stack.prototype.size = function() {
+    return this.storage.length;
   };
 
-  instance.min = function() {
-    return storage[minIndex];
-  };
+// return the minimum value in the stack
+  Stack.prototype.min = function() {
+   return this.storage[this.minIndex];
 
-  return instance;
+  };
 };
