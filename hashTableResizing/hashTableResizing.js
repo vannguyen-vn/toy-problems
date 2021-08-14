@@ -31,20 +31,18 @@ var makeHashTable = function() {
     var bucket = storage[index];
     if (!bucket) {
       bucket = [];
-      storage.set(index, bucket);
+      storage[index] = bucket;
     }
     for (var i = 0; i < bucket.length; i++) {
       var tuple = bucket[i];
-      if (tuple[0] === undefined) {
-        tuple[0] = key;
-        tuple[1] = value;
-      }
       if (tuple[0] === key) {
         tuple[1] = value;
         break;
       }
     }
-    bucket.push(tuple);
+    if (!tuple) {
+      bucket.push([key, value]);
+    }
 
     size++;
     if (size >= 0.75 * storageLimit) {
@@ -54,6 +52,7 @@ var makeHashTable = function() {
 
   result.retrieve = function(key) {
     var index = getIndexBelowMaxForKey(key, storageLimit);
+    var bucket = storage[index];
     if (!bucket) {
       return null;
     }
@@ -63,24 +62,27 @@ var makeHashTable = function() {
       return tuple[1];
       }
     }
-    return null;
+    // return null;
   };
 
   result.remove = function(key) {
     var index = getIndexBelowMaxForKey(key, storageLimit);
+    var bucket = storage[index];
     if (!bucket) {
     return null;
     }
     for (var i = 0; i < bucket.length; i++) {
       var tuple = bucket[i];
       if (tuple[0] === key) {
-        var removedkey = bucket.splice(i, 1);
+        var removedTuple = bucket.splice(i, 1);
         size--;
+        if (size < .25 * storageLimit) {
+          storageLimit /= 2;
+        }
+        return tuple[1];
       }
     }
-    if (size < .25 * storageLimit) {
-      storageLimit /= 2;
-    }
+    return null;
   };
   return result;
 };
