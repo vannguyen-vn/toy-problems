@@ -81,6 +81,6 @@ var makeHashTable = function() {
     if (size < .25 * storageLimit) {
       storageLimit /= 2;
     }
-    return result;
   };
+  return result;
 };
