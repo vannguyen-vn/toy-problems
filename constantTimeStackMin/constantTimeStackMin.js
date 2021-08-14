@@ -24,7 +24,7 @@
 
   // add an item to the top of the stack
     this.push = function(value) {
-      this.storage.push(value);
+      storage.push(value);
       if (min === undefined || value < min) {
         min = value;
       }
@@ -32,14 +32,14 @@
 
   // remove an item from the top of the stack
     this.pop = function() {
-      var popped = this.storage[this.storage.length - 1];
-      this.storage.splice(0, -1);
+      var popped = storage[storage.length - 1];
+      storage.splice(0, -1);
       return popped;
     };
 
   // return the number of items in the stack
     this.size = function() {
-      return this.storage.length;
+      return storage.length;
     };
 
   // return the minimum value in the stack
