@@ -63,4 +63,4 @@ Stack.prototype.min = function() {
   return this._storage[this._size - 1][1];
 };
 
-module.exports = {Stack: Stack};
+//module.exports = {Stack: Stack};
