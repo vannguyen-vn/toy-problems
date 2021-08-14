@@ -52,7 +52,7 @@
         this.minIndexArray.pop();
         this.minIndex = this.minIndexArray.length - 1;
         this.minValue = this.storage[this.minIndex];
-      } else {
+      } else if (this.plates === 0){
         this.minIndexArray = [];
         this.minIndex = 0;
         this.minValue = null;
