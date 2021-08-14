@@ -17,41 +17,47 @@
 /**
   * Stack Class
   */
-var Stack = function() {
-  var instance = {};
+ var Stack = function() {
+  this.instance = {};
 
-  var storage = [];
-  var plates = 0;
-  var minIndex = 0;
-  var minValue;
+  this.storage = [];
+  this.plates = 0;
+  this.minIndex = 0;
+  this.minValue;
 
-  instance.push = function(value) {
-    if (!minValue) {
-      minValue = value;
+// add an item to the top of the stack
+  instance.prototype.push = function(value) {
+    if (!this.minValue) {
+      this.minValue = value;
     } else {
-      if (minValue > value) {
-        minValue = value;
-        minIndex = plates;
+      if (this.minValue > value) {
+        this.minValue = value;
+        this.minIndex = plates;
       }
     }
-    storage.push(value);
-    plates++;
+
+    this.storage.push(value);
+    this.plates++;
   };
 
-  instance.pop = function() {
-    if (plates > 0) {
-      plates--;
-      var removedItem = storage.pop();
+// remove an item from the top of the stack
+  instance.prototype.pop = function() {
+    if (this.plates > 0) {
+      this.plates--;
+      var removedItem = this.storage.pop();
       return removedItem;
     }
   };
 
-  instance.size = function() {
-    return storage.length;
+// return the number of items in the stack
+  instance.prototype.size = function() {
+    return this.storage.length;
   };
 
-  instance.min = function() {
-    return storage[minIndex];
+// return the minimum value in the stack
+  instance.prototype.min = function() {
+   return this.storage[this.minIndex];
+
   };
 
   return instance;
