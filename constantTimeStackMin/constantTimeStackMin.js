@@ -33,6 +33,8 @@ Stack.prototype.push = function (value) {
 };
 
 // remove an item from the top of the stack
+// check if the top elements of the two stacks are equal, pop off if so
+// pop off top element on stack
 Stack.prototype.pop = function () {
   if (this.minStack[this.minStack.length - 1] === this.stack[this.stack.length - 1]) {
     this.minStack.pop();
@@ -41,6 +43,7 @@ Stack.prototype.pop = function () {
 };
 
 // return the number of items in the stack
+// return length of the stack
 Stack.prototype.size = function () {
   return this.stack.length;
 };
