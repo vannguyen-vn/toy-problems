@@ -59,5 +59,7 @@ var evenOccurrence = function(arr) {
     }
   }
 
+  // Conversion edge case
+  if (returnVal == Number(returnVal)) { returnVal = Number(returnVal); }
   return returnVal !== undefined ? returnVal : null;
 };
