@@ -27,7 +27,7 @@
       if (!this._mins.length) {
         this._mins.push(value);
       }
-      if (value < this._mins[this._mins.length - 1]) {
+      if (value <= this._mins[this._mins.length - 1]) {
         this._mins.push(value);
       }
       this._storage[String(this._index)] = value;
