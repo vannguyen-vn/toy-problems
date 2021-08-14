@@ -17,56 +17,35 @@
 /**
   * Stack Class
   */
-  var Stack = function() {
+ var Stack = function() {
+  this.minimum;
+  this.storage = [];
+};
 
-    this.storage = {};
-    this.bottom = null;
-    this.top = null;
-  // add an item to the top of the stack
-    this.push = function(value) {
-      // if bottom and top are both equal to null
-        // make both of them equal to the object i'm about to push
-        // the object will have a key of value and a value of an object made up of...
-        // {
-        // value: value
-        // min: current min
-        // neighbor: value below (current top)
-        // }
-        // we need to set the current min to it's own value or the last nodes min value if the last nodes min value is less than the current node's
-      var node = {}
-      if (this.bottom === null && this.top === null) {
-        node[value] = value;
-        node[min] = value;
-        node[neighbor] = null;
-        this.top = node;
-        this.bottom = node;
-        this.storage[value] = node;
-      } else {
-        var minimum;
-        node[value] = value;
-        if (this.head.min < value) {
-          minimum = this.head.min;
-          node[min] = minimum;
-        } else {
-          node[min] = value;
-        }
-        node[neighbor] = this.head.value;
-        this.head = node;
-      }
-    };
+Stack.prototype.push = function(value) {
+  // add an element to the end of the array;
+  // change minimum to elements current value if it's smaller than the current minimum
+  if (this.minimum === undefined) {
+    this.minimum = value;
+  }
+  if (value < this.minimum) {
+    this.minimum = value;
+  }
+  this.storage.push(value);
+};
 
-  // remove an item from the top of the stack
-    this.pop = function() {
-    };
+// remove an item from the top of the stack
+Stack.prototype.pop = function() {
+  var popped = this.storage.pop()
+  return popped;
+};
 
-  // return the number of items in the stack
-    this.size = function() {
-    };
+// return the number of items in the stack
+Stack.prototype.size = function() {
+  return this.storage.length;
+};
 
-  // return the minimum value in the stack
-    this.min = function() {
-
-    };
-
-  };
-
+// return the minimum value in the stack
+Stack.prototype.min = function() {
+  return this.minimum;
+};
