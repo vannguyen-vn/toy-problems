@@ -18,8 +18,8 @@
   * Stack Class
   */
   var Stack = function() {
-    var storage = [];
-    var min = 0;
+    this.storage = [];
+    this.min = 0;
 
   // add an item to the top of the stack
     this.push = function(value) {
@@ -45,4 +45,3 @@
     };
 
   };
-
