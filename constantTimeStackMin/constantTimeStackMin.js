@@ -33,9 +33,9 @@
   // remove an item from the top of the stack
     this.pop = function() {
       var popped = storage[storage.length - 1];
-      storage.splice(0, -1);
+      storage.splice(storage.length - 1, 1);
       return popped;
-    };
+    ;}
 
   // return the number of items in the stack
     this.size = function() {
