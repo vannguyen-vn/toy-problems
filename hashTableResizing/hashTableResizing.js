@@ -66,7 +66,7 @@ var makeHashTable = function() {
   };
 
   newHashTable.retrieve = function(key) {
-    var result = null;
+    var result;
     this.storage[getIndexBelowMaxForKey(key, this.storageLimit)].forEach(tuple => {
       if (tuple[0] === key) { result = tuple[1]; }
     });
@@ -80,20 +80,8 @@ var makeHashTable = function() {
         this.size--;
       }
     });
-    if (this.size < this.storageLimit * 0.25) { this.halfHas(); }
+    if (this.size < this.storageLimit * 0.25) { this.halfHash(); }
   };
 
   return newHashTable;
 };
-
-// var hash = makeHashTable();
-// console.log(hash);
-// hash.insert('kevin')
-// console.log(hash);
-// hash.insert('kevin')
-// console.log(hash);
-// hash.insert('kevin')
-// console.log(hash);
-// // debugger;
-// hash.insert('kevin')
-// console.log(hash);
