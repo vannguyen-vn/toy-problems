@@ -46,18 +46,24 @@ var makeHashTable = function () {
 
     var index = getIndexBelowMaxForKey(key, storageLimit);
     var bucket = storage[index];
-    size++;
 
     if (bucket) {
+      // detect collision
+      var collision = false;
       for (var i = 0; i < bucket.length; i++) {
         if (storage[i][0] === key) {
           storage[i][1] = value;
+          collision = true;
         }
       }
-      bucket.push([key, value]);
+      if (!collision) {
+        bucket.push([key, value]);
+        size++;
+      }
     } else {
       storage[index] = [];
       storage[index].push([key, value]);
+      size++;
     }
 
     if (size >= (0.75 * storageLimit)) {
@@ -144,9 +150,10 @@ var makeHashTable = function () {
     */
 
 
-    var oldStorage = storage;
-    storageLimit = newLimit;
-    storage = [];
+    var oldStorage = result.storage;
+    result.storageLimit = newLimit;
+    result.storage = [];
+    result.size = 0;
 
     for (var i = 0; i < oldStorage.length; i++) {
       var bucket = oldStorage[i];
