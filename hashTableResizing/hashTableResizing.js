@@ -82,8 +82,8 @@ var makeHashTable = function () {
 
     if (bucket) {
       for (var i = 0; i < bucket.size; i++) {
-        if (storage[i][0] === key) {
-          return storage[i][1];
+        if (bucket[i][0] === key) {
+          return bucket[i][1];
         }
       }
     }
@@ -147,8 +147,21 @@ var makeHashTable = function () {
     storageLimit = newLimit;
     storage = [];
 
+    for (var i = 0; i < oldStorage.length; i++) {
+      var bucket = oldStorage[i];
+      if (bucket) {
+        for (var j = 0; j < bucket.length; j++) {
+          var newIndex = getIndexBelowMaxForKey(bucket[j][0], storageLimit);
+          var newBucket = oldStorage[newIndex];
+          if (newBucket) {
+            newBucket.push(bucket[j][0], bucket[j][1]);
+          } else {
+            newBucket = [];
+            newBucket.push(bucket[j][0], bucket[j][1]);
+          }
+        }
+      }
+    }
   }
-
-
   return result;
 };
