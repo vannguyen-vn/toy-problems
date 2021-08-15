@@ -25,7 +25,11 @@ var evenOccurrence = function(arr) {
   }
   for (var key in storage) {
     if (storage[key] % 2 === 0) {
-      evenOcc.push(Number(key));
+      if (isNaN(parseInt(key))) {
+        evenOcc.push(key);
+      } else {
+        evenOcc.push(Number(key));
+      }
     }
   }
 
