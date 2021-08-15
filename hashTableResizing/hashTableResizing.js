@@ -26,16 +26,16 @@ var makeHashTable = function() {
   var storageLimit = 4;
   var size = 0;
 
-  result.insert = function(str) {
+  result.insert = function(str, val) {
     // hash a new index based on str, store that index
     var index = getIndexBelowMaxForKey(str, storageLimit);
     // at storage[index], if no bucket array, create new bucket
     if (size <= storageLimit * 3 / 4) {
-      storage[index] = [index, str];
+      storage[index] = [str, val];
       size++;
-    } else if (size > storageLimit * 3 / 4) {
+    } else {
       storageLimit *= 2;
-      storage[index] = [index, str];
+      storage[index] = [str, val];
       size++;
     }
   };
