@@ -46,6 +46,7 @@ var makeHashTable = function () {
 
     var index = getIndexBelowMaxForKey(key, storageLimit);
     var bucket = storage[index];
+    size++;
 
     if (bucket) {
       for (var i = 0; i < bucket.length; i++) {
@@ -53,10 +54,10 @@ var makeHashTable = function () {
           storage[i][1] = value;
         }
       }
+      bucket.push([key, value]);
     } else {
       storage[index] = [];
       storage[index].push([key, value]);
-      size++;
     }
 
     if (size >= (0.75 * storageLimit)) {
