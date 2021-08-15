@@ -45,29 +45,15 @@ var makeHashTable = function () {
     */
 
     var index = getIndexBelowMaxForKey(key, storageLimit);
-    var bucket = storage[index];
-
-    if (bucket) {
-      // detect collision
-      var collision = false;
-      for (var i = 0; i < bucket.length; i++) {
-        if (storage[i][0] === key) {
-          storage[i][1] = value;
-          collision = true;
-        }
-      }
-      if (!collision) {
-        bucket.push([key, value]);
-        size++;
-      }
+    if (storage[index]) {
+      storage[index][key] = value;
     } else {
-      storage[index] = [];
-      storage[index].push([key, value]);
+      storage[index] = {};
+      storage[index][key] = value;
       size++;
     }
-
-    if (size >= (0.75 * storageLimit)) {
-      result.resize(2 * storageLimit);
+    if (size >= (storageLimit * 0.75)) {
+      storageLimit = storageLimit * 2;
     }
   };
 
@@ -85,14 +71,8 @@ var makeHashTable = function () {
     */
 
     var index = getIndexBelowMaxForKey(key, storageLimit);
-    var bucket = storage[index];
-
-    if (bucket) {
-      for (var i = 0; i < bucket.length; i++) {
-        if (bucket[i][0] === key) {
-          return bucket[i][1];
-        }
-      }
+    if (storage[index]) {
+      return storage[index][key]
     }
     return undefined;
   };
@@ -114,62 +94,88 @@ var makeHashTable = function () {
     */
 
     var index = getIndexBelowMaxForKey(key, storageLimit);
-    var bucket = storage[index];
 
-    if (bucket) {
-      for (var i = 0; i < bucket.length; i++) {
-        if (bucket[i][0] === key) {
-          bucket.splice(i, 1);
-          size--;
-        }
-      }
+    if (storage[index]) {
+      delete storage[index][key];
+      storage[index][key] = undefined;
+      size--;
     }
 
     if (size < (0.25 * storageLimit)) {
-      result.resize(0.5 * storageLimit);
+      storageLimit = (0.5 * storageLimit);
     }
   };
 
-
-  result.resize = function (newLimit) {
-    /*
-    save reference to storage
-    set storage limit to new limit
-    empty storage array
-
-    loop through old storage
-      get old bucket
-        loop through bucket
-          get new hashed index using the new limit
-          get bucket with hashed index from new storage
-            if bucket exists
-              push key value pair
-            else
-              create new array
-              then push key value pair
-    */
-
-
-    var oldStorage = result.storage;
-    result.storageLimit = newLimit;
-    result.storage = [];
-    result.size = 0;
-
-    for (var i = 0; i < oldStorage.length; i++) {
-      var bucket = oldStorage[i];
-      if (bucket) {
-        for (var j = 0; j < bucket.length; j++) {
-          var newIndex = getIndexBelowMaxForKey(bucket[j][0], storageLimit);
-          var newBucket = oldStorage[newIndex];
-          if (newBucket) {
-            newBucket.push(bucket[j][0], bucket[j][1]);
-          } else {
-            newBucket = [];
-            newBucket.push(bucket[j][0], bucket[j][1]);
-          }
-        }
-      }
-    }
-  }
   return result;
 };
+
+
+  // result.resize = function (newLimit) {
+  //   /*
+  //   save reference to storage
+  //   set storage limit to new limit
+  //   empty storage array
+
+  //   loop through old storage
+  //     get old bucket
+  //       loop through bucket
+  //         get new hashed index using the new limit
+  //         get bucket with hashed index from new storage
+  //           if bucket exists
+  //             push key value pair
+  //           else
+  //             create new array
+  //             then push key value pair
+  //   */
+
+
+  //   var oldStorage = result.storage;
+  //   result.storageLimit = newLimit;
+  //   result.storage = [];
+  //   result.size = 0;
+
+  //   for (var i = 0; i < oldStorage.length; i++) {
+  //     var bucket = oldStorage[i];
+  //     if (bucket) {
+  //       for (var j = 0; j < bucket.length; j++) {
+  //         var newIndex = getIndexBelowMaxForKey(bucket[j][0], storageLimit);
+  //         var newBucket = oldStorage[newIndex];
+  //         if (newBucket) {
+  //           newBucket.push(bucket[j][0], bucket[j][1]);
+  //         } else {
+  //           newBucket = [];
+  //           newBucket.push(bucket[j][0], bucket[j][1]);
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
+
+
+
+
+ // var index = getIndexBelowMaxForKey(key, storageLimit);
+    // var bucket = storage[index];
+    // if (bucket) {
+    //   // detect collision
+    //   var collision = false;
+    //   for (var i = 0; i < bucket.length; i++) {
+    //     if (storage[i][0] === key) {
+    //       storage[i][1] = value;
+    //       collision = true;
+    //     }
+    //   }
+    //   if (!collision) {
+    //     bucket.push([key, value]);
+    //     size++;
+    //   }
+    // } else {
+    //   storage[index] = [];
+    //   storage[index].push([key, value]);
+    //   size++;
+    // }
+    // if (size >= (0.75 * storageLimit)) {
+    //   result.resize(2 * storageLimit);
+    // }
+
+
