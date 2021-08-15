@@ -31,29 +31,30 @@ var makeHashTable = function() {
 
    var bucket = storage[index];
 
-   if (bucket) {
-     for (var i = 0; i < bucket.length; i++) {
-       var tuple = bucket[i];
-       if (tuple[0] === key) {
-         tuple[1] = value;
-       }
-     }
-     bucket.push([key], [value]);
-     size++;
-
-     if (size > storageLimit * 0.75) {
-       resize(storageLimit * 2);
-     };
-
-   } else {
-     bucket = [];
-     bucket.push([key], [value]);
-
-     size++;
-     if (size > storageLimit * 0.75) {
-       resize(storageLimit * 2);
-     };
+   if (!bucket) {
+     bucket = []
+     storage[index] = bucket
    }
+
+   var found = false;
+
+   for (var i = 0; i < bucket.length; i++) {
+     var tuple = bucket[i];
+     if (tuple[0] === key) {
+       tuple[1] = value;
+       found = true;
+       break;
+     }
+   }
+
+   if (!found) {
+     bucket.push([key, value])
+
+     size++;
+     if (size > storageLimit * 0.75) {
+       result.resize(storageLimit * 2);
+     };
+   };
  };
 
   result.retrieve = function(key) {
@@ -61,15 +62,15 @@ var makeHashTable = function() {
 
     var bucket = storage[index];
 
-    if (bucket) {
-      for (var i = 0; i < bucket.length; i++) {
-        var tuple = bucket[i];
-        if (tuple[0] === key) {
-          return tuple[1]
-        }
+    if (!bucket) {
+        return;
+    }
+
+    for (var i = 0; i < bucket.length; i++) {
+      var tuple = bucket[i];
+      if (tuple[0] === key) {
+        return tuple[1]
       }
-    } else {
-      return null;
     }
   };
 
@@ -78,21 +79,18 @@ var makeHashTable = function() {
 
     var bucket = storage[index];
 
-    if (bucket) {
-      for (var i = 0; i < bucket.length; i++) {
-        var tuple = bucket[i];
-        if (tuple[0] === k) {
-          bucket.splice(i, 1);
 
-          size--;
-          if (size < storageLimit * 0.25) {
-            resize(storageLimit / 2);
-          }
-          return tuple[1];
+    for (var i = 0; i < bucket.length; i++) {
+      var tuple = bucket[i];
+      if (tuple[0] === k) {
+        bucket.splice(i, 1);
+
+        size--;
+        if (size < storageLimit * 0.25) {
+          result.resize(storageLimit / 2);
         }
+        return tuple[1];
       }
-    } else {
-      return null;
     }
   };
 
@@ -110,7 +108,7 @@ var makeHashTable = function() {
       }
       for (var j = 0; j < bucket.length; j++) {
         var tuple = bucket[j];
-        insert(tuple[0], tuple[1]);
+        result.insert(tuple[0], tuple[1]);
       }
     }
   }
