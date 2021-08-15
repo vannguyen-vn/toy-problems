@@ -48,7 +48,7 @@ var makeHashTable = function () {
     var bucket = storage[index];
 
     if (bucket) {
-      for (var i = 0; i < bucket.size; i++) {
+      for (var i = 0; i < bucket.length; i++) {
         if (storage[i][0] === key) {
           storage[i][1] = value;
         }
@@ -60,7 +60,7 @@ var makeHashTable = function () {
     }
 
     if (size >= (0.75 * storageLimit)) {
-      storage.resize(2 * storageLimit);
+      result.resize(2 * storageLimit);
     }
   };
 
@@ -81,7 +81,7 @@ var makeHashTable = function () {
     var bucket = storage[index];
 
     if (bucket) {
-      for (var i = 0; i < bucket.size; i++) {
+      for (var i = 0; i < bucket.length; i++) {
         if (bucket[i][0] === key) {
           return bucket[i][1];
         }
@@ -110,7 +110,7 @@ var makeHashTable = function () {
     var bucket = storage[index];
 
     if (bucket) {
-      for (var i = 0; i < bucket.size; i++) {
+      for (var i = 0; i < bucket.length; i++) {
         if (bucket[i][0] === key) {
           bucket.splice(i, 1);
           size--;
@@ -119,7 +119,7 @@ var makeHashTable = function () {
     }
 
     if (size < (0.25 * storageLimit)) {
-      storage.resize(0.5 * storageLimit);
+      result.resize(0.5 * storageLimit);
     }
   };
 
