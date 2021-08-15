@@ -11,6 +11,31 @@
 // to turn any string into an integer that is well-distributed between
 // 0 and max - 1
 
+/*
+
+{
+
+  [
+    {
+      key: value;
+    }
+  ],
+  [
+     {
+      key: value;
+    }
+  ],
+  [
+     {
+      key: value;
+    }
+  ],
+}
+
+
+*/
+
+
 var getIndexBelowMaxForKey = function (str, max) {
   var hash = 0;
   for (var i = 0; i < str.length; i++) {
