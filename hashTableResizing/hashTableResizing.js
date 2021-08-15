@@ -30,8 +30,8 @@ var makeHashTable = function() {
 
   result.insert = function(str) {
     var index = getIndexBelowMaxForKey(str, storageLimit);
-    var currentBucket = storage[index];
-    if (currentBucket === undefined) {
+    var bucket = storage[index];
+    if (!bucket) {
       var newBucket = [];
       newBucket.push(str);
       storage[index] = newBucket;
@@ -79,17 +79,19 @@ var makeHashTable = function() {
     var oldStorage = storage;
     storage = [];
     storageLimit = newLimit;
-    size = 0;
     for (var i = 0; i < oldStorage.length; i++) {
-      var str = oldStorage[i];
-      var index = getIndexBelowMaxForKey(str, storageLimit);
-      var currentBucket = storage[index];
-      if (currentBucket === undefined) {
-        var newBucket = [];
-        newBucket.push(str);
-        storage[index] = newBucket;
-      } else {
-        storage[index].push(str);
+      var bucket = oldStorage[i];
+      if (bucket) {
+        for (var j = 0; j < bucket.length; j++) {
+          var index = getIndexBelowMaxForKey(bucket[j], storageLimit);
+          if (storage[index] === undefined) {
+            var newBucket = [];
+            newBucket.push(bucket[j]);
+            storage[index] = newBucket;
+          } else {
+            storage[index].push(bucket[j]);
+          }
+        }
       }
     }
   }
@@ -97,11 +99,12 @@ var makeHashTable = function() {
   return result;
 };
 
-var newHashTab = makeHashTable();
-newHashTab.insert('h', newHashTab);
-newHashTab.insert('y', newHashTab);
-newHashTab.insert('i', newHashTab);
-newHashTab.insert('p', newHashTab);
-newHashTab.insert('o', newHashTab);
-newHashTab.remove('o');
-console.log(newHashTab.retrieve('o'));
+// var newHashTab = makeHashTable();
+// newHashTab.insert('h', newHashTab);
+// newHashTab.insert('y', newHashTab);
+// newHashTab.insert('i', newHashTab);
+// newHashTab.insert('p', newHashTab);
+// newHashTab.insert('o', newHashTab);
+// newHashTab.insert('u', newHashTab);
+// newHashTab.remove('o');
+// console.log(newHashTab.retrieve('o'));
