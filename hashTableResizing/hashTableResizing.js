@@ -41,7 +41,7 @@ var makeHashTable = function() {
       if (tuple[0] === key) {
         tuple[1] === value;
         found = true;
-        break;
+        return;
       }
 
       if (!found) {
