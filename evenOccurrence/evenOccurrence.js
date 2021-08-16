@@ -19,11 +19,21 @@ var evenOccurrence = function(arr) {
     } else {
       counterObj[currentIndex]+= 1;
     }
-    for (currentIndex in counterObj) {
-      if (counterObj[currentIndex] % 2 === 0) {
-        return currentIndex;
-      }
+  }
+
+  for (var j = 0; j < arr.length; j++) {
+    var currentIndexJ = arr[j];
+    if (counterObj[currentIndexJ] % 2 === 0) {
+      return currentIndexJ;
     }
   }
   return null;
 };
+
+
+
+// for (currentIndex in counterObj) {
+//   if (counterObj[currentIndex] % 2 === 0) {
+//     return currentIndex;
+//   }
+// }
