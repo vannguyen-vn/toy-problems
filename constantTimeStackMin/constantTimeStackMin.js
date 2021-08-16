@@ -19,24 +19,30 @@
   */
  var Stack = function() {
   this.minimum;
+  this.minStack = [];
   this.storage = [];
 };
 
 Stack.prototype.push = function(value) {
-  // add an element to the end of the array;
-  // change minimum to elements current value if it's smaller than the current minimum
+  this.storage.push(value);
   if (this.minimum === undefined) {
     this.minimum = value;
+    this.minStack.push(value)
+  } else {
+    if (value < this.minimum) {
+      this.minimum = value;
+      this.minStack.push(value)
+    } else {
+      this.minStack.push(this.minimum)
+    }
   }
-  if (value < this.minimum) {
-    this.minimum = value;
-  }
-  this.storage.push(value);
 };
 
 // remove an item from the top of the stack
 Stack.prototype.pop = function() {
   var popped = this.storage.pop()
+  this.minStack.pop()
+  this.minimum = this.minStack[this.minStack.length-1]
   return popped;
 };
 
@@ -47,5 +53,6 @@ Stack.prototype.size = function() {
 
 // return the minimum value in the stack
 Stack.prototype.min = function() {
-  return this.minimum;
+  var lastElement = this.minStack.length - 1;
+  return this.minStack[lastElement];
 };
