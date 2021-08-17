@@ -38,8 +38,8 @@ var bubbleSort = function(array) {
   var resultArray = array;
   var switches = 0;
 
-  var loopThrough = function() {
-    for (var i = 0; i < resultArray.length; i++) {
+  var loopThrough = function(endIndex) {
+    for (var i = 0; i < endIndex + 1; i++) {
       if (resultArray[i] > resultArray[i + 1]) {
         resultArray.splice(i, 2, array[i + 1], array[i]);
         switches++
@@ -47,13 +47,13 @@ var bubbleSort = function(array) {
     }
     if (switches !== 0) {
       switches = 0;
-      return loopThrough();
+      return loopThrough(endIndex - 1);
     } else {
       return resultArray;
     }
   }
 
-  return loopThrough();
+  return loopThrough(array.length - 1);
 
 };
 
