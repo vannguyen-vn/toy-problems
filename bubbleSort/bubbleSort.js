@@ -33,6 +33,30 @@
 // Feel free to add helper functions if needed.
 
 
+
+//search and swap values throughout the array (array.length - 1) number of times for each index
+//do array.length - i - 1 for the inner array because the larger value should bubble to the end of the array after each inner loop
+
+
 var bubbleSort = function(array) {
-  // Your code here.
+
+  var swapTracker = false;
+  for (var i = 0; i < array.length - 1; i++) {
+    for (var j = 0; j < array.length - i - 1; j++) {
+      var firstVal = array[j];
+      var secondVal = array[j+1];
+      swapTracker = false;
+      if (firstVal > secondVal) {
+        array[j] = secondVal;
+        array[j+1] = firstVal;
+        swapTracker = true;
+      }
+    }
+    //if after an inner loop, no swap occured, then we are done sorting
+    if (!swapTracker) {
+      break;
+    }
+  }
+  return array;
+
 };
