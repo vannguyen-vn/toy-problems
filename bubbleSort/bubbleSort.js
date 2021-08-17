@@ -32,7 +32,7 @@
 
 // Feel free to add helper functions if needed.
 
-
+// time complexity is still O(n^2)
 var bubbleSort = function(array) {
   // Your code here.
   var k = 0;
@@ -54,3 +54,5 @@ var bubbleSort = function(array) {
 
   return array;
 };
+
+console.log(bubbleSort([2, 4, 1, 3]));
