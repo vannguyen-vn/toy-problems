@@ -35,4 +35,22 @@
 
 var bubbleSort = function(array) {
   // Your code here.
+  // create swapped variable
+  var hasSwapped = false;
+  // iterate over the array
+  for (var i = 1; i < array.length; i++) {
+    // if index 1 is less than 0
+    if (array[i] < array[i - 1]) {
+      var arrayPlaceHolder = array[i];
+      // swap values of two
+      array[i] = array[i - 1];
+      array[i - 1] = arrayPlaceHolder;
+      hasSwapped = true;
+    }
+  }
+  // if isSwapped is true
+  if (isSwapped) {bubbleSort(array)}
+    // use bubblesort function again
+  // return array
+  return array;
 };
