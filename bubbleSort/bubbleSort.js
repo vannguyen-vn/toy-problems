@@ -32,7 +32,36 @@
 
 // Feel free to add helper functions if needed.
 
-
 var bubbleSort = function(array) {
-  // Your code here.
+  // PSEUDOCODE BEGINS
+
+  // 7 5 6 4 3 2 1
+  // 5 7 6 4 3 2 1
+  // 5 6 7 4 3 2 1
+  // 5 6 4 7 3 2 1
+  // 5 6 4 3 7 2 1
+  // 5 6 4 3 2 7 1
+  // 5 6 4 3 2 1 7
+  // Declare an empty array
+  // Iterate through the array array.length times
+  // Compare first element to second element
+  // If first element is bigger, switch indexes of elements
+
+  // *** I think the time complexity would be a diminishing n^2, where worst
+  // case it would execute n^2, but it would diminish by constant of 1
+  // PSEUDOCODE ENDS
+
+  var noBubbles = true;
+
+  for (var i = 0; i < array.length; i++) {
+    for (var j = 0; j < array.length - i; j++) {
+      if (array[j] > array[j + 1]) {
+        var temp = array[j];
+        array[j] = array[j + 1];
+        array[j + 1] = temp;
+        noBubbles = false;
+      }
+    }
+    if (noBubbles) { return; }
+  }
 };
