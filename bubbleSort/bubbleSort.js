@@ -13,11 +13,11 @@
  * Don't use JavaScript's built-in sorting function (Array.prototype.sort).
  *
  * QUERY: What's the time complexity of your algorithm? If you don't already
- * know, try to intuit this without consulting the Googles.
+ * know, try to intuit this without consulting the Googles. QUADRATIC
  *
  * Extra credit: Optimization time! During any given pass, if no elements are
  * swapped we can assume the list is sorted and can exit the function early.
- * After this optimization, what is the time complexity of your algorithm?
+ * After this optimization, what is the time complexity of your algorithm? QUADRATIC
  *
  * Moar credits: Do you need to consider every element every time you iterate
  * through the array? Make it happen, boss. Again: Has the time complexity of
@@ -34,5 +34,14 @@
 
 
 var bubbleSort = function(array) {
-  // Your code here.
+  var switched = 0;
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] > array[i + 1]) {
+      var removed = array.splice(i, 1).pop();
+      array.splice(i + 1, 0, removed);
+      switched++;
+    }
+  }
+  if (switched > 0) { bubbleSort(array); }
+  return array;
 };
