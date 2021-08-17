@@ -28,58 +28,89 @@ var makeHashTable = function() {
 
   result.insert = function(key, value) {
 
-    var index = getIndexBelowMaxForKey(key, storageLimit);
-    var bucket = storage[index];
-
-    if (bucket === undefined) {
-      bucket = [];
+    var index = getIndexBelowMaxForKey(key, storageLimit)
+    if (!storage[index]) {
+      storage[index] = [];
+      var bucket = storage[index];
       bucket.push([key, value]);
       size++
     } else {
-      for (var i = 0; i < bucket.length; i++) {
-        if (bucket[i][0] === key) {
-          bucket[i][1] = value;
+      for (var i = 0; i < storage[index].length; i++) {
+        var pair = storage[index][i];
+        if (pair[0] === key) {
+          pair[1] = value;
+        } else {
+          storage[index].push([key, value]);
+          size++
         }
       }
-      bucket.push([key, value]);
-      size++
     }
-    if (size > (storageLimit*(3/4))) {
-      storageLimit = storageLimit * 2;
+    if (size > storageLimit*0.75) {
+      resize(storage)
     }
   };
 
   result.retrieve = function(key) {
-    var index = getIndexBelowMaxForKey(key, storageLimit);
-    var bucket = storage[index];
-    for (var i = 0; i < bucket.length; i++) {
-      if (bucket[i][0] === k) {
-        return bucket[i][1];
+    var index = getIndexBelowMaxForKey(key, storageLimit)
+    for (var i = 0; i < storage[index].length; i++) {
+      if (storage[index][i][0] === key) {
+        return storage[index][i][1];
       }
     }
   };
 
   result.remove = function(key) {
+    size--
     var index = getIndexBelowMaxForKey(key, storageLimit);
-    var bucket = storage[index];
-    for (var i = 0; i < bucket.length; i++) {
-      if (bucket[i][0] === key) {
-        bucket.splice(i, 1);
-        size--;
+    for (var i = 0; i < storage[index].length; i++) {
+      if (storage[index][i][0] === key) {
+        storage[index][i].splice(i, 1)
       }
     }
-    if (size < (storageLimit*(1/4))) {
-      var count = storageLimit / 2;
-      while (count > 0) {
-        for (var i = 0; i < storage.length; i++) {
-          if (storage[i] === undefined) {
-            storage.splice(i, 1);
-            i--;
-            count--
+    if (size < storageLimit*0.25) {
+      resize(storage)
+    }
+  };
+
+  result.resize = function(storage) {
+    // create a temparary storage copy
+    // if size > three fourths storage limit
+      // double storageLimit
+      // make storage an empty array
+      // iterate over temp storage
+        // if a bucket exists at an index
+          // iterate over the bucket
+          // put each key value pair from the bucket into the insert function
+    // otherwise
+      // cut the storage limit in half
+      // made storage an empty array
+      // iterate over temp storage
+        // if a bucket exists at an index
+          // iterate over the bucket
+          // put each key value pair from the bucket into the insert function
+    var tempStorage = storage.slice(0);
+    if (size > storageLimit*0.75) {
+      storageLimit = storageLimit * 2;
+      storage = [];
+      for (var i = 0; i < tempStorage.length; i++) {
+        if (tempStorage[i]) {
+          for (var j = 0; j < tempStorage[i].length; j++) {
+            var keyValuePair = tempStorage[i][j];
+            result.insert(keyValuePair[0], keyValuePair[1]);
           }
         }
       }
+    } else {
       storageLimit = storageLimit / 2;
+      storage = [];
+      for (var i = 0; i < tempStorage.length; i++) {
+        if (tempStorage[i]) {
+          for (var j = 0; j < tempStorage[i].length; j++) {
+            var keyValuePair = tempStorage[i][j];
+            result.insert(keyValuePair[0], keyValuePair[1]);
+          }
+        }
+      }
     }
   };
 
