@@ -12,40 +12,24 @@
 
 var evenOccurrence = function(arr) {
 
-  // counter variable
-
-
-  //result obj
   var obj = {};
 
   for (var i = 0; i < arr.length; i++) {
-    var count = 0;
     if (obj[arr[i]]) {
       obj[arr[i]]++;
     } else{
       obj[arr[i]] = 1;
     }
-    /*
-    for (var j = 0; j < arr.length; j++) {
-      if(arr[j] === arr[i]) {
-        count++;
-      }
-    }
-    */
-   //  obj[arr[i]] = count;
   }
 
-  for (var item in obj) {
-    if (obj[item] % 2 === 0) {
-      if(Number.isNaN(Number(item))) {
-        return item;
-      } else {
-        item = Number(item);
-        return item;
-      }
-
+  for (var i = 0; i < arr.length; i++) {
+    if(obj[arr[i]] % 2 === 0) {
+      return arr[i];
     }
   }
   return null;
 
 };
+
+
+// n^2 ?
