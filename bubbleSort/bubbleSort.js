@@ -35,29 +35,40 @@
 
 var bubbleSort = function(array) {
   // Your code here.
-  var sorted = array.slice() || sorted;
+  var sorted = array.slice();
   var temp;
 
-  // Base case: an array of two numbers, array[i] and array[i + 1]
-  if (sorted.length === 2) {
-    sorted = greaterThanNext(sorted[0], sorted[1]);
-    return sorted;
-  }
+  var hasSwapped = false;
+  // Compare array[i] and array[i + 1]
+  for (var i = 0; i < sorted.length; i++) {
+    hasSwapped = false;
 
-  var switchPlaces = function(sorted) {
-    // Need to loop, starting at index 0
-    for (var i = 0; i < sorted.length - 1; i++) {
-      greaterThanNext(sorted[i], sorted[i + 1]);
+    for (var j = 0; j < sorted.length; j++) {
+      if (sorted[j] > sorted[j + 1]) {
+        temp = sorted[j];
+        sorted[j] = sorted[j + 1];
+        sorted[j + 1] = temp;
+        hasSwapped = true;
+      };
+    }
+
+    if (!hasSwapped) {
+      break;
     }
   }
-  switchPlaces(sorted.slice(0, sorted.length - 1));
+
+  return sorted;
 };
 
-var greaterThanNext = function(a, b) {
-  if (a > b) {
-    temp = a;
-    a = b;
-    b = temp;
-  }
-  return [a, b];
-}
+// Time complexity: 1 + 2 + 3 + 4 + ... + array.length
+// O(n)
+
+// After optimization: O(1)
+
+// var greaterThanNext = function(a, b) {
+//   if (a > b) {
+//     temp = a;
+//     a = b;
+//     b = temp;
+//   }
+// }
