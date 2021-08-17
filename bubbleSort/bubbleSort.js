@@ -54,5 +54,3 @@ var bubbleSort = function(array) {
 
   return array;
 };
-
-console.log(bubbleSort([2, 4, 1, 3]));
