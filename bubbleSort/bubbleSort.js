@@ -33,6 +33,37 @@
 // Feel free to add helper functions if needed.
 
 
-var bubbleSort = function(array) {
-  // Your code here.
+var bubbleSort = function (array) {
+  // helper function for swapping
+  let swapElementsAtIndex = function (a, b) {
+    let temp = array[b];
+    array[b] = array[a];
+    array[a] = temp;
+  }
+  //declare variable for isSwapped. represents boolean
+  let isSwapped = false;
+  // iterate over same array, comparing one element to the next with
+  //  nested for loop
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array.length - 1; j++) {
+      let currentElement = array[j];
+      let nextElement = array[j + 1]
+      // if the current element is greater then the next
+      if (currentElement > nextElement) {
+        // if there is an occurance of swap, set to true
+        isSwapped = true;
+        //swap
+        swapElementsAtIndex(j, j + 1);
+      }
+    }
+    if (!isSwapped) {
+      return array;
+    }
+  }
+  return array;
 };
+
+console.log(bubbleSort([2, 1, 3])); // yields [1, 2, 3]
+
+//TODO: comment out!
+// module.exports = swapElements;
