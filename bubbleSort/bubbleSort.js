@@ -32,7 +32,17 @@
 
 // Feel free to add helper functions if needed.
 
-
+// input: array
+// output: sorted array
+// constraints: think about time complexity
+// Edge Cases: what if input array is already sorted, or if its empty?
 var bubbleSort = function(array) {
-  // Your code here.
+  // look through numbers
+    // for each
+      // if first num is greater than second num
+        // switch them
+  return array
 };
+
+var test = bubbleSort([2, 1, 3]); // yields [1, 2, 3]
+console.log(test)
