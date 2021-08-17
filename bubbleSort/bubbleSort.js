@@ -38,11 +38,22 @@
 // Edge Cases: what if input array is already sorted, or if its empty?
 var bubbleSort = function(array) {
   // look through numbers
-    // for each
-      // if first num is greater than second num
+  for (var i = 0; i < array.length; i++) {
+     for (var j = 0; j < array.length; j++) {
+        // for each
+        // if first num is greater than second num
+      if (array[j] > array[j + 1]) {
         // switch them
+        var placeHolder = array[j]
+        array[j] = array[j + 1]
+        array[j + 1] = placeHolder
+      }
+     }
+  }
   return array
 };
-
+// Logarithmic time complexity?
 var test = bubbleSort([2, 1, 3]); // yields [1, 2, 3]
 console.log(test)
+var test2 = bubbleSort([7, 10, 80, 5, 3])
+console.log(test2)
