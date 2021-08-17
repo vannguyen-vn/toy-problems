@@ -63,7 +63,7 @@ var bubbleSort = function (array) {
   return array;
 };
 
-console.log(bubbleSort([2, 1, 3])); // yields [1, 2, 3]
+// console.log(bubbleSort([2, 1, 3])); // yields [1, 2, 3]
 
 //TODO: comment out!
 // module.exports = swapElements;
