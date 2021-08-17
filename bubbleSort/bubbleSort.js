@@ -34,5 +34,69 @@
 
 
 var bubbleSort = function(array) {
-  // Your code here.
+
+  //create a "manipulation array" variable set equal to a copy of the array
+  var manipArr = array.slice();
+
+  //create an index 1 variable
+  index1 = 0
+  //create an index 2 variable
+  index2 = 1
+
+  //create a flag to tell if any variables were swapped
+  var wasSwapped = false;
+
+  //create an inner function that takes two elements
+  var compareValues = function(index1, index2) {
+
+
+    if (manipArr[index1] < manipArr[index2] && manipArr[index2 + 1] !== undefined) {
+      //if the value at index 1 is less than index two and the value at index2 + 2 is NOT undefined, you are in the middle of the array.
+
+      //increment indexes
+      index1 ++;
+      index2 ++;
+
+      //return a call to the inner function with the updated idexes
+      return compareValues(index1, index2);
+
+    } else if (manipArr[index1] < manipArr[index2] && manipArr[index2 + 1] === undefined) {
+      //if the value at index1 is less than the value at index 2 and the value at index2 + 1 is undefined (you are at the end of the array) - return the manipulated array as the final array
+      return manipArr;
+    }
+
+    if (manipArr[index1] > manipArr[index2]) {
+      //if the value at index 1 is greater than the value at index 2
+      //create a temp var to hold the zero index value
+      var temp = manipArr[index1];
+      manipArr[index1] = manipArr[index2];
+      manipArr[index2] = temp;
+
+      wasSwapped = true;
+
+      index1 ++;
+      index2 ++;
+
+      if (manipArr[index2] === undefined && wasSwapped === false) {
+        //if you reach an undefined value (you are at the end of the array) and the wasSwapped flag is false, return the array as the final answer.
+        return manipArr;
+      } else if (manipArr[index2] === undefined && wasSwapped === true) {
+        //otherwise if you reach an undefined value(you are at the end of the array) and the wasSwapped flag is true, reset the indexes at the beginning of the array and return a call to the inner function with the updated array.
+        index1 = 0;
+        index2 = 1;
+        return compareValues(index1, index2)
+      } else {
+        //otherwise, you are still in the middle of an array, so return a call to the inner function with the indexes incremented as they are.
+        return compareValues(index1, index2)
+      }
+
+    }
+
+    }
+    //call the function with index 1 and index 2 to start off
+    compareValues(index1, index2);
+
+  return manipArr;
 };
+
+console.log(bubbleSort([4, 2, 3, 1]))
