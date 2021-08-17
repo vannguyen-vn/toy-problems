@@ -20,40 +20,28 @@ var evenOccurrence = function(arr) {
 
   for (var i = 0; i < arr.length; i++) {
     var count = 0;
+    if (obj[arr[i]]) {
+      obj[arr[i]]++;
+    } else{
+      obj[arr[i]] = 1;
+    }
+    /*
     for (var j = 0; j < arr.length; j++) {
       if(arr[j] === arr[i]) {
         count++;
       }
     }
-  //  if (count % 2 === 0) {
-  //    return arr[i];
-   // }
-    obj[arr[i]] = count;
+    */
+   //  obj[arr[i]] = count;
   }
-
-  var values = Object.values(obj);
-
-  var max = 0;
-
-  for(var i = 0; i < values.length; i++) {
-
-      if (values[i] > max) {
-          max = values[i]
-      }
-
-  }
-
-
 
   for (var item in obj) {
-    if (obj[item] % 2 === 0 && obj[item] >= max) {
+    if (obj[item] % 2 === 0) {
       if(Number.isNaN(Number(item))) {
         return item;
       } else {
-
         item = Number(item);
         return item;
-
       }
 
     }
