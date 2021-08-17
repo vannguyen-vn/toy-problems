@@ -13,15 +13,15 @@
  * Don't use JavaScript's built-in sorting function (Array.prototype.sort).
  *
  * QUERY: What's the time complexity of your algorithm? If you don't already
- * know, try to intuit this without consulting the Googles.
+ * know, try to intuit this without consulting the Googles. // The time complexity is quadratic because it could involve n ^ 2 operations.
  *
  * Extra credit: Optimization time! During any given pass, if no elements are
  * swapped we can assume the list is sorted and can exit the function early.
- * After this optimization, what is the time complexity of your algorithm?
+ * After this optimization, what is the time complexity of your algorithm? // If a sorted array were passed in, the operation would be linear, but I don't think that changes the time comlexity of the whole algorithm.
  *
  * Moar credits: Do you need to consider every element every time you iterate
  * through the array? Make it happen, boss. Again: Has the time complexity of
- * your algorithm changed?
+ * your algorithm changed? // Yes. It's one less operation each time, which I think makes it logarithmic.
 */
 
 /*
