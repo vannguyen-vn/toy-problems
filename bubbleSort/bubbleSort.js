@@ -32,6 +32,7 @@
 
 // Feel free to add helper functions if needed.
 
+//time complexity O(n)
 
 var bubbleSort = function(array) {
   //I: array with values
