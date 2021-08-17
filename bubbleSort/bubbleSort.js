@@ -49,7 +49,7 @@ var bubbleSort = function(array) {
     }
   }
   // if isSwapped is true
-  if (isSwapped) {bubbleSort(array)}
+  if (hasSwapped) {bubbleSort(array)}
     // use bubblesort function again
   // return array
   return array;
