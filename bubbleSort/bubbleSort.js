@@ -34,5 +34,29 @@
 
 
 var bubbleSort = function(array) {
-  // Your code here.
+  var flipped = false;
+
+  for (var i = 0; i < array.length; i++) {
+
+    var current = array[i];
+    var next = array[i + 1];
+    var placeholder;
+
+    if (next) {
+      if (current > next) {
+
+        placeholder = array[i];
+        array[i] = array[i + 1];
+        array[i + 1] = placeholder;
+
+        flipped = true;
+      }
+    }
+  }
+
+  if (flipped) {
+    bubbleSort(array);
+  }
+
+  return array;
 };
