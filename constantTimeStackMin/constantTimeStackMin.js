@@ -34,7 +34,7 @@
       this._minTracker.push(value);
     } else {
       var lastTrackerIndex = this._minTracker.length - 1;
-      if (value < this._minTracker[lastTrackerIndex]) {
+      if (value <= this._minTracker[lastTrackerIndex]) {
         this._minTracker.push(value);
       }
     }
