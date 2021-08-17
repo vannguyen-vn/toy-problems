@@ -18,10 +18,12 @@
  * Extra credit: Optimization time! During any given pass, if no elements are
  * swapped we can assume the list is sorted and can exit the function early.
  * After this optimization, what is the time complexity of your algorithm?
- *
+ *  linear
  * Moar credits: Do you need to consider every element every time you iterate
  * through the array? Make it happen, boss. Again: Has the time complexity of
  * your algorithm changed?
+ *  hm....
+ *
 */
 
 /*
