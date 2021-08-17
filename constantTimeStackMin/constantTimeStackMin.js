@@ -56,8 +56,7 @@ Stack.prototype.size = function () {
 // return the minimum value in the stack
 Stack.prototype.min = function () {
   return this.min[this.count - 1]
-
 };
 
 
-// module.exports = Stack;
+module.exports = Stack;
