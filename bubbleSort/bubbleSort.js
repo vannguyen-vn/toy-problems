@@ -29,10 +29,24 @@
  * bubbleSort([2, 1, 3]); // yields [1, 2, 3]
  *
 */
-
+// It works by starting at the first element of an array and
+//  * comparing it to the second element; if the first element is greater than the
+//  * second element, it swaps the two
 // Feel free to add helper functions if needed.
-
-
+var isBigger = function(firstEle, secondEle) {
+    return (firstEle > secondEle)
+}
+// Time Complexity should be LINEAR
 var bubbleSort = function(array) {
-  // Your code here.
+  array.map(function(element, index, array) {
+    if (isBigger(element, array[index + 1 ]) && (index + 1) < array.length) {
+      smaller = array[index + 1];
+      array[index] = smaller;
+      array[index + 1] = element;
+      return array;
+    }
+  });
+  return array;
 };
+
+console.log(bubbleSort([2, 1, 3]));
