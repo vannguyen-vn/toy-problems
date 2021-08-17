@@ -34,5 +34,22 @@
 
 
 var bubbleSort = function(array) {
-  // Your code here.
+
+  var startingArray = JSON.stringify(array);
+
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] > array[i+1]) {
+      var first = array[i];
+      var second = array[i+1];
+      array[i] = second;
+      array[i+1] = first;
+    }
+  }
+
+  if (startingArray === JSON.stringify(array)) {
+    return startingArray;
+  } else {
+    return bubbleSort(array);
+  }
 };
+
