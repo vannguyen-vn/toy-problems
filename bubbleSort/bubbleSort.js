@@ -32,7 +32,29 @@
 
 // Feel free to add helper functions if needed.
 
+/*
+input : array
+output: sorted array
+
+Pseudocode
+- for loop i : 0 to array.length - 1
+  -if array[i] < array[i + 1]
+    - Swap(array[i], array[i + 1]);
+  return sorted array
+*/
+
+/* The time complexity: quadratic (n^2)  */
 
 var bubbleSort = function(array) {
-  // Your code here.
+  for ( var i = 0; i < array.length; i ++ ) {
+    for (var j =  i + 1; j < array.length; j ++ ) {
+     if (array [i] > array [j]) {
+        var temp = array[i];
+       array[i] = array[j];
+       array[j] = temp;
+     }
+     else continue;
+    }
+  }
+  return array;
 };
