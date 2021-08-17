@@ -39,7 +39,7 @@ var bubbleSort = function(array) {
 
   for(var i = 0; i < n; i++) {
     var swapped = false;
-    for (var j = ; j < n - i; j++) {
+    for (var j = 0; j < n - i; j++) {
       if (array[j] > array[j + 1]) {
         var first = array[j];
         var second = array[j + 1];
