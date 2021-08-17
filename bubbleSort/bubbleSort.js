@@ -46,9 +46,11 @@ var bubbleSort = function(array) {
     }
   }
 
+  return array;
+
 };
 
-  return array;
+
 
   // iterate over array
     //iterate over array
