@@ -13,7 +13,7 @@
  * Don't use JavaScript's built-in sorting function (Array.prototype.sort).
  *
  * QUERY: What's the time complexity of your algorithm? If you don't already
- * know, try to intuit this without consulting the Googles.
+ * know, try to intuit this without consulting the Googles.  //worst： quadratic best: linear
  *
  * Extra credit: Optimization time! During any given pass, if no elements are
  * swapped we can assume the list is sorted and can exit the function early.
@@ -34,5 +34,16 @@
 
 
 var bubbleSort = function(array) {
-  // Your code here.
+
+  //iteration with the first item
+  for (var i = 0; i < array.length; i++) {
+    for (var j = 0; j < array.length; j++) {
+      if (array[j] > array[j + 1]) {
+        temp = array[j + 1];
+        array[j + 1] = array[j];
+        array[j] = temp;
+      }
+    }
+  }
+  return array;
 };
