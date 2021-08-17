@@ -20,30 +20,32 @@
   class Stack {
 
    constructor (value) {
-    this.storage = {}
+    this.storage = []
     this.length = 0
     this.minimum = null;
     };
 
   // add an item to the top of the stack
    push(value) {
-     this.storage[this.length] = value
 
-     if (this.length === 0) {
-      this.minimum = value;
-     } else if (this.minimum > value) {
-      this.minimum = value;
+    //FIX THIS LOGIC *!!!!!************************
+     if (this.length === 0 || this.minimum.value > value) {
+      var newNode = new Node(value)
+      this.minimum = newNode;
+     } else if (this.minimum.value < value) {
+      var newNode = new Node(value, this.minimum);
      }
+
+     this.storage.push(newNode)
      this.length++;
-    };
+   }
 
   // remove an item from the top of the stack
     pop() {
-      delete this.storage[this.size -1]
-      this.length --;
 
-      if (this.length === 0) {
-        this.minimum = null;
+      this.minimum = this.minimum.previousMinimumNode || null;
+      this.storage.splice(this.storage.length - 1, 1)
+
     };
 
   // return the number of items in the stack
@@ -53,10 +55,20 @@
 
   // return the minimum value in the stack
     min() {
-      return this.minimum;
+      return this.minimum.value;
     };
 
   };
+
+
+
+
+  class Node {
+    constructor(value, minimumNode) {
+      this.value = value;
+      this.previousMinimumNode = minimumNode || this;
+    };
+  }
 
 
   var example = new Stack()
