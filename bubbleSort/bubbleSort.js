@@ -34,5 +34,27 @@
 
 
 var bubbleSort = function(array) {
-  // Your code here.
+
+  var n = array.length;
+
+  for(var i = 0; i < n; i++) {
+    var swapped = false;
+    for (var j = ; j < n - i; j++) {
+      if (array[j] > array[j + 1]) {
+        var first = array[j];
+        var second = array[j + 1];
+        array[j] = second;
+        array[j + 1] = first;
+        swapped = true;
+      }
+    }
+    if (swapped === false) {
+      break;
+    }
+  }
+
+  return array;
+
 };
+
+console.log(bubbleSort([100, 26, 10, 2, 1, 3, 6, 9, 8, 0, 17, 36, 68]))
