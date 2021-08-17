@@ -38,7 +38,8 @@ output: sorted array
 
 Pseudocode
 - for loop i : 0 to array.length - 1
-  -if array[i] < array[i + 1]
+  - for loop j : i+1 to array.length - 1
+  -if array[i] > array[j]
     - Swap(array[i], array[i + 1]);
   return sorted array
 */
