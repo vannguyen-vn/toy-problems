@@ -34,5 +34,15 @@
 
 
 var bubbleSort = function(array) {
-  // Your code here.
+  //I: array with values
+  //O: a sorted array
+  var result = [];
+  //get the min value and 'add' it to the result, deleting that el from the original
+  while (array.length !== 0) {
+    var smallest = Math.min(...array);
+    var index = array.indexOf(smallest);
+    var spliced = array.splice(index, 1);
+    result = result.concat(spliced);
+    }
+  return result;
 };
