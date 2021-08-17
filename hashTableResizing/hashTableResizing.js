@@ -46,7 +46,7 @@ var makeHashTable = function() {
       }
     }
     if (size > storageLimit*0.75) {
-      resize(storage)
+      result.resize(storage)
     }
   };
 
@@ -57,6 +57,7 @@ var makeHashTable = function() {
         return storage[index][i][1];
       }
     }
+    return undefined;
   };
 
   result.remove = function(key) {
@@ -68,7 +69,7 @@ var makeHashTable = function() {
       }
     }
     if (size < storageLimit*0.25) {
-      resize(storage)
+      result.resize(storage)
     }
   };
 
