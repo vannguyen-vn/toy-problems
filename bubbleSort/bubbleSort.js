@@ -62,6 +62,8 @@ var bubbleSort = function(array) {
         noBubbles = false;
       }
     }
-    if (noBubbles) { return; }
+    if (noBubbles) { return array; }
   }
+
+  return array;
 };
