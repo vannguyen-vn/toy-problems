@@ -36,19 +36,21 @@ We will hava an array : 3x3x3 = 27 arrays
 
 
 var rockPaperScissors = function (rounds) {
-  rounds = rounds || 3;
-  var outcomes = [];
-  var plays = ['R', 'P', 'S'];
-  var getOutcomes = function (playedSoFar, roundsLeft) {
-    if (roundsLeft === 0) {
-      outcomes.push(playedSoFar);
+  var choices = ['R', 'P', 'S'];
+  var playedSoFar = [];
+  var combination = [];
+
+  var recursion = function (rounds) {
+    if (rounds === 0 || rounds < 0) {
+      return combination.push(playedSoFar.join(''));
     }
-    else {
-      for (var i = 0; i < plays.length; i++) {
-        getOutcomes(playedSoFar.concat(plays[i]), roundsLeft - 1);
-      }
+
+    for ( var i = 0; i < choices.length; i++  ) {
+      playedSoFar.push(choices[i]);
+      recursion(rounds - 1);
+      playedSoFar.pop();
     }
-  };
-  getOutcomes([], rounds);
-  return outcomes;
+  }
+  recursion(rounds);
+  return combination;
 };

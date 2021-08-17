@@ -41,12 +41,12 @@ var makeHashTable = function() {
       if (tuple[0] === key) {
         tuple[1] === value;
         found = true;
+        console.log(tuple);
         break;
       }
-
-      if (!found) {
-        bucket.push([key, value]);
-      }
+    }
+    if (!found) {
+      bucket.push([key, value]);
     }
   };
 
