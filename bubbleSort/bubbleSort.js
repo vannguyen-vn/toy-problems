@@ -32,7 +32,19 @@
 
 // Feel free to add helper functions if needed.
 
-
+// This function has a time complexity of O{n^2}
 var bubbleSort = function(array) {
   // Your code here.
+  var result = array;
+
+  for (var j = 0; j < result.length; j++){
+    for(var i = 0; i < result.length; i++) {
+      if (result[i] > result[i + 1]) {
+        var temp = result[i];
+        result[i] = result[i + 1];
+        result[i + 1] = temp;
+      }
+    }
+  }
+  return result;
 };
