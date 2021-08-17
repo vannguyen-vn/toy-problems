@@ -32,6 +32,7 @@
         for(var i = 0; i < length; i++) { // [3, 7, 2] [7, 3, ] [2]
           if (value > this.mins[i]) {
             this.mins.splice(i, 0, value);
+            break;
           } else if (!this.mins[i + 1]) {
             this.mins.push(value);
           }
@@ -57,7 +58,7 @@
 
   // return the minimum value in the stack
     this.min = function() {
-      return this.mins.pop();
+      return this.mins.splice(min.length-1, 0);
     };
 
   };
