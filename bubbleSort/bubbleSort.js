@@ -31,8 +31,31 @@
 */
 
 // Feel free to add helper functions if needed.
+/*
+for loop - outer: moves pointer forwards
+  for loop - inner: does the swapping
+    if current is bigger than next, swap
 
+Time Complexity
+O(n^2) where n is the length of the array
 
-var bubbleSort = function(array) {
-  // Your code here.
+List is sorted
+O(n)
+
+Not considering every element, each iteration
+O(n)
+
+*/
+
+var bubbleSort = function (array) {
+  for (var i = 0; i < array.length; i++) {
+    for (var j = 0; j < array.length - i; j++) {
+      if (array[j] > array[j + 1]) {
+        var temp = array[j];
+        array[j] = array[j + 1];
+        array[j + 1] = temp;
+      }
+    }
+  }
+  return array;
 };
