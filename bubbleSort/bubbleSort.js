@@ -37,20 +37,7 @@ var bubbleSort = function(array) {
   // Your code here.
   var resultArray = array;
   var switches = 0;
-  // var sortTwo = function([a, b]) {
-  //   if (a > b) {
-  //     return [b, a];
-  //   } else {
-  //     return [a, b];
-  //   }
-  // }
 
-  //iterate across the array
-  //  compare two at a time
-  //  put the greater one at the end
-  //implement with a helper function for sorting an array of two
-  //feed a small slice in at a time
-  //base case?
   var loopThrough = function() {
     for (var i = 0; i < resultArray.length; i++) {
       if (resultArray[i] > resultArray[i + 1]) {
@@ -60,7 +47,7 @@ var bubbleSort = function(array) {
     }
     if (switches !== 0) {
       switches = 0;
-      loopThrough();
+      return loopThrough();
     } else {
       return resultArray;
     }
@@ -70,4 +57,3 @@ var bubbleSort = function(array) {
 
 };
 
-console.log(bubbleSort[2, 1, 3]);
