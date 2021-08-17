@@ -30,7 +30,16 @@ var makeHashTable = function(limit) {
     var index = getIndexBelowMaxForKey(key, this.storageLimit);
     var tuple = [key, value];
     if(this.storage[index] !== undefined) {
-      this.storage[index].push(tuple);
+      var isNewKey = true;
+      for (var i = 0; i < this.storage[index].length; i++) {
+        if (this.storage[index][i][0] === key) {
+          this.storage[index][i][1] = value;
+          isNewKey = false;
+        }
+      }
+      if (isNewKey) {
+        this.storage[index].push(tuple);
+      }
     } else {
       this.storage[index] = [tuple];
     }
@@ -53,9 +62,11 @@ var makeHashTable = function(limit) {
 
   result.retrieve = function(key) {
     var index = getIndexBelowMaxForKey(key, this.storageLimit);
-    for (var i = 0; i < this.storage[index].length; i++) {
-      if(this.storage[index][i][0] === key) {
-        return this.storage[index][i][1];
+    if (this.storage[index]) {
+      for (var i = 0; i < this.storage[index].length; i++) {
+        if(this.storage[index][i][0] === key) {
+          return this.storage[index][i][1];
+        }
       }
     }
     return undefined;
