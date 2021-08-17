@@ -12,22 +12,29 @@
 
 var evenOccurrence = function(arr) {
   // Your code here.
-
-  // create variable for result
-  var result = null;
   // iterate through array
-  for (var i = 0; i < arr.length; i++) {
-    // iterate through array, ahead of first increment
-    for (var j = 1; j < arr.length - 1; j++) {
-      // declare current number
-      var current = arr[i];
-      var next = arr[j];
-      // check if second increment matches current number
-      if (current === next);
-      // add current number to result
-      result += current;
+  for (let i = 0; i < arr.length; i++) {
+    let result;
+    // declare variable for occurence
+    let occurence = 1;
+    // iterate through array again ahead of first increment
+    for (let j = i + 1; j < arr.length - 1; j++) {
+      // declare variables
+      let current = arr[i];
+      let testNum = arr[j];
+      // if current equals num
+      if (current = testNum) {
+        // occurrence plus 1
+        occurence++;
+        // add to result
+        result = current;
+      }
+    }
+    // if occurence is even
+    if (occurence % 2 === 0) {
+      // return value
+      return result;
     }
   }
-  // return null
-  return result;
+  return null;
 };
