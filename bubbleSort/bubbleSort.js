@@ -39,17 +39,15 @@ var bubbleSort = function(array) {
   // Iterate over array starting at the zero index
   for (var i = 0; i < array.length; i++) {
     // Iterate again starting at the first index
-    for (var j = 1; j < array.length; j++) {
+    for (var j = 0; j < array.length; j++) {
       // If array[i] > array[j]
-      if (array[i] > array[j]) {
+      if (array[i] < array[j]) {
         // placeholder = arr[i]
         temp = array[i];
         // arr[i] = arr[j]
         array[i] = array[j];
        // array[j] = placeholder
        array[j] = temp;
-      } else {
-        return array;
       }
     }
   }
