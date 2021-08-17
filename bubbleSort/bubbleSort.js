@@ -60,8 +60,8 @@ var bubbleSort = function(array) {
       //return a call to the inner function with the updated idexes
       return compareValues(index1, index2);
 
-    } else if (manipArr[index1] < manipArr[index2] && manipArr[index2 + 1] === undefined) {
-      //if the value at index1 is less than the value at index 2 and the value at index2 + 1 is undefined (you are at the end of the array) - return the manipulated array as the final array
+    } else if (manipArr[index1] < manipArr[index2] && manipArr[index2 + 1] === undefined && wasSwapped === false) {
+      //if the value at index1 is less than the value at index 2 and the value at index2 + 1 is undefined (you are at the end of the array) AND wasSwapped is false- return the manipulated array as the final array
       return manipArr;
     }
 
@@ -80,10 +80,11 @@ var bubbleSort = function(array) {
       if (manipArr[index2] === undefined && wasSwapped === false) {
         //if you reach an undefined value (you are at the end of the array) and the wasSwapped flag is false, return the array as the final answer.
         return manipArr;
-      } else if (manipArr[index2] === undefined && wasSwapped === true) {
+      } else if (manipArr[index2 + 1] === undefined && wasSwapped === true) {
         //otherwise if you reach an undefined value(you are at the end of the array) and the wasSwapped flag is true, reset the indexes at the beginning of the array and return a call to the inner function with the updated array.
         index1 = 0;
         index2 = 1;
+        wasSwapped = false;
         return compareValues(index1, index2)
       } else {
         //otherwise, you are still in the middle of an array, so return a call to the inner function with the indexes incremented as they are.
@@ -99,4 +100,4 @@ var bubbleSort = function(array) {
   return manipArr;
 };
 
-console.log(bubbleSort([4, 2, 3, 1]))
+console.log(bubbleSort([4, 2, 3, 1])) //==> returned [2, 1, 3, 4]
