@@ -38,14 +38,18 @@
 //do array.length - i - 1 for the inner array because the larger value should bubble to the end of the array after each inner loop
 
 
+//algo is O(n^2)
+//with my optimization the worst case is still O(n^2) but if the array only needed partial sorting it is more efficient
+
 var bubbleSort = function(array) {
 
   var swapTracker = false;
   for (var i = 0; i < array.length - 1; i++) {
     for (var j = 0; j < array.length - i - 1; j++) {
+      //every time we start an inner loop, we set the swapTracker to false
+      swapTracker = false;
       var firstVal = array[j];
       var secondVal = array[j+1];
-      swapTracker = false;
       if (firstVal > secondVal) {
         array[j] = secondVal;
         array[j+1] = firstVal;
