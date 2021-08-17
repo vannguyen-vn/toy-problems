@@ -35,4 +35,26 @@
 
 var bubbleSort = function(array) {
   // Your code here.
+
+  // iterate over array as i
+  for (var i = 0; i < array.length; i++) {
+    // iterate over array as j
+    for (var j = 0; j < array.length; j++) {
+      // if current is greater than next
+      if (array[j] > array[j + 1]) {
+        // i declare var for temp and add next
+        var temp = array[j];
+        // next should be current
+        array[j] = array[j + 1];
+        // current should be temp
+        array[j + 1] = temp;
+      }
+    }
+  }
+  // return array
+  return array;
 };
+
+
+
+// bubbleSort([2, 8, 1, 5, 3]) // outputs [1, 2, 3, 5, 8]
