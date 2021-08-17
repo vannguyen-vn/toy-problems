@@ -34,5 +34,20 @@
 
 
 var bubbleSort = function(array) {
-  // Your code here.
+  var iterationCount = 1;
+  var isSorting = true;
+  while (iterationCount < array.length && isSorting) {
+    isSorting = false;
+    for (var i = 0; i < array.length - iterationCount; i++) {
+      if(array[i] > array[i +1]) {
+        var smaller = array[i + 1];
+        var larger = array[i];
+        array[i] = smaller;
+        array[i + 1]= larger;
+        isSorting = true;
+      }
+    }
+    iterationCount++;
+  }
+  return array;
 };
