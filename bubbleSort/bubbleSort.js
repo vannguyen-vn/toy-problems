@@ -35,13 +35,15 @@
 
 var bubbleSort = function(array) {
   // Your code here.
-  var sortTwo = ([a, b]) {
-    if (a > b) {
-      return [b, a];
-    } else {
-      return [a, b];
-    }
-  }
+  var resultArray = array;
+  var switches = 0;
+  // var sortTwo = function([a, b]) {
+  //   if (a > b) {
+  //     return [b, a];
+  //   } else {
+  //     return [a, b];
+  //   }
+  // }
 
   //iterate across the array
   //  compare two at a time
@@ -49,4 +51,23 @@ var bubbleSort = function(array) {
   //implement with a helper function for sorting an array of two
   //feed a small slice in at a time
   //base case?
+  var loopThrough = function() {
+    for (var i = 0; i < resultArray.length; i++) {
+      if (resultArray[i] > resultArray[i + 1]) {
+        resultArray.splice(i, 2, array[i + 1], array[i]);
+        switches++
+      }
+    }
+    if (switches !== 0) {
+      switches = 0;
+      loopThrough();
+    } else {
+      return resultArray;
+    }
+  }
+
+  return loopThrough();
+
 };
+
+console.log(bubbleSort[2, 1, 3]);
