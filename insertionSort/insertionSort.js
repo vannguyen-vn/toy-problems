@@ -37,7 +37,7 @@
 // It will transform an array of numbers into an array of valid objects.
 var testingTransform = function(array) {
   var transform = [];
-  
+
   for (var i = 0; i < array.length; i++) {
     transform.push({value: array[i], i: i});
   }
@@ -45,8 +45,23 @@ var testingTransform = function(array) {
   return transform;
 };
 
-var insertionSort = function(array
-) {
+var insertionSort = function(array) {
   // Your code goes here. Feel free to add helper functions if needed.
+  //iterathe throught the array
+    //compare each element with the one on the left until an element smaller is found
+    //replace the key at the element where it is smaller than the that one
+  //var least to keep track
+  //var max to keep track
+  //iterate over the array
+  // for (var i = 0; i < array.length; i++) {
+  //   if (array[i] > array[i++]) {
+  //     array[i] = array[i++]
+  //     array[i++] = array[i];
+  //   }
+  // }
+
+  //can we use array.sort()?
+  let arrayed = array.sort();
+  testingTransform(arrayed);
   return array;
 };
