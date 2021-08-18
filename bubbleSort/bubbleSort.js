@@ -32,7 +32,19 @@
 
 // Feel free to add helper functions if needed.
 
-
 var bubbleSort = function(array) {
   // Your code here.
+  let changed = false;
+  for (let i = 0; i < array.length - 1; i++) {
+    if (array[i] > array[i + 1]) {
+      let oldVal = array[i];
+      array[i] = array[i + 1];
+      array[i + 1] = oldVal;
+      changed = true;
+    }
+  }
+  if (changed) {
+    bubbleSort(array);
+  }
+  return array;
 };
