@@ -50,9 +50,10 @@ var insertionSort = function(array) {
   for (var i = 0; i < array.length; i++) {
     //compare with each items from index 0 to the current index
     //if the ahead value larger than the i th value, move back one index
+    var tempValue = array[i].value;
     var temp = array[i];
     var j = i - 1;
-    while (j >= 0 && array[j] > temp ) {
+    while (j >= 0 && array[j].value > tempValue ) {
       array[j + 1] = array [j];
       j = j - 1;
       array[j + 1] = temp;
