@@ -37,16 +37,55 @@
 // It will transform an array of numbers into an array of valid objects.
 var testingTransform = function(array) {
   var transform = [];
-  
-  for (var i = 0; i < array.length; i++) {
+
+  for (var i = 0; i < array.length - 1; i++) {
     transform.push({value: array[i], i: i});
   }
 
   return transform;
 };
 
-var insertionSort = function(array
-) {
+var insertionSort = function(array, comparator) {
   // Your code goes here. Feel free to add helper functions if needed.
+  var result;
+  var hasSwapped;
+  var temp;
+
+  array.forEach((element, index) => {
+    element.order = index + 1;
+  });
+
+  for (var i = 0; i < array.length; i++) {
+    hasSwapped = false;
+
+    for (var j = 0; j < array.length - 1; j++) {
+      if (comparator === undefined) {
+        result = array[j].value - array[j + 1]. value;
+      } else {
+        result = comparator(array[j].value, array[j + 1].value);
+      }
+
+      if (result > 0) {
+        temp = array[j].value;
+        array[j].value = array[j + 1].value;
+        array[j + 1].value = temp;
+        hasSwapped = true;
+      }
+    }
+
+    if (!hasSwapped) {
+      break;
+    }
+
+  }
   return array;
 };
+
+var comparator = (a, b) => {
+  if (a < b) {
+    return -1;
+  } else if (a === b) {
+    return 0;
+  }
+  return 1;
+}
