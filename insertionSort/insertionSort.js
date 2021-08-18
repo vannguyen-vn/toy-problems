@@ -23,7 +23,8 @@
  * for an example of how this works (excerpt below):
  *
  * > If `comparator(a, b)` is less than `0`, sort `a` to a lower index than `b`, i.e. `a` comes first.
- * > If `comparator(a, b)` returns `0`, leave `a` and `b` unchanged with respect to each other, but sorted with respect to all different elements.
+ * > If `comparator(a, b)` returns `0`, leave `a` and `b` unchanged with respect to each other, but
+ * sorted with respect to all different elements.
  * > If `comparator(a, b)` is greater than `0`, sort `b` to a lower index than `a`.
  *
  * If no comparator is given, just sort the elements using `<` or `>`.
@@ -45,7 +46,7 @@ var testingTransform = function (array) {
   return transform;
 };
 
-var insertionSort = function (array) {
+var insertionSort = function (array, comparator) {
   // iterate over array
   // store element
   // store current index
@@ -57,24 +58,26 @@ var insertionSort = function (array) {
   // splice the element out of the array
   // splice temp into array at comparison index
   //
+  // compare value to the last (access the value)
+  // if the current element is less than the previous,
+  // swap?
+  // Your code goes here. Feel free to add helper functions if needed.
   for (var i = 0; i < array.length; i++) {
-    for (var j = 0; j < array.length - 1; j++) {
-      if (array[j].value > array[j + 1].value) {
-
-        var temp = array[j].value;
-        array[j].value = array[j + 1].value;
-        array[j + 1].value = temp;
-      } else if (array[j].value = array[j + 1].value) {
-        continue;
+    var elementToCompare = array[i];
+    var idx = i;
+    for (var j = 0; j < array.length; j++) {
+      var secondElementToCompare = array[j];
+      var secondIdx = j;
+      if (elementToCompare.value < secondElementToCompare.value) {
+        var temp = elementToCompare;
+        array.splice(idx, 1)
+        array.splice(secondIdx, 0, temp);
+        break; // continue;
       }
     }
-    // compare value to the last (access the value)
-    // if the current element is less than the previous,
-    // swap?
-    // Your code goes here. Feel free to add helper functions if needed.
   }
   return array;
 };
 
-// console.log(testingTransform([1, 2, 3, 53, 59]))
-// console.log('insertionSort', insertionSort([{ value: 2 }, { value: 1 }, { value: 3 }]))
+
+console.log('insertionSort results:', insertionSort([{ value: 2 }, { value: 1 }, { value: 3 }]))
