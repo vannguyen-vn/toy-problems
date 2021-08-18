@@ -63,7 +63,7 @@ var insertionSort = function(array, comparator
 
       var j = 0;
       var k = 1;
-      while (k <= res.length - 1) {
+      while (k < res.length) {
         if (array[i].value < res[j].value) {
           res.unshift(array[i]);
           break;
@@ -93,7 +93,7 @@ var insertionSort = function(array, comparator
 
       var j = 0;
       var k = 1;
-      while (k <= res.length - 1) {
+      while (k < res.length) {
         if (comparator(array[i].value, res[j].value) < 0) {
           res.unshift(array[i]);
           break;
@@ -112,3 +112,6 @@ var insertionSort = function(array, comparator
 
   return res;
 };
+
+var res = insertionSort([{value: 2}, {value: 4}, {value: 1}, {value: 3}]);
+console.log(res);
