@@ -35,17 +35,17 @@
 
 // This function is to help you test, and should not be incorporated in your solution.
 // It will transform an array of numbers into an array of valid objects.
-// var testingTransform = function(array) {
-//   var transform = [];
+var testingTransform = function(array) {
+  var transform = [];
 
-//   for (var i = 0; i < array.length; i++) {
-//     transform.push({value: array[i], i: i});
-//   }
+  for (var i = 0; i < array.length; i++) {
+    transform.push({value: array[i], i: i});
+  }
 
-//   return transform;
-// };
+  return transform;
+};
 
-var recursion = function(array) {
+var insertionSort = function(array) {
   // Your code goes here. Feel free to add helper functions if needed.
   // create isSorted variable
   var isSorted = false;
@@ -64,17 +64,7 @@ var recursion = function(array) {
     }
   }
   // if isSorted
-  if (isSorted) { recursion(array) }
+  if (isSorted) { insertionSort(array) }
   // run insertionSort again
   return array;
 };
-
-var insertionSort = function(array) {
-  for(var i = 1; i < array.length; i++) {
-    // if index 1 value is less than index 0 value
-    array[i - 1].i = i -1;
-    array[i].i = i;
-  }
-  recursion(array);
-  return array;
-}
