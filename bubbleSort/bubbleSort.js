@@ -38,15 +38,18 @@ var isBigger = function(firstEle, secondEle) {
 }
 // Time Complexity should be LINEAR
 var bubbleSort = function(array) {
-  array.map(function(element, index, array) {
-    if (isBigger(element, array[index + 1 ]) && (index + 1) < array.length) {
-      smaller = array[index + 1];
-      array[index] = smaller;
-      array[index + 1] = element;
-      return array;
-    }
-  });
-  return array;
+  for (var i = 0; i < array.length; i++) {
+    array = array.map(function(element, index, array) {
+      if (isBigger(element, array[index + 1 ]) && (index + 1) < array.length) {
+        smaller = array[index + 1];
+        array[index] = smaller;
+        array[index + 1] = element;
+        return array;
+      }
+    });
+    return array;
+  }
 };
 
 console.log(bubbleSort([2, 1, 3]));
+console.log(bubbleSort([5, 4, 3, 2, 1]));

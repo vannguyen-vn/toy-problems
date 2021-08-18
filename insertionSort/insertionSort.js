@@ -35,9 +35,10 @@
 
 // This function is to help you test, and should not be incorporated in your solution.
 // It will transform an array of numbers into an array of valid objects.
+
 var testingTransform = function(array) {
   var transform = [];
-  
+
   for (var i = 0; i < array.length; i++) {
     transform.push({value: array[i], i: i});
   }
@@ -45,8 +46,35 @@ var testingTransform = function(array) {
   return transform;
 };
 
+// It takes each element from the input and finds the spot, up to the current point,
+// where that element belongs. It does this until it gets to the end of the array.
 var insertionSort = function(array
 ) {
+  // input is an array of objects with a the key of value
+  for (var i = 0; i < array.length; i++) {
+    var unsortedValue = array[i].value;
+    // iterate against all elements iterated through already
+    // and check currentValue against them
+    for (var j = 0; j < i; j++) {
+      var currentValue = array[j].value;
+      if (unsortedValue < currentValue) {
+        var objJ = array[j];
+        array[j] = array[i];
+        array[i] = objJ;
+      }
+      if (unsortedValue === currentValue) {
+        if (array[j].order === undefined) {
+          array[j].order = 1;
+          array[i].order = 2;
+        } else {
+          currentOrder = array[j].order + 1;
+          array[i].order = currentOrder;
+        }
+      }
+    }
+  }
   // Your code goes here. Feel free to add helper functions if needed.
   return array;
 };
+
+console.log(insertionSort([{value: 2}, {value: 1}, {value: 3}, {value: 1}, {value: 4}, {value: 1}]));
