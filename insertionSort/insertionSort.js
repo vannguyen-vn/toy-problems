@@ -59,7 +59,7 @@ var insertionSort = function(array, comparator
       }
     } else {
       j = i;
-      while (j > 0 && comparator(array[j].value, array[j - 1].value) < 0) {
+      while (j > 0 && (comparator(array[j].value, array[j - 1].value) <= 0)) {
         var temp = array[j];
         array[j] = array[j - 1];
         array[j - 1] = temp;
@@ -69,3 +69,6 @@ var insertionSort = function(array, comparator
   }
   return array;
 };
+
+var res = insertionSort([{value: 2}, {value: -5}, {value: 0}, {value: 4}, {value: 1}, {value: 3}]);
+console.log(res);
