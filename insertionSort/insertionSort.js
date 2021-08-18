@@ -37,7 +37,7 @@
 // It will transform an array of numbers into an array of valid objects.
 var testingTransform = function(array) {
   var transform = [];
-  
+
   for (var i = 0; i < array.length; i++) {
     transform.push({value: array[i], i: i});
   }
@@ -45,8 +45,38 @@ var testingTransform = function(array) {
   return transform;
 };
 
-var insertionSort = function(array
-) {
-  // Your code goes here. Feel free to add helper functions if needed.
+var insertionSort = function(array, comparator) {
+  var currPos, currItem, isLess;
+  for (var i = 1; i < array.length; i++) {
+    for (var j = 0; j < i; j++) {
+      currPos = i - j;
+      currPosVal = array[currPos].value;
+      prevPosVal = array[currPos - 1].value;
+      comparator ? isLess = comparator(currPosVal, prevPosVal) < 0 : isLess = currPosVal < prevPosVal;
+      if (isLess) {
+        currItem = array[currPos];
+        array[currPos] = array[currPos - 1];
+        array[currPos - 1] = currItem;
+      } else {
+        break;
+      }
+    }
+  }
   return array;
 };
+
+/*Test
+var descendingComparator = function(a, b) { return b - a; }
+
+var result = insertionSort([{value: 2}, {value: 1}, {value: 3}]);
+console.log(JSON.stringify(result)); //[{"value":1},{"value":2},{"value":3}]
+
+var result = insertionSort([{value: 10}, {value: 5, order: 1}, {value: 4}, {value: 5, order: 2}, {value: 0}]);
+console.log(JSON.stringify(result)); //[{"value":0},{"value":4},{"value":5,"order":1},{"value":5,"order":2},{"value":10}]
+
+var result = insertionSort([{value: 2}, {value: 1}, {value: 3}], descendingComparator);
+console.log(JSON.stringify(result)); //[{"value":3},{"value":2},{"value":1}]
+
+var result = insertionSort([{value: 10}, {value: 5, order: 1}, {value: 4}, {value: 5, order: 2}, {value: 0}], descendingComparator);
+console.log(JSON.stringify(result)); //[{"value":10},{"value":5,"order":1},{"value":5,"order":2},{"value":4},{"value":0}]
+*/
