@@ -46,10 +46,8 @@ var testingTransform = function(array) {
 
 var insertionSort = function(array) {
 
-  var sorted = [];
-
   for (var k = 0; k < array.length; k++) {
-    array[k] = {value: array[k]}
+    array[k] = {value: array[k], i: k}
   }
 
 
@@ -64,22 +62,22 @@ var insertionSort = function(array) {
     array[j + 1] = before;
   }
 
-  for (var z = 0; z < array.length; z++) {
-    if (array[z] === array[array.length - 1] && array[z + 1] === undefined) {
-      break;
-    }
-      if (array[z].value === array[z + 1].value) {
-        if (array[z]['order']) {
-          array[z + 1]['order'] = array[z]['order'] + 1
-        } else {
-          if (!array[z]['order']) {
-            array[z]['order'] = 1;
-            array[z + 1]['order'] = 2;
-          }
-        }
-      }
+  // for (var z = 0; z < array.length; z++) {
+  //   if (array[z] === array[array.length - 1] && array[z + 1] === undefined) {
+  //     break;
+  //   }
+  //     if (array[z].value === array[z + 1].value) {
+  //       if (array[z]['order']) {
+  //         array[z + 1]['order'] = array[z]['order'] + 1
+  //       } else {
+  //         if (!array[z]['order']) {
+  //           array[z]['order'] = 1;
+  //           array[z + 1]['order'] = 2;
+  //         }
+  //       }
+  //     }
 
-  }
+  // }
 
   return array;
 };
