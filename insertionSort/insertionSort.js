@@ -61,6 +61,5 @@ var insertionSort = function(array) {
       }
     }
   }
-  // Return sorted array
   return array;
 };
