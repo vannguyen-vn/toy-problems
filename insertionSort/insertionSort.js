@@ -49,13 +49,14 @@ var insertionSort = function(array) {
   //iterate over the array
   for (var i = 0; i < array.length; i++) {
     //compare with each items from index 0 to the current index
-    //if smaller than the one, inser to the index
-    for (var j = 0; j < i; j++) {
-      if (array[i] < array [j]) {
-        array.splice(j, 0, array[i]);
-        array.splice(i, 1);
-        return array;
-      }
+    //if the ahead value larger than the i th value, move back one index
+    var temp = array[i];
+    var j = i - 1;
+    while (j >= 0 && array[j] > temp ) {
+      array[j + 1] = array [j];
+      j = j - 1;
+      array[j + 1] = temp;
     }
   }
+  return array;
 };
