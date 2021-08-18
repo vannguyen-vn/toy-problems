@@ -49,26 +49,31 @@ var insertionSort = function(array, comparator) {
   // Your code goes here. Feel free to add helper functions if needed.
   var result;
   var hasSwapped;
-  var temp;
-
-  array.forEach((element, index) => {
-    element.order = index + 1;
-  });
+  var tempNum;
+  var tempI;
 
   for (var i = 0; i < array.length; i++) {
     hasSwapped = false;
 
-    for (var j = 0; j < array.length - 1; j++) {
+    for (var j = 0; j < array.length; j++) {
       if (comparator === undefined) {
-        result = array[j].value - array[j + 1]. value;
+        if (array[j + 1] === undefined) {
+          continue;
+        } else {
+          result = array[j].value - array[j + 1].value;
+        }
       } else {
         result = comparator(array[j].value, array[j + 1].value);
       }
 
       if (result > 0) {
-        temp = array[j].value;
+        tempNum = array[j].value;
         array[j].value = array[j + 1].value;
-        array[j + 1].value = temp;
+        array[j + 1].value = tempNum;
+
+        tempI = array[j].i;
+        array[j].i = array[j + 1].i;
+        array[j + 1].i = tempI;
         hasSwapped = true;
       }
     }
