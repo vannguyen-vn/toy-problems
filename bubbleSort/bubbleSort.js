@@ -45,9 +45,9 @@ var bubbleSort = function(array) {
 
   var swapTracker = false;
   for (var i = 0; i < array.length - 1; i++) {
+    //every time we start an inner loop, we set the swapTracker to false
+    swapTracker = false;
     for (var j = 0; j < array.length - i - 1; j++) {
-      //every time we start an inner loop, we set the swapTracker to false
-      swapTracker = false;
       var firstVal = array[j];
       var secondVal = array[j+1];
       if (firstVal > secondVal) {
