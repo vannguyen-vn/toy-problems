@@ -48,9 +48,12 @@ var testingTransform = function(array) {
 var insertionSort = function(array) {
   for (var i = 1; i < array.length; i++) {
     if (array[i].value < array[i - 1].value) {
-      var temp = array[i].value;
+      var tempVal = array[i].value;
+      var tempInd = array[i].i;
       array[i].value = array[i - 1].value;
-      array[i - 1].value = temp;
+      array[i].i = array[i - 1].i;
+      array[i - 1].value = tempVal;
+      array[i - 1].i = tempInd;
       return insertionSort(array);
     }
   }
