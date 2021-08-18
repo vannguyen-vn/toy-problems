@@ -48,67 +48,24 @@ var testingTransform = function(array) {
 var insertionSort = function(array, comparator
 ) {
   // Your code goes here. Feel free to add helper functions if needed.
-  if (comparator === undefined) {
-    var res = [array[0]];
-    for (var i = 1; i < array.length; i++) {
-      if (res.length === 1) {
-        if (array[i].value < res[0].value) {
-          res.unshift(array[i]);
-          continue;
-        } else {
-          res.push(array[i]);
-          continue;
-        }
+  for (var i = 1; i < array.length; i++) {
+    if (comparator === undefined) {
+      j = i;
+      while (j > 0 && array[j].value < array[j - 1].value) {
+        var temp = array[j];
+        array[j] = array[j - 1];
+        array[j - 1] = temp;
+        j -= 1;
       }
-
-      var j = 0;
-      var k = 1;
-      while (k <= res.length - 1) {
-        if (array[i].value < res[j].value) {
-          res.unshift(array[i]);
-          break;
-        } else if (array[i].value >= res[j].value && array[i].value < res[k].value) {
-          res.splice(k, 0, array[i]);
-          break;
-        } else if (array[i].value >= res[k].value && k === res.length) {
-          res.push(array[i]);
-          break;
-        }
-        j += 1;
-        k += 1;
-      }
-    }
-  } else {
-    var res = [array[0]];
-    for (var i = 1; i < array.length; i++) {
-      if (res.length === 1) {
-        if (comparator(array[i].value, res[0].value) < 0) {
-          res.unshift(array[i]);
-          continue;
-        } else {
-          res.push(array[i]);
-          continue;
-        }
-      }
-
-      var j = 0;
-      var k = 1;
-      while (k <= res.length - 1) {
-        if (comparator(array[i].value, res[j].value) < 0) {
-          res.unshift(array[i]);
-          break;
-        } else if (comparator(array[i].value, res[j].value) === 0) {
-          res.splice(k, 0, array[i]);
-          break;
-        } else if (comparator(array[i].value, res[k].value) > 0 && k === res.length) {
-          res.push(array[i]);
-          break;
-        }
-        j += 1;
-        k += 1;
+    } else {
+      j = i;
+      while (j > 0 && comparator(array[j].value, array[j - 1].value) < 0) {
+        var temp = array[j];
+        array[j] = array[j - 1];
+        array[j - 1] = temp;
+        j -= 1;
       }
     }
   }
-
-  return res;
+  return array;
 };
