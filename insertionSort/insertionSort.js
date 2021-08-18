@@ -80,4 +80,6 @@ var insertionSort = function (array, comparator) {
 };
 
 
-console.log('insertionSort results:', insertionSort([{ value: 2 }, { value: 1 }, { value: 3 }]))
+// console.log('insertionSort results:', insertionSort([{ value: 2 }, { value: 1 }, { value: 3 }]))
+
+// module.exports = insertionSort;
