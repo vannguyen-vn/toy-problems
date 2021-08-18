@@ -35,18 +35,46 @@
 
 // This function is to help you test, and should not be incorporated in your solution.
 // It will transform an array of numbers into an array of valid objects.
-var testingTransform = function(array) {
-  var transform = [];
-  
-  for (var i = 0; i < array.length; i++) {
-    transform.push({value: array[i], i: i});
-  }
+// var testingTransform = function(array) {
+//   var transform = [];
 
-  return transform;
-};
+//   for (var i = 0; i < array.length; i++) {
+//     transform.push({value: array[i], i: i});
+//   }
 
-var insertionSort = function(array
-) {
+//   return transform;
+// };
+
+var recursion = function(array) {
   // Your code goes here. Feel free to add helper functions if needed.
+  // create isSorted variable
+  var isSorted = false;
+  // iterate over the array
+  for(var i = 1; i < array.length; i++) {
+    // if index 1 value is less than index 0 value
+    if (array[i].value < array[i - 1].value) {
+      // create placeholder variable
+      var placeholder = array[i];
+      // switch two values
+      array[i] = array[i - 1];
+      array[i - 1] = placeholder;
+      // isSorted is true
+      isSorted = true;
+    // if equal
+    }
+  }
+  // if isSorted
+  if (isSorted) { recursion(array) }
+  // run insertionSort again
   return array;
 };
+
+var insertionSort = function(array) {
+  for(var i = 1; i < array.length; i++) {
+    // if index 1 value is less than index 0 value
+    array[i - 1].i = i -1;
+    array[i].i = i;
+  }
+  recursion(array);
+  return array;
+}
