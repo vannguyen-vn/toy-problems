@@ -35,9 +35,18 @@
 
 // This function is to help you test, and should not be incorporated in your solution.
 // It will transform an array of numbers into an array of valid objects.
+
+/*
+Input : array,
+Output : Sorted array
+
+Pseudocode
+- Go though the aray
+  - while loop if: currentItem value > currentItem value - 1 && begin at second position of array.
+*/
 var testingTransform = function(array) {
   var transform = [];
-  
+
   for (var i = 0; i < array.length; i++) {
     transform.push({value: array[i], i: i});
   }
@@ -45,8 +54,18 @@ var testingTransform = function(array) {
   return transform;
 };
 
-var insertionSort = function(array
-) {
-  // Your code goes here. Feel free to add helper functions if needed.
+var insertionSort = function(array) {
+  for (var i = 1; i < array.length; i++) {
+    while (i > 0 && array[i].value < array[i-1].value) {
+      var temp = array[i];
+      array[i] = array[i-1];
+      array[i-1] = temp;
+      i--;
+    }
+  }
   return array;
-};
+}
+
+
+var testing = testingTransform([4,1,2]);
+console.log(insertionSort(testing));

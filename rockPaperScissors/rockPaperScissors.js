@@ -36,6 +36,7 @@ We will hava an array : 3x3x3 = 27 arrays
 
 
 var rockPaperScissors = function (rounds) {
+  rounds = rounds || 3
   var choices = ['R', 'P', 'S'];
   var playedSoFar = [];
   var combination = [];
