@@ -57,23 +57,23 @@ var insertionSort = function (array) {
   // splice the element out of the array
   // splice temp into array at comparison index
   //
-  // for (var i = 0; i < array.length; i++) {
-  //   for (var j = 0; j < array.length - 1; j++) {
-  //     if (array[j].value > array[j + 1].value) {
+  for (var i = 0; i < array.length; i++) {
+    for (var j = 0; j < array.length - 1; j++) {
+      if (array[j].value > array[j + 1].value) {
 
-  //       var temp = array[j].value;
-  //       array[j].value = array[j + 1].value;
-  //       array[j + 1].value = temp;
-  //     } else if (array[j].value = array[j + 1].value) {
-  //       continue;
-  //     }
-  //   }
-  // compare value to the last (access the value)
-  // if the current element is less than the previous,
-  // swap?
-  // Your code goes here. Feel free to add helper functions if needed.
-}
-return array;
+        var temp = array[j].value;
+        array[j].value = array[j + 1].value;
+        array[j + 1].value = temp;
+      } else if (array[j].value = array[j + 1].value) {
+        continue;
+      }
+    }
+    // compare value to the last (access the value)
+    // if the current element is less than the previous,
+    // swap?
+    // Your code goes here. Feel free to add helper functions if needed.
+  }
+  return array;
 };
 
 // console.log(testingTransform([1, 2, 3, 53, 59]))
