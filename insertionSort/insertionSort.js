@@ -48,9 +48,9 @@ var testingTransform = function(array) {
 
 var insertionSort = function(array) {
   // Your code goes here. Feel free to add helper functions if needed.
-for (var i = 1; i < array.length - 1; i++) {
+for (var i = 1; i < array.length; i++) {
   var j = i;
-  while (j > 0 && array[j - 1] > array[j]) {
+  while (j > 0 && array[j - 1].value > array[j].value) {
     var temp = array[j - 1];
     array[j - 1] = array[j];
     array[j] = temp;
@@ -61,3 +61,7 @@ for (var i = 1; i < array.length - 1; i++) {
 
   return array;
 };
+// var myArray = [5,3,1,2,4,2,1];
+// var tArray= testingTransform(myArray);
+// console.log(tArray);
+// console.log(insertionSort(tArray));
