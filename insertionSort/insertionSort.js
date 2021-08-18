@@ -35,18 +35,46 @@
 
 // This function is to help you test, and should not be incorporated in your solution.
 // It will transform an array of numbers into an array of valid objects.
-var testingTransform = function(array) {
+var testingTransform = function (array) {
   var transform = [];
-  
+
   for (var i = 0; i < array.length; i++) {
-    transform.push({value: array[i], i: i});
+    transform.push({ value: array[i], i: i });
   }
 
   return transform;
 };
 
-var insertionSort = function(array
-) {
+var insertionSort = function (array) {
+  // iterate over array
+  // store element
+  // store current index
+  // iterate through array
+  // store comparison
+  // store index
+  // if comparision element is greater than element in question
+  // assign temp to equal element
+  // splice the element out of the array
+  // splice temp into array at comparison index
+  //
+  // for (var i = 0; i < array.length; i++) {
+  //   for (var j = 0; j < array.length - 1; j++) {
+  //     if (array[j].value > array[j + 1].value) {
+
+  //       var temp = array[j].value;
+  //       array[j].value = array[j + 1].value;
+  //       array[j + 1].value = temp;
+  //     } else if (array[j].value = array[j + 1].value) {
+  //       continue;
+  //     }
+  //   }
+  // compare value to the last (access the value)
+  // if the current element is less than the previous,
+  // swap?
   // Your code goes here. Feel free to add helper functions if needed.
-  return array;
+}
+return array;
 };
+
+// console.log(testingTransform([1, 2, 3, 53, 59]))
+// console.log('insertionSort', insertionSort([{ value: 2 }, { value: 1 }, { value: 3 }]))
