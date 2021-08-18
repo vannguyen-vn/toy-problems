@@ -23,7 +23,7 @@ var getIndexBelowMaxForKey = function(str, max) {
 var makeHashTable = function() {
   var result = {};
   var storage = [];
-  var storageLimit = 4;
+  var storageLimit = 1000;
   var size = 0;
 
   result.insert = function(key, value) {
