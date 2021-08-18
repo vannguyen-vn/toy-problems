@@ -56,11 +56,9 @@ var insertionSort = function(array, compare) {
   for (var i = 0; i < array.length; i++) {
     for (var j = 0; j < i; j ++) {
       if (compare(array[i].value, array[j].value) === -1) {
-        var tempArr = array.slice(0, j);
-        tempArr.push(array[i]);
-        tempArr = tempArr.concat(array.slice(j, i));
-        tempArr = tempArr.concat(array.slice(i+1));
-        array = tempArr;
+        var sortingVal = array.splice(i, 1);
+        array.splice(j, 0, ...sortingVal)
+        break;
       }
     }
 
