@@ -37,7 +37,7 @@
 // It will transform an array of numbers into an array of valid objects.
 var testingTransform = function(array) {
   var transform = [];
-  
+
   for (var i = 0; i < array.length; i++) {
     transform.push({value: array[i], i: i});
   }
@@ -45,8 +45,61 @@ var testingTransform = function(array) {
   return transform;
 };
 
-var insertionSort = function(array
-) {
+var insertionSort = function(array) {
   // Your code goes here. Feel free to add helper functions if needed.
-  return array;
+  // create a sorted array variable and set to empty array
+  // iterate over the input array
+    // iterate over the new array
+    // if the array is empty
+      // push into the array
+    // compare value of old array to value of new array
+    // if they have the same value and the next number is different
+      // make the value in the new array at the current index have an order property that is one more than it once was
+      //add the order property of the current element and set it to one more than the property of the current element in the new array
+      // splice into the array (index+1, 0, current element)
+    // if the value the element from theold array runs into is greater than it
+      // splice the old value into the new value using (index, 0, current elem)
+    // if the value the element from the old array runs into is less than the current element
+      // if the next value is greater than the current element
+        // splice using index+1
+
+  var oldArray = array;
+  var newArray = [];
+
+  for (var i = 0; i < oldArray.length; i++) {
+    var oldElement = oldArray[i];
+    if (newArray.length === 0) {
+      newArray.push(oldElement);
+      continue;
+    }
+    for (var j = 0; j < newArray.length; j++) {
+      var newElement = newArray[j];
+      if (oldElement.value === newElement.value && newArray.value !== oldElement.value) {
+        if (newArray[j].order === undefined) {
+          newArray[j]. order = 1;
+        }
+        oldArray[i].order = newArray[j].order + 1;
+        newArray.splice(j+1, 0, oldArray[i]);
+        break;
+      }
+      if (oldElement.value < newElement.value) {
+        newArray.splice(j, 0, oldElement);
+        break;
+      }
+      if (oldElement.value > newElement.value && ((newArray[j+1] === undefined) || oldElement.value < (newArray[j+1].value))) {
+        newArray.splice(j+1, 0, oldElement)
+        break;
+      }
+    }
+  }
+  console.log(newArray)
+  return newArray;
 };
+
+
+
+var array = [4, 8, 1, 6, 4, 7]
+
+var test = (testingTransform(array));
+
+insertionSort(test);
