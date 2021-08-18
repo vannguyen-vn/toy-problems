@@ -46,7 +46,7 @@ var testingTransform = function(array) {
 };
 
 var compareDefault = function(a, b) {
-  return a.value - b.value;
+  return a.value > b.value;
 }
 
 var insertionSort = function(array, comparator = compareDefault) {
