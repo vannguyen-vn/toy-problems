@@ -52,7 +52,7 @@ var insertionSort = function(array, comparator) {
       currPos = i - j;
       currPosVal = array[currPos].value;
       prevPosVal = array[currPos - 1].value;
-      comparator ? isLess = comparator(currPosVal, prevPosVal) < 0 : isLess = currPosVal < prevPosVal;
+      comparator ? isLess = comparator(array[currPos], array[currPos - 1]) < 0 : isLess = currPosVal < prevPosVal;
       if (isLess) {
         currItem = array[currPos];
         array[currPos] = array[currPos - 1];
