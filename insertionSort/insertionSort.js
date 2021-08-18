@@ -37,7 +37,7 @@
 // It will transform an array of numbers into an array of valid objects.
 var testingTransform = function(array) {
   var transform = [];
-  
+
   for (var i = 0; i < array.length; i++) {
     transform.push({value: array[i], i: i});
   }
@@ -45,8 +45,102 @@ var testingTransform = function(array) {
   return transform;
 };
 
-var insertionSort = function(array
-) {
-  // Your code goes here. Feel free to add helper functions if needed.
-  return array;
+var insertionSort = array => {
+
+var sortedArray = [];
+
+var compareVals = sortingArray => {
+
+  if (sortingArray.length === 1) {
+
+    var index = 0;
+
+    while (sortedArray[index] !== undefined && sortingArray.length === 1) {
+      if (sortingArray[0].value > sortedArray[index].value) {
+        index ++;
+      } else if (sortingArray[0].value === sortedArray[index.value]) {
+        var shifted = sortingArray[0]
+        sortedArray.splice(index + 1, 0, shifted)
+        return;
+      } else if (sortingArray[0].value < sortedArray[index].value) {
+
+        var shifted = sortingArray[0]
+        sortedArray.splice(index, 0, shifted)
+        return;
+      }
+    }
+    return;
+  }
+
+  if (sortingArray[0].value < sortingArray[1].value) {
+    sortedArray.push(sortingArray[0]);
+    var shiftedElement = sortingArray.shift() //swap with above?
+    return compareVals(sortingArray);
+  }
+
+
+  if (sortingArray[0].value > sortingArray[1].value) {
+    var temp = sortingArray.shift()
+    sortingArray.splice(1, 0, temp)
+    return compareVals(sortingArray);
+  }
+
+  if (sortingArray[0].value === sortingArray[1].value) {
+    sortedArray.push(sortingArray[0], sortingArray[1])
+    sortingArray.splice(0, 2)
+    return compareVals(sortingArray);
+  }
+
+}
+  compareVals(array)
+
+  return sortedArray;
 };
+
+var testVals1 = testingTransform([1,3,5,9,9,4])
+var result1 = insertionSort(testVals1)
+console.log(result1)
+
+
+/*
+IOCE
+  -Inputs: array of objects
+  -Outputs: a new array of inputs
+  -Constraints:
+    -equal values must keep relative position
+    -must have at least one item
+    -value must be a number /defined
+  -EdgeCases:
+    -Only one item => return that item
+    -value is infinity => place at end of array
+    -all values are the same => return the original array (might not need to do this since we'll build a new one checking)
+
+PROCESS
+
+//create a return array
+
+//if the manipulation array length is 0,
+  //return
+
+//if the value of the object is less than the value of the next object in the array
+  //push the current value to the return array
+  //return the function called with the first element sliced off
+
+//if the value of the object is greater than the value of the next object in the array
+  //assign a temp variable to the current object
+  //shift the comparison object to index zero and place the temp vaiable at index 1
+  //return the function called with the reivised array
+
+//return the return array
+
+
+
+SAMPLE DATA
+input: [{value: 0 }, {value: 6 }, {value: 5 }, {value: 4 }, {value: 1 }, {value: 3 }, {value: 3 }, {value: 4 }]
+
+copy: [,   , , , , , , ]
+
+[{value: 0 }, {value: 1 }, {value: 3 }, {value: 3 },{value: 4 }, {value: 4 }, {value: 5 }, {value: 5 }, {value: 6 }]
+
+*/
+
