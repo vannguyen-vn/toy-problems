@@ -37,7 +37,7 @@
 // It will transform an array of numbers into an array of valid objects.
 var testingTransform = function(array) {
   var transform = [];
-  
+
   for (var i = 0; i < array.length; i++) {
     transform.push({value: array[i], i: i});
   }
@@ -47,6 +47,52 @@ var testingTransform = function(array) {
 
 var insertionSort = function(array
 ) {
+
+  var shiftNumbersLeft = (currentIndex, currentArray) => {
+    for (var startIndex = currentIndex - 1; startIndex > -1; startIndex--) {
+      currentArray[startIndex - 1] = currentArray[startIndex];
+    }
+    return currentArray;
+  }
+
+  var shiftNumbersRight = (currentIndex, currentArray) => {
+    if (currentIndex === 0) {
+      var startIndex = 0;
+    } else {
+      var startIndex = currentIndex + 1;
+    }
+    for (var i = startIndex; i < currentArray.length; i++) {
+      currentArray[i + 1] = currentArray[i];
+    }
+    return currentArray;
+  }
+
+  var checkBackward = (currentIndex, currentArray) => {
+    for(var i = currentIndex; i > 0; i--) {
+      if(currentArray[i] > currentArray[currentIndex]) {
+        var currentArray = shiftNumbersRight(i, currentArray);
+        currentArray[i - 1] = currentArray[currentIndex];
+      }
+    }
+  }
+
+  var i = 0;
+  // outer loop over array
+  for (var current = 0; current < array.length; current++) {
+    for (var check = 0; check < array.length; check++) {
+      if(array[current] < array[check]) {
+        array = shiftNumbersLeft(current, array);
+      } else if (array[current]) {} // strat here
+    }
+  }
+    // while the current element is larger than the element to its right
+      // if current element is smaller than its first neighbor to the right
+        // advance current element
+      // if current element is smaller than its n neighbor to the right
+        // insert right before
+      // if current element is smaller than its neighbor to the left
+        // loop back wards and insert once current element is smaller than found element (helper function)
+      // if current
   // Your code goes here. Feel free to add helper functions if needed.
   return array;
 };
