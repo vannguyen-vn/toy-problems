@@ -45,18 +45,33 @@ var testingTransform = function(array) {
   return transform;
 };
 
-var insertionSort = function(array) {
-  for (var i = 1; i < array.length; i++) {
-    if (array[i].value < array[i - 1].value) {
-      var tempVal = array[i].value;
-      var tempInd = array[i].i;
-      array[i].value = array[i - 1].value;
-      array[i].i = array[i - 1].i;
-      array[i - 1].value = tempVal;
-      array[i - 1].i = tempInd;
-      return insertionSort(array);
+var insertionSort = function(array, cb) {
+  if (cb !== undefined) {
+    for (var i = 1; i < array.length; i++) {
+      if (cb(array[i]) < cb(array[i - 1])) {
+        var tempVal = array[i].value;
+        var tempInd = array[i].i;
+        array[i].value = array[i - 1].value;
+        array[i].i = array[i - 1].i;
+        array[i - 1].value = tempVal;
+        array[i - 1].i = tempInd;
+        return insertionSort(array);
+      }
+    }
+  } else {
+    for (var i = 1; i < array.length; i++) {
+      if (array[i].value < array[i - 1].value) {
+        var tempVal = array[i].value;
+        var tempInd = array[i].i;
+        array[i].value = array[i - 1].value;
+        array[i].i = array[i - 1].i;
+        array[i - 1].value = tempVal;
+        array[i - 1].i = tempInd;
+        return insertionSort(array);
+      }
     }
   }
+
   return array;
 };
 
