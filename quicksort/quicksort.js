@@ -10,27 +10,30 @@
  *    Combines the two arrays and the pivot into a sorted array.
  */
 
-var quicksort = function(array) {
+ var quicksort = function(array) {
   while (array.length > 0) {
     partition(array);
     array.splice(0, 1);
+    // How to add the result with the spliced item??
+    return array;
   }
 };
 
-var partition = function(toSort) {
+var partition = function(array2) {
   //helper function sort the array
   var smaller = [];
   var larger = [];
-  for (var i = 1 ;i < toSort.length; i++) {
-    if (toSort[i] < toSort[0]) {
-      smaller.push(toSort[i])
+  for (var i = 1 ;i < array2.length; i++) {
+    if (array2[i] < array2[0]) {
+      smaller.push(array2[i]);
     } else {
-      larger.push(toSort[i]);
+      larger.push(array2[i]);
     }
   }
   // if smaller and larger are both single array, stop the recursion
   // else , smaller array + pivot + larger array
-  smaller = smaller.push(toSort[0]);
-  return smaller.concat(larger);
+  //var middle = smaller.push(array2[0]);
+  larger.unshift(array2[0]);
+  var result = smaller.concat(larger);
+  return result;
 };
-
