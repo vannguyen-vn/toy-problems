@@ -13,29 +13,20 @@
 
 var quicksort = function (array) {
   //constraints
-  var lessArr = [];
-  var greaterArr = [];
-  var pivotIdx = (Math.floor(Math.random() * array.length))
-  //  for ()
-  var pivotVal;
-  var quicksortMini = function (array) {
-    for (let i = 0; i < array.length; i++) {
-      pivotVal = array[pivotIdx]
-      if (array[i] > pivotVal) {
-        greaterArr.push(array[i]);
-      } if (array[i] < pivotVal) {
-        lessArr.push(array[i]);
-      } if (array[i] === pivotVal) {
-        greaterArr.unshift(array[i])
-      }
-    }
-  }
-  quicksort(lessArr)
-  quicksort(greaterArr)
-  console.log('pivotVal', pivotVal)
-  console.log('lessArr', lessArr)
-  console.log('greaterArr', greaterArr)
+  // if array.length is 0 or undefined return null;
+  // take last element in the array as the pivot
+  // and compare it to each element in the loop
+  // if it is greater
+  // Taking the last element as the pivot
+  // Swapping elements
+  // Moving to next element
+  // Putting the pivot value in the middle
+  // };
+  // Base case or terminating case
+  // Returns pivotIndex
+  // recursively apply the same logic to the left and right subarrays
+}
 
 };
 
-quicksort([4, 9, 8, 2, 1, 6, 7, 8, 10])
+console.log(quicksort([4, 9, 8, 2, 1, 6, 7, 8, 10]))
