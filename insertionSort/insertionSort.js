@@ -52,12 +52,16 @@ var insertionSort = function(array) {
   for (var i = 1; i < array.length; i++) {
     // declare current var
     var current = array[i];
-    // iterate over array
-    for (var j = 0; i < array.length; j++) {
-      // declare variable for compared
-      var compared = array[i - 1];
+    var j = i-1;
+    // while j is greater than -1 and element at j is greater than current
+    while (j > -1 && array[j] > current) {
+      // swap positions referencing j
+      array[j+1] = array[j];
+      // decrement j
+      j--
     }
-
+    // move on to next element
+    array[j+1] = current;
   }
   return array;
 };
