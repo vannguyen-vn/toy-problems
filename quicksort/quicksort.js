@@ -12,4 +12,24 @@
 
 
 var quicksort = function(array) {
+  if (array.length < 2) {
+    return array;
+  }
+  var pivotPoint = array[array.length - 1];
+  var arraySmaller = [];
+  var arrayBigger = [];
+  // console.log(pivotPoint);
+
+  for (var i = 0; i < array.length - 1; i++) {
+    if (array[i] < pivotPoint) {
+      arraySmaller.push(array[i])
+    } else {
+      arrayBigger.push(array[i])
+    }
+  };
+  // [2, 8, 10, 22, 5, 64, 33] && [100, 88, 69]
+  // console.log(arraySmaller, arrayBigger);
+  return [...quicksort(arraySmaller), pivotPoint, ...quicksort(arrayBigger)];
 };
+
+// console.log(quicksort([2,8,10,22,5,64,100,33,88,69]));
