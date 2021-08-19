@@ -13,28 +13,50 @@
 
 var quicksort = function(array) {
 
-  //Base Case:
-  //if the array length is 1
-  //return the array
+  var sorted;
 
-  //Recursive Case
-  //for each array in the arguments object
+  var innerSortFunction = (array) => {
+    var args = Array.prototype.slice.apply(arguments)
+    console.log(args);
 
-    //store the first element in it's own array as the pivot point
+    if (array.length === 1) {
+      return array;
+    }
 
-    //create a slice of the input array starting with index 1
+    let pivotPointArray = args[0];
+    let remainingElements = args.slice(1)
+    let lessThanArray = [];
+    let greaterThanArray = [];
 
-    //create a less than array
-    //create a greater than array
+    remainingElements.forEach(element => {
+      if (element <= pivotPointArray[0]) {
+        lessThanArray.push(element);
+      } else if (element > pivotPointArray[0])
+        greaterThanArray.push(element);
+      });
 
-    //for each element in the array copy
-      //if the value is less than or equal to the pivot value
-        //place it in the less than array
-      //if the value is equal to the pivot value
-        //place it in the greater than array
+      answer = quicksort(lessThanArray).concat(pivotPointArray, quicksort(greaterThanArray));
+      console.log(answer)
+      return answer;
+  }
 
-    //return smallerArray.concat(pivotPointArray, greaterThanArray)
+  innerSortFunction(array);
+
+  return sorted;
 };
+
+
+const sampleArray = [5,3,1,2,4,7,42,6];
+let test1 = quicksort(sampleArray);
+console.log('Test 1: Array - [5,3,1,2,4,7,42,6]', test1)
+
+const sampleArray2 = [1,3,5,2,4,7,42,6]
+let test2 = quicksort(sampleArray2);
+console.log('Test 1: lowest First Array - [1,3,5,2,4,7,42,6]:', test2)
+
+const sampleArray3 = [5,3,1,2,4,7,42,6,3]
+let test3 = quicksort(sampleArra3);
+console.log('Test 2: Repeat  Array - [5,3,1,2,4,7,42,6,3]:', test2)
 
 
 /*
