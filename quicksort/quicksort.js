@@ -11,5 +11,23 @@
  */
 
 
-var quicksort = function(array) {
+ var quicksort = function(array) {
+  if(array.length <= 1) {
+    return array;
+  }
+    var leftArr = [];
+    var rightArr = [];
+  var pivotIndex = Math.ceil(array.length / 2);
+  var pivot = array[pivotIndex];
+  for (var i = 0; i < array.length; i++) {
+    if (i === pivotIndex) {
+      continue;
+    }
+    if (array[i] <= pivot) {
+      leftArr.push(array[i]);
+    } else {
+      rightArr.push(array[i]);
+    }
+  }
+  return [...(quicksort(leftArr)), pivot, ...(quicksort(rightArr))];
 };
