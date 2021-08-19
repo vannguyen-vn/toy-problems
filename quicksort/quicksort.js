@@ -48,5 +48,11 @@ var quicksort = function(array) {
   //
 };
 
-var test1 = [4, 5, 2, 7, 1, 9, 0, 11]
-console.log(quicksort(test1), 'should equal', [0, 1, 2, 4, 5, 7, 9, 11])
+var test1 = [4, 5, 2, 7, 1, 9, 0, 11];
+var test2 = [1, 2, 3];
+var test3 = [1, 1, 1, 1];
+var test4 = [8, 7, 2, 4, 8, 0, 12, 17, 200];
+console.log(quicksort(test1), 'should equal', [0, 1, 2, 4, 5, 7, 9, 11]);
+console.log(quicksort(test2));
+console.log(quicksort(test3));
+console.log(quicksort(test4));
