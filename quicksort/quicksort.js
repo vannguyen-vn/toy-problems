@@ -12,4 +12,14 @@
 
 
 var quicksort = function(array) {
+  // Set pivot as the last number of the array
+  var pivot = array[array.length - 1];
+  // scan from left to right until an element bigger than pivot
+  // scan from right to left until an element smaller than pivot
+
+  // recursively scan the left half
+  // recursively scan the right half
+  // var partition = (array, start, end) => {
+
+  // }
 };
