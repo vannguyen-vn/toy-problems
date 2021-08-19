@@ -12,4 +12,10 @@
 
 
 var quicksort = function(array) {
+
+  // need to select a pivot
+  // check if a number is greater thank pivot
+  // check if a number is less than the pivot
+
+  // what's the base case?
 };
