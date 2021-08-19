@@ -11,5 +11,35 @@
  */
 
 
-var quicksort = function(array) {
+ var quicksort = function(array) {
+
+  // Split the arrays
+  // [6, 5, 4, 3, 2]
+  // 4 is the pivot
+  // [6, 5] 4 [3, 2]
+  // [6, 5, 3, 2]
+  // [5, 3, 2] -> [6]
+  // [3, 2] -> [6, 5]
+  // [3] <- [2] - [6, 5]
+  // [3, 2] <- [] - [6, 5]
+
+  var pivot = Math.floor(array.length / 2);
+
+  if (pivot === 0) { return array; }
+
+  var first = [];
+  var second = [];
+  var sorted = [];
+
+  for (var i = 0; i < array.length; i++) {
+    if (i === pivot) { continue; }
+
+    if (array[i] < array[pivot]) {
+      first.push(array[i]);
+    } else {
+      second.push(array[i]);
+    }
+  }
+
+  return sorted.concat(quicksort(first), array[pivot], quicksort(second));
 };
