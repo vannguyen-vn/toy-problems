@@ -38,18 +38,17 @@ var quicksort = (array) => {
   var more = [];
   // create pivot value in the array, using Math.random and multiplying by array length splice out of array
   var pivotIndex = Math.floor(Math.random() * array.length);
-  var pivotValue = arrayCopy.slice(pivotIndex, 1);
+  var pivotValue = arrayCopy.splice(pivotIndex, 1);
   // iterate over the array
   for(let i = 0; i < arrayCopy.length; i++) {
     // if index is less than pivot value push to less else push to more
-    arrayCopy[i] < pivotValue ? less.push(arrayCopy[i]) : more.push(arrayCopy[i]);
+    arrayCopy[i] < pivotValue[0] ? less.push(arrayCopy[i]) : more.push(arrayCopy[i]);
   }
   // use a less and more recursive function for both less and more
   recursion(less);
   recursion(more);
-  // push pivot value into less and then concat with more
-  less.push(pivotValue);
-  const sorted = less.concat(more);
+  var sorted = less.concat(pivotValue, more);
+
   // return sorted array
   return sorted;
 };
