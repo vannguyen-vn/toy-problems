@@ -46,20 +46,20 @@ var testingTransform = function(array) {
 };
 
 var insertionSort = function(array) {
-  // Create a temp value
-  var temp;
   // Iterate over the array
   for (var i = 0; i < array.length; i++) {
-    // Iterate one index ahead of i
-    for (var j = i + 1; j < array.length; j++) {
-      // If the value is less than the value before it
-      if (array[i] > array[j]) {
-        // Swap the values
-        temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-      }
+    var temp = array[i];
+    // Initialize j
+    var j = i - 1;
+    // Instantiate while loop while j >= AND array at j is > than value at temp
+    while (j >= 0 && array[j].value > temp.value){
+      // Swap the values
+      array[j + 1] = array[j];
+      // Decrement J
+      j = j - 1;
     }
+    // Swap the next index value with temp
+    array[j + 1] = temp;
   }
   return array;
 };
