@@ -11,5 +11,25 @@
  */
 
 
-var quicksort = function(array) {
+ var quicksort = function(array) {
+  var small = [];
+  var big = [];
+  var mid = [];
+  var randomIndex = Math.floor(Math.random() * (array.length - 0))
+  var pivot = array[randomIndex];
+  array.forEach(number => {
+    if (number > pivot) {
+      big.push(number);
+    } else if (number < pivot) {
+      small.push(number);
+    } else {
+      mid.push(number);
+    }
+  })
+  if (big.length > 1) {
+    big = quicksort(big);
+  } else if (small.length > 1) {
+    small = quicksort(small);
+  }
+  return small.concat(mid).concat(big);
 };
