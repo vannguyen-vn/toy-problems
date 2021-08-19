@@ -55,19 +55,41 @@ for loop - start from i index 1
     while loop - check if j > 0 and current element is less than left element
       move element to right
       subtract index
-found smaller element - saved cur - insert 
+found smaller element - saved cur - insert
 return array
 */
 
 var insertionSort = function (array) {
-  for (var i = 1; i < array.length; i++) {
-    var cur = array[i];
-    var j = i - 1;
-    while (j >= 0 && cur < array[j]) {
-      array[j + 1] = array[j];
+  for (let i = 1; i < array.length; i++) {
+    let cur = JSON.parse(JSON.stringify(array[i]));
+    let j = i - 1;
+    while (j >= 0 && array[j]["value"] > cur["value"]) {
+      array[j + 1]["value"] = array[j]["value"];
       j--;
     }
     array[j + 1] = cur;
   }
   return array;
 };
+
+
+// var insertionSort = function (array, comparator) {
+//   for (let i = 1; i < array.length; i++) {
+//     let cur = JSON.parse(JSON.stringify(array[i]));
+//     let j = i - 1;
+//     while (j >= 0 && array[j]["value"] > cur["value"]) {
+//       if (comparator) {
+//         if (comparator(array[j]["value"], cur["value"]) > 0) {
+//           array[j + 1]["value"] = array[j]["value"];
+//         }
+//       } else {
+//         if ((array[j]["value"] > cur["value"])) {
+//           array[j + 1]["value"] = array[j]["value"];
+//         }
+//       }
+//       j--;
+//     }
+//     array[j + 1] = cur;
+//   }
+//   return array;
+// };
