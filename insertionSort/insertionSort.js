@@ -45,22 +45,29 @@ var testingTransform = function(array) {
   return transform;
 };
 
+
+
 var insertionSort = function(array) {
-  for (let i = 1; i < array.length; i++) {
-    // console.log(array[i]);
-    let j = i;
-    while (j > 0 && array[j] < array[j - 1]) {
-      swapHelper(j, j - 1, array);
-      j--;
+  let switched = false;
+  for (let i = 0; i < array.length - 1; i++) {
+
+    let currentElement = array[i];
+    let nextElement = array[i + 1];
+
+    if (swap(currentElement, nextElement) > 0) {
+        array[i] = nextElement;
+        array[i + 1] = currentElement;
+        switched = true;
     }
   }
+
+  if (switched) insertionSort(array);
+
   return array;
 };
 
-function swapHelper(i, j, array) {
-  const temp = array[j];
-  array[j] = array[i];
-  array[i] = temp;
+function swap(i, j) {
+  return i.value > j.value;
 }
 
-console.log(insertionSort([{value: 2}, {value: 1}, {value: 3}]));
+// console.log(insertionSort([{value: 9}, {value: 2}, {value: 1}, {value: 3}, {value: 22}, {value: 5},]));
