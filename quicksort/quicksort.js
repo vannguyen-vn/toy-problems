@@ -28,7 +28,7 @@ var quicksort = function (array) {
   // declar variable as moreArr
   let moreArr = [];
   // iterate over array
-  for (let i = 0; i < array.length; i++) {
+  for (let i = 1; i < array.length; i++) {
     // if element is less than pivot val
     if (array[i] < pivotVal) {
       // push less
