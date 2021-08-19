@@ -10,6 +10,34 @@
  *    Combines the two arrays and the pivot into a sorted array.
  */
 
-
 var quicksort = function(array) {
+  var newArray = [...array];
+
+  // Base Case
+  if (array.length < 2) {
+    return newArray;
+  }
+  // Get Pivot
+  var pivot = newArray[0]; //Math.floor(Math.random() * newArray.length);
+  var small = [];
+  var big = [];
+
+  //Iterate through array
+  for(var i = 1; i < array.length; i++) {
+    // if smaller, put in smaller array
+    if(array[i] < pivot) {
+      small.push(array[i]);
+    }
+    // if bigger, put in big array
+    else {
+      big.push(array[i]);
+    }
+  }
+  //return array containg all sorted arrays
+  return [...quicksort(small), pivot, ...quicksort(big)];
 };
+
+var myArray = [1, 5, 8, 5, 3, 6];
+var sortedArray = quicksort(myArray);
+console.log('Array: ', myArray);
+console.log('Sorted array: ', sortedArray);
