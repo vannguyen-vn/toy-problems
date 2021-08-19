@@ -14,18 +14,33 @@
 var quicksort = function (array) {
   //constraints
   // if array.length is 0 or undefined return null;
-  // take last element in the array as the pivot
-  // and compare it to each element in the loop
-  // if it is greater
-  // Taking the last element as the pivot
-  // Swapping elements
-  // Moving to next element
-  // Putting the pivot value in the middle
-  // };
-  // Base case or terminating case
-  // Returns pivotIndex
-  // recursively apply the same logic to the left and right subarrays
-}
+  if (array.length === 0) {
+    return [];
+  }
+  // if array length is 1 return array
+  if (array.length === 1) {
+    return array;
+  }
+  // declare pivot as 0 index
+  let pivotVal = array[0]
+  // declare variable as lessArr
+  let lessArr = [];
+  // declar variable as moreArr
+  let moreArr = [];
+  // iterate over array
+  for (let i = 0; i < array.length; i++) {
+    // if element is less than pivot val
+    if (array[i] < pivotVal) {
+      // push less
+      lessArr.push(array[i])
+      // otherwise
+    } else {
+      // push morearr
+      moreArr.push(array[i])
+    }
+  }
+  // recursively call and concat arrays
+  return [quicksort(lessArr), pivotVal, quicksort(moreArr)].flat();
 
 };
 
