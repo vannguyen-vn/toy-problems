@@ -11,5 +11,31 @@
  */
 
 
-var quicksort = function(array) {
+var quicksort = function (array) {
+  //constraints
+  var lessArr = [];
+  var greaterArr = [];
+  var pivotIdx = (Math.floor(Math.random() * array.length))
+  //  for ()
+  var pivotVal;
+  var quicksortMini = function (array) {
+    for (let i = 0; i < array.length; i++) {
+      pivotVal = array[pivotIdx]
+      if (array[i] > pivotVal) {
+        greaterArr.push(array[i]);
+      } if (array[i] < pivotVal) {
+        lessArr.push(array[i]);
+      } if (array[i] === pivotVal) {
+        greaterArr.unshift(array[i])
+      }
+    }
+  }
+  quicksort(lessArr)
+  quicksort(greaterArr)
+  console.log('pivotVal', pivotVal)
+  console.log('lessArr', lessArr)
+  console.log('greaterArr', greaterArr)
+
 };
+
+quicksort([4, 9, 8, 2, 1, 6, 7, 8, 10])
