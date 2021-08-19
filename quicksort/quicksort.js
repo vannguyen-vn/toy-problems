@@ -11,5 +11,33 @@
  */
 
 
-var quicksort = function(array) {
-};
+var quicksort = function(array, low, high) {
+  if (low >= high) {
+    return;
+  }
+  var k = array[low];
+  var i = low;
+  var j = high;
+  while (i !== j) {
+    while (i < j && arr[j] >= k) {
+      j--;
+    }
+
+    swap(arr, i, j);
+
+    while (i < j && arr[i] <= k) {
+        i++;
+    }
+
+    swap(arr, i, j);
+  }/** for now , arr[i] = k. */
+
+  quicksort(arr, low, i -1);
+  quicksort(arr, i + 1, high);
+}
+
+var swap = function(array, i, j) {
+  var temp = array[i];
+  array[i] = array[j];
+  array[j] = temp;
+}
