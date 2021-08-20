@@ -67,7 +67,7 @@ var insertionSort = function (array) {
       array[j + 1]["value"] = array[j]["value"];
       j--;
     }
-    array[j + 1] = cur;
+    Object.assign(cur, array[j + 1]);
   }
   return array;
 };

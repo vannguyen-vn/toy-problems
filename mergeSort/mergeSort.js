@@ -96,7 +96,54 @@
  */
 
 
+/*
+split the array into two halves until there is only one element in each array
+merge and sort two closest arrays
+  smaller element pushed to new empty array
+base case: array length less than or equal 1
+find midpoint
+divide array into two halves
+recursive calls on two halves
 
-var mergeSort = function(array) {
-  // Your code here.
+
+create func that merges two arrays
+input: two arrays
+leftIndex, rightIndex
+result array
+while leftIndex less than left.length and rightIndex less than right.length
+  if left[leftIndex] < right[rightIndex]
+    push left[leftIndex] into array
+  do opposite
+return array concat with leftover elements from left and right array
+
+*/
+
+
+
+var mergeSort = function (array) {
+  if (array.length <= 1) {
+    return array;
+  }
+  var mid = Math.floor(array.length / 2);
+  var left = array.slice(0, mid);
+  var right = array.slice(mid);
+  return merge(mergeSort(left), mergeSort(right));
 };
+
+var merge = function (left, right) {
+  var result = [];
+  var leftIndex = 0;
+  var rightIndex = 0;
+
+  while (leftIndex < left.length && rightIndex < right.length) {
+    if (left[leftIndex] < right[rightIndex]) {
+      result.push(left[leftIndex]);
+      leftIndex++;
+    } else {
+      result.push(right[rightIndex]);
+      rightIndex++;
+    }
+  }
+
+  return result.concat(left.slice(leftIndex), right.slice(rightIndex));
+}
