@@ -95,60 +95,79 @@
  *
  */
 
+//Complexity: O(logn);
+ var mergeSort = function(array) {
+  var mid = array.length / 2;
 
-
-var mergeSort = function(array, left, right, temp) {
-  if (left < right) {
-    var mid = (left + right) / 2;
-    /** recursion divided to left half; */
-    mergeSort(array, left, mid, temp);
-    /** recursion divided to right half; */
-    mergeSort(array, mid + 1, right, temp);
-    merge(array, left, mid, right, temp);
- }
-};
-
-var merge = function(arr, left, mid, right, temp) {
-  var i = left;
-  var j = mid + 1;
-  var t = 0;
-  /** compare two array, give the smaller item to the temp array.*/
-  while (i <= mid && j <= right) {
-      if (arr[i] <= arr[j]) {
-          temp[t] = arr[i];
-          i += 1;
-      } else {
-          temp[t] = arr[j];
-          j += 1;
-      }
-      t += 1;
+  if (array.length < 2) {
+    return array;
   }
 
-  /** if arr[i] remained, just copy */
-  while (i <= mid) {
-    temp[t] = arr[i];
-    i += 1;
-    t += 1;
-  }
+  var leftArr = array.splice(0, mid);
+  //the right half should be the array now, because we cut the left arr;
+  return merge(mergeSort(leftArr), mergeSort(array));
 
-  /** if arr[j] remained, just copy */
-  while (j <= right) {
-    temp[t] = arr[j];
-    j += 1;
-    t += 1;
-  }
-
-  /** copy temp array to the original array; */
-//        t = 0;
-//        int tempLeft = left;
-//        while(tempLeft <= right) {
-//          arr[tempLeft] = temp[t];
-//          tempLeft += 1;
-//          t += 1;
-//        }
-  for (i = 0; i < t; i++) {
-      arr[left + i] = temp[i];
-  }
 }
 
-//Complexity: O(logn);
+var merge = function(leftArr, rightArr) {
+  var temp = [];
+  while (leftArr.length && rightArr.length) {
+    if (leftArr[0] < rightArr[0]) {
+      temp.push(leftArr.shift());
+    } else {
+      temp.push(rightArr.shift());
+    }
+  }
+  return [...temp, ...leftArr, ...rightArr];
+}
+
+
+// var mergeSort = function(array, left, right) {
+//   if (left < right) {
+//     var mid = (left + right) / 2;
+//     /** recursion divided to left half; */
+//     mergeSort(array, left, mid);
+//     /** recursion divided to right half; */
+//     mergeSort(array, mid + 1, right);
+//     merge(array, left, mid, right);
+//  }
+// };
+
+// var merge = function(arr, left, mid, right) {
+//   var temp = [];
+//   var i = left;
+//   var j = mid + 1;
+//   var t = 0;
+
+//   //while the two half array both have elements
+//   while (i <= mid && j <= right) {
+//     if (arr[i] < arr[j]) {
+//       temp[t] = arr[i];
+//       i++;
+//     } else {
+//       temp[t] = arr[j];
+//       j++;
+//     }
+//     t++;
+//   }
+
+//   //while left arr left elements, just copy
+//   while (i <= mid) {
+//     temp[t] = arr[i];
+//     i++;
+//     t++;
+//   }
+
+//   while (j <= left) {
+//     temp[t] = arr[j];
+//     j++;
+//     t++;
+//   }
+//   //move the elements from temp array to original array;
+//   for (var i = 0; i < t; i++) {
+//     arr[left + i] = temp[i];
+//   }
+// }
+
+
+
