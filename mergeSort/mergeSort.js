@@ -96,36 +96,34 @@
  */
 
  var mergeSort = function(array) {
-
-  // [4, 3, 2, 1, 5]
-  // [4, 3, 2] / [1, 5]
-  // [4, 3, 2] / [1, 5]
-  // [4, 3] / [2] / [1] / [5]
-  // [4] / [3] / [2] / [1] / [5]
-  // [3, 4] / [1, 2] / [5]
-
   var midpoint = Math.floor(array.length / 2);
-  if (midpoint === 0) { return array; }
+  if (array.length === 1) { return array; }
 
   var merged = [];
   var left = mergeSort(array.slice(0, midpoint));
   var right = mergeSort(array.slice(midpoint));
 
-  if (right > left) {
-    merged = left.concat(right);
-  } else {
-    merged = right.concat(left);
+  var i = 0;
+  var j = 0;
+
+  while (i < left.length && j < right.length) {
+    if (left[i] <= right[j]) {
+      merged.push(left[i]);
+      i++;
+    } else {
+      merged.push(right[j]);
+      j++;
+    }
   }
 
-  // insertion sort
-  for (var i = 1; i < merged.length; i++) {
-    var j = i;
-    while (j > 0 && merged[j - 1] > merged[j]) {
-      var temp = merged[j];
-      merged[j] = merged[j - 1];
-      merged[j - 1] = temp;
-      j--;
-    }
+  while (i < left.length) {
+    merged.push(left[i]);
+    i++;
+  }
+
+  while (j < right.length) {
+    merged.push(right[j]);
+    j++;
   }
 
   return merged;
