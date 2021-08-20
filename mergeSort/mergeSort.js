@@ -97,6 +97,26 @@
 
 
 
-var mergeSort = function(array) {
+var mergeSort = function (array) {
   // Your code here.
+  // I - array
+  // O - sorted array
+  // C - none
+  // E - arrayw/o length or of 1
+  // declare mid
+  // decalre left
+  // declare right
+  //  call to recursive fn for each array
+  // declare merge fn that takes in two arr
+  // declare reslt
+  // delcare left index
+  // declare right index
+  // while left index is less than the left arr length && ridx < rarr.length
+  // if current left element is less than current right element
+  // push current left element to result
+  // incremenet left idx
+  // otherwise
+  // push current right element to result
+  // increment right idx
+  // return concatenated array
 };
