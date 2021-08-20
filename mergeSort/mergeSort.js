@@ -98,5 +98,25 @@
 
 
 var mergeSort = function(array) {
-  // Your code here.
-};
+  // Create base case for recursion
+  if (array.length <= 1) {
+    return array;
+  }
+  // Create a middle variable
+  let middle = Math.floor(array.length / 2);
+  // Split the array into a left and right half
+  let leftArray = array.slice(0, middle);
+  let rightArray = array.slice(middle, array.length - 1);
+  // Return your merged array
+  return innerFunction(mergeSort(leftArray), mergeSort(rightArray));
+  // Create an innerfunction for merging
+  function innerFunction() {
+    // Create a result array
+    // Iterate over the arrays while left/rigth index is less than left/right length
+      // If left index is less than right index
+        // Push left array into result array
+      // Otherwise
+        // Push the right array into the result array
+  }
+      // Return result array
+}
