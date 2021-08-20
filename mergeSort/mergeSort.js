@@ -97,6 +97,58 @@
 
 
 
-var mergeSort = function(array) {
-  // Your code here.
+var mergeSort = function(array, left, right, temp) {
+  if (left < right) {
+    var mid = (left + right) / 2;
+    /** recursion divided to left half; */
+    mergeSort(array, left, mid, temp);
+    /** recursion divided to right half; */
+    mergeSort(array, mid + 1, right, temp);
+    merge(array, left, mid, right, temp);
+ }
 };
+
+var merge = function(arr, left, mid, right, temp) {
+  var i = left;
+  var j = mid + 1;
+  var t = 0;
+  /** compare two array, give the smaller item to the temp array.*/
+  while (i <= mid && j <= right) {
+      if (arr[i] <= arr[j]) {
+          temp[t] = arr[i];
+          i += 1;
+      } else {
+          temp[t] = arr[j];
+          j += 1;
+      }
+      t += 1;
+  }
+
+  /** if arr[i] remained, just copy */
+  while (i <= mid) {
+    temp[t] = arr[i];
+    i += 1;
+    t += 1;
+  }
+
+  /** if arr[j] remained, just copy */
+  while (j <= right) {
+    temp[t] = arr[j];
+    j += 1;
+    t += 1;
+  }
+
+  /** copy temp array to the original array; */
+//        t = 0;
+//        int tempLeft = left;
+//        while(tempLeft <= right) {
+//          arr[tempLeft] = temp[t];
+//          tempLeft += 1;
+//          t += 1;
+//        }
+  for (i = 0; i < t; i++) {
+      arr[left + i] = temp[i];
+  }
+}
+
+//Complexity: O(logn);
