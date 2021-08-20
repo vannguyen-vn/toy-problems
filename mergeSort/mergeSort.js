@@ -138,7 +138,7 @@ var merge = (leftArray, rightArray) => {
   }
     //spread operator to the rescue! it is not possible to know which array will have left over items, so we can just slice according to the pointer index
   //either the leftArr or the rightArr will be empty, but the array will come out merged, and sorted
-  return [...merged, ...array.slice(leftPointer), ...array.slice(rightPointer)]
+  return [...merged, ...leftArray.slice(leftPointer), ...rightArray.slice(rightPointer)]
 
 
 }
