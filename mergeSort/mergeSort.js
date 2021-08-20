@@ -98,5 +98,34 @@
 
 
 var mergeSort = function(array) {
-  // Your code here.
+  if (array.length <= 1) {
+    return array;
+  }
+  const middleIndex = Math.floor(array.length / 2);
+  const leftSide = array.slice(0, middleIndex);
+  const rightSide = array.slice(middleIndex);
+  return mergeSortHelper(mergeSort(leftSide), mergeSort(rightSide));
 };
+
+function mergeSortHelper(leftSide, rightSide) {
+  const sortedArr = new Array(leftSide.length + rightSide.length);
+
+  let a = 0;
+  let b = 0;
+  let c = 0;
+
+  while (b < leftSide.length && c < rightSide.length) {
+    if (leftSide[b] <= rightSide[c]) {
+      sortedArr[a++] = leftSide[b++];
+    } else {
+      sortedArr[a++] = rightSide[c++];
+    }
+  }
+  while (b < leftSide.length) {
+    sortedArr[a++] = leftSide[b++];
+  }
+  while (c < rightSide.length) {
+    sortedArr[a++] = rightSide[c++];
+  }
+  return sortedArr;
+}
