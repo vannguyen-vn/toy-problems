@@ -98,5 +98,32 @@
 
 
 var mergeSort = function(array) {
-  // Your code here.
+  var firstSort = [];
+
+  for (var i = 0; i < array.length; i++) {
+    firstSort.push([array[i]]);
+  }
+
+  var sorted = [];
+
+  var merge = function (newArray) {
+    if (newArray.length === 1) {
+      return rray;
+    }
+
+    for (var j = 0; j < newArray.length; j++) {
+      if (newArray[j+1] === undefined) {
+        continue;
+      }
+      var concatted = array[j].concat(array[j+1]);
+      for (var k = 0; k < concatted.length; k++) {
+
+      }
+      merge(concatted);
+    }
+  }
+
+  merge(firstSort);
+
+  return sorted;
 };
