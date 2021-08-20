@@ -116,7 +116,7 @@ var merge = function(left, right) {
     if (left[0] < right[0]) {
       arr.push(left.shift());
     } else {
-      srr.push(right.shift());
+      arr.push(right.shift());
     }
   }
 
