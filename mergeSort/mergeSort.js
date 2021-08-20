@@ -33,7 +33,7 @@
  * Illustration of a recursive approach:
  *
  *   1. Split the input array in half
- *   [4, 7, 4, 3, 9, 1, 2] -> [4, 7, 4], [3, 9, 1, 2
+ *   [4, 7, 4, 3, 9, 1, 2] -> [4, 7, 4], [3, 9, 1, 2]
  *
  *   2. Both sides are sorted recursively:
  *   [4, 7, 4] -> [4, 4, 7]
@@ -99,4 +99,46 @@
 
 var mergeSort = function(array) {
   // Your code here.
+
+  //pseudo
+
+  //split array into individual arrays
+  //check if adjacent array is smaller number
+    //if yes, swap
+    // if no, concat
+  // iterate again
+    // concat adjacent arrays
+    // sort
+  // need to figure out an algoritm for sorting nested arrays
+
+  var merge = (result) => {
+
+    for (var i = 0; i < result.length; i++) {
+      if (result[i][0] > result[i + 1][0]) {
+        result = swap(i, i+1, result);
+      } else {
+        result[i].concat(result[i+1])
+      }
+    }
+    return result;
+
+  }
+
+  var swap = (index1, index2, array) => {
+    var temp = array[index2];
+    array[index2] = array[index1];
+    array[index1] = temp;
+    return array;
+  }
+
+  var result = [];
+
+  array.forEach((item) => {
+    result.push([item]);
+  });
+
+  result = merge(result);
+
+
+
 };
