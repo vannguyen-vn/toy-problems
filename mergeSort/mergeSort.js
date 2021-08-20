@@ -95,8 +95,39 @@
  *
  */
 
+/* Input: array
+Output : sorted array
+
+Pseudocode:
+1.Split the array into 2 halves
+2.Continue  dividing the subarrays until it has only the 1 single element arrays
+3.Staring with single arrays, merge the subarrays so that each merged subarray is sorted.
+4.Repeat step 3 until with end up with a single sorted array
+ */
+
+function merge(left, right) {
+  var tempArr = [];
+   while(left.length && right.length){
+     if(left[0] < right[0]){
+       tempArr.push(left.shift());
+     } else {
+       tempArr.push(right.shift());
+     }
+   }
+
+   return [...tempArr, ...left, ...right];
+ }
 
 
-var mergeSort = function(array) {
-  // Your code here.
-};
+ var mergeSort = function(array) {
+   var half = array.length/2;
+   if(array.length < 2){
+     return array;
+   }
+   var left = array.splice(0, half);
+   return merge(mergeSort(left), mergeSort(array))
+ };
+
+
+ var array = [4, 7, 4, 3, 9, 1, 2]
+ console.log(mergeSort(array));
