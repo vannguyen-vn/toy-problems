@@ -13,13 +13,19 @@
 
 var quicksort = function(array) {
   // Set pivot as the last number of the array
-  var pivot = array[array.length - 1];
   // scan from left to right until an element bigger than pivot
   // scan from right to left until an element smaller than pivot
-
+  var swap = (array, a, b) => {
+    [list[a], list[b]] = [list[b], list[a]];
+  }
   // recursively scan the left half
   // recursively scan the right half
-  // var partition = (array, start, end) => {
+  var partition = (array, start, end) => {
+    const pivot = array[end];
+    let leftIndex = start;
 
-  // }
+    // for (var i = start; i < array.length; i++) {
+    //   if (array[i] < )
+    // }
+  }
 };
