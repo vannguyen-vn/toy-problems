@@ -119,4 +119,4 @@ var mergeSort = function(array) {
   var sortArr = [...firstHalf, ...secondHalf]
   return sortArr;
 };
-module.exports = mergeSort;
+//module.exports = mergeSort;
