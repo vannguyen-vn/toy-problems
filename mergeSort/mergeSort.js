@@ -108,7 +108,6 @@ var mergeSort = function (array) {
   let m = Math.floor(array.length / 2)
   // decalre left
   let l = array.slice(0, m);
-  // console.log(l)
   // declare right
   let r = array.slice(m, array.length)
   //  call to recursive fn for each array
@@ -145,5 +144,5 @@ let merge = function (l, r) {
   return result.concat(l.slice(li).concat(r.slice(ri)))
 }
 
-console.log(mergeSort([4, 7, 4, 3, 9, 1, 2]));
-module.exports = mergeSort;
+// console.log(mergeSort([4, 7, 4, 3, 9, 1, 2]));
+// module.exports = mergeSort;
