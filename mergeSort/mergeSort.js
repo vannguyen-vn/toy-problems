@@ -95,8 +95,66 @@
  *
  */
 
+// Combine both arrays
+var combine = (left, right) => {
+  // Create new array for merged items
+  var newArray = [];
+  // While both arrays have elements
+  while (left.length > 0 && right.length > 0){
+    // If first element in left is smaller
+    if(left[0] < right[0]) {
+      // remove first element and put in new array
+      newArray.push(left.shift());
+    }
+    // If first element in right is smaller
+    if(right[0] < left[0]) {
+      // remove first element and put in new array
+      newArray.push(right.shift());
+    }
+  }
 
+  // While left array still has elements
+  while (left.length > 0){
+    // remove and add to end of new array
+    newArray.push(left.shift());
+  }
+  // While right array still has elements
+  while (right.length > 0) {
+    // remove and add to end of new array
+    newArray.push(right.shift());
+  }
+
+  return newArray;
+}
 
 var mergeSort = function(array) {
-  // Your code here.
+  // Base Case
+  // if length is 1, return array
+  if (array.length === 1) {
+    return array;
+  }
+
+  // Recursive Case
+
+    // Find mid point
+    var mid = array.length / 2;
+    // Create left array
+    var left = array.slice(0, mid);
+    // Create right array
+    var right = array.slice(mid);
+
+    left = mergeSort(left);
+    right = mergeSort(right);
+
+    // Return merged array
+    return combine(left, right);
+
 };
+
+// var testArray = [3,2,5,7,1,4,6];
+
+// debugger;
+// var sortedArray = mergeSort(testArray);
+
+// console.log(testArray);
+// console.log(sortedArray);
