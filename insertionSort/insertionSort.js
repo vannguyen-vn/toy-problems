@@ -61,7 +61,8 @@ return array
 
 var insertionSort = function (array) {
   for (var i = 1; i < array.length; i++) {
-    var cur = JSON.parse(JSON.stringify(array[i]));
+    // var cur = JSON.parse(JSON.stringify(array[i]));
+    var cur = array[i];
     var j = i - 1;
     while (j >= 0 && array[j]["value"] > cur["value"]) {
       array[j + 1] = array[j];
