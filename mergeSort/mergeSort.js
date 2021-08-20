@@ -33,7 +33,7 @@
  * Illustration of a recursive approach:
  *
  *   1. Split the input array in half
- *   [4, 7, 4, 3, 9, 1, 2] -> [4, 7, 4], [3, 9, 1, 2
+ *   [4, 7, 4, 3, 9, 1, 2] -> [4, 7, 4], [3, 9, 1, 2]
  *
  *   2. Both sides are sorted recursively:
  *   [4, 7, 4] -> [4, 4, 7]
@@ -98,5 +98,51 @@
 
 
 var mergeSort = function(array) {
-  // Your code here.
+  //create a new array composed of single arrays
+
+  //split the array in half, into array 1 and array 2
+
+  //start inner helper function
+
+  //if the innerhelperfunctio of the first half is less than  innerhelperfunctio of the second half
+    //concat the first array to the second (arr1.concat(arr2))
+  //otherwise
+    //concat the second array to the first aray
+
+  //end inner helper function
+
+  //call inner helper fuction with array1 and array 2
+
+  //return merge sort of part 1 plus merge sort of part 2
 };
+
+
+
+/*
+I
+O
+C
+E
+
+
+//[4,7,4,3,9,1,2] -> [[4],[7],[4],[3],[9],[1],[2]]
+
+//create a new array composed of single arrays
+
+//split the array in half, into array 1 and array 2
+
+//start inner helper function
+
+//if the innerhelperfunctio of the first half is less than  innerhelperfunctio of the second half
+  //concat the first array to the second (arr1.concat(arr2))
+//otherwise
+  //concat the second array to the first aray
+
+//end inner helper function
+
+//call inner helper fuction with array1 and array 2
+
+//return merge sort of part 1 plus merge sort of part 2
+
+
+*/
