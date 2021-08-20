@@ -33,7 +33,7 @@
  * Illustration of a recursive approach:
  *
  *   1. Split the input array in half
- *   [4, 7, 4, 3, 9, 1, 2] -> [4, 7, 4], [3, 9, 1, 2
+ *   [4, 7, 4, 3, 9, 1, 2] -> [4, 7, 4], [3, 9, 1, 2]
  *
  *   2. Both sides are sorted recursively:
  *   [4, 7, 4] -> [4, 4, 7]
@@ -98,5 +98,42 @@
 
 
 var mergeSort = function(array) {
-  // Your code here.
+  //What is the base case to think about for recursively calling mergeSort?
+  if (array.length < 2) {
+    return array;
+  }
+//   1. Split the input array in half
+//  *   [4, 7, 4, 3, 9, 1, 2] -> [4, 7, 4], [3, 9, 1, 2]
+  const halfPoint = Math.ceil(array.length / 2);
+
+  let firstHalf = array.slice(0, halfPoint);
+  let secondHalf = array.slice(halfPoint);
+//  *   2. Both sides are sorted recursively:
+//  *   [4, 7, 4] -> [4, 4, 7]
+//  *   [3, 9, 1, 2] -> [1, 2, 3, 9]
+  function localMerge(left, right) {
+    var results = []
+    // sort through each item pushing the smallest into results
+    while (left.length && right.length) {
+        if (left[0] < right[0]){
+          results.push(left.shift())
+        } else {
+          results.push(right.shift())
+        }
+    }
+    // console.log(results, left, right);
+    var merged = [];
+    results.map((e) => merged.push(e));
+    left.map((e) => merged.push(e));
+    right.map((e) => merged.push(e));
+    // console.log(merged);
+
+    // return [...results, ...left, ...right] es6 syntax sugar
+    return merged;
+  }
+//  *   3. Both halves are merged:
+//  *   [4, 7, 4], [3, 9, 1, 2] -> [1, 2, 3, 4, 4, 7, 9]
+return localMerge(mergeSort(firstHalf), mergeSort(secondHalf));
 };
+
+// console.log(mergeSort([4, 7, 4, 3, 9, 1, 2]));
