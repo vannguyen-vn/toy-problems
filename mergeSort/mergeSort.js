@@ -95,8 +95,64 @@
  *
  */
 
-
-
 var mergeSort = function(array) {
-  // Your code here.
+  if (array.length <= 1) {
+    return array;
+  }
+  var splitPos = Math.floor(array.length / 2);
+  var leftArr = array.slice(0, splitPos);
+  var rightArr = array.slice(splitPos);
+  var sortedLeftArr = mergeSort(leftArr);
+  var sortedRightArr = mergeSort(rightArr);
+  var mergedArr = [];
+  var i = 0;
+  var j = 0;
+  while (i < sortedLeftArr.length || j < sortedRightArr.length) {
+    if (j === sortedRightArr.length || sortedLeftArr[i] <= sortedRightArr[j]) {
+      mergedArr.push(sortedLeftArr[i]);
+      i++;
+    } else {
+      mergedArr.push(sortedRightArr[j]);
+      j++;
+    }
+  }
+  return mergedArr;
 };
+
+/*
+var array = function(n) {
+  var array = [];
+  for (var i = 0; i < n; i++) {
+    var num = Math.floor(Math.random() * 2000);
+    array.push(num);
+  }
+  return array;
+}
+
+var input = array(10)
+console.log('input: ' + input);
+var output = mergeSort(input);
+var expected = input.sort(function(a, b) {
+  return a - b;
+});
+console.log('output: ' + output);
+console.log(JSON.stringify(output) === JSON.stringify(expected)); //true
+
+var input = array(15)
+console.log('input: ' + input);
+var output = mergeSort(input);
+var expected = input.sort(function(a, b) {
+  return a - b;
+});
+console.log('output: ' + output);
+console.log(JSON.stringify(output) === JSON.stringify(expected)); //true
+
+var input = array(50)
+console.log('input: ' + input);
+var output = mergeSort(input);
+var expected = input.sort(function(a, b) {
+  return a - b;
+});
+console.log('output: ' + output);
+console.log(JSON.stringify(output) === JSON.stringify(expected)); //true
+*/
