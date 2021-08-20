@@ -52,14 +52,14 @@ var insertionSort = function (array) {
   }
   else {
     for (var i = 0; i < array.length; i++) {
-      if (array[i + 1] < array[i]) {
+      if (array[i + 1].value < array[i].value) {
         var smaller = array[i + 1];
         array.splice(i + 1, 1);
         if (i === 0) {
           array.unshift(smaller);
         } else {
           for (var j = i - 1; j > 0; j--) {
-            if (smaller >= array[j]) {
+            if (smaller.value >= array[j].value) {
               array.splice(j + 1, 0, smaller);
               break;
             }
@@ -73,3 +73,4 @@ var insertionSort = function (array) {
     return array;
   }
 };
+
