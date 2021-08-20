@@ -96,7 +96,48 @@
  */
 
 
-
+// input: array or numbers
+// output: array sorted
+// Constraints: none
+// edge cases: empty array
 var mergeSort = function(array) {
-  // Your code here.
+  // split array into single numbers
+  var splitNumbers = []
+  for (var i = 0; i < array.length; i++) {
+    var number = array[i]
+    splitNumbers.push([number])
+  }
+  // loop through and combine numbers two at a time in correct order
+  combineTwoArrays()
+  // repeat merging two element at a time until they are all combined
 };
+
+// merge helper function
+var combineTwoArrays = function (arr1, arr2) {
+  var combinedArr = []
+  var idx1 = 0
+  var idx2 = 0
+  while (idx1 < arr1.length || idx2 < arr2.length) {
+    if (arr1[idx1] === undefined) {
+      combinedArr.push(arr2[idx2])
+      idx2++
+    }
+    if (arr2[idx2] === undefined) {
+      combinedArr.push(arr1[idx1])
+      idx1++
+    }
+    if (arr1[idx1] < arr2[idx2]) {
+      combinedArr.push(arr1[idx1])
+      idx1++
+    } else {
+      combinedArr.push(arr2[idx2])
+      idx2++
+    }
+  }
+
+  return combinedArr
+}
+
+// example
+var numbers = [2, 4, 7, 6, 5, 9]
+console.log(mergeSort(numbers))
