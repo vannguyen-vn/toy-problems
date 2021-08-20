@@ -12,20 +12,25 @@
 
 
 var quicksort = function(array) {
-  // Set pivot as the last number of the array
-  // scan from left to right until an element bigger than pivot
-  // scan from right to left until an element smaller than pivot
-  var swap = (array, a, b) => {
-    [list[a], list[b]] = [list[b], list[a]];
-  }
-  // recursively scan the left half
-  // recursively scan the right half
-  var partition = (array, start, end) => {
-    const pivot = array[end];
-    let leftIndex = start;
+  // Set pivot as the first number of the array
+  // for each element in the array
+  // if smaller than pivot, go to left
+  // if larger than pivot, go to right
+  var pivot = array[0];
+  var left = [];
+  var right = [];
 
-    // for (var i = start; i < array.length; i++) {
-    //   if (array[i] < )
-    // }
+  if (array.length <= 1) {
+    return array;
   }
+
+  for (var i = 1; i < array.length; i++) {
+    if (array[i] < pivot) {
+      left.push(array[i]);
+    } else {
+      right.push(array[i]);
+    }
+  }
+
+  return quicksort(left).concat(pivot, quicksort(right));
 };
