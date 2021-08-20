@@ -119,7 +119,9 @@ var mergeSort = function(array) {
   return mergedArr;
 };
 
-/*
+// Complexity: Time O(nlog(n)) and Space O(n)
+
+/* Test
 var array = function(n) {
   var array = [];
   for (var i = 0; i < n; i++) {
