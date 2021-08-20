@@ -35,24 +35,23 @@ return sorted.concat(quicksort(smallerArray), array[pivot], quicksort(largerArra
 */
 
 var quicksort = function (array) {
-  var pivot = array[Math.floor(array.length / 2)];
-  var smaller = [];
-  var larger = [];
-  var sorted = [];
-
   if (array.length <= 1) {
     return array;
   }
 
-  for (var i = 0; i < array.length - 1; i++) {
+  var pivot = array[0];
+
+  var left = [];
+  var right = [];
+
+  for (var i = 1; i < array.length; i++) {
     if (array[i] < pivot) {
-      smaller.push(array[i]);
+      left.push(array[i])
     } else {
-      larger.push(array[i]);
+      right.push(array[i]);
     }
   }
-
-  return sorted.concat(quicksort(smaller), pivot, quicksort(larger));
+  return quicksort(left).concat(pivot, quicksort(right));
 }
 
 
