@@ -95,8 +95,38 @@
  *
  */
 
+ var mergeSort = function(array) {
 
+  // [4, 3, 2, 1, 5]
+  // [4, 3, 2] / [1, 5]
+  // [4, 3, 2] / [1, 5]
+  // [4, 3] / [2] / [1] / [5]
+  // [4] / [3] / [2] / [1] / [5]
+  // [3, 4] / [1, 2] / [5]
 
-var mergeSort = function(array) {
-  // Your code here.
+  var midpoint = Math.floor(array.length / 2);
+  if (midpoint === 0) { return array; }
+
+  var merged = [];
+  var left = mergeSort(array.slice(0, midpoint));
+  var right = mergeSort(array.slice(midpoint));
+
+  if (right > left) {
+    merged = left.concat(right);
+  } else {
+    merged = right.concat(left);
+  }
+
+  // insertion sort
+  for (var i = 1; i < merged.length; i++) {
+    var j = i;
+    while (j > 0 && merged[j - 1] > merged[j]) {
+      var temp = merged[j];
+      merged[j] = merged[j - 1];
+      merged[j - 1] = temp;
+      j--;
+    }
+  }
+
+  return merged;
 };
