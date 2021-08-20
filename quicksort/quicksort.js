@@ -26,8 +26,3 @@ var quicksort = function(array) {
 
   return [...quicksort(smallArray), pivot, ...quicksort(bigArray)].flat();
 };
-
-var myArray = [1, 5, 8, 5, 3, 6];
-var sortedArray = quicksort(myArray);
-console.log('Array: ', myArray);
-console.log('Sorted array: ', sortedArray);
