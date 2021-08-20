@@ -102,7 +102,7 @@ var combine = (left, right) => {
   // While both arrays have elements
   while (left.length > 0 && right.length > 0){
     // If first element in left is smaller
-    if(left[0] < right[0]) {
+    if(left[0] <= right[0]) {
       // remove first element and put in new array
       newArray.push(left.shift());
     }
