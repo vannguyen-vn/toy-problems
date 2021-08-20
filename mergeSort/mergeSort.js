@@ -104,19 +104,46 @@ var mergeSort = function (array) {
   // C - none
   // E - arrayw/o length or of 1
   // declare mid
+  if (array.length === 1) return array;
+  let m = Math.floor(array.length / 2)
   // decalre left
+  let l = array.slice(0, m);
+  // console.log(l)
   // declare right
+  let r = array.slice(m, array.length)
   //  call to recursive fn for each array
-  // declare merge fn that takes in two arr
+  return merge(mergeSort(l), mergeSort(r))
+}
+// declare merge fn that takes in two arr
+let merge = function (l, r) {
   // declare reslt
+  let result = [];
   // delcare left index
+  let li = 0;
   // declare right index
+  let ri = 0;
   // while left index is less than the left arr length && ridx < rarr.length
-  // if current left element is less than current right element
-  // push current left element to result
-  // incremenet left idx
-  // otherwise
-  // push current right element to result
-  // increment right idx
+  while (li < l.length && ri < r.length) {
+    // if current left element is less than current right element
+    if (l[li] < r[ri]) {
+      // push current left element to result
+      result.push(l[li])
+      // incremenet left idx
+      li++
+
+      // otherwise
+    } else {
+      // push current right element to result
+      result.push(r[ri])
+      // increment right idx
+      ri++
+
+    }
+
+  }
   // return concatenated array
-};
+  return result.concat(l.slice(li).concat(r.slice(ri)))
+}
+
+console.log(mergeSort([4, 7, 4, 3, 9, 1, 2]));
+module.exports = mergeSort;
