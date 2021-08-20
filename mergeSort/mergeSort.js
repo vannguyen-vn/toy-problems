@@ -98,5 +98,42 @@
 
 
 var mergeSort = function(array) {
-  // Your code here.
+  // iterate across
+  //    put each item into its own array
+  // iterate across (i+=2)
+  //   if the next one is smaller
+  //      switch them (return a new array)
+  //   else
+  //      put them in a new array as is
+  //
+
+  if (array.length === 1) {
+    return array;
+  }
+
+  var midpoint = Math.floor(array.length/2);
+  var array1 = mergeSort(array.slice(0, midpoint));
+  var array2 = mergeSort(array.slice(midpoint, array.length));
+
+  var resultArray = [];
+  var i = 0;
+  var j = 0;
+  while (j < array2.length) {
+    if (array1[i] > array2[j] || !array1[i]) {
+      resultArray.push(array2[j]);
+      j++;
+    } else if (array1[i] <= array2[j] || !array2[j]) {
+      resultArray.push(array1[i]);
+      i++;
+    }
+  }
+  return resultArray;
+  //split array into two arrays
+  //create result array variable
+  //for loop
+  //  compare array1[i] to array2[i]
+  //  push the smaller one into the result array first
+  //  push the larger one into the result array second
+  //  return the result array
+
 };
