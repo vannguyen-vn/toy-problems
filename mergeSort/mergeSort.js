@@ -30,8 +30,10 @@
  *
  *   Done! Return the sorted array:
  *   [1,2,3,4,4,7,9]
- * Illustration of a recursive approach:
  *
+ *
+ *
+ * Illustration of a recursive approach:
  *   1. Split the input array in half
  *   [4, 7, 4, 3, 9, 1, 2] -> [4, 7, 4], [3, 9, 1, 2]
  *
@@ -98,31 +100,45 @@
 
 
 var mergeSort = function(array) {
+
+  if (array.length < 2) {
+    return array;
+  }
+
   //create a new array composed of single arrays
+  let dividedArray = array.map(element => element)
 
   //split the array in half, into array 1 and array 2
+  var midpoint = Math.ceil((dividedArray.length - 1)/2)
+  let subArray1 = dividedArray.slice(0, midpoint)
+  let subArray2 = dividedArray.slice((midpoint), (dividedArray.length))
 
-  //start inner helper function
-
-  //if the innerhelperfunctio of the first half is less than  innerhelperfunctio of the second half
+  //if the mergeSort of the first half is less than mergesort of the second half
+  if (mergeSort(subArray1) < mergeSort(subArray2)) {
     //concat the first array to the second (arr1.concat(arr2))
-  //otherwise
+    return subArray1.concat(subArray2)
+  } else {
     //concat the second array to the first aray
+    return subArray2.concat(subArray1)
+  }
 
-  //end inner helper function
-
-  //call inner helper fuction with array1 and array 2
-
-  //return merge sort of part 1 plus merge sort of part 2
 };
 
+//Tests
+var array1 = [4,7,4,3,9,1,2]
+let test1 = mergeSort(array1)
+console.log('should be [1, 2, 3, 4, 4, 7, 9]', test1)
 
+var array2 = [2, 1, 3, 2, 4, 5, 6]
+let test2 = mergeSort(array2)
+console.log('should be [1, 2, 2, 3, 4, 5, 6]', test2)
 
 /*
-I
-O
-C
-E
+I - 1 array
+O - 1 sorted array
+C - numbers only
+E - number repeats
+  - length of one - > return array
 
 
 //[4,7,4,3,9,1,2] -> [[4],[7],[4],[3],[9],[1],[2]]
