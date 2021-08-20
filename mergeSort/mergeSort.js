@@ -95,47 +95,42 @@
  *
  */
 
-
  var mergeSort = function(array) {
+  var left = [];
+  var right = [];
+  var result = [];
 
-  var mergeSort = function(array) {
-    var left = [];
-    var right = [];
-    var result = [];
+  if (array.length === 1) {
+    return array
+  }
 
-    if (array.length === 1) {
-      return array
-    }
+  var mid = Math.floor((array.length)/ 2);
 
-    var mid = Math.floor((array.length)/ 2);
+  var left = mergeSort(array.slice(0, mid));
+  var right = mergeSort(array.slice(mid))
 
-    var left = mergeSort(array.slice(0, mid));
-    var right = mergeSort(array.slice(mid))
+  var i = 0;
+  var j = 0;
+  while (i < left.length && j < right.length) {
 
-    var i = 0;
-    var j = 0;
-    while (i < left.length && j < right.length) {
-
-      if (left[i] < right[j]) {
-        result.push(left[i])
-        i++;
-      } else {=
-        result.push(right[j]);
-        j++;
-      }
-    }
-
-    while (j < right.length) {
-     result.push(right[j])
-     j++
-    }
-
-    while (i < left.length) {
+    if (left[i] < right[j]) {
       result.push(left[i])
-      i++
+      i++;
+    } else {
+      result.push(right[j]);
+      j++;
     }
+  }
 
-    return result;
-  };
+  while (j < right.length) {
+   result.push(right[j])
+   j++
+  }
 
+  while (i < left.length) {
+    result.push(left[i])
+    i++
+  }
+
+  return result;
 };
