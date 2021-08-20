@@ -39,7 +39,8 @@ var quicksort = function (array) {
   var smaller = [];
   var larger = [];
   var sorted = [];
-  if (array.length < 2) {
+
+  if (array.length <= 1) {
     return array;
   }
 
