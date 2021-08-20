@@ -33,7 +33,7 @@
  * Illustration of a recursive approach:
  *
  *   1. Split the input array in half
- *   [4, 7, 4, 3, 9, 1, 2] -> [4, 7, 4], [3, 9, 1, 2
+ *   [4, 7, 4, 3, 9, 1, 2] -> [4, 7, 4], [3, 9, 1, 2]
  *
  *   2. Both sides are sorted recursively:
  *   [4, 7, 4] -> [4, 4, 7]
@@ -98,5 +98,27 @@
 
 
 var mergeSort = function(array) {
-  // Your code here.
+  // recursively
+  // helper function to divide and merger
+  const half = array.length / 2;
+  if (array.length < 2) {
+    return array;
+  }
+
+  const left = array.splice(0, half);
+  return merge(mergeSort(left), mergeSort(array));
+};
+
+// also need a merge function to merge two of them
+var merge = function(left, right) {
+  let arr = [];
+  while (left.length && right.length) {
+    if (left[0] < right[0]) {
+      arr.push(left.shift());
+    } else {
+      srr.push(right.shift());
+    }
+  }
+
+  return [...arr, ...left, ...right];
 };

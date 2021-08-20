@@ -10,7 +10,7 @@
  *    Combines the two arrays and the pivot into a sorted array.
  */
 
- var quicksort = function(array) {
+var quicksort = function(array) {
   while (array.length > 0) {
     partition(array);
     array.splice(0, 1);
@@ -23,7 +23,7 @@ var partition = function(array2) {
   //helper function sort the array
   var smaller = [];
   var larger = [];
-  for (var i = 1 ;i < array2.length; i++) {
+  for (var i = 1; i < array2.length; i++) {
     if (array2[i] < array2[0]) {
       smaller.push(array2[i]);
     } else {
