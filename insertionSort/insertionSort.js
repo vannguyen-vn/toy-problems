@@ -59,38 +59,37 @@ found smaller element - saved cur - insert
 return array
 */
 
-var insertionSort = function (array) {
-  for (var i = 1; i < array.length; i++) {
-    // var cur = JSON.parse(JSON.stringify(array[i]));
-    var cur = array[i];
-    var j = i - 1;
-    while (j >= 0 && array[j]["value"] > cur["value"]) {
-      array[j + 1] = array[j];
-      j--;
-    }
-    array[j + 1] = cur;
-  }
-  return array;
-};
-
-
-// var insertionSort = function (array, comparator) {
-//   for (let i = 1; i < array.length; i++) {
-//     let cur = JSON.parse(JSON.stringify(array[i]));
-//     let j = i - 1;
+// var insertionSort = function (array) {
+//   for (var i = 1; i < array.length; i++) {
+//     // var cur = JSON.parse(JSON.stringify(array[i]));
+//     var cur = array[i];
+//     var j = i - 1;
 //     while (j >= 0 && array[j]["value"] > cur["value"]) {
-//       if (comparator) {
-//         if (comparator(array[j]["value"], cur["value"]) > 0) {
-//           array[j + 1]["value"] = array[j]["value"];
-//         }
-//       } else {
-//         if ((array[j]["value"] > cur["value"])) {
-//           array[j + 1]["value"] = array[j]["value"];
-//         }
-//       }
+//       array[j + 1] = array[j];
 //       j--;
 //     }
 //     array[j + 1] = cur;
 //   }
 //   return array;
 // };
+
+
+var insertionSort = function (array, comparator) {
+  for (var i = 1; i < array.length; i++) {
+    var cur = array[i];
+    var j = i - 1;
+    if (comparator) {
+      while (j >= 0 && comparator(cur["value"], array[j]["value"]) < 0) {
+        array[j + 1] = array[j];
+        j--;
+      }
+    } else {
+      while (j >= 0 && array[j]["value"] > cur["value"]) {
+        array[j + 1] = array[j];
+        j--;
+      }
+    }
+    array[j + 1] = cur;
+  }
+  return array;
+};
