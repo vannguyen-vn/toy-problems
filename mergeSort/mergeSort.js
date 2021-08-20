@@ -98,31 +98,44 @@
 
  var mergeSort = function(array) {
 
-  // create container
-  var left = [];
-  var right = [];
-  // create result
-  var result = [];
+  var mergeSort = function(array) {
+    var left = [];
+    var right = [];
+    var result = [];
 
-  // base case is one element
-  if (array.length === 1) {
-  // return the element
-    return array
-  }
+    if (array.length === 1) {
+      return array
+    }
 
+    var mid = Math.floor((array.length)/ 2);
 
-  // recursion
-  // find the mid point
-  var mid = Math.floor((array.length - 1)/ 2);
-  // run function on left and store in left container
-  var left = mergeSort(array.slice(0, mid));
-  // run function on right and store in right container
-  var right = mergeSort(array.slice(mid))
-  // merge by comparing left and right when they return and return result
-    // if the left first index is smaller than the right first index
-      // push into result and increment left index
-    // otherwise
-      // push into result and increment right index
-  // return result
+    var left = mergeSort(array.slice(0, mid));
+    var right = mergeSort(array.slice(mid))
+
+    var i = 0;
+    var j = 0;
+    while (i < left.length && j < right.length) {
+
+      if (left[i] < right[j]) {
+        result.push(left[i])
+        i++;
+      } else {=
+        result.push(right[j]);
+        j++;
+      }
+    }
+
+    while (j < right.length) {
+     result.push(right[j])
+     j++
+    }
+
+    while (i < left.length) {
+      result.push(left[i])
+      i++
+    }
+
+    return result;
+  };
 
 };
