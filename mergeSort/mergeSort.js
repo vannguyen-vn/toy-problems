@@ -98,5 +98,25 @@
 
 
 var mergeSort = function(array) {
-  // Your code here.
+  if (array.length <= 2) {
+    if (array[0] > array[1]) {
+      var first = array[1];
+      var second = array[0];
+      return [first, second];
+    } else {
+      return array;
+    }
+  }
+  var firstHalf = array.slice(0, Math.floor(array.length/2));
+  var secondHalf = array.slice(Math.floor(array.length)/2);
+  firstHalf = mergeSort(firstHalf);
+  secondHalf = mergeSort(secondHalf);
+  for (var i = 0; i < firstHalf.length; i++) {
+    if (secondHalf[0] < firstHalf[i]) {
+      firstHalf.splice(i, 0, ...secondHalf.splice(0, 1));
+    }
+  }
+  var sortArr = [...firstHalf, ...secondHalf]
+  return sortArr;
 };
+module.exports = mergeSort;
