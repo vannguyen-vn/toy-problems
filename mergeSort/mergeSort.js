@@ -98,5 +98,18 @@
 
 
 var mergeSort = function(array) {
-  // Your code here.
+  //solve this with recursion
+  //I: array
+  //O: a sorted array
+
+  //need to have a base case that tells us when to stop
+  //should concat the array
+
+  //have an inner helper function
+  //split the array
+  //for loop to help swap the elemends and sort the array
+  //call the helper function
+  //else return the sorted array
+
+  //return the sorted Array
 };
