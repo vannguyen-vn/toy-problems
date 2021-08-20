@@ -98,32 +98,19 @@
 
 
 var mergeSort = function(array) {
-  var firstSort = [];
+  // if array is even
+    // split here
+  // else
+    // split here
+  // put both arrays into another array
 
-  for (var i = 0; i < array.length; i++) {
-    firstSort.push([array[i]]);
-  }
+  // inner function
+  // if array has length 1
+    // return array
+  //iterate over array
+    // iterate over each of its arrays
+      // compare each number
+  // call inner function
 
-  var sorted = [];
-
-  var merge = function (newArray) {
-    if (newArray.length === 1) {
-      return rray;
-    }
-
-    for (var j = 0; j < newArray.length; j++) {
-      if (newArray[j+1] === undefined) {
-        continue;
-      }
-      var concatted = array[j].concat(array[j+1]);
-      for (var k = 0; k < concatted.length; k++) {
-
-      }
-      merge(concatted);
-    }
-  }
-
-  merge(firstSort);
-
-  return sorted;
+  // return sorted array
 };
