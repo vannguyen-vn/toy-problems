@@ -12,17 +12,22 @@
 
 
 var quicksort = function(array) {
-  let pivot = array[array.length - 1];
+  let pivot = array[0];
   let smallArray = [];
   let bigArray = [];
 
-  if (array.length === 0) return [];
-  if (array.length === 1) return array;
+  // if (array.length === 0) return [];
+  if (array.length < 2) return array;
 
   for (let i = 1; i < array.length; i++) {
     if (array[i] < pivot) smallArray.push(array[i]);
     else bigArray.push(array[i]);
   }
 
-  return [quicksort(smallArray), pivot, quicksort(bigArray)].flat();
+  return [...quicksort(smallArray), pivot, ...quicksort(bigArray)].flat();
 };
+
+var myArray = [1, 5, 8, 5, 3, 6];
+var sortedArray = quicksort(myArray);
+console.log('Array: ', myArray);
+console.log('Sorted array: ', sortedArray);
