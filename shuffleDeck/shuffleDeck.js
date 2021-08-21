@@ -33,6 +33,23 @@
 
 var shuffleDeck = function(deck) {
   // Your code here
+  //deck === an array;
+  //I: array of cards
+  //shuffled cards
+  //let i be a the lendth and subtract from the value
+  //pick a random card in a random position in the array and swap
+  //
+  // for (let i = 0; i < deck.length; i++) {
+
+  // }
+  //while length (i) of deck is > 0
+  //use reference variables here
+  for (let i = deck.length; i > 0; i--) {
+    let rIndex = Math.floor(Math.random() * (i + 1));
+    let temp = deck[i];
+    deck[i] = deck[rIndex];
+    deck[rIndex] = temp;
+  }
 };
 
 // Ordered deck generator provided for your testing convenience
