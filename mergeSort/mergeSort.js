@@ -96,32 +96,15 @@
  */
 
 var mergeSort = function(array) {
-  var res = [];
-  for (var i = 0; i < array.length; i++) {
-    res.push([array[i]]);
+  if (array.length <= 1) {
+    return array;
   }
-  return sort(res);
+  var mid = Math.floor(array.length / 2);
+  var left = mergeSort(array.slice(0, mid));
+  var right = mergeSort(array.slice(mid));
+  return merge(left, right);
 };
 
-var sort = function(array) {
-  var resArray = [];
-  if (array.length === 1) {
-    return array[0];
-  }
-  for (var i = 0; i < array.length; i+=2) {
-    if (i === array.length - 1 && array.length % 2 === 1) {
-      resArray.push(array[array.length - 1]);
-      return sort(resArray);
-    } else if (i === array.length - 1 && array.length % 2 === 0) {
-      return sort(resArray);
-    }
-    resArray.push(merge(array[i], array[i + 1]));
-  }
-
-  if (resArray.length === 1) {
-    return resArray[0];
-  }
-}
 
 var merge = function(arr1, arr2) {
   var result = [];
