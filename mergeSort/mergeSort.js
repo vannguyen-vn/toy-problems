@@ -98,5 +98,5 @@
 
 
 var mergeSort = function(array) {
-  // Your code here.
+  if (array.length > 1) {
 };
