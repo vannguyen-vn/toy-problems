@@ -31,8 +31,20 @@
  *   See https://www.dartmouth.edu/~chance/teaching_aids/books_articles/Mann.pdf .
  */
 
-var shuffleDeck = function(deck) {
-  // Your code here
+ var shuffleDeck = function(deck) {
+  // This is O(n) because it always performs n (deck.length) operations...
+  // This is constant space because it swaps cards in place...
+  // This type of shuffle remains unbiased because it hinges on one "agnostic" factor,
+  // which has nothing to do with altering the content of the deck: the number of cards.
+
+  for (var i = 0; i < deck.length; i++) {
+    var randomIndex = Math.floor(Math.random() * deck.length);
+    var temp = deck[i];
+    deck[i] = deck[randomIndex];
+    deck[randomIndex] = temp;
+  }
+
+  return deck;
 };
 
 // Ordered deck generator provided for your testing convenience
