@@ -35,12 +35,13 @@ var shuffleDeck = function(deck) {
   // Your code here
   // find a random index using Math.floor(Math.random * deck.length)
   // use that random index to remove one (using .splice?) and push it into the other
+  var workingDeck = deck.slice(0, deck.length);
   var shuffled = [];
   var index;
-  while (deck.length > 0) {
-    index = Math.floor(Math.random * deck.length);
+  while (workingDeck.length > 0) {
+    index = Math.floor(Math.random() * workingDeck.length);
     shuffled.push(deck[index]);
-    deck.splice(index, 1);
+    workingDeck.splice(index, 1);
   }
 
   return shuffled;
