@@ -31,8 +31,23 @@
  *   See https://www.dartmouth.edu/~chance/teaching_aids/books_articles/Mann.pdf .
  */
 
-var shuffleDeck = function(deck) {
-  // Your code here
+// I learned that the regular Math.random is not truly random. I had created a algorithm at first that created an array literal
+// and pushed an element from the deck at index Math.random. This is biased because once I push a card into that array, it stays in
+// place and can't be rearranged again. This new method, called the fisher-yates or knuth shuffle allows a card to be randomly rearranged
+// a random number of times leading to a more distributed random outcome.
+
+
+ var shuffleDeck = function(deck) {
+
+  for (var i = 0; i < deck.length - 1; i++) {
+    var random = Math.floor(Math.random() * deck.length)
+    var tempIndex = deck[random];
+    deck[random] = deck[i];
+    deck[i] = tempIndex
+  }
+
+  return deck;
+
 };
 
 // Ordered deck generator provided for your testing convenience
