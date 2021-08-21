@@ -32,7 +32,16 @@
  */
 
 var shuffleDeck = function(deck) {
-  // Your code here
+  for (var i = 0; i < deck.length; i++){
+    var randInd = Math.floor(Math.random() * (52 - i));
+    if (randInd !== 51 - i) {
+      var randIndVal = deck[randInd];
+      deck[randInd] = deck[51 - i];
+      deck[51 - i] = randIndVal;
+    }
+  }
+
+  return deck;
 };
 
 // Ordered deck generator provided for your testing convenience
