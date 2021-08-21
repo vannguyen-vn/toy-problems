@@ -32,18 +32,22 @@
  */
 
 var shuffleDeck = function(deck) {
-  // Your code here
-  while (deck.length >= 0) {
-    var n = deck.length;
-    var result = [];
-    // select random nth item from unstrucked item
-    var get = getRandomInt(n);
-    // push to end of result
-    var struck = deck[get];
-    result.push(struck);
-    deck.splice(get, 1);
+  var currentIndex = array.length;
+  var randomIndex;
+
+  // While there remain elements to shuffle...
+  while (currentIndex !== 0) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
   }
-  return result;
+
+  return array;
 };
 
 var getRandomInt = function(max) {
