@@ -97,6 +97,34 @@
 
 
 
-var mergeSort = function(array) {
-  // Your code here.
+ var mergeSort = function(array) {
+
+  // floor(5/2) = 2: [0,1],[2,3,4]
+  // floor(4/2) = 2: [0,1],[2,3]
+  if (array.length === 1) { return array; }
+
+  var mergeStep = function(leftArr, rightArr) {
+    var result = [];
+    while (leftArr.length > 0 || rightArr.length > 0) {
+      if (leftArr.length === 0) {
+          result = result.concat(rightArr);
+          break;
+        } else if (rightArr.length === 0) {
+          result = result.concat(leftArr);
+          break;
+        } else {
+          if (leftArr[0] <= rightArr[0]) {
+            var temp = leftArr.shift();
+            result.push(temp);
+          } else {
+            var temp = rightArr.shift();
+            result.push(temp);
+          }
+        }
+      }
+      return result;
+    }
+
+    var midPoint = Math.floor(array.length/2);
+    return mergeStep(mergeSort(array.slice(0, midPoint)), mergeSort(array.slice(midPoint)));
 };
