@@ -33,6 +33,14 @@
 
 var shuffleDeck = function(deck) {
   // Your code here
+  var copy = deck.slice();
+  var result = [];
+
+  for (var i = 0; i < deck.length; i++) {
+    result.push(copy.splice(Math.floor(Math.random() * copy.length), 1)[0])
+  }
+
+  return result;
 };
 
 // Ordered deck generator provided for your testing convenience
