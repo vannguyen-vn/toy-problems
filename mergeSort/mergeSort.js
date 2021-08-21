@@ -95,8 +95,56 @@
  *
  */
 
-
-
 var mergeSort = function(array) {
-  // Your code here.
+  var res = [];
+  for (var i = 0; i < array.length; i++) {
+    res.push([array[i]]);
+  }
+  return sort(res);
 };
+
+var sort = function(array) {
+  var resArray = [];
+
+  for (var i = 0; i < array.length; i+=2) {
+    if (i === array.length - 1 && array.length % 2 === 1) {
+      resArray.push(array[array.length - 1]);
+      return sort(resArray);
+    } else if (i === array.length - 1 && array.length % 2 === 0) {
+      return sort(resArray);
+    }
+    resArray.push(merge(array[i], array[i + 1]));
+  }
+
+  if (resArray.length === 1) {
+    return resArray[0];
+  }
+}
+
+var merge = function(arr1, arr2) {
+  var result = [];
+  var i = 0;
+  var j = 0;
+  while(i <= arr1.length || j <= arr2.length) {
+    if (i === arr1.length && j !== arr2.length) {
+      return result.concat(arr2.slice(j));
+    }
+
+    if (i !== arr1.length && j === arr2.length) {
+      return result.concat(arr1.slice(i));
+    }
+
+    if (arr1[i] < arr2[j]) {
+      result.push(arr1[i]);
+      i++;
+    } else if (arr1[i] === arr2[j]){
+      result.push(arr1[i], arr2[j]);
+      i++;
+      j++;
+    } else {
+      result.push(arr2[j]);
+      j++;
+    }
+  }
+  return result;
+}
