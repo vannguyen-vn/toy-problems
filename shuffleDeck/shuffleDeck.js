@@ -33,6 +33,22 @@
 
 var shuffleDeck = function(deck) {
   // Your code here
+  var shuffled = deck.slice();
+  var randomIndex;
+  var temp;
+  // roll random index for currently entire deck length
+  // if the random index is the currently first card, keep it in place
+  // switch this random card with the currently first card
+  // repeat for entire deck length - 1, and swap accordingly
+  // we achieve "entire deck length - 1" by using shuffled.length - i, not -1
+  // repeat until no card is left in deck
+  for (var i = 0; i < deck.length; i++) {
+    randomIndex = Math.floor(Math.random() * (shuffled.length - i));
+    temp = shuffled[i];
+    shuffled[i] = shuffled[randomIndex];
+    shuffled[randomIndex] = temp;
+  }
+  return shuffled;
 };
 
 // Ordered deck generator provided for your testing convenience
