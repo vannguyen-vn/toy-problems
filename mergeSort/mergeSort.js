@@ -101,42 +101,32 @@ var mergeSort = function(array) {
   // Your code here.
   var left;
   var right;
-  var copy = array.slice();
-  var sorted;
 
-  // if array has an even num of items, slice it from (array.length / 2)
-  if (array.length % 2 === 0) {
-    left = copy.slice(0, copy.length / 2);
-    right = copy.slice(copy.length / 2);
-  } else {
-    // if array has an odd num of items, slice it at Math.floor(array.length / 2)
-    left = copy.slice(0, Math.floor(copy.length / 2));
-    right = copy.slice(Math.floor(copy.length / 2));
-  }
+  // if array has an odd num of items, slice it at Math.floor(array.length / 2)
+  left = array.slice(0, Math.floor(array.length / 2));
+  right = array.slice(Math.floor(array.length / 2));
 
   // Base case: an array of 1 item
-  if (left.length === 1) {
-    // next step: check the item in base case against the companion from which it was separated
-    if (right.length === 1) {
-      if (left[0] < right[0]) {
-        return sorted = [left[0], right[0]];
-      } else {
-        return sorted = [right[0], left[0]];
-      }
-    } else {
-      if (left[0] < mergeSort(right)[0]) {
-        return sorted = [left[0], mergeSort(right)];
-      } else if (left[0] > mergeSort(right)[0] && left[0] < mergeSort(right)[1]) {
-        return sorted = [mergeSort(right)[0], left[0], mergeSort(right)[1]];
-      } else {
-        return sorted = [mergeSort(right), left[0]];
-      }
+  if (array.length <= 1) {
+    return array;
+  }
+
+  var mergeArrays = (left, right) => {
+    let merged = [];
+
+    while (left.length && right.length) {
+      merged.push(left[0] < right[0] ? left.shift() : right.shift());
     }
+    while (left.length) {
+      merged.push(left.shift());
+    }
+    while (right.length) {
+      merged.push(right.shift());
+    }
+
+    return merged;
   }
 
   // Recursively call mergeSort on the sliced array
-  mergeSort(left);
-  mergeSort(right);
-
-  return sorted;
+  return mergeArrays(mergeSort(left), mergeSort(right));
 };
