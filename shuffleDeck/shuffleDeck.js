@@ -42,31 +42,24 @@ Pseudocode
   - exchange array[i] and array[j]
  */
 
-  var shuffleDeck = function(deck) {
-    console.log(deck);
-    var size = deck.length;
-    for (var i = size - 1; i > 0 ;  i--) {
-      var j = Math.floor(Math.random()* size);
-        [deck[i],deck[j]] = [deck[j],deck[i]];
-    }
-      console.log(deck);
-
-    return deck;
-  };
-
-  var deck = orderedDeck();
-   shuffleDeck(deck);
-
+var shuffleDeck = function (deck) {
+  var size = deck.length;
+  for (var i = size - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * size);
+    [deck[i], deck[j]] = [deck[j], deck[i]];
+  }
+  return deck;
+};
 
 // Ordered deck generator provided for your testing convenience
 // (You may alter this function, but an unaltered copy will be used for tests.)
-var orderedDeck = function() {
-  var suits = [ '♥', '♣', '♠', '♦' ];
-  var values = [ 'A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K' ];
+var orderedDeck = function () {
+  var suits = ['♥', '♣', '♠', '♦'];
+  var values = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
   var deck = [];
 
-  suits.forEach(function(suit) {
-    values.forEach(function(value) {
+  suits.forEach(function (suit) {
+    values.forEach(function (value) {
       deck.push(value + suit);
     });
   });
