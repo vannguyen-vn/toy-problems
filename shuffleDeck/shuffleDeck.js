@@ -32,7 +32,22 @@
  */
 
 var shuffleDeck = function(deck) {
-  // Your code here
+  //completely random --- 52 cards in a deck, pick a random index and swap the cards
+  //but if the card has already been swapped, don't swap the card!
+  var alreadySwapped = {};
+  for (var i = 0; i < deck.length; i++) {
+    var randomIndex = Math.floor(Math.random()*52);
+    var currentCard = deck[i];
+    var randomCard = deck[randomIndex];
+    if (!alreadySwapped[currentCard] && !alreadySwapped[randomCard]) {
+      deck[i] = deck[randomIndex];
+      deck[randomIndex] = currentCard;
+      alreadySwapped[currentCard] = true;
+      alreadySwapped[randomCard] = true;
+    }
+  }
+  return deck;
+
 };
 
 // Ordered deck generator provided for your testing convenience
