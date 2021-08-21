@@ -101,7 +101,7 @@
 
   // floor(5/2) = 2: [0,1],[2,3,4]
   // floor(4/2) = 2: [0,1],[2,3]
-  if (array.length === 1) { return array; }
+  if (array.length <= 1) { return array; }
 
   var mergeStep = function(leftArr, rightArr) {
     var result = [];
@@ -136,5 +136,5 @@
         break;
       }
     }
-    return mergeStep(mergeSort(array.slice(0, splitPosition)), mergeSort(array.slice(splitPosition)));
+    return mergeStep(array.slice(0, splitPosition), mergeSort(array.slice(splitPosition)));
 };
