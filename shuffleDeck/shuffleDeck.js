@@ -31,8 +31,40 @@
  *   See https://www.dartmouth.edu/~chance/teaching_aids/books_articles/Mann.pdf .
  */
 
-var shuffleDeck = function(deck) {
+ var shuffleDeck = function(deck) {
   // Your code here
+// create result array
+
+// create inner function takes in two params, array and array lengths
+// if the array length is 0,
+//   return
+// run math.random between the numbers 0 and 51 (look this up how to do it)
+// use the number from math.random and splice the deck at that index.
+// push that spliced element into the result array
+// us recursion with the new array and well as the new length
+
+// return result array
+
+var result = [];
+var resultArray = []
+var deckSize = deck.length;
+var shuffler = function(deck, deckSize) {
+  debugger;
+  if(deck.length === 0) {
+    return;
+  }
+  var randomIndex = Math.floor(Math.random() * deckSize);
+  var card = deck.splice(randomIndex, 1);
+  result.push(card);
+  shuffler(deck, deckSize - 1)
+}
+
+shuffler(deck, deckSize)
+
+result = result.join(', ');
+console.log(typeof result)
+resultArray.push(result);
+return resultArray
 };
 
 // Ordered deck generator provided for your testing convenience
@@ -50,3 +82,7 @@ var orderedDeck = function() {
 
   return deck;
 };
+
+var deck = orderedDeck()
+
+console.log(shuffleDeck(deck))
