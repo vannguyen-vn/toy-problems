@@ -32,7 +32,19 @@
  */
 
 var shuffleDeck = function(deck) {
-  // Your code here
+  // Create a result array
+  var shuffled = [];
+  // Iterate over deck
+  for (var i = 0; i < deck.length; i++) {
+    // For each card assign a random index
+    var randomAssign = Math.floor(Math.random()* deck.length);
+    // Set card index equal to new array index
+    deck[i] = deck[randomAssign];
+    // Push into result array
+    shuffled.push(deck[i]);
+  }
+  // Return result array
+  return shuffled;
 };
 
 // Ordered deck generator provided for your testing convenience
