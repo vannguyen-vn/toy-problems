@@ -32,17 +32,27 @@
  */
 
 var shuffleDeck = function(deck) {
+  var n = deck.length;
   for (var i = 0; i < deck.length; i++){
-    var randInd = Math.floor(Math.random() * (52 - i));
-    if (randInd !== 51 - i) {
+    var randInd = Math.floor(Math.random() * (n - i));
+    if (randInd !== (n - (i + 1)) {
       var randIndVal = deck[randInd];
-      deck[randInd] = deck[51 - i];
-      deck[51 - i] = randIndVal;
+      deck[randInd] = deck[n - (i + 1);
+      deck[n - (i + 1)] = randIndVal;
     }
   }
 
   return deck;
 };
+/*
+Extra credit:
+ *   - Even a naive algorithm can easily run in linear time. However, does your
+ *     algorithm remain unbiased as N (the deck size) increases? How do you know?
+     => Answer: for each position in the deck, each & every card in the remaining cards has equal chance to be placed in that position as the card is randomly picked using Math.random()
+ *   - Once you have created a properly random, linear algorithm, what is its space complexity?
+     => Answer: O(1) as this is an in-place shuffle
+ *     There is an algorithm that uses O(N) time and O(1) space (i.e., an in-place shuffle).
+*/
 
 // Ordered deck generator provided for your testing convenience
 // (You may alter this function, but an unaltered copy will be used for tests.)
