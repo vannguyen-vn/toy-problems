@@ -32,7 +32,42 @@
  */
 
 var shuffleDeck = function(deck) {
-  // Your code here
+  //make a copy of the original list to avoid mutating the data
+  var deckCopy = deck.slice();
+
+  //create an empty return array to receive the cards
+  var shuffledDeck = [];
+
+  //create an inner helper function
+  var innerShuffleFunction = function(deck) {
+
+    //if there are no numbers in the input array
+      //return
+    if (deckCopy.length === 0) {
+      return
+    } else {
+      var highestIndex = deckCopy.length;
+    }
+
+    //call a random number between 1 and the length of the deck (n-1)
+    var randomIndex = Math.random() * highestIndex
+
+    //set a variable equal to splicing the array and the random index
+    var randomCard = deckCopy.splice(randomIndex, 1)
+
+    //push the variable into the the empty return array
+    shuffledDeck.push(randomCard)
+
+    //call the helper function on the same copiedDeck
+    return innerShuffleFunction(deckCopy)
+
+  //close the inner function
+  }
+
+  innerShuffleFunction(deckCopy);
+
+  //return the return array
+  return shuffledDeck;
 };
 
 // Ordered deck generator provided for your testing convenience
@@ -50,6 +85,13 @@ var orderedDeck = function() {
 
   return deck;
 };
+
+var deck = orderedDeck();
+var shuffled1 = shuffleDeck(deck);
+var shuffled2 = shuffleDeck(deck);
+var shuffled3 = shuffleDeck(deck);
+
+console.log(shuffled1, shuffled2, shuffled3)
 
 
 /*
