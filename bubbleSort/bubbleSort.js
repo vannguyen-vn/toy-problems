@@ -33,7 +33,7 @@
 // Feel free to add helper functions if needed.
 
 var compareDefault = function(a, b) {
-  return a.value > b.value;
+  return a > b;
 }
 
 var bubbleSort = function(array, comparator = compareDefault) {
