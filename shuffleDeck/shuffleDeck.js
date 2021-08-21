@@ -38,7 +38,7 @@ var shuffleDeck = function (deck) {
     var random = Math.floor(Math.random() * (i + 1));
     var temp = deck[i];
     deck[i] = deck[random];
-    deck[random] = deck[i];
+    deck[random] = temp;
   }
   return deck;
 };
