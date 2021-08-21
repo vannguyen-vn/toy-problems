@@ -27,9 +27,11 @@
     }
   })
   if (big.length > 1) {
-    big = quicksort(big);
+    quicksort(big);
   } else if (small.length > 1) {
-    small = quicksort(small);
+    quicksort(small);
   }
   return small.concat(mid).concat(big);
 };
+
+console.log(quicksort([4, 1, 5, 7 , 3, 1, 3, 8]))
