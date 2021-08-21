@@ -31,7 +31,7 @@
  *   See https://www.dartmouth.edu/~chance/teaching_aids/books_articles/Mann.pdf .
  */
 
-var shuffleDeck = function(deck) {
+var shuffleDeck = function(array) {
   var currentIndex = array.length;
   var randomIndex;
 
