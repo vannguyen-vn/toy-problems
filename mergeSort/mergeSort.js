@@ -125,6 +125,16 @@
       return result;
     }
 
-    var midPoint = Math.floor(array.length/2);
-    return mergeStep(mergeSort(array.slice(0, midPoint)), mergeSort(array.slice(midPoint)));
+    //var midPoint = Math.floor(array.length/2);
+
+    var n = array[0];
+    for (var i = 0; i < array.length; i++) {
+      var splitPosition = i;
+      if (array[i] >= n) {
+        n = array[i];
+      } else {
+        break;
+      }
+    }
+    return mergeStep(mergeSort(array.slice(0, splitPosition)), mergeSort(array.slice(splitPosition)));
 };
