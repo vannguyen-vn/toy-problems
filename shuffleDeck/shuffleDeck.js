@@ -31,8 +31,17 @@
  *   See https://www.dartmouth.edu/~chance/teaching_aids/books_articles/Mann.pdf .
  */
 
-var shuffleDeck = function(deck) {
-  // Your code here
+ var shuffleDeck = function(deck) {
+  // Iterate over the entire array
+  for (var i = 0; i < deck.length; i++) {
+    // select random index position in array
+    var rand = Math.floor(Math.random() * deck.length);
+    // swap deck[i] with deck[random]
+    var temp = deck[i];
+    deck[i] = deck[rand];
+    deck[rand] = temp;
+  }
+
 };
 
 // Ordered deck generator provided for your testing convenience
@@ -50,3 +59,9 @@ var orderedDeck = function() {
 
   return deck;
 };
+
+// var deck1 = orderedDeck();
+// console.log(deck1);
+
+// var shuffledDeck = shuffleDeck(deck1);
+// console.log(deck1);
