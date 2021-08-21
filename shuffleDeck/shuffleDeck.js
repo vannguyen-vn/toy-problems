@@ -37,8 +37,12 @@
   // This type of shuffle remains unbiased because it hinges on one "agnostic" factor,
   // which has nothing to do with altering the content of the deck: the number of cards.
 
+  // EDIT: I was proven wrong above. The method I chose produced N^N total combinations,
+  // when a true shuffle should have a total of N! combinations of cards. The edited method
+  // below should supply true random uniformity.
+
   for (var i = 0; i < deck.length; i++) {
-    var randomIndex = Math.floor(Math.random() * deck.length);
+    var randomIndex = Math.floor(Math.random() * (deck.length - i) + i);
     var temp = deck[i];
     deck[i] = deck[randomIndex];
     deck[randomIndex] = temp;
