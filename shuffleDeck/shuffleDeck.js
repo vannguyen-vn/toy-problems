@@ -31,9 +31,32 @@
  *   See https://www.dartmouth.edu/~chance/teaching_aids/books_articles/Mann.pdf .
  */
 
-var shuffleDeck = function(deck) {
-  // Your code here
-};
+/*
+Input: arrray (a deck of cards)
+Output: randommize a given array(shuffles the deck)
+
+
+Pseudocode
+- Go though the array: for i from n - 1 downto 1 do
+  - j: random number with  0 <=j <= i
+  - exchange array[i] and array[j]
+ */
+
+  var shuffleDeck = function(deck) {
+    console.log(deck);
+    var size = deck.length;
+    for (var i = size - 1; i > 0 ;  i--) {
+      var j = Math.floor(Math.random()* size);
+        [deck[i],deck[j]] = [deck[j],deck[i]];
+    }
+      console.log(deck);
+
+    return deck;
+  };
+
+  var deck = orderedDeck();
+   shuffleDeck(deck);
+
 
 // Ordered deck generator provided for your testing convenience
 // (You may alter this function, but an unaltered copy will be used for tests.)
