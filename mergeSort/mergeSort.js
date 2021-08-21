@@ -105,7 +105,9 @@ var mergeSort = function(array) {
 
 var sort = function(array) {
   var resArray = [];
-
+  if (array.length === 1) {
+    return array[0];
+  }
   for (var i = 0; i < array.length; i+=2) {
     if (i === array.length - 1 && array.length % 2 === 1) {
       resArray.push(array[array.length - 1]);
