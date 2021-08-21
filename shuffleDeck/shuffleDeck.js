@@ -9,7 +9,7 @@ var shuffleDeck = function(deck) {
     deck[randomIndex] = currentCard;
   }
 
-return result;
+return deck;
 };
 
 // Ordered deck generator provided for your testing convenience
