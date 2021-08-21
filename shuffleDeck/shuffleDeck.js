@@ -40,11 +40,14 @@ var shuffleDeck = function(deck) {
   // repeat
 
   for (var i = 0; i < deck.length; i++) {
-    var index = Math.floor(Math.random() * (0 + deck.length - 1));
-    if (index !== i) {
-      var temp = deck[i];
-      deck[i] = deck[index];
-      deck[index] = temp;
+    var index1 = Math.floor(Math.random() * (0 + deck.length - 1));
+    var index2 = Math.floor(Math.random() * (0 + deck.length - 1));
+    if (index1 !== index2) {
+      var temp = deck[index2];
+      deck[index2] = deck[index1];
+      deck[index1] = temp;
+    } else {
+      continue;
     }
   }
 
@@ -69,3 +72,8 @@ var orderedDeck = function() {
 
   return deck;
 };
+
+var deck = orderedDeck();
+var shuffled = shuffleDeck(deck);
+
+console.log('The two arrays: ', deck, shuffled);
