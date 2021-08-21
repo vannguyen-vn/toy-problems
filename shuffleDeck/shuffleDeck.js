@@ -31,19 +31,35 @@
  *   See https://www.dartmouth.edu/~chance/teaching_aids/books_articles/Mann.pdf .
  */
 
-var shuffleDeck = function(deck) {
+// ordered deck returns
+var resultOfOrderedDeck = [
+  'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥',
+  '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥', 'A♣',
+  '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣',
+  '9♣', '10♣', 'J♣', 'Q♣', 'K♣', 'A♠', '2♠',
+  '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠',
+  '10♠', 'J♠', 'Q♠', 'K♠', 'A♦', '2♦', '3♦',
+  '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦',
+  'J♦', 'Q♦', 'K♦'
+]
+var shuffleDeck = function (deck) {
   // Your code here
+  // re arrange the cards..
+  // iterate over the deck,
+  // assign temp to a random card determined by random num 1-52
+  // swap with current card
+  // return the deck
 };
 
 // Ordered deck generator provided for your testing convenience
 // (You may alter this function, but an unaltered copy will be used for tests.)
-var orderedDeck = function() {
-  var suits = [ '♥', '♣', '♠', '♦' ];
-  var values = [ 'A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K' ];
+var orderedDeck = function () {
+  var suits = ['♥', '♣', '♠', '♦'];
+  var values = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
   var deck = [];
 
-  suits.forEach(function(suit) {
-    values.forEach(function(value) {
+  suits.forEach(function (suit) {
+    values.forEach(function (value) {
       deck.push(value + suit);
     });
   });
