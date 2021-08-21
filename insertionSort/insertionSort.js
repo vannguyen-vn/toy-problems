@@ -46,24 +46,33 @@ var testingTransform = function(array) {
 };
 
 var compareDefault = function(a, b) {
-  return a.value > b.value;
+  return a.value < b.value ? -1 : 0;
 }
 
 var insertionSort = function(array, comparator = compareDefault) {
-  var sortedArray = [array[array.length -1]];
-
-  for (let i = array.length - 2; i >= 0; i--) {
-    for (let j = 0; j < sortedArray.length; j++) {
-      var a = array[i];
-      var b = sortedArray[j];
-      if (!comparator(a, b)) {
-        sortedArray.splice(j, 0, a);
+  for (let i = 1; i < array.length; i++) {
+    var a = array[i];
+    for (let j = i - 1; j > -1; j--) {
+      var b = array[j];
+      if (comparator(a, b) < 0) {
+        array[j] = a;
+        array[j + 1] = b;
+      } else {
         break;
-      } else if ( j === sortedArray.length - 1) {
-        sortedArray.push(a);
-        break
       }
     }
   }
-  return sortedArray;
+  return array;
 };
+
+
+var testC = [1, 100, 2, 43, 21];
+var test = [2, 1, 3];
+var test2 = [6, 5, 7, 3, 4, 5, 7, 3, 6, 8];
+var test3 = [0, 1, 'a', ';', [], {}, undefined, null];
+var compareTest =  function (a, b) {
+      var aIsOdd = a.i & 1;
+      var bIsOdd = b.i & 1;
+      return aIsOdd - bIsOdd;
+};
+

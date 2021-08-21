@@ -11,5 +11,30 @@
  */
 
 
-var quicksort = function(array) {
+ var quicksort = function(array) {
+
+  var pivot = [array[0]];
+  var larger = [];
+  var smaller = [];
+
+  for (var i = 1; i < array.length; i++) {
+    if (array[i] === pivot[0]) {
+      pivot.push(array[i]);
+    } else if (array[i] > pivot[0]) {
+      larger.push(array[i])
+    } else {
+      smaller.push(array[i]);
+    }
+  }
+
+  var resultL = [];
+  var resultS = [];
+  if (larger.length > 0) {
+    resultL = quicksort(larger);
+  }
+  if (smaller.length > 0) {
+    resultS = quicksort(smaller);
+  }
+
+  return resultS.concat(pivot).concat(resultL);
 };
