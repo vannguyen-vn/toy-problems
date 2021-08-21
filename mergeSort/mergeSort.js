@@ -98,7 +98,6 @@
 
 
 var mergeSort = function (array) {
-  debugger;
   var result = []
   if (array) {
     if (array.length === 1 || array.length === 0) {
@@ -123,5 +122,5 @@ var mergeSort = function (array) {
   }
 };
 
-// var myArr = mergeSort([7, 6, 8, 4, 10, -5, 6, 0, 3, 2, 23, 1]);
+// var myArr = mergeSort([7, 6, 8, 4, 10, -5, 6, 0, 3, 2, 23, 1, 27]);
 // console.log(myArr);
