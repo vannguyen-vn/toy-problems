@@ -50,3 +50,35 @@ var orderedDeck = function() {
 
   return deck;
 };
+
+
+/*
+
+I: array with deck values as elements
+O: shuffled array with random placement
+C: Order matters, must be truly random, only shuffles one deck, does not mutate the data.
+E: no input
+
+Process
+
+//make a copy of the original list to avoid mutating the data
+
+//create an empty return array to receive the cards
+
+//create an inner helper function
+
+  //if there are no numbers in the input array
+    //return
+
+  //call a random number between 1 and the length of the deck (n-1)
+
+  //set a variable equal to splicing the array and the random index
+
+  //push the variable into the the empty return array
+
+//close the inner function
+
+//return the return array
+
+
+*/
