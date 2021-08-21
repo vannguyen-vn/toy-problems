@@ -33,6 +33,17 @@
 
 var shuffleDeck = function(deck) {
   // Your code here
+  // find a random index using Math.floor(Math.random * deck.length)
+  // use that random index to remove one (using .splice?) and push it into the other
+  var shuffled = [];
+  var index;
+  while (deck.length > 0) {
+    index = Math.floor(Math.random * deck.length);
+    shuffled.push(deck[index]);
+    deck.splice(index, 1);
+  }
+
+  return shuffled;
 };
 
 // Ordered deck generator provided for your testing convenience
