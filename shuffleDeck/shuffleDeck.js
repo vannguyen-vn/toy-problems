@@ -35,9 +35,9 @@ var shuffleDeck = function(deck) {
   var n = deck.length;
   for (var i = 0; i < deck.length; i++){
     var randInd = Math.floor(Math.random() * (n - i));
-    if (randInd !== (n - (i + 1)) {
+    if (randInd !== (n - (i + 1))) {
       var randIndVal = deck[randInd];
-      deck[randInd] = deck[n - (i + 1);
+      deck[randInd] = deck[n - (i + 1)];
       deck[n - (i + 1)] = randIndVal;
     }
   }
