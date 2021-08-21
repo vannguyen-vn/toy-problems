@@ -33,6 +33,25 @@
 
 var shuffleDeck = function(deck) {
   // Your code here
+  console.log(deck.length);
+  // create new deck array
+  const newDeck = [];
+  // while deck.length > 0
+  while (deck.length > 0) {
+    // if deck.length = 1
+    if (deck.length === 1) {
+      // splice value at 0 and push it to new deck array
+      newDeck.push(deck[0]);
+      break;
+    }
+    // generate random value of deck
+    const randomIndex = Math.floor(Math.random() * deck.length);
+    // splice value at that index and push it to new deck array
+    const shuffledElement = deck.splice(randomIndex, 1);
+    newDeck.push(shuffledElement.join(''));
+    //
+  }
+    return newDeck;
 };
 
 // Ordered deck generator provided for your testing convenience
@@ -50,3 +69,5 @@ var orderedDeck = function() {
 
   return deck;
 };
+
+console.log(shuffleDeck(orderedDeck()));
