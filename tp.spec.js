@@ -1,11 +1,13 @@
 const add = require("./exampleModule").add;
 const multiply = require("./exampleModule").multiply;
+const shuffleDeck = require('./shuffleDeck/shuffleDeck.js').shuffleDeck;
+const orderedDeck = require('./shuffleDeck/shuffleDeck.js').orderedDeck;
 
-/* 
+/*
 A "describe" block can be used to group together multiple tests
 which check the same nodule or function.
  */
-describe.only("Example tests", function(){
+describe("Example tests", function(){
 
   // Individual tests can be run using the "it" or "test" methods, they are aliased and are equivalent
   it("Should add small numbers", function(){
@@ -15,7 +17,7 @@ describe.only("Example tests", function(){
     */
     expect(add(1,1)).toBe(2);
   });
-  
+
   // In addition to expected, "happy path", behaviour as above, you should also test your edge cases
   it("Should return Infinity for numbers of type Number which are very large", function(){
     expect(add(1.6E310, 1)).toBe(Infinity);
@@ -28,12 +30,15 @@ Notice the method "only" above. Because it is there, the describe block below wo
 You'll need to remove the "only" from the block above. You can use that method to only run tests
 on the toy problem you're currently working on. https://jestjs.io/docs/en/api#describeonlyname-fn
 */
-describe("Replace this with the name of toy problem", function(){
-  test("Replace this with the desired behaviour", function(){
-
-    // It's possible to have multiple expects in a single test like this. However, it is often unhelpful. 
+describe("shuffleDeck", function(){
+  test("should return a different deck of the same size", function(){
+    // It's possible to have multiple expects in a single test like this. However, it is often unhelpful.
     // Just write two tests referring to the "Example Suites" example above for reference.
-    expect(add(1,0)).toBe(0);
-    expect(multiply(1,1)).toBe(1);
+    var testDeck = orderedDeck();
+    var testShuffle = shuffleDeck(testDeck);
+    var original = orderedDeck();
+
+    expect(shuffleDeck([1,0]).length).toBe(2);
+    expect(testShuffle).not.toBe(testDeck);
   });
 });
