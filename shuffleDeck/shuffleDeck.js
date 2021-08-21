@@ -31,8 +31,22 @@
  *   See https://www.dartmouth.edu/~chance/teaching_aids/books_articles/Mann.pdf .
  */
 
+// input array of strings
+// output array of random strings
+// constraints N/A
+// edge cases already shuffled
 var shuffleDeck = function(deck) {
-  // Your code here
+ // loop through deck
+  for (var i = 0; i < deck.length; i++) {
+    // randomly select a spot to move the current card to
+    var randomNum = Math.floor(Math.random() * deck.length)
+    var currentCard = deck[i]
+    // move the current card to the new random spot
+    deck[i] = deck[randomNum]
+    // move the card from that location to where the current card just was
+    deck[randomNum] = currentCard
+  }
+  return deck
 };
 
 // Ordered deck generator provided for your testing convenience
@@ -50,3 +64,6 @@ var orderedDeck = function() {
 
   return deck;
 };
+
+var deck = orderedDeck()
+console.log(shuffleDeck(deck))
