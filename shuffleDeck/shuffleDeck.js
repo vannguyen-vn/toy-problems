@@ -31,36 +31,84 @@
  *   See https://www.dartmouth.edu/~chance/teaching_aids/books_articles/Mann.pdf .
  */
 
+//1. This method can't solve the biased algorithm.
+// var shuffleDeck = function(deck) {
+//   // change deck to an array that split each string.
+//   var singleChar = [];
+//   deck.forEach((subStr) => {
+//     singleChar = singleChar.concat(subStr.split(''));
+//   })
+
+//   //we rearrage the singleChar;
+//   var len = singleChar.length;
+//   var temp = [];
+//   for (var i = 0; i < len; i++) {
+//     var randomIndex = Math.floor(Math.random()* singleChar.length);
+//     temp.push(singleChar[randomIndex]);
+//     singleChar.splice(randomIndex, 1);
+//   }
+
+//   //now we get the random order of the singleChar;
+//   var mid = temp.length / 2;
+//   leftHalf = temp.slice(0, mid);
+//   rightHalf = temp.slice(mid, temp.length);
+//   var i = 0;
+//   var j = 0;
+//   var res = [];
+//   while (i < leftHalf.length && j < rightHalf.length) {
+//     var str = leftHalf[i] + rightHalf[j];
+//     res.push(str);
+//     i++;
+//     j++;
+//   }
+//   return res;
+// };
+
+//2. THIS method can't solve the number of 10.
+// var shuffleDeck = function(deck) {
+//   for (var j = 0; j < deck.length; j++) {
+//     var randomIndex = Math.floor(Math.random() * deck.length);
+//     console.log(randomIndex);
+//     var randomArr = deck[randomIndex].split('');
+//     console.log(randomArr);
+//     var currArr = deck[j].split('');
+//     var tempSuit0 = currArr[0];
+//     currArr[0] = randomArr[0];
+//     randomArr[0] = tempSuit0;
+//     deck[randomIndex] = randomArr.join("");
+//     deck[j]= currArr.join("");
+//   }
+//   return deck;
+// };
+
+//3.
 var shuffleDeck = function(deck) {
-  // change deck to an array that split each char.
-  var splitDeckArr = [];
-  deck.forEach((subStr) => {
-    splitDeckArr = splitDeckArr.concat(subStr.split(''));
-  })
-
-  //we rearrage the splitDeckArr;
-  var len = splitDeckArr.length;
-  var temp = [];
-  for (var i = 0; i < len; i++) {
-    var randomIndex = Math.floor(Math.random()* splitDeckArr.length);
-    temp.push(splitDeckArr[randomIndex]);
-    splitDeckArr.splice(randomIndex, 1);
+  for (var i = 0; i < deck.length; i++) {
+    if (deck[i].includes('10')) {
+      var i2 = deck[i][2];
+      deck[i] = 'I' + i2;
+      console.log(deck[i]);
+    }
   }
 
-  //now we get the random order of the splitDeckArr;
-  var mid = temp.length / 2;
-  leftHalf = temp.slice(0, mid);
-  rightHalf = temp.slice(mid, temp.length);
-  var i = 0;
-  var j = 0;
-  var res = [];
-  while (i < leftHalf.length && j < rightHalf.length) {
-    var str = leftHalf[i] + rightHalf[j];
-    res.push(str);
-    i++;
-    j++;
+  for (var j = 0; j < deck.length; j++) {
+    var randomIndex = Math.floor(Math.random() * deck.length);
+    var randomArr = deck[randomIndex].split('');
+    var currArr = deck[j].split('');
+    var tempSuit0 = currArr[0];
+    currArr[0] = randomArr[0];
+    randomArr[0] = tempSuit0;
+    deck[randomIndex] = randomArr.join("");
+    deck[j]= currArr.join("");
   }
-  return res;
+
+  for (var k = 0; k < deck.length; k++) {
+    if (deck[k].includes('I')) {
+      var k1 = deck[k][1];
+      deck[k] = '10' + k1;
+    }
+  }
+  return deck;
 };
 
 // Ordered deck generator provided for your testing convenience
@@ -78,3 +126,7 @@ var orderedDeck = function() {
 
   return deck;
 };
+
+var deck = orderedDeck();
+console.log(deck);
+console.log(shuffleDeck(deck));
