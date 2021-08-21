@@ -97,6 +97,31 @@
 
 
 
-var mergeSort = function(array) {
-  // Your code here.
+var mergeSort = function (array) {
+  debugger;
+  var result = []
+  if (array) {
+    if (array.length === 1 || array.length === 0) {
+      return array;
+    } else {
+      var midpoint = Math.floor(array.length / 2);
+      var sortedHalf = mergeSort(array.slice(0, midpoint));
+      var sortedOtherHalf = mergeSort(array.slice(midpoint, array.length));
+      while (result.length !== array.length) {
+        if (sortedHalf.length === 0 && sortedOtherHalf.length !== 0) {
+          result.push(...sortedOtherHalf);
+        } else if (sortedOtherHalf.length === 0 && sortedHalf.length !== 0) {
+          result.push(...sortedHalf);
+        } else if (sortedHalf[0] <= sortedOtherHalf[0]) {
+          result.push(...sortedHalf.splice(0, 1));
+        } else if (sortedOtherHalf[0] < sortedHalf[0]) {
+          result.push(...sortedOtherHalf.splice(0, 1));
+        }
+      }
+    }
+    return result;
+  }
 };
+
+// var myArr = mergeSort([7, 6, 8, 4, 10, -5, 6, 0, 3, 2, 23, 1]);
+// console.log(myArr);
