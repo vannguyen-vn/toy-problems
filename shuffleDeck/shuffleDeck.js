@@ -35,13 +35,13 @@ var shuffleDeck = function(deck) {
   // Create a result array
   var shuffled = [];
   // Iterate over deck
-  for (var i = 0; i < deck.length; i++) {
+  while (deck.length !== 0) {
     // For each card assign a random index
     var randomAssign = Math.floor(Math.random()* deck.length);
-    // Set card index equal to new array index
-    deck[i] = deck[randomAssign];
-    // Push into result array
-    shuffled.push(deck[i]);
+    // Set card index equal to new array index and push into result array
+    shuffled.push(deck[randomAssign]);
+    //Pop the random value from deck
+    deck.pop(randomAssign);
   }
   // Return result array
   return shuffled;
