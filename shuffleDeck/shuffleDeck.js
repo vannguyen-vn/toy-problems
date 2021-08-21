@@ -36,14 +36,15 @@ var shuffleDeck = function(deck) {
   var index = Math.floor(Math.random() * deck.length);
   var temp = deck[0];
 
-  for (var i = 0; i < deck.length; i++) {
-      index = Math.floor(Math.random() * deck.length);
+  for (var i = deck.length - 1; i > 0; i--) {
+      index = Math.floor(Math.random() * i);
       temp = deck[i];
       deck[i] = deck[index];
       deck[index] = temp;
   }
   return deck;
 };
+
 
 
 // Ordered deck generator provided for your testing convenience
