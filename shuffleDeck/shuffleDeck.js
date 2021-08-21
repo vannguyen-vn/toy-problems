@@ -31,7 +31,7 @@
  *   See https://www.dartmouth.edu/~chance/teaching_aids/books_articles/Mann.pdf .
  */
 
-var shuffleDeck = function(deck) {
+ var shuffleDeck = function(deck) {
   // Your code here
   var shuffled = deck.slice();
   var randomIndex;
@@ -43,10 +43,10 @@ var shuffleDeck = function(deck) {
   // we achieve "entire deck length - 1" by using shuffled.length - i, not -1
   // repeat until no card is left in deck
   for (var i = 0; i < deck.length; i++) {
-    randomIndex = Math.floor(Math.random() * (shuffled.length - i));
-    temp = shuffled[i];
-    shuffled[i] = shuffled[randomIndex];
-    shuffled[randomIndex] = temp;
+    randomIndex = Math.floor(Math.random() * (shuffled.length - 1));
+    temp = shuffled[randomIndex];
+    shuffled[randomIndex] = shuffled[i];
+    shuffled[i] = temp;
   }
   return shuffled;
 };
