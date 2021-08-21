@@ -32,7 +32,35 @@
  */
 
 var shuffleDeck = function(deck) {
-  // Your code here
+  // change deck to an array that split each char.
+  var splitDeckArr = [];
+  deck.forEach((subStr) => {
+    splitDeckArr = splitDeckArr.concat(subStr.split(''));
+  })
+
+  //we rearrage the splitDeckArr;
+  var len = splitDeckArr.length;
+  var temp = [];
+  for (var i = 0; i < len; i++) {
+    var randomIndex = Math.floor(Math.random()* splitDeckArr.length);
+    temp.push(splitDeckArr[randomIndex]);
+    splitDeckArr.splice(randomIndex, 1);
+  }
+
+  //now we get the random order of the splitDeckArr;
+  var mid = temp.length / 2;
+  leftHalf = temp.slice(0, mid);
+  rightHalf = temp.slice(mid, temp.length);
+  var i = 0;
+  var j = 0;
+  var res = [];
+  while (i < leftHalf.length && j < rightHalf.length) {
+    var str = leftHalf[i] + rightHalf[j];
+    res.push(str);
+    i++;
+    j++;
+  }
+  return res;
 };
 
 // Ordered deck generator provided for your testing convenience
