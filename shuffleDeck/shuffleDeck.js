@@ -31,23 +31,20 @@
  *   See https://www.dartmouth.edu/~chance/teaching_aids/books_articles/Mann.pdf .
  */
 
+
 var shuffleDeck = function(array) {
-  var currentIndex = array.length;
-  var randomIndex;
-
-  // While there remain elements to shuffle...
-  while (currentIndex !== 0) {
-
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
+  // Your code here
+  var result = [];
+  while (array.length > 0) {
+    var n = array.length;
+    // select random nth item from unstrucked item
+    var get = getRandomInt(n);
+    // push to end of result
+    var struck = array[get];
+    result.push(struck);
+    array.splice(get, 1);
   }
-
-  return array;
+  return result;
 };
 
 var getRandomInt = function(max) {
