@@ -32,24 +32,25 @@
  */
 
 // ordered deck returns
-// var resultOfOrderedDeck = [
-//   'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥',
-//   '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥', 'A♣',
-//   '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣',
-//   '9♣', '10♣', 'J♣', 'Q♣', 'K♣', 'A♠', '2♠',
-//   '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠',
-//   '10♠', 'J♠', 'Q♠', 'K♠', 'A♦', '2♦', '3♦',
-//   '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦',
-//   'J♦', 'Q♦', 'K♦'
-// ]
+var resultOfOrderedDeck = [
+  'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥',
+  '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥', 'A♣',
+  '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣',
+  '9♣', '10♣', 'J♣', 'Q♣', 'K♣', 'A♠', '2♠',
+  '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠',
+  '10♠', 'J♠', 'Q♠', 'K♠', 'A♦', '2♦', '3♦',
+  '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦',
+  'J♦', 'Q♦', 'K♦'
+]
 var shuffleDeck = function (deck) {
   // iterate over the deck,
   for (let i = 0; i < deck.length; i++) {
     let randoNumba = Math.floor(Math.random() * (deck.length - 1))
     temp = deck[i];
+    deck[i] = temp
     deck[randoNumba] = temp;
-    deck[i] = deck[randoNumba];
   }
+  console.log(deck)
   return deck;
   // assign temp to a random card determined by random num 1-52
   // swap with current card
@@ -72,4 +73,4 @@ var orderedDeck = function () {
   return deck;
 };
 
-// shuffleDeck(resultOfOrderedDeck)
+shuffleDeck(resultOfOrderedDeck)
