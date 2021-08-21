@@ -1,32 +1,13 @@
 var shuffleDeck = function(deck) {
-  // Your code here
-// create result array
-
-// create inner function takes in two params, array and array lengths
-// if the array length is 0,
-//   return
-// run math.random between the numbers 0 and 51 (look this up how to do it)
-// use the number from math.random and splice the deck at that index.
-// push that spliced element into the result array
-// us recursion with the new array and well as the new length
-
-// return result array
-
-var result = [];
-var resultArray = []
-var deckSize = deck.length;
-var shuffler = function(deck, deckSize) {
-
-  if(deck.length === 0) {
-    return;
+// loop through deck
+// for each variable in the deck, run math .random and get a random index
+// trade spaces with the card at that index and move to the next card
+  for (var i = 0; i < deck.length; i++) {
+    var randomIndex = Math.floor(Math.random() * 52);
+    var currentCard = deck[i];
+    deck[i] = deck[randomIndex];
+    deck[randomIndex] = currentCard;
   }
-  var randomIndex = Math.floor(Math.random() * deckSize);
-  var card = deck.splice(randomIndex, 1);
-  result = result.concat(card);
-  shuffler(deck, deckSize - 1)
-}
-
-shuffler(deck, deckSize);
 
 return result;
 };
