@@ -99,28 +99,32 @@
 
 var mergeSort = function (array) {
   var result = []
-  if (array) {
-    if (array.length === 1 || array.length === 0) {
-      return array;
-    } else {
-      var midpoint = Math.floor(array.length / 2);
-      var sortedHalf = mergeSort(array.slice(0, midpoint));
-      var sortedOtherHalf = mergeSort(array.slice(midpoint, array.length));
-      while (result.length !== array.length) {
-        if (sortedHalf.length === 0 && sortedOtherHalf.length !== 0) {
-          result.push(...sortedOtherHalf);
-        } else if (sortedOtherHalf.length === 0 && sortedHalf.length !== 0) {
-          result.push(...sortedHalf);
-        } else if (sortedHalf[0] <= sortedOtherHalf[0]) {
-          result.push(...sortedHalf.splice(0, 1));
-        } else if (sortedOtherHalf[0] < sortedHalf[0]) {
-          result.push(...sortedOtherHalf.splice(0, 1));
-        }
+  if (array.length === 1 || array.length === 0) {
+    return array;
+  } else {
+    var midpoint = Math.floor(array.length / 2);
+    var sortedHalf = mergeSort(array.slice(0, midpoint));
+    var sortedOtherHalf = mergeSort(array.slice(midpoint, array.length));
+    while (result.length !== array.length) {
+      if (sortedHalf.length === 0 && sortedOtherHalf.length !== 0) {
+        result.push(...sortedOtherHalf);
+        break;
+      } else if (sortedOtherHalf.length === 0 && sortedHalf.length !== 0) {
+        result.push(...sortedHalf);
+        break;
+      } else if (sortedHalf[0] <= sortedOtherHalf[0]) {
+        result.push(...sortedHalf.splice(0, 1));
+      } else if (sortedOtherHalf[0] < sortedHalf[0]) {
+        result.push(...sortedOtherHalf.splice(0, 1));
       }
     }
     return result;
   }
 };
 
-// var myArr = mergeSort([7, 6, 8, 4, 10, -5, 6, 0, 3, 2, 23, 1, 27]);
-// console.log(myArr);
+// var myArr = new Array(10000);
+// myArr.fill(5);
+// // console.log(myArr);
+// var myArr = [7,8,6,9,2,3,4,1,0,9,3,5,2,7,9,4,7,6];
+// var sortedArr = mergeSort(myArr);
+// console.log(sortedArr);
