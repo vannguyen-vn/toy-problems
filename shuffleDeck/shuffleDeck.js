@@ -33,6 +33,21 @@
 
 var shuffleDeck = function(deck) {
   // Your code here
+  while (deck.length >= 0) {
+    var n = deck.length;
+    var result = [];
+    // select random nth item from unstrucked item
+    var get = getRandomInt(n);
+    // push to end of result
+    var struck = deck[get];
+    result.push(struck);
+    deck.splice(get, 1);
+  }
+  return result;
+};
+
+var getRandomInt = function(max) {
+  return Math.floor(Math.random() * max);
 };
 
 // Ordered deck generator provided for your testing convenience
