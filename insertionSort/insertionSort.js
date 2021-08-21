@@ -50,19 +50,20 @@ var compareDefault = function(a, b) {
 }
 
 var insertionSort = function(array, comparator = compareDefault) {
-  var changed = false;
-  for (let i = 0; i < array.length - 1; i++) {
-    var a = array[i];
-    var b = array[i+1];
+  var sortedArray = [array[array.length -1]];
 
-    if (comparator(a, b) > 0) {
-        array[i] = b;
-        array[i + 1] = a;
-        changed = true;
+  for (let i = array.length - 2; i >= 0; i--) {
+    for (let j = 0; j < sortedArray.length; j++) {
+      var a = array[i];
+      var b = sortedArray[j];
+      if (!comparator(a, b)) {
+        sortedArray.splice(j, 0, a);
+        break;
+      } else if ( j === sortedArray.length - 1) {
+        sortedArray.push(a);
+        break
+      }
     }
   }
-  if (changed) {
-    insertionSort(array, comparator);
-  }
-  return array;
+  return sortedArray;
 };
