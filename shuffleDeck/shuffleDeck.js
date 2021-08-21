@@ -69,5 +69,3 @@ var orderedDeck = function() {
 
   return deck;
 };
-
-console.log(shuffleDeck(orderedDeck()));
