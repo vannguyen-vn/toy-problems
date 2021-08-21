@@ -126,7 +126,9 @@ var mergeSort = function(array) {
 
     return merged;
   }
+  var mergedLeft = mergeSort(left);
+  var mergedRight = mergeSort(right);
 
   // Recursively call mergeSort on the sliced array
-  return mergeArrays(mergeSort(left), mergeSort(right));
+  return mergeArrays(mergedLeft, mergedRight);
 };
