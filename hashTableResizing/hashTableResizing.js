@@ -84,7 +84,7 @@ var makeHashTable = function() {
     result.storageLimit = newSize;
     result.storage= [];
     for (var i = 0; i < newSize; i++) {
-      newStorage.push([]);
+      result.storage.push([]);
     }
 
     for (var i = 0; i < oldStorageLimit; i++) {
