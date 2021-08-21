@@ -62,5 +62,5 @@ var orderedDeck = function() {
   return deck;
 };
 
-exports.shuffleDeck = shuffleDeck;
-exports.orderedDeck = orderedDeck;
+// exports.shuffleDeck = shuffleDeck;
+// exports.orderedDeck = orderedDeck;
