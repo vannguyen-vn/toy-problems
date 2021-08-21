@@ -45,7 +45,7 @@ Pseudocode
 var shuffleDeck = function (deck) {
   var size = deck.length;
   for (var i = size - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * size);
+    var j = Math.floor(Math.random() * i);
     [deck[i], deck[j]] = [deck[j], deck[i]];
   }
   return deck;
