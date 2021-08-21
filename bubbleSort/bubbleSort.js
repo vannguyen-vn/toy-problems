@@ -31,8 +31,56 @@
 */
 
 // Feel free to add helper functions if needed.
+// [2, 1, 6, 3, 5, 4]
 
+var isSorted = function(array) {
+  for (var j = 0; j < array.length - 1; j++) {
+    if (array[j] > array[j + 1]) {
+      return false;
+    }
+  }
+  return true;
+}
 
 var bubbleSort = function(array) {
   // Your code here.
+
+  while (!isSorted(array)) {
+    for (var i = 0; i < array.length; i++) {
+      if (array[i] > array[i + 1]) {
+        var helper = array[i];
+        array[i] = array[i + 1];
+        array[i + 1] = helper;
+      }
+    }
+  }
+
+  return array;
 };
+
+// console.log(bubbleSort([2,4,1,3,5]))
+
+// console.log(bubbleSort([2, 1, 6, 3, 5, 4]))
+
+/*
+var shuffleDeck = function(deck) {
+  // Your code here
+  var copy = deck.slice();
+  var result = [];
+
+  for (var i = 0; i < deck.length; i++) {
+    result.push(copy.splice(Math.floor(Math.random() * copy.length), 1)[0])
+  }
+
+  return result;
+};
+
+var array100 = Array.from(Array(100).keys())
+console.log('original', array100)
+
+var array100shuffled = shuffleDeck(array100);
+console.log('shuffled', array100shuffled)
+
+var array100sorted = bubbleSort(array100shuffled);
+console.log('sorted', array100sorted)
+*/
