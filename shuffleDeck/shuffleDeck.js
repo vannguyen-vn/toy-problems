@@ -30,9 +30,33 @@
  *   shuffles before a real deck is actually randomized.
  *   See https://www.dartmouth.edu/~chance/teaching_aids/books_articles/Mann.pdf .
  */
+ var randInt = function(min, max) {
+  var stepSize = 1 / (max - min + 1),
+      nSteps = Math.floor(Math.random() / stepSize);
+  return min + nSteps;
+}
 
 var shuffleDeck = function(deck) {
-  // Your code here
+  // assign variable with the initial length of the deck to be used in our base case
+  // let orderedDeck = orderedDeck();
+  let startingLength = deck.length;
+  // make a new results array to house the shuffled cards
+  let shuffledDeck = [];
+
+  // This part might live in a recursive function
+  let shuffler = (deck) => {
+    // grab the length of the remaining deck
+    var max = deck.length - 1;
+    if (max === -1) {
+      return shuffledDeck;
+    }
+    // generate an unbiased random number based on the length of the deck
+    var nextCard = deck.splice(randInt(0, max), 1);
+    shuffledDeck.push(nextCard[0]);
+    shuffler(deck);
+  };
+  shuffler(deck);
+  return shuffledDeck;
 };
 
 // Ordered deck generator provided for your testing convenience
@@ -50,3 +74,6 @@ var orderedDeck = function() {
 
   return deck;
 };
+
+
+console.log(shuffleDeck(orderedDeck()));
