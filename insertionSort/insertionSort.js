@@ -48,13 +48,6 @@ var testingTransform = function(array) {
 var insertionSort = function(array
 ) {
 
-  var shiftNumbersLeft = (currentIndex, currentArray) => {
-    for (var startIndex = currentIndex - 1; startIndex > -1; startIndex--) {
-      currentArray[startIndex - 1] = currentArray[startIndex];
-    }
-    return currentArray;
-  }
-
   var shiftNumbersRight = (currentIndex, currentArray) => {
     if (currentIndex === 0) {
       var startIndex = 0;
@@ -67,32 +60,15 @@ var insertionSort = function(array
     return currentArray;
   }
 
-  var checkBackward = (currentIndex, currentArray) => {
-    for(var i = currentIndex; i > 0; i--) {
-      if(currentArray[i] > currentArray[currentIndex]) {
-        var currentArray = shiftNumbersRight(i, currentArray);
-        currentArray[i - 1] = currentArray[currentIndex];
+  for (var i = 0; i < array.length; i++) {
+    if (i !== 0 && (array[i - 1].value > array[i].value)) {
+      var step = i;
+      while ((array[step - 1].value > array[step].value) || (step > 0)) {
+        step--;
       }
+      array = shiftNumbersRight(step, array);
+      array[step] = array[i].value;
     }
   }
-
-  var i = 0;
-  // outer loop over array
-  for (var current = 0; current < array.length; current++) {
-    for (var check = 0; check < array.length; check++) {
-      if(array[current] < array[check]) {
-        array = shiftNumbersLeft(current, array);
-      } else if (array[current]) {} // strat here
-    }
-  }
-    // while the current element is larger than the element to its right
-      // if current element is smaller than its first neighbor to the right
-        // advance current element
-      // if current element is smaller than its n neighbor to the right
-        // insert right before
-      // if current element is smaller than its neighbor to the left
-        // loop back wards and insert once current element is smaller than found element (helper function)
-      // if current
-  // Your code goes here. Feel free to add helper functions if needed.
   return array;
 };
