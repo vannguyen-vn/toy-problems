@@ -7,5 +7,18 @@
  */
 
 var firstNonRepeatedCharacter = function(string) {
-  // TODO: your solution here
+  var stringArr = string.split('');
+  var storage = {};
+  for (var i = 0; i < stringArr.length; i++) {
+    if (storage[stringArr[i]] === undefined) {
+      storage[stringArr[i]] = 1;
+    } else {
+      storage[stringArr[i]]++;
+    }
+  }
+  for (var i = 0; i < stringArr.length; i++) {
+    if (storage[stringArr[i]] === 1) {
+      return stringArr[i];
+    }
+  }
 };
