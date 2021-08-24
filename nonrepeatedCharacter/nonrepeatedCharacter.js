@@ -7,5 +7,16 @@
  */
 
 var firstNonRepeatedCharacter = function(string) {
-  // TODO: your solution here
+  var uniques = new Set();
+
+  for (var i = 0; i < string.length; i++) {
+    let ch = string[i];
+    if (uniques.has(ch)) {
+      uniques.delete(ch);
+      continue;
+    }
+    uniques.add(ch);
+  }
+
+  return uniques.values().next().value;
 };
