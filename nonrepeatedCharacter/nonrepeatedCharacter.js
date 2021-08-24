@@ -6,6 +6,19 @@
  *   firstNonRepeatedCharacter('AACBDB'); // => 'C'
  */
 
-var firstNonRepeatedCharacter = function(string) {
+const firstNonRepeatedCharacter = function(string) {
   // TODO: your solution here
+  const countObj = {};
+  for (let i = 0; i < string.length; i++) {
+    countObj[string[i]] === undefined ? countObj[string[i]] =1 : countObj[string[i]]++;
+  }
+
+  var nonrepeated = '';
+  for (var key in countObj) {
+    if (countObj[key] === 1) {
+      nonrepeated = key;
+    }
+  }
+
+  return nonrepeated;
 };
