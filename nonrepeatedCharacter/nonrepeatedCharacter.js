@@ -19,6 +19,10 @@ var firstNonRepeatedCharacter = function(string) {
   var min = +Infinity;
   var arr = Object.values(result);
 
+  if (arr.length === 0) {
+    return null;
+  }
+
   for (var j = 0; j < arr.length; j++) {
     if (arr[j] < min) {
       min = arr[j];
