@@ -7,5 +7,14 @@
  */
 
 var firstNonRepeatedCharacter = function(string) {
-  // TODO: your solution here
+  var charCounts = {};
+  for (var i = 0; i < string.length; i++) {
+    if (!charCounts[string[i]]) { charCounts[string[i]] = 0; }
+    charCounts[string[i]]++;
+  }
+  for (var i = 0; i < string.length; i++) {
+    if (charCounts[string[i]] === 1) {
+      return string[i];
+    }
+  }
 };
