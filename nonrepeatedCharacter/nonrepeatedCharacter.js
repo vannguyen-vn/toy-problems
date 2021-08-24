@@ -7,5 +7,14 @@
  */
 
 var firstNonRepeatedCharacter = function(string) {
-  // TODO: your solution here
+  if (string === undefined) {
+    return undefined;
+  }
+  let char = string[0];
+  for (let i = 1; i < string.length; i++) {
+    if (string[i] !== char) {
+      return string[i];
+    }
+  }
+  return null;
 };
