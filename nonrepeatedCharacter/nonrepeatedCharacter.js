@@ -13,12 +13,9 @@ const firstNonRepeatedCharacter = function(string) {
     countObj[string[i]] === undefined ? countObj[string[i]] =1 : countObj[string[i]]++;
   }
 
-  var nonrepeated = '';
   for (var key in countObj) {
     if (countObj[key] === 1) {
-      nonrepeated = key;
+      return key;
     }
   }
-
-  return nonrepeated;
 };
