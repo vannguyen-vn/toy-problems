@@ -7,12 +7,16 @@
  */
 
 var firstNonRepeatedCharacter = function(string) {
-  if (string === undefined) {
-    return undefined;
+  let dictionary = {};
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] in dictionary) {
+      dictionary[string[i]] += 1;
+    } else {
+      dictionary[string[i]] = 1;
+    }
   }
-  let char = string[0];
-  for (let i = 1; i < string.length; i++) {
-    if (string[i] !== char) {
+  for (let i = 0; i < string.length; i++) {
+    if (dictionary[string[i]] === 1) {
       return string[i];
     }
   }
