@@ -7,5 +7,19 @@
  */
 
 var firstNonRepeatedCharacter = function(string) {
-  // TODO: your solution here
+  var chars = string.split('');
+  var uniqueChars = {};
+  chars.forEach(function(char) {
+    if (uniqueChars[char]) {
+      uniqueChars[char]++;
+    } else {
+      uniqueChars[char] = 1;
+    }
+  })
+  for (var i = 0; i < chars.length; i++) {
+    if (uniqueChars[chars[i]] === 1) {
+      return chars[i];
+    }
+  }
+  return 'No nonrepeated character in the string!';
 };
