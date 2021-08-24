@@ -7,8 +7,8 @@
  */
 
  var firstNonRepeatedCharacter = function(string) {
-  string = string.toLowerCase();
-  //question didn't specifiy casing
+
+  if (string.length === 0) return null;
 
   var counts = {};
   for (var i = 0; i < string.length; i++) {
@@ -23,7 +23,7 @@
       return string[i];
     }
   }
-  return -1;
+  return null;
 
 };
 
