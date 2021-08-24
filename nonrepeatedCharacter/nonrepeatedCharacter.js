@@ -33,4 +33,5 @@ var firstNonRepeatedCharacter = function (string) {
   }
 };
 
-console.log(firstNonRepeatedCharacter('ABA')) // => 'B')
+// console.log(firstNonRepeatedCharacter('ABA')) // => 'B')
+// console.log(firstNonRepeatedCharacter('AACBDB')) // => 'B')
