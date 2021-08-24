@@ -105,18 +105,33 @@ var mergeSort = function(array) {
   // Create a middle variable
   let middle = Math.floor(array.length / 2);
   // Split the array into a left and right half
-  let leftArray = array.slice(0, middle);
-  let rightArray = array.slice(middle, array.length - 1);
+  const leftArray = array.slice(0, middle);
+  const rightArray = array.slice(middle);
   // Return your merged array
-  return innerFunction(mergeSort(leftArray), mergeSort(rightArray));
+  return mergeFunction(mergeSort(leftArray), mergeSort(rightArray));
   // Create an innerfunction for merging
-  function innerFunction() {
-    // Create a result array
-    // Iterate over the arrays while left/rigth index is less than left/right length
-      // If left index is less than right index
-        // Push left array into result array
-      // Otherwise
-        // Push the right array into the result array
-  }
-      // Return result array
 }
+  function mergeFunction(leftArray, rightArray) {
+    // Create a result array
+    let result = [];
+    let i= 0;
+    let j = 0;
+    // Iterate over the arrays while left/rigth index is less than left/right length
+    while (i < leftArray.length && j < rightArray.length) {
+      // If left index is less than right index
+      if (leftArray[i] < rightArray[j]) {
+        // Push left array into result array
+        result.push(leftArray[i]);
+        i++;
+        // Otherwise
+      } else {
+        // Push the right array into the result array
+        result.push(rightArray[j])
+        j++
+      }
+    }
+    // Return result array with concated arrays
+    return result.concat(leftArray.slice(i).concat(rightArray.slice(j)));
+  };
+
+  // TIME COMPLECITY: O(Log n)
