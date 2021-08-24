@@ -7,17 +7,20 @@
  */
 
 var firstNonRepeatedCharacter = function (string) {
-  // declare first character
-  var firstChar = string[0];
-  // iterate over string
+  var obj = {};
   for (var i = 0; i < string.length; i++) {
-    // check if current is not equal to first
-    if (string[i] !== firstChar) {
-      // return letter
-      return string[i];
+    if (obj[string[i]] === undefined) {
+      obj[string[i]] = 1;
+    } else {
+      obj[string[i]] += 1;
+    }
+  }
+
+  for (var key in obj) {
+    if (obj[key] === 1) {
+      return key;
       break;
     }
   }
-  // return string has one letter
   return null;
 };
