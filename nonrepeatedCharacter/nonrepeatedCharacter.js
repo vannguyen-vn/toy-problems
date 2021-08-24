@@ -7,26 +7,30 @@
  */
 
 var firstNonRepeatedCharacter = function(string) {
+  if (string.length === 0) {
+    return null;
+  }
+
   var result = {};
   for (var i = 0; i < string.length; i++) {
     if (result[string[i]] === undefined) {
-      result[string[i]] = i;
+      result[string[i]] = 1;
     } else {
-      delete result[string[i]];
-    }
-
-    if (i === string.length - 1 && Object.keys(result).length === 0) {
-      return null;
+      result[string[i]]++;
     }
   }
 
   var min = +Infinity;
-  var arr = Object.values(result);
+  var arr = Object.keys(result);
 
   for (var j = 0; j < arr.length; j++) {
-    if (arr[j] < min) {
-      min = arr[j];
+    if (result[arr[j]] === 1 && string.indexOf(arr[j]) < min) {
+      min = string.indexOf(arr[j]);
     }
+  }
+
+  if (min === +Infinity) {
+    return null;
   }
 
   return string[min];
