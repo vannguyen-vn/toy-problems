@@ -48,7 +48,7 @@ var testingTransform = function(array) {
 var insertionSort = function(array
 ) {
 
-  for (var i = 0; i < array.length; i++) {
+  for (var i = 1; i < array.length; i++) {
     var val = array[i];
     var index = i;
     if (i !== 0 && (array[i - 1].value > array[i].value)) {
@@ -56,7 +56,7 @@ var insertionSort = function(array
         array[i] = array[i - 1];
         index--;
       }
-      array[index] = array[i].value;
+      array[index] = val;
     }
   }
   return array;
