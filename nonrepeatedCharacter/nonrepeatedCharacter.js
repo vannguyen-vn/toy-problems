@@ -36,7 +36,7 @@ var firstNonRepeatedCharacter = function(string) {
         return char
       }
     }
-    return ''
+    return null
 };
 
 // Example:
@@ -44,5 +44,7 @@ var test1 = firstNonRepeatedCharacter('ABA'); // => 'B'
 console.log(test1)
 var test2 = firstNonRepeatedCharacter('AACBDB'); // => 'C'
 console.log(test2)
-var test3 = firstNonRepeatedCharacter(''); // => ''
+var test3 = firstNonRepeatedCharacter(''); // => null
 console.log(test3)
+var test4 = firstNonRepeatedCharacter('AACBCDBD'); // => null
+console.log(test4)
