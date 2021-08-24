@@ -6,9 +6,53 @@
  *   firstNonRepeatedCharacter('AACBDB'); // => 'C'
  */
 
-var firstNonRepeatedCharacter = function(string) {
-  // TODO: your solution here
-};
+var firstNonRepeatedCharacter = (string) => {
+  var characterCounter = {};
+
+  if (string.length === 0) {
+    return undefined;
+  }
+
+  if (string.length === 1) {
+    return string[1]
+  }
+
+  for (var index = 0; index < string.length; index++) {
+    var character = string[index]
+    if (characterCounter[character]) {
+      characterCounter[character].push(index)
+    } else {
+      characterCounter[character] = [index]
+    }
+  }
+
+  var nonRepeatedCharacterIndexes = [];
+
+  for (character in characterCounter) {
+    if (characterCounter[character].length === 1) {
+      nonRepeatedCharacterIndexes.push(characterCounter[character][0])
+    }
+  }
+
+  var firstNonRepeatedCharacterIndex = nonRepeatedCharacterIndexes[0];
+
+  for (let j = 1; j < nonRepeatedCharacterIndexes.length; j++) {
+    if (nonRepeatedCharacterIndexes[j].length < firstNonRepeatedCharacterIndex) {
+      firstNonRepeatedCharacterIndex = nonRepeatedCharacterIndexes[j]
+    }
+  }
+
+  return string[firstNonRepeatedCharacterIndex]
+}
+
+//Tests
+
+const string1 =  'ABA'
+let test1 = firstNonRepeatedCharacter(string1)
+console.log('should be B', test1)// => 'B'
+const string2 = 'AACBDB'
+let test2 = firstNonRepeatedCharacter(string2);
+console.log('should be C', test2)// => 'C'
 
 
 /*
