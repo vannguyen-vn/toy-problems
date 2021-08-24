@@ -6,6 +6,19 @@
  *   firstNonRepeatedCharacter('AACBDB'); // => 'C'
  */
 
-var firstNonRepeatedCharacter = function(string) {
-  // TODO: your solution here
+ var firstNonRepeatedCharacter = function(string) {
+  var storage = {};
+
+  for (var i = 0; i < string.length; i++) {
+    (!storage[string[i]]) ? storage[string[i]] = 1 : storage[string[i]]++;
+  }
+
+  for (var j = 0; j < string.length; j++) {
+    for (var key in storage) {
+      if (storage[key] === 1 && key === string[j]) {
+        return key;
+      }
+    }
+  }
 };
+
