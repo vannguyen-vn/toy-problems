@@ -26,9 +26,11 @@ var firstNonRepeatedCharacter = function (string) {
   // iterate over obj
   for (let letter in countObj) {
     // if counter = 1
-    if (letter === 1) {
+    if (countObj[letter] === 1) {
       // return the key
-      return letter
+      return letter;
     }
   }
 };
+
+console.log(firstNonRepeatedCharacter('ABA')) // => 'B')
