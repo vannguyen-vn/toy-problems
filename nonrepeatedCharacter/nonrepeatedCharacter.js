@@ -19,5 +19,5 @@ var firstNonRepeatedCharacter = function (string) {
     }
   }
   // return string has one letter
-  return 'String has only one letter';
+  return null;
 };
