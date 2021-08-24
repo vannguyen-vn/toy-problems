@@ -11,7 +11,7 @@ var firstNonRepeatedCharacter = function(string) {
   var results = {};
 
   for (var i = 0; i < string.length; i++) {
-    var character = string[i].toLowerCase();
+    var character = string[i];
     if (results[character] === undefined) {
       results[character] = 1;
     } else {
