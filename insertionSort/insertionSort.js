@@ -48,26 +48,15 @@ var testingTransform = function(array) {
 var insertionSort = function(array
 ) {
 
-  var shiftNumbersRight = (currentIndex, currentArray) => {
-    if (currentIndex === 0) {
-      var startIndex = 0;
-    } else {
-      var startIndex = currentIndex + 1;
-    }
-    for (var i = startIndex; i < currentArray.length; i++) {
-      currentArray[i + 1] = currentArray[i];
-    }
-    return currentArray;
-  }
-
   for (var i = 0; i < array.length; i++) {
+    var val = array[i];
+    var index = i;
     if (i !== 0 && (array[i - 1].value > array[i].value)) {
-      var step = i;
-      while ((array[step - 1].value > array[step].value) || (step > 0)) {
-        step--;
+      while ((array[index - 1].value > array[index].value) && (index > 0)) {
+        array[i] = array[i - 1];
+        index--;
       }
-      array = shiftNumbersRight(step, array);
-      array[step] = array[i].value;
+      array[index] = array[i].value;
     }
   }
   return array;

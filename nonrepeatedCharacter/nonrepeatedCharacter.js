@@ -31,9 +31,15 @@ var firstNonRepeatedCharacter = function(string) {
   */
 
   var stringArray = string.split('');
+  var obj = {};
 
   for (var i = 0; i < stringArray.length; i++) {
-    if (stringArray.slice(i + 1).indexOf(stringArray[i]) === -1) {
+    if (!obj[stringArray[i]]) {
+      obj[stringArray[i]] = 1;
+    } else {
+      obj[stringArray[i]]++;
+    }
+    if (stringArray.slice(i + 1).indexOf(stringArray[i]) === -1 && obj[stringArray[i]] === 1) {
       return stringArray[i];
     }
   }
