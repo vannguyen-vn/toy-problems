@@ -7,5 +7,14 @@
  */
 
 var firstNonRepeatedCharacter = function(string) {
-  // TODO: your solution here
+  var letters = {};
+  for (var i = 0; i < string.length; i++) {
+    if (!letters.hasOwnProperty(string[i])) {
+      if (string.indexOf(string[i], i + 1) === -1 ) {
+        return string[i];
+      } else {
+        letters[string[i]] = true;
+      }
+    }
+  }
 };
