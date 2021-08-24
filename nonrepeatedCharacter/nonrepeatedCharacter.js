@@ -1,27 +1,24 @@
-/**
- * Given an arbitrary input string, return the first nonrepeated character in
- * the string. For example:
- *
- *   firstNonRepeatedCharacter('ABA'); // => 'B'
- *   firstNonRepeatedCharacter('AACBDB'); // => 'C'
- */
-// input string of characters
-// output: the character that was repeated first
-
-
-// one way to do it is to put characters in an object
-// if they don't exist, give them a value of one
-// if they do exist, return that character
-
 var firstNonRepeatedCharacter = function(string) {
-  // TODO: your solution here
   var charStorage = {};
+  var nonRepeatedChars = [];
   for (var i = 0; i < string.length; i++) {
     var char = string[i];
     if (!charStorage[char]) {
       charStorage[char] = 1;
     } else {
-      return char;
+      charStorage[char]++;
     }
   }
+  for (var key in charStorage) {
+    if (charStorage[key] === 1) {
+      nonRepeatedChars.push(key);
+    }
+  }
+  var smallestIndex = nonRepeatedChars[0]
+  for (var i = 0; i < nonRepeatedChars.length; i++) {
+    if (string.indexOf(nonRepeatedChars[i]) < string.indexOf(smallestIndex)) {
+      smallestIndex = nonRepeatedChars[i];
+    }
+  }
+  return smallestIndex;
 };
