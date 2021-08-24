@@ -45,56 +45,34 @@ var testingTransform = function(array) {
 
 
 
-// var insertionSort = function(array) {
-//   let switched = false;
-//   for (let i = 0; i < array.length - 1; i++) {
-
-//     let currentElement = array[i];
-//     let nextElement = array[i + 1];
-
-//     if (swap(currentElement, nextElement) > 0) {
-//         array[i] = nextElement;
-//         array[i + 1] = currentElement;
-//         switched = true;
-//     }
-//   }
-//   if (switched) insertionSort(array);
-//   return array;
-// };
-// function swap(i, j) {
-//   return i.value > j.value;
-// }
-
-
-
 var insertionSort = function(array, comparator) {
-  for (var i = 1; i < array.length; i++) {
-    var currentElement = array[i];
-    var index = i;
-    while (index > 0 && currentElement.value < array[index - 1].value) {
+  let switched = false;
+  for (let i = 1; i < array.length ; i++) {
+    let currentElement = array[i];
+    let index = i;
+
+    while (index > 0 && currentElement.value > array[index - 1].value) {
       array[index] = array[index - 1];
-      index -= 1;
+      index--;
     }
     array[index] = currentElement;
   }
-  /* EXTRA CREDIT: */
-  if (!comparator) { // neglect error checking for brevity
+  if (!comparator) {
     comparator = function(a, b) {
-      // We only need to know if a is _less than_ b
       return a.value < b.value ? -1 : 0;
     };
   }
-
-  for (var i = 1; i < array.length; i++) {
-    var currentElement = array[i];
-    var index = i;
+  for (let i = 1; i < array.length; i++) {
+    let currentElement = array[i];
+    let index = i;
     while ((index > 0 && comparator(currentElement, array[index - 1])) < 0) {
       array[index] = array[index - 1];
-      index -= 1;
+      index--;
     }
     array[index] = currentElement;
   }
     return array;
 };
 
-console.log(insertionSort([{value: 9}, {value: 2}, {value: 1}, {value: 3}, {value: 22}, {value: 5},]));
+
+// console.log(insertionSort([{value: 9}, {value: 2}, {value: 1}, {value: 3}, {value: 22}, {value: 5},]));
