@@ -8,4 +8,15 @@
 
 var firstNonRepeatedCharacter = function(string) {
   // TODO: your solution here
+
+  //see indexOf a string
+  //see lastIndexOf a string
+  //if those index's are different then that character repeats;
+  for (var i = 0; i < string.length; i++) {
+    if ((string.indexOf(i) > -1) === (string.lastIndexOf(i) >-1)) {
+      return string[i];
+    } else {
+      return ''
+    }
+  }
 };
