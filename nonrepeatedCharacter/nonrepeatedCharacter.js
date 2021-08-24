@@ -7,21 +7,20 @@
  */
 
 var firstNonRepeatedCharacter = function(string) {
-  var lowerString = string.toLowerCase();
   // Create a counter object
   var counterObj = {};
   // Iterate over the input string
-  for (var i = 0; i < lowerString.length; i++) {
+  for (var i = 0; i < string.length; i++) {
   // For every letter check if it exists in the obj
-    if (counterObj[lowerString[i]] = counterObj[lowerString[i]]) {
+    if (counterObj[string[i]] = counterObj[string[i]]) {
       // If so
       // Increment value by one
-      counterObj[lowerString[i]]++;
+      counterObj[string[i]]++;
       console.log(counterObj);
        // Otherwise
     } else {
       // Initiate value at key to 1
-      counterObj[lowerString[i]] = 1;
+      counterObj[string[i]] = 1;
       console.log(counterObj);
     }
   }
