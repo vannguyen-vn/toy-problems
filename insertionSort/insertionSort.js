@@ -46,11 +46,11 @@ var testingTransform = function(array) {
 
 
 var insertionSort = function(array, comparator) {
-  for (let i = 1; i < array.length ; i++) {
+  for (let i = 1; i < array.length; i++) {
     let currentElement = array[i];
     let index = i;
 
-    while (index > 0 && currentElement.value > array[index - 1].value) {
+    while (index > 0 && currentElement.value < array[index - 1].value) {
       array[index] = array[index - 1];
       index--;
     }
