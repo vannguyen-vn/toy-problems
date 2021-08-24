@@ -46,7 +46,6 @@ var testingTransform = function(array) {
 
 
 var insertionSort = function(array, comparator) {
-  let switched = false;
   for (let i = 1; i < array.length ; i++) {
     let currentElement = array[i];
     let index = i;
