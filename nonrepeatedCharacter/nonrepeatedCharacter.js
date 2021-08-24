@@ -9,13 +9,26 @@
 var firstNonRepeatedCharacter = function (string) {
   // TODO: your solution here
   // split string into array of letters
-  // let letters = string.split('')
+  let letters = string.split('')
   // delcare counter obj
+  let countObj = {}
   // iterate
-  // if current element is undefined
-  // set value equal to 1 in obj
-  // otherwise increment obj counter
+  for (let i = 0; i < letters.length; i++) {
+    // if current element is undefined
+    if (countObj[letters[i]] === undefined) {
+      // set value equal to 1 in obj
+      countObj[letters[i]] = 1;
+      // otherwise increment obj counter
+    } else {
+      countObj[letters[i]]++
+    }
+  }
   // iterate over obj
-  // if counter = 1
-  // return the key
+  for (let letter in countObj) {
+    // if counter = 1
+    if (letter === 1) {
+      // return the key
+      return letter
+    }
+  }
 };
