@@ -12,11 +12,16 @@ var firstNonRepeatedCharacter = function(string) {
     // iterate, looking for a match
     //  if there's a match, splice it AND THE MATCH away?
   // OR...
-  //
+  // iterate across, at each letter;
+  //  use slice up to and slice after to make "string without"
+  //  iterate across string without to look for a match
+  //  use repeated boolean as before
+
   for (var i = 0; i < string.length; i ++) {
     var repeated = false;
-    for (var j = i + 1; j < string.length; j++) {
-      if (string[j] === string[i]) {
+    var stringWithout = string.slice(0, i) + string.slice(i + 1, string.length);
+    for (var j = 0; j < stringWithout.length; j++) {
+      if (stringWithout[j] === string[i]) {
         repeated = true;
       }
     }
