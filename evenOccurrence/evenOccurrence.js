@@ -12,31 +12,63 @@
 
 //[{1: }, {7: }, {2: }, {5: }...]
 
+
 var evenOccurrence = function(arr) {
   //iterate over the array, and for each item, add it to a counter object with the value as the key, and the number of times it occurs as the value
   //check if the value % 2 is true, if so, return Number(key)
-  var counterArrayofObjects = [];
-  var numbersSeen = [];
-  for (var i = 0; i < arr.length; i++) {  //O(n)
+  var counterObj = {};
+  for (var i = 0; i < arr.length; i++) {
     var currentVal = arr[i];
-    if (!numbersSeen.includes(currentVal)) { //solution becomes O(n^2) yuck
-      numbersSeen.push(currentVal);
-      var counterObj = {};
+    if (!counterObj[currentVal]) {
       counterObj[currentVal] = 1;
-      counterArrayofObjects.push( counterObj );
     } else {
-      var indexOfOccurance = numbersSeen.indexOf(currentVal);
-      counterArrayofObjects[indexOfOccurance][currentVal] ++;
+      counterObj[currentVal] ++;
     }
   }
-   for (var i = 0; i < counterArrayofObjects.length; i++) {   //2*O(n^2) --> solution still O(n^2)
-    var currentCount = Number(Object.values(counterArrayofObjects[i]));
-    if (currentCount % 2 === 0) {
-      return Number(Object.keys(counterArrayofObjects[i]));
+
+  for (var i = 0; i < arr.length; i++) {
+    var currentVal = arr[i];
+    if ((counterObj[currentVal] % 2 === 0)) {
+      return currentVal;
     }
   }
   return null;
+
 };
+
+
+
+
+
+
+
+
+
+// var evenOccurrence = function(arr) {
+//   //iterate over the array, and for each item, add it to a counter object with the value as the key, and the number of times it occurs as the value
+//   //check if the value % 2 is true, if so, return Number(key)
+//   var counterArrayofObjects = [];
+//   var numbersSeen = [];
+//   for (var i = 0; i < arr.length; i++) {  //O(n)
+//     var currentVal = arr[i];
+//     if (!numbersSeen.includes(currentVal)) { //solution becomes O(n^2) yuck
+//       numbersSeen.push(currentVal);
+//       var counterObj = {};
+//       counterObj[currentVal] = 1;
+//       counterArrayofObjects.push( counterObj );
+//     } else {
+//       var indexOfOccurance = numbersSeen.indexOf(currentVal);
+//       counterArrayofObjects[indexOfOccurance][currentVal] ++;
+//     }
+//   }
+//    for (var i = 0; i < counterArrayofObjects.length; i++) {   //2*O(n^2) --> solution still O(n^2)
+//     var currentCount = Number(Object.values(counterArrayofObjects[i]));
+//     if (currentCount % 2 === 0) {
+//       return Number(Object.keys(counterArrayofObjects[i]));
+//     }
+//   }
+//   return null;
+// };
 
 
 //[{1: }, {7: }, {2: }, {5: }...]
