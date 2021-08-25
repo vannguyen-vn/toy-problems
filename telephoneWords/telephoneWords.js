@@ -45,17 +45,20 @@ var telephoneWords = function(digitString) {
   // TODO: return every combination that can be spelled on a phone with these digits
 
   var addOneDigit = function(array, digit) {
+    var result = [];
     var lettersArray = phoneDigitsToLetters[digit].split('');
     var n = array.length;
     for (var i = 0; i < n; i++) {
       for (var j = 0; j < lettersArray.length; j++) {
-        array.push(lettersArray[i].concat(lettersArray[j]));
+        result.push(array[i].concat(lettersArray[j]));
       }
     }
-    return array;
+    return result;
   }
 
-  if (digitString.length === 1) {
+  if (digitString.length === 0) {
+    return [];
+  } else if (digitString.length === 1) {
     return phoneDigitsToLetters[digitString].split('');
   } else {
     var digits = digitString.split('');
