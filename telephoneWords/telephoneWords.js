@@ -40,7 +40,27 @@ var phoneDigitsToLetters = {
   9: 'WXYZ'
 };
 
+var telephoneWords = function(digitString, string) {
+  var first = phoneDigitsToLetters[digitString[0]];
+  var second = phoneDigitsToLetters[digitString[1]];
+  var third = phoneDigitsToLetters[digitString[2]];
+  var fourth = phoneDigitsToLetters[digitString[3]];
 
-var telephoneWords = function(digitString) {
-  // TODO: return every combination that can be spelled on a phone with these digits
+  var string = string || '';
+  var result = [];
+
+  if (string.length === 4)
+    return string
+
+  for (var i = 0; i < first.length; i++) {
+    for (var j = 0; j < second.length; j++) {
+      for (var k = 0; k < third.length; k++) {
+        for (var l = 0; l < fourth.length; l++) {
+          result = result.concat(telephoneWords(digitString, `${first[i]}${second[j]}${third[k]}${fourth[l]}`));
+        }
+      }
+    }
+  }
+
+  return result;
 };
