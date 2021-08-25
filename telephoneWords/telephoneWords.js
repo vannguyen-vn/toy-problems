@@ -40,7 +40,44 @@ var phoneDigitsToLetters = {
   9: 'WXYZ'
 };
 
+/*
+telephoneWords
+if digit string length is 0, return empty array
+var results array
+call back track helper function with results array, current combination, digit string, index
+return results array
 
-var telephoneWords = function(digitString) {
+backtrack
+base case
+if current string length is equal to digit string length
+  push to results
+  return
+
+
+*/
+
+var telephoneWords = function (digitString) {
   // TODO: return every combination that can be spelled on a phone with these digits
+  if (digitString.length === 0) {
+    return [];
+  }
+
+  var results = [];
+  // results array, current combination, digit string, index
+  helper(results, "", digitString, 0);
+  return results;
 };
+
+var helper = function (results, current, digitString, index) {
+  if (current.length === digitString.length) {
+    results.push(current);
+    return;
+  }
+
+  var digit = digitString[index];
+  var letters = phoneDigitsToLetters[digit];
+
+  for (var i = 0; i < letters.length; i++) {
+    helper(results, current + letters[i], digitString, index + 1);
+  }
+}
