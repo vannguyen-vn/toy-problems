@@ -62,12 +62,10 @@ var telephoneWords = function(digitString) {
       }
     }
 
-    if (i === (digitString.length - 1)) {
-      return possPerm;
-    }
-
     prevLetters = possPerm;
     //place new combinations in outer scope
   }
+
+  return possPerm;
 
 };
