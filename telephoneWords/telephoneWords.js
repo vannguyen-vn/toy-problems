@@ -40,7 +40,38 @@ var phoneDigitsToLetters = {
   9: 'WXYZ'
 };
 
-
+// input: string- with 4 chars(nums)
+// output: array of all possible letter combos that could come from the four numbers (only in the given order)
+// constraints: N/A
+// edge cases: if 0, or 1 is included they should be left as numbers
 var telephoneWords = function(digitString) {
-  // TODO: return every combination that can be spelled on a phone with these digits
+  var wordPossibilities = []
+ // loop through the string
+ for (var i = 0; i < digitString.length; i++) {
+   // create a temporary string to add letters to
+   var tempWord = ''
+    // for each char
+    var num = digitString[i]
+    var possibleLetters = phoneDigitsToLetters[num]
+    // loop through letter options associated with that number
+    for (var j = 0; j < possibleLetters.length; j++){
+        var currentLetter = possibleLetters[j]
+        // add first char associated to the temporary str
+        tempWord += currentLetter
+           console.log(tempWord)
+    }
+    wordPossibilities.push(tempWord)
+ }
+  return wordPossibilities
 };
+
+//Example:
+  var test1 = telephoneWords('2745');
+  // => ['APGJ',
+  //      'APGK',
+  //      'APGL',
+  //      ..., // many many more of these
+  //      'CSIL']
+console.log(test1)
+var test2 = telephoneWords('0946')
+console.log(test2)
