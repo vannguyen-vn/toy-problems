@@ -7,5 +7,19 @@
  */
 
 var firstNonRepeatedCharacter = function(string) {
-  // TODO: your solution here
+  var letterCount = {};
+  for (var i = 0; i < string.length; i++) {
+    if (letterCount[string[i]]) {
+      letterCount[string[i]] = letterCount[string[i]] + 1;
+    } else {
+      letterCount[string[i]] = 1;
+    }
+  }
+  for (var j = 0; j < string.length; j++) {
+    if (letterCount[string[j]] === 1) {
+      return string[j];
+    }
+  }
 };
+
+// console.log(firstNonRepeatedCharacter('AACBDBEDC'));
