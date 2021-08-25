@@ -42,5 +42,55 @@ var phoneDigitsToLetters = {
 
 
 var telephoneWords = function(digitString) {
-  // TODO: return every combination that can be spelled on a phone with these digits
+  var len = digitString.length;
+  var results = [];
+  var innerFunc = function (digitInd, str) {
+    if (str.length === len) {
+      results.push(str);
+    } else {
+      var digit = digitString[digitInd];
+      var chars = phoneDigitsToLetters[digit].split('');
+      for (var i = 0; i < chars.length; i++) {
+        var newStr = str + chars[i];
+        innerFunc(digitInd + 1, newStr);
+      }
+    }
+  }
+  innerFunc(0, '');
+  return results;
 };
+
+/*Test
+var string = function(n) {
+  var string = '';
+  for (var i = 0; i < n; i++) {
+    var num = Math.floor(Math.random() * 10);
+    string += num;
+  }
+  return string;
+}
+var numOfCombinations = function(string) {
+  var result = 1;
+  for (var i = 0; i < string.length; i++) {
+    result *= phoneDigitsToLetters[string[i]].length;
+  }
+  return result;
+}
+var input = string(4);
+console.log(input);
+var expectedOutputLen = numOfCombinations(input);
+var output = telephoneWords(input);
+console.log(output.length === expectedOutputLen); //true
+
+var input = string(4);
+console.log(input);
+var expectedOutputLen = numOfCombinations(input);
+var output = telephoneWords(input);
+console.log(output.length === expectedOutputLen); //true
+
+var input = string(4);
+console.log(input);
+var expectedOutputLen = numOfCombinations(input);
+var output = telephoneWords(input);
+console.log(output.length === expectedOutputLen); //true
+*/
