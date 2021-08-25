@@ -41,17 +41,21 @@ var phoneDigitsToLetters = {
 };
 
 
-var telephoneWords = function(digitString) {
-  // TODO: return every combination that can be spelled on a phone with these digits
-  // split digitalString to array
-  // search through the object of phoneDigitsToLetters, use the stack
+var telephoneWords = function(digits) {
+  var result = [];
 
-  var telephoneWords = function(digitString) {
-  // TODO: return every combination that can be spelled on a phone with these digits
-  // split digitalString to array
-  // search through the object of phoneDigitsToLetters, use the stack
-    var result = [];
-    return result;
-  };
-
+  helper(digits, result, 0, '');
+  return result;
 };
+//223
+var helper = function(digits, result, index, item) {
+  if (index === digits.length) {
+    result.push(item);
+    return;
+  }
+  var letters = phoneDigitsToLetters[digits[index]];
+  for (var i = 0; i < letters.length; i++) {
+    helper(digits, result, index + 1, item+letters[i] );
+  }
+};
+
