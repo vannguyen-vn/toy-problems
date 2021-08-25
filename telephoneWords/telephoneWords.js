@@ -40,7 +40,34 @@ var phoneDigitsToLetters = {
   9: 'WXYZ'
 };
 
+/*
+Input: string (4 number)
+Output:Array (All the words can be written)
 
-var telephoneWords = function(digitString) {
-  // TODO: return every combination that can be spelled on a phone with these digits
-};
+Pseudocode
+// create a wordSoFar = []
+  // if curr digit is the last digit
+    // push the value of this digit to wordSoFar
+  // create a digitLetter that is value of this current digit
+  // go though the digitLetter
+    // Move to next digit and recurse
+    //If the current digit is a 0 or a 1, return
+ */
+
+var telephoneWords = function (digitString) {
+  var wordSoFar = [];
+
+  var addDigitLetter = (letter, digitIndex) => {
+    if (digitString.length === letter.length) {
+      wordSoFar.push(letter);
+      return;
+    }
+
+    var digitLetter = phoneDigitsToLetters[digitString[digitIndex]]
+    for (var i = 0; i < digitLetter.length; i++) {
+      addDigitLetter(letter + digitLetter[i], digitIndex + 1);
+    }
+  }
+  addDigitLetter('', 0);
+  return wordSoFar;
+}
