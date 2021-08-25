@@ -43,4 +43,44 @@ var phoneDigitsToLetters = {
 
 var telephoneWords = function(digitString) {
   // TODO: return every combination that can be spelled on a phone with these digits
+  var results = []
+  if(digitString.length !== 4) {
+    console.log('THERE WAS AN ERROR!!!!!');
+  }
+  // digit string = [5,2,3,4];
+  for(var i = 0; i < phoneDigitsToLetters[digitString[0]].length; i++) {
+    currString = '';
+    currString += phoneDigitsToLetters[digitString[0]][i];
+
+    for(var j = 0; j < phoneDigitsToLetters[digitString[1]].length; j++) {
+      if(currString.length === 4) {
+        currString = currString.substring(0, currString.length - 3);
+      }
+      currString += phoneDigitsToLetters[digitString[1]][j];
+
+      for(var k = 0; k < phoneDigitsToLetters[digitString[2]].length; k++) {
+        if(currString.length === 4) {
+          currString = currString.substring(0, currString.length - 2);
+        }
+        currString += phoneDigitsToLetters[digitString[2]][k];
+
+        for(var l = 0; l < phoneDigitsToLetters[digitString[3]].length; l++) {
+          if(currString.length === 4) {
+            currString = currString.substring(0, currString.length - 1);
+          }
+          currString += phoneDigitsToLetters[digitString[3]][l];
+          results.push(currString);
+        }
+      }
+    }
+  }
+  return results;
 };
+
+var digitString = [7,9,3,7];
+var word = telephoneWords(digitString);
+
+console.log(word);
+
+console.log(phoneDigitsToLetters[digitString[3]]);
+console.log(phoneDigitsToLetters[digitString[3]][0]);
