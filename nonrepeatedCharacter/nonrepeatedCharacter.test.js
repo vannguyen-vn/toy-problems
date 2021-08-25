@@ -1,6 +1,6 @@
 const nonrepeatedCharacter = require('./nonrepeatedCharacter.js');
 
-test('it should find the first nonrepeated character', () => {
+test.skip('it should find the first nonrepeated character', () => {
   var firstNonRepeatedCharacter = nonrepeatedCharacter.firstNonRepeatedCharacter;
   var testString = '\\I like to ride my bycicle';
   console.log(firstNonRepeatedCharacter(testString));

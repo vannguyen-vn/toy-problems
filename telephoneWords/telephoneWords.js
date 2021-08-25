@@ -42,5 +42,21 @@ var phoneDigitsToLetters = {
 
 
 var telephoneWords = function(digitString) {
-  // TODO: return every combination that can be spelled on a phone with these digits
+  var output = [];
+  var getLetters = (currentIndex, currentString) => {
+    var digit = parseInt(digitString[currentIndex])
+    if(currentIndex === digitString.length - 1) {
+      for (var i = 0; i < phoneDigitsToLetters[digit].length; i++) {
+        output.push(currentString + phoneDigitsToLetters[digit][i]);
+      }
+    } else {
+      for (var i = 0; i < phoneDigitsToLetters[digit].length; i++) {
+        getLetters(currentIndex + 1, currentString + phoneDigitsToLetters[digit][i]);
+      }
+    }
+  }
+  getLetters(0, '');
+  return output;
 };
+
+//module.exports = {telephoneWords: telephoneWords};
