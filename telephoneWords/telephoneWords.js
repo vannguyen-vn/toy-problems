@@ -44,3 +44,55 @@ var phoneDigitsToLetters = {
 var telephoneWords = function(digitString) {
   // TODO: return every combination that can be spelled on a phone with these digits
 };
+
+
+/*
+Inputs: Up to (but not necessarily) four numbers
+Outcomes: 1 array containing all permutations of the letter options from those four numbers (Order matters)
+Constraints: Inputs must be numbers. Must have at least one number. Numbers must maintain their position (example ends with a c as the first letter)
+Edge Case: 1 and 0 should be left as numbers
+
+Process:
+
+//create an array var
+//create an empty string var
+
+
+//create an internal function that takes an index of the arguments array
+
+//if arguments at index plus one is undefined
+  //push the string into the array
+  //set the string to ""
+
+//For Each letter option add the letter option to the string, and call innerHelperFunction for the next number in the arguments array
+
+//close the inner helper function
+
+//call on each of the arguments
+
+
+------
+
+//Sample Data
+input(2, 3)
+
+returnArray = ["AD", "AE", "AF", "BD", "BE", "BF", "CD", "CE", CF];
+string = ""
+arguments = [2, 3]
+
+innerHelperFunction(0)
+
+*/
+
+// var phoneDigitsToLetters = {
+//   0: '0',
+//   1: '1',
+//   2: 'ABC',
+//   3: 'DEF',
+//   4: 'GHI',
+//   5: 'JKL',
+//   6: 'MNO',
+//   7: 'PQRS',
+//   8: 'TUV',
+//   9: 'WXYZ'
+// };
