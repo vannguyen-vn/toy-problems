@@ -19,20 +19,24 @@
 */
 
 var rockPaperScissors = function (rounds) {
-  if (rounds === 1) {
-    return ['R', 'P', 'S'];
+  var res = [];
+  var givenArr = ['R', 'P', 'S'];
+
+  var eachString = function(str) {
+    if (str.length === 3) {
+      res.push(str);
+    } else {
+      for (var i = 0; i < givenArr.length; i++) {
+        eachString(str + givenArr[i]);
+      }
+    }
   }
 
-  var preArr = rockPaperScissors(rounds - 1);
-
-  preArr.forEach(function(item, i) {
-    var ele = preArr[i];
-    preArr[i] = ele + 'R';
-    preArr.push(ele + 'P');
-    preArr.push(ele + 'S');
-  })
-  return preArr;
+  eachString('');
+  return res;
 };
+
+console.log(rockPaperScissors(3));
 
 
 

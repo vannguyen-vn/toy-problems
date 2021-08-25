@@ -43,4 +43,28 @@ var phoneDigitsToLetters = {
 
 var telephoneWords = function(digitString) {
   // TODO: return every combination that can be spelled on a phone with these digits
+  var res = [];
+
+  var getEachStr = function(str) {
+    if (str.length === 4) {
+      res.push(str);
+    } else {
+      //find current digits in digitString, the index should be equal to the str.length;
+      var currDig = digitString.charAt(str.length);
+      //retrieve the string of current digits
+      var letterStr = phoneDigitsToLetters[currDig];
+      //for each character in the string, append one character once to the str, get a new str
+      for (var i = 0; i < letterStr.length; i++) {
+        //pass the new str into the getEachStr
+        getEachStr(str + letterStr[i]);
+      }
+    }
+  }
+
+  //invoke the getEachStr with an empty string
+  getEachStr('');
+  //return result;
+  return res;
 };
+
+console.log(telephoneWords('2745'));
