@@ -41,6 +41,37 @@ var phoneDigitsToLetters = {
 };
 
 
+// TODO: return every combination that can be spelled on a phone with these digits
+// letterSet -> letterSet -> letterSet
+// [JKL] -> [ABC] -> [MNO]
+// base case = digitString.length;
+// get index of letterSet, toggle on and off
+
 var telephoneWords = function(digitString) {
-  // TODO: return every combination that can be spelled on a phone with these digits
+
+  if (digitString.length === 0) { return []; }
+
+  var permutations = [];
+  var letterSets = [];
+
+  for (var char of digitString) {
+    letterSets.push(phoneDigitsToLetters[char]);
+  }
+
+  var inner = (word, index) => {
+    if (index === digitString.length) {
+      permutations.push(word);
+      return;
+    }
+
+    for (var i = 0; i < letterSets[index].length; i++) {
+      word += letterSets[index][i];
+      inner(word, index + 1);
+      word = word.slice(0, -1);
+    }
+  };
+
+  inner('', 0);
+
+  return permutations;
 };
