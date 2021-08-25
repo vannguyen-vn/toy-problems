@@ -23,7 +23,7 @@ var rockPaperScissors = function (rounds) {
   var givenArr = ['R', 'P', 'S'];
 
   var eachString = function(str) {
-    if (str.length === 3) {
+    if (str.length === rounds) {
       res.push(str);
     } else {
       for (var i = 0; i < givenArr.length; i++) {
@@ -36,7 +36,7 @@ var rockPaperScissors = function (rounds) {
   return res;
 };
 
-console.log(rockPaperScissors(3));
+console.log(rockPaperScissors(5));
 
 
 
