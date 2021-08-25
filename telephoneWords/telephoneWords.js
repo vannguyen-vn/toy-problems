@@ -78,6 +78,8 @@ var helper = function (results, current, digitString, index) {
   var letters = phoneDigitsToLetters[digit];
 
   for (var i = 0; i < letters.length; i++) {
-    helper(results, current + letters[i], digitString, index + 1);
+    current += letters[i];
+    helper(results, current, digitString, index + 1);
+    current = current.slice(0, -1);
   }
 }
