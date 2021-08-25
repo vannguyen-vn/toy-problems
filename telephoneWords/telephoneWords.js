@@ -43,4 +43,31 @@ var phoneDigitsToLetters = {
 
 var telephoneWords = function(digitString) {
   // TODO: return every combination that can be spelled on a phone with these digits
+  //eg: 2345
+  var prevLetters = [''];
+
+  for (var i = 0; i < digitString.length; i++) {
+    var possPerm = [];
+
+    for (var k=0; k < prevLetters.length; k++) {
+      //second iteration of outer loop, we loop through ['A', 'B', 'C']
+      //third iteration of outer loop, we loop through [AD, AE, AF, BD, BE, BF, CD, CE, CF]
+      for(var letter of phoneDigitsToLetters[digitString[i]]) {
+        //loop through the poss letters the current digit could represent and append it to each of the previous combinations
+        //first iteration of outer loop: 2 was the first digit, prevLetters would now be ['A', 'B', 'C']
+        //second iteration of outer loop: 3 maps to D E F, so prevLetters [AD, AE, AF, BD, BE, BF, CD, CE, CF]
+        //third iteration of outer loop: 4 maps to G H I, so prevLetters [ADG, ADH, ADI, AEG, AEH, AEI...]
+        possPerm.push(prevLetters[k].concat(letter))
+
+      }
+    }
+
+    if (i === (digitString.length - 1)) {
+      return possPerm;
+    }
+
+    prevLetters = possPerm;
+    //place new combinations in outer scope
+  }
+
 };
