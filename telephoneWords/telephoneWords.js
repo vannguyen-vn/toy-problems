@@ -40,7 +40,28 @@ var phoneDigitsToLetters = {
   9: 'WXYZ'
 };
 
-
 var telephoneWords = function(digitString) {
   // TODO: return every combination that can be spelled on a phone with these digits
+  // Recursive function call, slice the digitString with every call, similar to rock paper scissors
+
+  var results = [];
+  var length = digitString.length;
+
+  if (!length) {
+    return [];
+  }
+
+  var addCharacters = (word, index) => {
+    if (index === length) {
+      results.push(word);
+    } else {
+      var letters = phoneDigitsToLetters[digitString[index]];
+      for (var i = 0; i < letters.length; i++) {
+        addCharacters(word + letters[i], index + 1);
+      }
+    }
+  }
+
+  addCharacters('', 0);
+  return results;
 };
