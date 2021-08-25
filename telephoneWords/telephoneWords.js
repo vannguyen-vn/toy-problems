@@ -42,5 +42,35 @@ var phoneDigitsToLetters = {
 
 
 var telephoneWords = function(digitString) {
-  // TODO: return every combination that can be spelled on a phone with these digits
+  if (digitString.length === 0) {
+    return '';
+  } else if (digitString.length === 1) {
+    return phoneDigitsToLetters[digitString[0]];
+  }
+
+  var result = [];
+  for (let i = 0; i < digitString.length; i++) {
+    var splittedLetters = phoneDigitsToLetters[digitString[i]].split("");
+    result.push(splittedLetters);
+  }
+
+  var mid = inductionStep(result[0], result[1]);
+
+  for (var j = 2; j < result.length; j++) {
+    mid = inductionStep(mid, result[j])
+  }
+  return mid;
 };
+
+var inductionStep = function(arr1, arr2) {
+  var res = [];
+  for (var i = 0; i < arr1.length; i++) {
+    for (var j = 0; j < arr2.length; j++) {
+      var str = "";
+      str += (arr1[i] + arr2[j]);
+      res.push(str);
+    }
+  }
+  return res;
+}
+
