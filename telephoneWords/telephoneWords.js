@@ -43,4 +43,33 @@ var phoneDigitsToLetters = {
 
 var telephoneWords = function(digitString) {
   // TODO: return every combination that can be spelled on a phone with these digits
+  var resultArray = [];
+
+  var stringBuilder = function(numberString, baseString) {
+    if (baseString.length === digitString.length) {
+      resultArray.push(baseString);
+      return;
+    }
+    for (var i = 0; i < numberString.length; i ++) {
+      var remainingString = numberString.slice(i + 1);
+      var currentDigit = numberString[i];
+      //  for each, iterate across the possible letters
+      for (var j = 0; j < phoneDigitsToLetters[currentDigit].length; j++) {
+        var newBase = baseString + phoneDigitsToLetters[currentDigit][j];
+        stringBuilder(remainingString, newBase);
+      }
+    }
+
+  }
+
+  stringBuilder(digitString, '');
+  return resultArray;
+  // base case
+  //  last number in the string of numbers (numberString is down to 0 length)
+  //  concat base string with each possible letter, push into resultArray
+  //
+  // recursive case
+  //  iterate across the string of numbers
+  //    for each number, iterate across the possible letters
+  //      for each letter, concat with base string, then call the recursive function on the remaining number string and the new base string
 };
