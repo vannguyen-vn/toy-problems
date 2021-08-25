@@ -43,4 +43,15 @@ var phoneDigitsToLetters = {
 
 var telephoneWords = function(digitString) {
   // TODO: return every combination that can be spelled on a phone with these digits
+  // split digitalString to array
+  // search through the object of phoneDigitsToLetters, use the stack
+
+  var telephoneWords = function(digitString) {
+  // TODO: return every combination that can be spelled on a phone with these digits
+  // split digitalString to array
+  // search through the object of phoneDigitsToLetters, use the stack
+    var result = [];
+    return result;
+  };
+
 };
