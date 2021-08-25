@@ -42,5 +42,33 @@ var phoneDigitsToLetters = {
 
 
 var telephoneWords = function(digitString) {
-  // TODO: return every combination that can be spelled on a phone with these digits
+
+  var rounds = digitString.length;
+  var combinations = [];
+  var variations = [];
+
+  for (var i = 0; i < digitString.length; i++) {
+    variations.push(phoneDigitsToLetters[digitString[i]])
+  }
+
+  var playRounds = function (playedSoFar) {
+    playedSoFar = playedSoFar || '';
+
+    if (playedSoFar.length === rounds) {
+      combinations.push(playedSoFar);
+      return;
+    }
+
+  variations.forEach(function(letter) {
+    for (var j = 0; j < letter.length; j++) {
+      playRounds(playedSoFar + letter[j])
+    }
+  });
+  }
+  playRounds();
+  return combinations;
 };
+
+// //for (var j = 0; j < phoneDigitsToLetters[digitString[i]].length; j++) {
+//   playRounds(playedSoFar + phoneDigitsToLetters[digitString[i]][j]);
+// }
