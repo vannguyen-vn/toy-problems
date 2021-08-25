@@ -40,7 +40,7 @@ var shuffleDeck = function(deck) {
   var index;
   while (workingDeck.length > 0) {
     index = Math.floor(Math.random() * workingDeck.length);
-    shuffled.push(deck[index]);
+    shuffled.push(workingDeck[index]);
     workingDeck.splice(index, 1);
   }
 
