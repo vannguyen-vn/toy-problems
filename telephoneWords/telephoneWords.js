@@ -40,7 +40,33 @@ var phoneDigitsToLetters = {
   9: 'WXYZ'
 };
 
+// first we need to loop over the digit string
+// for every digit, we will have access to a string of letters
+// for each string of letters, we must iterate over it and save the first letter in the string
+
+// what is the base case?
+// when we have one number we need to return an array of each one of those letters at a different index
+// once we are done iterating over the number
+
+// take the digit string at index 0
+// take the letters at index 0 of the string
+// add it to the string
 
 var telephoneWords = function(digitString) {
-  // TODO: return every combination that can be spelled on a phone with these digits
+  var result = [];
+  // loop over the digit string
+
+  var innerFunc = function(resultString) {
+    if (resultString === undefined) {
+      resultString = '';
+    }
+    if (resultString.length === numberLength) {
+      result.push(resultString);
+      return;
+    }
+
+  }
+
+  innerFunc();
+  return reuslt;
 };
