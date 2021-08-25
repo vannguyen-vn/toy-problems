@@ -17,4 +17,4 @@
   };
  return null;
 }
-//console.log(firstNonRepeatedCharacter('AARCIYRRRCBDB'));
+console.log(firstNonRepeatedCharacter('AARCIYRRRCBDB'));
