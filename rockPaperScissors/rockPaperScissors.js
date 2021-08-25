@@ -36,7 +36,7 @@ var rockPaperScissors = function (rounds) {
   return res;
 };
 
-console.log(rockPaperScissors(5));
+//console.log(rockPaperScissors(5));
 
 
 
