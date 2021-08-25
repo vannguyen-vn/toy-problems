@@ -43,7 +43,45 @@ var phoneDigitsToLetters = {
 
 var telephoneWords = function(digitString) {
   // TODO: return every combination that can be spelled on a phone with these digits
+
+  //create an array var
+  var wordCombinationList = [];
+  //create an empty string var
+  var wordCombination = '';
+
+  //create an array from arguments
+  var args = Array.prototype.slice.call(arguments, 0, 1)[0]
+
+  const combinationVariationHelper = (argsIndex) => {
+    console.log(argsIndex)
+  //create an internal function that takes an index of the arguments array
+
+  //if arguments at index one is undefined
+  if (args[argsIndex] === undefined) {
+    //push the string into the array
+    wordCombinationList.push(wordCombination)
+    //set the string to ""
+    wordCombination = '';
+  }
+
+  //For Each letter option add the letter option to the string, and call innerHelperFunction for the next number in the arguments array
+  let letterOptionsArray = phoneDigitsToLetters[args[argsIndex]]
+  letterOptionsArray.forEach(combinationVariationHelper)
+
+  //close the inner helper function
+  }
+
+  //call on each of the arguments
+  for (var i = 0; i < args.length; i++) {
+    combinationVariationHelper(i);
+  }
+
+  return wordCombinationList
 };
+
+var numbers1 = [2, 3];
+var test1 = telephoneWords(numbers1).length === 9;
+console.log('should be true', test1)
 
 
 /*
@@ -76,7 +114,7 @@ Process:
 //Sample Data
 input(2, 3)
 
-returnArray = ["AD", "AE", "AF", "BD", "BE", "BF", "CD", "CE", CF];
+returnArray = ["AD", "AE", "AF", "BD", "BE", "BF", "CD", "CE", "CF"];
 string = ""
 arguments = [2, 3]
 
