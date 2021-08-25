@@ -43,4 +43,31 @@ var phoneDigitsToLetters = {
 
 var telephoneWords = function(digitString) {
   // TODO: return every combination that can be spelled on a phone with these digits
+  // Create return array
+  var results = [];
+  // Create variable for combo string
+  var combo = '';
+  // Create inner recursive function
+  var innerFunc = function(combo) {
+    // Base Case: if word length is equal to digit length
+    if (combo.length === digitString.length) {
+      // push into result array
+      results.push(combo);
+    }
+    // Create index variable
+    var currIndex = digitString[combo];
+    // Set Object lookup to currIndex
+    var currNum = phoneDigitsToLetters[currNum];
+  // Iterate over digit string
+    for (var i = 0; i < currNum.length; i++) {
+      // For each letter add to combo string
+      combo += currNum[i];
+    }
+    // Push combo onto results array
+    results.push(combo)
+    // Recursively call innerFunc
+    innerFunc(combo);
+    // Return array
+    return results;
+  }
 };
