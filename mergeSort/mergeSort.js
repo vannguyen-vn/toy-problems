@@ -95,7 +95,7 @@
  *
  */
 
-//Complexity: O(logn);
+//Complexity: O(nlogn);
  var mergeSort = function(array) {
   var mid = array.length / 2;
 
@@ -111,6 +111,7 @@
 
 var merge = function(leftArr, rightArr) {
   var temp = [];
+
   while (leftArr.length && rightArr.length) {
     if (leftArr[0] < rightArr[0]) {
       temp.push(leftArr.shift());
@@ -118,8 +119,11 @@ var merge = function(leftArr, rightArr) {
       temp.push(rightArr.shift());
     }
   }
+  
   return [...temp, ...leftArr, ...rightArr];
 }
+
+console.log(mergeSort([1, 3, 2, 0, 6, 2, 4, 5]));
 
 
 // var mergeSort = function(array, left, right) {
