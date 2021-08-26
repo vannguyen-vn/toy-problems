@@ -15,14 +15,24 @@
 var allAnagrams = function(string) {
   var anagrams = [];
   for (var i = 0; i < string.length; i ++) {
-    for (var n = 0; n < string.length; n++) {
-      anagrams.push(string[0]);
+    // for (var n = 1; n < string.length; n++) {
+    //   anagrams.push(string[i]);
+    // }
+    // var remainingString = string.slice(0, i) + string.slice(i + 1);
+    // if (remainingString.length > 0) {
+    //   var anagramsToAdd = allAnagrams(remainingString);
+    //   for (var j = 0; j < string.length; j++) {
+    //     anagrams[j] += anagramsToAdd[j];
+    //   }
+
+    // }
+    var currentAnagram = string[i];
+    var remainingString = string.slice(0, i) + string.slice(i + 1);
+    if (remainingString.length === 1) {
+      return [remainingString];
     }
-    var remainingString = string.slice(i + 1);
     var anagramsToAdd = allAnagrams(remainingString);
-    for (var j = 1; j < string.length; j++) {
-      anagrams[j] += anagramsToAdd[j];
-    }
+    anagrams.concat(anagramsToAdd.map((anagram) => (string[i] + anagram)));
   }
 
   return anagrams;
@@ -34,8 +44,8 @@ var allAnagrams = function(string) {
   // }
 
   //base
-  // end of letters (anagram.length === string.length)
-  //   that's the anagram: return it/push it into the result array
+  // remainingString is only one letter
+  //  return an array with only that letter
 
 
   //recursive case
