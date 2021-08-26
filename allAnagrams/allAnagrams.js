@@ -15,6 +15,7 @@
 var allAnagrams = function(string) {
   // Declare a result array
   var results = [];
+  var arr = string.split("");
   // Create inner recursive function that takes in a newString
   var recursiveFunc = function(newString) {
     // Base Case: If newString length equals string length
@@ -24,12 +25,13 @@ var allAnagrams = function(string) {
         // Else
     } else {
       // Iterate over string
-      for (var i = 0; i < newString.length; i++) {
+      for (var i = 0; i < arr.length; i++) {
+        var currentLetter = arr[i];
         // splice the newString at the current index
-        newString.slice(i, 1);
+        arr.splice(i, 1);
         // Call Recursive function on newString
-        recursiveFunc(newString + newString[i]);
-        newString.shift(newString[i]);
+        recursiveFunc(newString + currentLetter);
+        arr.unshift(currentLetter);
       }
     }
   };
