@@ -1,3 +1,3 @@
-const telephoneWords = require('./telephoneWords.js')
+// const telephoneWords = require('./telephoneWords.js')
 
-console.log(telephoneWords.telephoneWords('480'));
+// console.log(telephoneWords.telephoneWords('480'));

@@ -13,5 +13,21 @@
   */
 
 var allAnagrams = function(string) {
-  // Your code here.
+  var anagrams = [];
+  var anagramMaker = (string, anagram = '') => {
+    if (string.length === 0) {
+      anagrams.push(anagram);
+    }
+    var letters = string.split('');
+    for (var i = 0; i < letters.length; i++) {
+      var letter = letters.splice(i, 1);
+      anagramMaker(letters.join(''), anagram + letter);
+      letters.splice(i, 0, letter);
+    }
+  }
+  anagramMaker(string);
+  var duplicate = JSON.parse(JSON.stringify(anagrams));
+  return duplicate;
 };
+
+//module.exports = {allAnagrams: allAnagrams};
