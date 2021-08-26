@@ -13,5 +13,20 @@
   */
 
 var allAnagrams = function(string) {
-  // Your code here.
+  var anagrams = [];
+
+  var inner = (word) => {
+    if (word.length === string.length) {
+      anagrams.push(word);
+      return;
+    }
+
+    for (var i = 0; i < string.length; i++) {
+      if (word.includes(string[i])) { continue; }
+      inner(word + string[i]);
+    }
+  };
+
+  inner('');
+  return anagrams;
 };
