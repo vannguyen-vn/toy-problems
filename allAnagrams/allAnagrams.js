@@ -13,11 +13,13 @@
   */
 
  var allAnagrams = function(string) {
-  var anagrams = [];
+  var anagrams = {};
 
   var inner = (word, subword) => {
     if (word.length === string.length) {
-      anagrams.push(word);
+      if (!anagrams[word]) {
+        anagrams[word] = word;
+      }
       return;
     }
 
@@ -30,5 +32,5 @@
   };
 
   inner('', string);
-  return anagrams;
+  return Object.keys(anagrams);
 };
