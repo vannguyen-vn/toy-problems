@@ -27,3 +27,15 @@ var allAnagrams = function(string, anagram) {
 
   return res;
 };
+
+var uniqueAnagrams = function(array) {
+  var dictionary = {};
+  var res = [];
+  for (const anagram of array) {
+    dictionary[anagram] = true;
+  }
+  for (let key in dictionary) {
+    res.push(key);
+  }
+  return res;
+}
