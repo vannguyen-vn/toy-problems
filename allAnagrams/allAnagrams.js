@@ -13,5 +13,19 @@
   */
 
 var allAnagrams = function(string) {
-  // Your code here.
+  if (string.length < 2) {
+    return string;
+  }
+  let letterArray = [];
+  for (let i = 0; i < string.length; i++) {
+    let letter = string[i];
+   let remaining = string.slice(0, i) + string.slice(i + 1, string.length);
+  //  console.log(remaining);
+  for (let nextLetter of allAnagrams(remaining)) {
+    letterArray.push(letter + nextLetter);
+  }
+  }
+  return letterArray;
 };
+
+console.log(allAnagrams('salmon'));
