@@ -14,4 +14,21 @@
 
 var allAnagrams = function(string) {
   // Your code here.
+  var len = string.length;
+  var chars = string.split('');
+  var str = '';
+  var results = [];
+  var innerFunc = function(str, chars) {
+    if(str.length === len) {
+      results.push(str)
+    }
+    chars.forEach(function(char, index) {
+      var newStr = str + char;
+      var newChars = chars.slice();
+      newChars.splice(index, 1);
+      innerFunc(newStr, newChars);
+    })
+  }
+  innerFunc(str, chars);
+  return results;
 };
