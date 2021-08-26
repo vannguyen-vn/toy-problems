@@ -18,7 +18,7 @@ var allAnagrams = function(string) {
   var obj = {};
   var recursiveFunc = (currentPerm, remaining) => {
     if (remaining.length === 0) {
-      permutations.push(currentPerm);+
+      permutations.push(currentPerm);
       obj[currentPerm] = true;
       return;
     }
