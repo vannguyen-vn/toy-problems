@@ -12,6 +12,11 @@
   * console.log(anagrams); // [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
   */
 
-var allAnagrams = function(string) {
+var allAnagrams = function (string) {
+  // declare variable assign to obj
+  // base case: if word length is equal to string length anagram becomes true
+  // iterate
+  // recursive function
+  // return anagrams
   // Your code here.
 };
