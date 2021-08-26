@@ -19,9 +19,7 @@ var allAnagrams = function(string) {
     var result = [];
     for (var i = 0; i < string.length; i++) {
       var letter = string[i];
-      var shorter = string.substr(0, i) + string.substr(i + 1, string.length - 1);
-      console.log('first part :', string.substr(0, i));
-      console.log('second part :', string.substr(i + 1, string.length - 1));
+      var shorter = string.substring(0, i) + string.substring(i + 1, string.length - 1);
       var shorter = allAnagrams(shorter);
       for (var j = 0; j < shorter.length; j++) {
         result.push(letter + shorter[j]);
