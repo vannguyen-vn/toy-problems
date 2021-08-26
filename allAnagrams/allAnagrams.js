@@ -13,13 +13,15 @@
   */
 
  var allAnagrams = function(string) {
-  var res = [];
+  var res = {};
   var arr = string.split("");
   var len = string.length;
 
   var addAnagrams = (letter, array, length) => {
     if (letter.length === length) {
-      res.push(letter);
+      if (res[letter] === undefined) {
+        res[letter] = 1;
+      }
       return;
     }
 
@@ -30,5 +32,5 @@
 
   addAnagrams("", arr, len);
 
-  return res;
+  return Object.keys(res);
 };
