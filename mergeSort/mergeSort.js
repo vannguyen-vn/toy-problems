@@ -118,7 +118,7 @@ var mergeSort = function(array) {
   var resultArray = [];
   var i = 0;
   var j = 0;
-  while (j < array2.length) {
+  while (j < array2.length || i < array1.length) {
     if (array1[i] > array2[j] || !array1[i]) {
       resultArray.push(array2[j]);
       j++;
