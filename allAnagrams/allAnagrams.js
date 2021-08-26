@@ -13,5 +13,21 @@
   */
 
 var allAnagrams = function(string) {
-  // Your code here.
+  var results = [];
+
+  var generateAnagrams = (currStr, anagram) => {
+    anagram = anagram || '';
+    if (anagram.length === string.length) {
+      results.push(anagram);
+      return;
+    }
+    for (var i = 0; i < currStr.length; i++) {
+      anagram+= currStr[i];
+      generateAnagrams(currStr.slice(0, i) + currStr.slice(i+1), anagram);
+      anagram = anagram.slice(0, anagram.length - 1);
+    }
+  }
+  generateAnagrams(string);
+
+  return results;
 };
