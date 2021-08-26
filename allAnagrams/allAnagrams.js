@@ -14,9 +14,22 @@
 
 var allAnagrams = function (string) {
   // declare variable assign to obj
+  var result = {};
   // base case: if word length is equal to string length anagram becomes true
-  // iterate
+  let makeAnagrams = (word, letters) => {
+    if (word.length = letters.length) {
+      result[word] = true;
+    }
+    for (let i = 0; i < letters.length; i++) {
+      // iterate, current letter, 0 --> index, and next index
+      makeAnagrams(word + letters[i], letters.slice(0, i), letters.slice(i + 1))
+    }
+  }
   // recursive function
+  makeAnagrams('', string)
   // return anagrams
-  // Your code here.
+
+
 };
+var anagrams = allAnagrams('abc');
+console.log(anagrams); // [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
