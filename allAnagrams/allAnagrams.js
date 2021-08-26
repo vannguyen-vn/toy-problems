@@ -12,20 +12,42 @@
   * console.log(anagrams); // [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
   */
 
-var allAnagrams = (string, anagram = '') => {
+var allAnagrams = (string) => {
   // Your code here.
   var results = [];
 
-  if (!length) {
-    results.push(anagram);
-    return;
+  var anagramGenerator = (word, anagram = '') => {
+    if (!word) {
+      results.push(anagram);
+      return;
+    }
+    for (var i = 0; i < word.length; i++) {
+      anagram += word[i];
+      anagramGenerator(word.slice(0, i) + word.slice(i + 1), anagram);
+      anagram = anagram.slice(0, anagram.length - 1);
+    }
   }
 
-  for (var i = 0; i < string.length; i++) {
-    anagram += string[i];
-    anagramGenerator(string.slice(0, i) + string.slice(i + 1));
-    anagram.slice(0, anagram.length - 1);
-  }
-
+  anagramGenerator(string);
   return results;
 };
+
+// function genAnagram(word) {
+//   var results = [];
+//   if (word.length == 1) {
+//     results.push(word);
+//     return results;
+//   }
+//   for (var i = 0; i < word.length; i++){
+//     var fixed = word[i];
+//     var remaining = word.slice(0, i) + word.slice(i + 1);
+//     var r = genAnagram(remaining);
+//     for(var j = 0; j < r.length; j++ ){
+//       results.push(fixed + r[j]);
+//     }
+//   }
+//   return results;
+// }
+
+// var anagrams = genAnagram('abc');
+// console.log(anagrams)
