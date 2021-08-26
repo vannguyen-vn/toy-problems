@@ -12,17 +12,17 @@
   * console.log(anagrams); // [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
   */
 
-var allAnagrams = function(string, anagram, res) {
+var allAnagrams = function(string, anagram) {
   anagram = anagram || '';
-  res = res || [];
+  var res = [];
 
   if (string.length === 0) {
-    res.push(anagram);
-    return;
+    return [ anagram ];
   }
 
   for (var i = 0; i < string.length; i++) {
-    allAnagrams(string.slice(1), anagram + string[i], res);
+    var subres = allAnagrams(string.slice(0, i) + string.slice(i + 1, string.length), anagram + string[i]);
+    res.push(...subres);
   }
 
   return res;
