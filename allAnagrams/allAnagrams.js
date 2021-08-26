@@ -31,7 +31,7 @@ var allAnagrams = function(string) {
         arr.splice(i, 1);
         // Call Recursive function on newString
         recursiveFunc(newString + currentLetter);
-        arr.unshift(currentLetter);
+        arr.splice(i, 0, currentLetter);
       }
     }
   };
