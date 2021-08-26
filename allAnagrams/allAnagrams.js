@@ -13,18 +13,25 @@
   */
 
 var allAnagrams = function(string) {
-  if (string.length === 1) {
-    return [string];
-  } else {
-    var result = [];
-    for (var i = 0; i < string.length; i++) {
-      var letter = string[i];
-      var shorter = string.substring(0, i) + string.substring(i + 1, string.length - 1);
-      var shorter = allAnagrams(shorter);
-      for (var j = 0; j < shorter.length; j++) {
-        result.push(letter + shorter[j]);
-      }
+  var result = [];
+
+  var helper = function(currentString, temp) {
+    temp = temp || '';
+    if (temp.length === string.length) {
+      result.push(temp);
+      return;
     }
-    return result;
-  }
+    for (var i = 0; i < currentString.length; i++) {
+      temp += currentString[i];
+      helper(currentString.slice(0, i) + currentString.slice(i + 1), temp);
+      temp = temp.slice(0, temp.length - 1);
+    }
+  };
+
+  helper(string);
+
+  return result;
 };
+
+
+
