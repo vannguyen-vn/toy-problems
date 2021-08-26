@@ -27,8 +27,6 @@ var allAnagrams = function(string) {
       currentString = currentPerm + remaining[i];
       recursiveFunc(currentString, remaining.substring(0, i) + remaining.substring(i + 1));
     }
-
-
   }
   recursiveFunc('', string);
   return Object.keys(obj);

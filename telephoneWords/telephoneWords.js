@@ -43,4 +43,20 @@ var phoneDigitsToLetters = {
 
 var telephoneWords = function(digitString) {
   // TODO: return every combination that can be spelled on a phone with these digits
+  var permutations = [];
+
+  var recursiveFunc = (currentPerm, remaining) => {
+    if (remaining.length === 0) {
+      permutations.push(currentPerm);
+      return
+    }
+
+    var letters = phoneDigitsToLetters[remaining[0]];
+    for (var i = 0; i < letters.length; i++) {
+      currentString = currentPerm + letters[i];
+      recursiveFunc(currentString, remaining.substring(1));
+    }
+  }
+  recursiveFunc('', digitString);
+  return permutations;
 };
