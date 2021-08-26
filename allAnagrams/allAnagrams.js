@@ -12,6 +12,20 @@
   * console.log(anagrams); // [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
   */
 
-var allAnagrams = function(string) {
+var allAnagrams = (string, anagram = '') => {
   // Your code here.
+  var results = [];
+
+  if (!length) {
+    results.push(anagram);
+    return;
+  }
+
+  for (var i = 0; i < string.length; i++) {
+    anagram += string[i];
+    anagramGenerator(string.slice(0, i) + string.slice(i + 1));
+    anagram.slice(0, anagram.length - 1);
+  }
+
+  return results;
 };
