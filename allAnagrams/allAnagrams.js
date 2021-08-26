@@ -31,4 +31,4 @@ var allAnagrams = function(string) {
   return anagrams;
 };
 
-module.exports = {allAnagrams: allAnagrams};
+//module.exports = {allAnagrams: allAnagrams};
