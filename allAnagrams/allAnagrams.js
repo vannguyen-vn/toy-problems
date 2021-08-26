@@ -33,26 +33,31 @@ for loop through string
 var allAnagrams = function (string) {
   // Your code here.
   if (string.length === 1) {
-    return string;
+    return [string];
   }
 
+  const set = new Set();
   var results = [];
-  helper(string, results, "");
+  helper(string, results, "", set);
   return results;
 };
 
-var helper = function (string, results, current) {
+var helper = function (string, results, current, set) {
   if (current.length === string.length) {
-    results.push(current);
-    return;
+    if (!results.includes(current)) {
+      results.push(current);
+      return;
+    }
   }
 
   for (var i = 0; i < string.length; i++) {
-    if (current.indexOf(string[i]) >= 0) {
+    if (set.has(i)) {
       continue;
     }
+    set.add(i);
     current += string[i];
-    helper(string, results, current);
+    helper(string, results, current, set);
+    set.delete(i);
     current = current.slice(0, -1);
   }
 }
