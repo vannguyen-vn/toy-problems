@@ -41,6 +41,19 @@ var phoneDigitsToLetters = {
 };
 
 
-var telephoneWords = function(digitString) {
+var telephoneWords = function (digitString) {
   // TODO: return every combination that can be spelled on a phone with these digits
+  // split the digit string
+  // declare variable and assign to array
+  // declare recursive function that will take in word and a digit
+  // conditional: if the digit length is not 0
+  // return the array
+  // declare variable and assign it to the phone digits to letters obj and split it
+  // iterate over letters array
+  // recursion of the word + current letter, and slice digit
+  // after loop
+  // recursion empty string, and digit split
+  // return result
+
 };
+console.log(!0)
