@@ -13,8 +13,51 @@
   */
 
 var allAnagrams = function(string) {
-  // Your code here.
+  //create a return array
+  let anagramList = [];
+
+  let stringArray = string.split('')
+
+  let backwardString = string.split('')
+  backwardString = backwardString.reverse();
+  backwardString = backwardString.join('');
+
+    //separate each letter in its own variable
+  let first = [stringArray[0]]
+  let second = [stringArray[1]]
+  let third = [stringArray[2]]
+
+  //create a helper function that takes the array of numbers
+  const swapInnerLetters = (first, second, third) => {
+
+  //push the combination into the array with the elements in their current positon.
+  let option1 = first.concat(second, third).join("")
+
+  if (option1 === backwardString) {
+    return;
+  }
+
+  let option2 = first.concat(third, second).join("")
+  anagramList.push(option1, option2)
+
+  //for each remaining letter, swap position with other remaining letter
+  //push the combination into the array
+
+  //in the array, move the first letter to the second postion and call the inner helper function with this array
+  swapInnerLetters(second, first, third);
+  }
+  //close the inner helper function
+
+  //for each letter, call the inner helper function
+  swapInnerLetters(first, second, third);
+
+  //return the array
+  return anagramList
+
 };
+
+let test1 = allAnagrams('abc')
+console.log('test1', test1);
 
 
 
