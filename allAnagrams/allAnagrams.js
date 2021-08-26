@@ -29,5 +29,5 @@ var allAnagrams = function(string) {
   }
   generateAnagrams(string);
 
-  return results;
+  return Array.from(new Set(results));
 };
