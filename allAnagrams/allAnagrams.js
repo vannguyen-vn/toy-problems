@@ -25,16 +25,20 @@ var allAnagrams = function(string, anagram) {
     res.push(...subres);
   }
 
-  let dictionary = {};
-  let filtered = [];
+  var filterAnagrams = function(array) {
+    let dictionary = {};
+    let filtered = [];
 
-  for (const anagram of res) {
-    dictionary[anagram] = true;
+    for (const anagram of array) {
+      dictionary[anagram] = true;
+    }
+
+    for (let key in dictionary) {
+      filtered.push(key);
+    }
+
+    return filtered;
   }
 
-  for (let key in dictionary) {
-    filtered.push(key);
-  }
-
-  return filtered;
+  return filterAnagrams(res);
 };
