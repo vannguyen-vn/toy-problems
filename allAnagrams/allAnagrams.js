@@ -44,10 +44,7 @@ var allAnagrams = function (string) {
 
 var helper = function (string, results, current, set) {
   if (current.length === string.length) {
-    if (!results.includes(current)) {
-      results.push(current);
-      return;
-    }
+    results.push(current);
   }
 
   for (var i = 0; i < string.length; i++) {
