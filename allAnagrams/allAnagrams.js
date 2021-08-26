@@ -12,6 +12,34 @@
   * console.log(anagrams); // [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
   */
 
-var allAnagrams = function(string) {
-  // Your code here.
+ var allAnagrams = function(input) {
+   // Storage for anagrams
+  var results = [];
+
+  // Recursive anagram function
+  var getAnagrams = (string, anagram = '') => {
+    // Base Case
+    // If string is empty (all used up) push anagram into results
+    if (!string) {
+      results.push(anagram);
+      return;
+    }
+    // Iterate over entire string
+    for (var i = 0; i < string.length; i++) {
+      // add position i to our anagram
+      anagram += string[i];
+      // Recursively call on string without i
+      getAnagrams(string.slice(0, i) + string.slice(i + 1), anagram);
+      // Remove last letter of anagram
+      anagram = anagram.slice(0, anagram.length -1);
+    }
+  }
+  // Call recursive function on input
+  getAnagrams(input);
+  // Return results
+  return results;
 };
+
+// var test = allAnagrams('ABC');
+
+// console.log(test);
