@@ -14,28 +14,27 @@
 
 var allAnagrams = function(string, anagram) {
   anagram = anagram || '';
-  var res = [];
+  let res = [];
 
   if (string.length === 0) {
     return [ anagram ];
   }
 
-  for (var i = 0; i < string.length; i++) {
-    var subres = allAnagrams(string.slice(0, i) + string.slice(i + 1, string.length), anagram + string[i]);
+  for (let i = 0; i < string.length; i++) {
+    let subres = allAnagrams(string.slice(0, i) + string.slice(i + 1, string.length), anagram + string[i]);
     res.push(...subres);
   }
 
-  return res;
-};
+  let dictionary = {};
+  let filtered = [];
 
-var uniqueAnagrams = function(array) {
-  var dictionary = {};
-  var res = [];
-  for (const anagram of array) {
+  for (const anagram of res) {
     dictionary[anagram] = true;
   }
+
   for (let key in dictionary) {
-    res.push(key);
+    filtered.push(key);
   }
-  return res;
-}
+
+  return filtered;
+};
