@@ -37,14 +37,16 @@ var allAnagrams = function (string) {
   }
 
   const set = new Set();
-  var results = [];
+  const results = new Set();
   helper(string, results, "", set);
-  return results;
+
+  const array = Array.from(results);
+  return array;
 };
 
 var helper = function (string, results, current, set) {
   if (current.length === string.length) {
-    results.push(current);
+    results.add(current);
   }
 
   for (var i = 0; i < string.length; i++) {
