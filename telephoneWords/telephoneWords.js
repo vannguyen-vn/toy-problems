@@ -27,6 +27,8 @@
   *
   */
 
+const fs = require('fs');
+
 var phoneDigitsToLetters = {
   0: '0',
   1: '1',
@@ -57,3 +59,21 @@ var telephoneWords = function(digitString, string, res) {
 
   return res;
 };
+
+var filterWords = function(words) {
+  var dictionary = {};
+  var res = [];
+  var contents = fs.readFileSync('/usr/share/dict/words', 'utf8');
+
+  for (const word of contents.split('\n')) {
+    dictionary[word] = true;
+  }
+
+  for (const word of words) {
+    if (word.toLowerCase() in dictionary) {
+      res.push(word);
+    }
+  }
+
+  return res;
+}
