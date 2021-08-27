@@ -37,5 +37,5 @@ var makeChange = function(total) {
       }
     });
   }
-  return table[total - 1];
+  return table[total];
 };
