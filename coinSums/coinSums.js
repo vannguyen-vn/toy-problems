@@ -24,8 +24,27 @@ makeChange(1) === 1
 makeChange(2) === 2
 */
 
-var makeChange = function(total) {
+var coins = [1, 2, 5, 10, 20, 50, 100, 200]
 
+var makeChange = function(total) {
+  var count = 0;
+
+  var searchCoins = (array, sum) => {
+    if (sum === 0) {
+      count++;
+      return;
+    } else if (sum < 0) {
+      return;
+    }
+
+    for (var i = 0; i < array.length; i++) {
+      searchCoins(array, sum - array[i]);
+    }
+  }
+
+  searchCoins(coins, total);
+
+  return count;
 };
 
 
