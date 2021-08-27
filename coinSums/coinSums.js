@@ -72,17 +72,24 @@ var makeChange = function(total) {
 
   var findAllCombos = function(total, highestValueIndex) {
     var combo = findCombo(total, highestValueIndex)
-    if (!combinations.includes(combo.join())) {
-      combinations.push(combo.join());
+    var sortedCombo = combo.sort();
+    var joinedCombo = sortedCombo.join();
+    if (!combinations.includes(joinedCombo)) {
+      combinations.push(joinedCombo);
     } else {
-      for (var i = combo.length - 1; i >= 0; i--) {
-        var currentCoin = combo[i];
+      for (var i = sortedCombo.length - 1; i >= 0; i--) {
+        var currentCoin = sortedCombo[i];
         if (currentCoin !== '1p') {
-          var littleCombo = findCombo(values[currentCoin], coins.indexOf(currentCoin) - 1)
-          var newCombo = combo.slice(0, i).concat(littleCombo).concat(combo.slice(i + 1));
-          if (!combinations.includes(newCombo.join())) {
-            combinations.push(newCombo.join());
-          }
+          var littleCombo = findCombo(values[currentCoin], coins.indexOf(currentCoin) - 1);
+          var newCombo = sortedCombo.slice(0, i).concat(littleCombo).concat(sortedCombo.slice(i + 1));
+        } else if (i === 0) {
+          var littleCombo = findCombo(values[currentCoin] + values[sortedCombo[i + 1]], highestValueIndex)
+          var newCombo = sortedCombo.slice(0, i).concat(littleCombo).concat(sortedCombo.slice(i + 2));
+        }
+        var newComboSorted = newCombo.sort();
+        var newComboJoined = newComboSorted.join();
+        if (!combinations.includes(newComboJoined)) {
+          combinations.push(newComboJoined);
         }
       }
     }
