@@ -24,8 +24,41 @@ makeChange(1) === 1
 makeChange(2) === 2
 */
 
-var makeChange = function(total) {
-
+var makeChange = function (total) {
+  var count = 1;
+  var calculateChangeOptions = (total) => {
+    if (total / 2 >= 1) {
+      count += Math.floor(total / 2);
+      calculateChangeOptions(total % 2);
+    }
+    if (total / 5 >= 1) {
+      count += Math.floor(total / 5);
+      calculateChangeOptions(total % 5);
+    }
+    if (total / 10 >= 1) {
+      count += Math.floor(total / 10);
+      calculateChangeOptions(total % 10);
+    }
+    if (total / 20 >= 1) {
+      count += Math.floor(total / 20);
+      calculateChangeOptions(total % 20);
+    }
+    if (total / 50 >= 1) {
+      count += Math.floor(total / 50);
+      calculateChangeOptions(total % 50);
+    }
+    if (total / 100 >= 1) {
+      count += Math.floor(total / 100);
+      calculateChangeOptions(total % 100);
+    }
+    if (total / 200 >= 1) {
+      count += Math.floor(total / 200);
+      calculateChangeOptions(total % 200);
+    }
+  }
+  calculateChangeOptions(total);
+  return count;
 };
+//module.exports = makeChange;
 
 
