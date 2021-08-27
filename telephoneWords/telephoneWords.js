@@ -55,7 +55,7 @@ var helper = function(digits, result, index, item) {
   }
   var letters = phoneDigitsToLetters[digits[index]];
   for (var i = 0; i < letters.length; i++) {
-    helper(digits, result, index + 1, item+letters[i] );
+    helper(digits, result, index + 1, item + letters[i] );
   }
 };
 
