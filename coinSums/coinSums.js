@@ -24,8 +24,18 @@ makeChange(1) === 1
 makeChange(2) === 2
 */
 
+// tabluation
 var makeChange = function(total) {
+  var table = new Array(total + 1).fill(Number.MAX_SAFE_INTEGER);
+  var coins = [1, 2, 5, 10, 20, 50, 100, 200];
+  table[0] = 0;
 
+  for (var i = 1; i < total + 1; i++) {
+    coins.forEach(coin => {
+      if (i >= coin && table[i] > i % coin) {
+        table[i] = table[i - coin] + 1
+      }
+    });
+  }
+  return table[total];
 };
-
-
