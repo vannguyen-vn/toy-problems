@@ -41,7 +41,7 @@ var makeChange = function(total) {
     }
 
     while( value >= 0 ){
-      changer(index-1, value);
+      searchCoins(index-1, value);
       value -= currentCoin;
     }
   }
