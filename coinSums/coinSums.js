@@ -25,7 +25,38 @@ makeChange(2) === 2
 */
 
 var makeChange = function(total) {
+  var result = 0;
 
+  var dfs = function(balance, coinOptions) {
+    if (balance === 0) {
+      result++;
+      return;
+    }
+
+    for (var i = 0; i < coinOptions.length; i++) {
+      if (coinOptions[i] <= balance) {
+        dfs(balance - coinOptions[i], coinOptions.slice(i));
+      }
+    }
+  }
+
+  dfs(total, [200, 100, 50, 20, 10, 5, 2, 1]);
+
+  return result;
 };
+
+/*
+
+test cases
+
+console.log('makeChange 1', makeChange(1)); // -> 1
+console.log('makeChange 2', makeChange(2)); // -> 2
+console.log('makeChange 3', makeChange(3)); // -> 2
+console.log('makeChange 4', makeChange(4)); // -> 3
+console.log('makeChange 50', makeChange(50));
+*/
+
+
+
 
 
