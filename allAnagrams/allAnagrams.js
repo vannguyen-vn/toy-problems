@@ -13,5 +13,25 @@
   */
 
 var allAnagrams = function(string) {
-  // Your code here.
+  if (string.length === 1) return [string];
+  let results = new Set();
+  let set = new Set();
+  anagramHelper(string, results, '', set);
+  let newArray = Array.from(results);
+  return newArray;
 };
+
+function anagramHelper(string, result, currentString, set) {
+  if (currentString.length === string.length) result.add(currentString);
+  for (let i = 0; i < string.length; i++) {
+    if (set.has(i)) continue;
+    currentString += string[i];
+    set.add(i);
+    anagramHelper(string, result, currentString, set);
+    currentString = currentString.slice(0, -1);
+    set.delete(i);
+  }
+}
+
+// var anagrams = allAnagrams('abc');
+// console.log(anagrams);
