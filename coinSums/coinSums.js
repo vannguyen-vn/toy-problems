@@ -32,10 +32,10 @@ var makeChange = function(total) {
 
   for (var i = 1; i < total + 1; i++) {
     coins.forEach(coin => {
-      if (i >= coin && table[i] > i % coin) {
+      if (i >= coin && table[i] > i / coin) {
         table[i] = table[i - coin] + 1
       }
     });
   }
-  return table[total];
+  return table[total - 1];
 };
