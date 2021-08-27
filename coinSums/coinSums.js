@@ -28,22 +28,23 @@ var makeChange = function(total) {
   var units = [1, 2, 5, 10, 20, 50, 100, 200];
   var count = 0;
 
-  // total is a number between 0 and javascript max integer, total is always an integer
-  // for numbers with different endings:
-  // 1: 10/100 * n + 1 (1 * 1)
-  // 2: 10/100 * n + 1 + 1 OR 10/100 * n + 2 (2 options) (2 * 1 or 1 * 2)
-  // 3: 10/100 * n + 1 + 1 + 1 OR 10/100 * n + 1 + 2 (2 options) (3 * 1 or 1 + 2)
-  // 4: 10/100 * n + 1 + 1 + 1 + 1 OR 10/100 * n + 2 + 2 (2 options) (4 * 1 or 2 + 2)
-  // 5: 10/100 * n + 1 + 1 + 1 + 1 + 1 OR 10/100 * n + 2 + 2 + 1 OR 10/100 * n + 5(4 options) (5 * 1 OR 3 * 1 + 2 OR 1 * 1 + 2 * 2 OR 5)
-  // 6: (5 options) (6 * 1 OR 4 + 1 * 2 OR 2 + 2 * 2 OR 0 + 3 * 2 OR 1 + 5)
-  // 7: 10/100 * n + 1 + 1 + 1 + 1 + 1 + 1 + 1 OR 10/100 * n + 2 + 2 + 2 + 1 OR 10/100 * n + 2 + 5 (3 options)
+  var counter = (currentTotal, index) => {
+    var currentCoin = units[index];
 
-  // pattern:
-  // 1. n * 1
-  // 2. how many 2s?
-  // 3. how many 5s?
+    if (index === 0) {
+      if (currentTotal % currentCoin === 0) {
+        count++;
+      }
+      return;
+    }
 
-  // return that count
+    while (currentTotal >= 0) {
+      counter(currentTotal, index - 1);
+      currentTotal -= currentCoin;
+    }
+  }
+  counter(total, units.length - 1);
+  return count;
 };
 
 
