@@ -55,8 +55,8 @@ var makeChange = function(total) {
     }
     if (sumOfCoins === total) {
       return combo;
-    } else {
-      combo.concat(findCombo(total - sumOfCoins, highestValueIndex - 1));
+    } else if (sumOfCoins < total) {
+      return combo.concat(findCombo(total - sumOfCoins, highestValueIndex));
     }
   }
 
@@ -69,25 +69,31 @@ var makeChange = function(total) {
   //      remove THAT coin from the combo (array.splice)
   //      search for a combo of THAT coin's value, starting at its index - 1
   //      concat that result with the combo array
-  var combo = findCombo(total, highestValueIndex)
-  if (!combinations.includes(combo.join())) {
-    combinations.push(combo.join());
-  } else {
-    for (var i = combo.length - 1; i >= 0; i--) {
-      var currentCoin = combo[i];
-      if (currentCoin !== '1p') {
-        var littleCombo = findCombo(values[currentCoin], coins.indexOf(currentCoin) - 1)
-        var newCombo = combo.slice(0, i).concat(littleCombo).concat(combo.slice(i + 1));
-        if (!combinations.includes(combo.join())) {
-          combinations.push(combo.join());
+
+  var findAllCombos = function(total, highestValueIndex) {
+    var combo = findCombo(total, highestValueIndex)
+    if (!combinations.includes(combo.join())) {
+      combinations.push(combo.join());
+    } else {
+      for (var i = combo.length - 1; i >= 0; i--) {
+        var currentCoin = combo[i];
+        if (currentCoin !== '1p') {
+          var littleCombo = findCombo(values[currentCoin], coins.indexOf(currentCoin) - 1)
+          var newCombo = combo.slice(0, i).concat(littleCombo).concat(combo.slice(i + 1));
+          if (!combinations.includes(newCombo.join())) {
+            combinations.push(newCombo.join());
+          }
         }
       }
     }
+    if (highestValueIndex > 1) {
+      return findAllCombos(total, highestValueIndex - 1);
+    } else {
+      console.log(combinations);
+      return combinations;
+    }
   }
 
-  // var findAllCombos = function(total, highestValueIndex) {
-  // }
-
+  findAllCombos(total, coins.length - 1);
+  return combinations.length;
 };
-
-
