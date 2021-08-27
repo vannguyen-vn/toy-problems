@@ -26,42 +26,27 @@ makeChange(2) === 2
 
 var makeChange = function(total) {
 
-  var combo = 1;
+  var combo = 0;
+  var denominations = [1, 2, 5, 10, 20, 50, 100, 200];
 
-  var innerFunction = (input) => {
+  var innerFunction = (index, remaining) => {
 
-    if (input - 2 >= 0) {
-        combo++;
-        innerFunction(input - 2);
-    }
-    if (input - 5 >= 0) {
-        combo++;
-        innerFunction(input - 5);
-    }
-    if (input - 10 >= 0) {
-        combo++;
-        innerFunction(input - 10);
-    }
-    if (input - 20 >= 0) {
-        combo++;
-        innerFunction(input - 20);
-    }
-    if (input - 50 >= 0) {
-        combo++;
-        innerFunction(input - 50);
-    }
-    if (input - 100 >= 0) {
-        combo++;
-        innerFunction(input - 100);
-    }
-    if (input - 200 >= 0) {
-        combo++;
-        innerFunction(input - 200);
-    }
-  };
+    var currentDenomination = denominations[index];
 
-  innerFunction(total);
+    if (index === 0) {
+      if (remaining % currentDenomination === 0) {
+        combo++;
+      }
+      return;
+    }
 
+    while (remaining >= 0) {
+      innerFunction(index - 1, remaining)
+      remaining -= currentDenomination;
+    }
+  }
+
+  innerFunction(denominations.length - 1, total);
 
   return combo;
 };
