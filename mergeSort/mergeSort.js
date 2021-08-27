@@ -94,9 +94,6 @@
  *   Implement natural splitting into your mergesort. How much does it improve your average-case runtime?
  *
  */
-
-
-
  var mergeSort = function(array) {
 
   // floor(5/2) = 2: [0,1],[2,3,4]
