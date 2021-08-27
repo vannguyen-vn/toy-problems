@@ -25,7 +25,22 @@ makeChange(2) === 2
 */
 
 var makeChange = function(total) {
-
+  var values = {
+    '1p': 1,
+    '2p': 2,
+    '5p': 5,
+    '10p': 10,
+    '20p': 20,
+    '50p': 50,
+    '£1': 100,
+    '£2': 200
+  }
+  //find one possibility:
+  // iterate across object keys (starting at end)
+  //  if the key is less than or equal to total
+  //    set firstCoin variable (or add to coins array?)
+  //    if total value of coins is still less than value
+  //      run again on remaining amount (total minus total value of coins)
 };
 
 
