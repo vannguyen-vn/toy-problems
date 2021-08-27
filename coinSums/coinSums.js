@@ -24,8 +24,36 @@ makeChange(1) === 1
 makeChange(2) === 2
 */
 
+// input number
+// output numer - the amount of ways the money could be used to add up to input number
+// constraints - can only use England currency options
+// edge cases - ?
+
+var currencyValues = [200, 100, 50, 20, 10, 5, 2, 1]
+
 var makeChange = function(total) {
 
+  if (total === 1 || total === 2) {
+    return 1
+  }
+
+var amount = total
+var count = 0
+// for each value in the array
+for (var i = 0; i < currencyValues.length; i++) {
+  // while the total minus current value ! = 0
+  amount -= currencyValues[i]
+  count++
+}
+return count
 };
 
+// Ex:
+var test1 = makeChange(100)
+console.log(test1)
+var test2 = makeChange(2)
+console.log(test2)
 
+
+// var totalCombos = makeChange()
+// // is there a way to count how many times recursion is used?
