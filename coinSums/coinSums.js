@@ -31,11 +31,13 @@ var makeChange = function(total) {
   table[0] = 0;
 
   for (var i = 1; i < total + 1; i++) {
-    coins.forEach(coin => {
-      if (i >= coin && table[i] > i / coin) {
-        table[i] = table[i - coin] + 1
+    for (const coin of coins) {
+      if (i >= coin) {
+        table[i] = Math.min(table[i], table[i - coin] + 1);
+      } else {
+        break;
       }
-    });
+    }
   }
   return table[total];
 };
