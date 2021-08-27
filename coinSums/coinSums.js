@@ -24,18 +24,23 @@ makeChange(1) === 1
 makeChange(2) === 2
 */
 
-
-var makeChange = function(total, coins) {
+// memoization
+var makeChange = function(total, coins, memo) {
   coins = coins || [1, 2, 5, 10, 20, 50, 100, 200];
+  memo = memo || {};
+
+  if (total in memo) { return memo[total]; }
+
   if (total === 0) { return 0; }
 
   var numCoins = [];
 
   for (const coin of coins) {
     if (total >= coin) {
-      numCoins.push(makeChange(total - coin, coins) + 1);
+      numCoins.push(makeChange(total - coin, coins, memo) + 1);
     }
   }
 
-  return Math.min(...numCoins);
+  memo[total] = Math.min(...numCoins);
+  return memo[total]
 }
