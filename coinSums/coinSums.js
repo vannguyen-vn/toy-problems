@@ -29,20 +29,23 @@ var coins = [1, 2, 5, 10, 20, 50, 100, 200]
 var makeChange = function(total) {
   var count = 0;
 
-  var searchCoins = (array, sum) => {
-    if (sum === 0) {
-      count++;
-      return;
-    } else if (sum < 0) {
+  var searchCoins = function(index, value){
+
+    var currentCoin = coins[index];
+
+    if( index === 0){
+      if( value % currentCoin === 0){
+        count++;
+      }
       return;
     }
 
-    for (var i = 0; i < array.length; i++) {
-      searchCoins(array, sum - array[i]);
+    while( value >= 0 ){
+      changer(index-1, value);
+      value -= currentCoin;
     }
   }
-
-  searchCoins(coins, total);
+  searchCoins(coins.length-1, total);
 
   return count;
 };
