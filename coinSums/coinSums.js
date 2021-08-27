@@ -25,7 +25,21 @@ makeChange(2) === 2
 */
 
 var makeChange = function(total) {
+  var coins = [1, 2, 5, 10, 20, 50, 100, 200];
 
+  var inner = (total, coinsLeft) => {
+    if (total < 0 || coinsLeft < 0) { return 0; }
+    if (total === 0) {
+      return 1;
+    }
+
+    var usedCoin = inner(total - coins[coinsLeft], coinsLeft);
+    var unusedCoin = inner(total, coinsLeft - 1);
+
+    return usedCoin + unusedCoin;
+  }
+
+  return inner(total, coins.length - 1);
 };
 
 
