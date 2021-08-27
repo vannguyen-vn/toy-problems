@@ -24,8 +24,42 @@ makeChange(1) === 1
 makeChange(2) === 2
 */
 
-var makeChange = function(total) {
+var makeChange = function (total) {
+  var combos = [];
+  var recursiveFunction = (change, combo) => {
+    if (change === total) {
+      combos.push(combo);
+      return;
+    }
+    var coins = [1, 2, 5, 10, 20, 50, 100, 200];
+    coins.forEach(coin => {
+      if (change + coin <= total) {
+        recursiveFunction(change + coin, combo + coin);
+      }
+    })
+  }
+  recursiveFunction(0, '');
 
+  var sortedCombos = [];
+  var sortedcombosCounts = {};
+  combos.forEach(combo => {
+    var sortedArray = combo.split('');
+    sortedArray = sortedArray.sort();
+    sortedCombos.push(sortedArray.join(''));
+  })
+  sortedCombos.forEach(combo => {
+    if (!sortedcombosCounts[combo]) { sortedcombosCounts[combo] = 0; }
+    sortedcombosCounts[combo]++;
+  })
+  sortedCombos.forEach((combo, i) => {
+    if (sortedcombosCounts[combo] > 1) {
+      sortedCombos.splice(i, 1);
+      sortedcombosCounts[combo]--;
+    }
+  })
+  return sortedCombos.length;
 };
+
+console.log(makeChange(4))
 
 
