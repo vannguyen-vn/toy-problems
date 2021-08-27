@@ -60,6 +60,4 @@ var makeChange = function (total) {
   return sortedCombos.length;
 };
 
-console.log(makeChange(4))
-
 
