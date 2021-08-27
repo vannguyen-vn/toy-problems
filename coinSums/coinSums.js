@@ -42,5 +42,5 @@ var makeChange = function(total, coins, memo) {
   }
 
   memo[total] = Math.min(...numCoins);
-  return memo[total]
+  return memo[total];
 }
