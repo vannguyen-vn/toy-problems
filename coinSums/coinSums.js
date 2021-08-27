@@ -35,8 +35,8 @@ var makeChange = function(total) {
     '£1': 100,
     '£2': 200
   }
-
   var coins = Object.keys(values);
+  var combinations = [];
   //find one possibility:
   // iterate across object keys (starting at end)
   //  if the key is less than or equal to total
@@ -62,9 +62,32 @@ var makeChange = function(total) {
 
   //find all possibilities:
   //  find one possibility
-  //  add it to an array
-  //  find a second possibility
-  //  if it exists in the array, search again starting at next-to-last key
+  //  if it doesn't exist in the array (as a joined string)
+  //    push it into the array
+  //  if it exists in the array (as a joined string),
+  //    iterate across the combo array (starting at end)
+  //      remove THAT coin from the combo (array.splice)
+  //      search for a combo of THAT coin's value, starting at its index - 1
+  //      concat that result with the combo array
+  var combo = findCombo(total, highestValueIndex)
+  if (!combinations.includes(combo.join())) {
+    combinations.push(combo.join());
+  } else {
+    for (var i = combo.length - 1; i >= 0; i--) {
+      var currentCoin = combo[i];
+      if (currentCoin !== '1p') {
+        var littleCombo = findCombo(values[currentCoin], coins.indexOf(currentCoin) - 1)
+        var newCombo = combo.slice(0, i).concat(littleCombo).concat(combo.slice(i + 1));
+        if (!combinations.includes(combo.join())) {
+          combinations.push(combo.join());
+        }
+      }
+    }
+  }
+
+  // var findAllCombos = function(total, highestValueIndex) {
+  // }
+
 };
 
 
