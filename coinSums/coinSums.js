@@ -26,6 +26,37 @@ makeChange(2) === 2
 
 var makeChange = function(total) {
 
+  // need some way to iterate across the different coinage
+  let waysToChange = 0;
+  let changeArray = [];
+  let coinage = { '1p': 1, '2p': 2, '5p': 5, '10p': 10, '20p': 20, '50p': 50, '£1': 100, '£2': 200 };
+
+  let thyRecursiveChampionRaceHorse = (currentSum, sumArray) => {
+    if ( currentSum === total ) {
+      changeArray.push(sumArray);
+      return waysToChange++;
+    } else if (currentSum > total) {
+      return;
+    } else {
+      for (coin in coinage) {
+        if (coinage[coin] + currentSum <= total) {
+          var newSum = coinage[coin] + currentSum;
+          sumArray.push(coinage[coin]);
+          thyRecursiveChampionRaceHorse(newSum, sumArray);
+        }
+    }
+    };
+  };
+
+  for (coin in coinage) {
+    if (coinage[coin] < total) {
+      //began thy recursive sorcery
+      thyRecursiveChampionRaceHorse(coinage[coin], [coinage[coin]]);
+    }
+  }
+  // console.log(changeArray);
+  return waysToChange;
 };
 
-
+// zoom zoom zoom
+console.log(makeChange(5));
