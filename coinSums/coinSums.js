@@ -29,21 +29,20 @@ makeChange(2) === 2
 var makeChange = function(total) {
   var coins = [1, 2, 5, 10, 20, 50, 100, 200];
   var count = 0;
-  var coinsum = function(index, value) {
+  var helper = (index, value) => {
     var currentCoin = coins[index];
-    if (index === 0) {
-      if (value % index === 0) {
+    if (index === 0 ) {
+      if (value % currentCoin === 0) {
         count++;
       }
       return;
     }
-
     while (value >= 0) {
-      coinsum(index - 1, value);
+      helper(index - 1, value);
       value -= currentCoin;
     }
   };
-  coinsum(coins.length - 1, total);
+  helper(coins.length - 1, total);
   return count;
 };
 
