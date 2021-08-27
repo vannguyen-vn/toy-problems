@@ -24,20 +24,18 @@ makeChange(1) === 1
 makeChange(2) === 2
 */
 
-// tabluation
-var makeChange = function(total) {
-  var table = new Array(total + 1).fill(Number.MAX_SAFE_INTEGER);
-  var coins = [1, 2, 5, 10, 20, 50, 100, 200];
-  table[0] = 0;
 
-  for (var i = 1; i < total + 1; i++) {
-    for (const coin of coins) {
-      if (i >= coin) {
-        table[i] = Math.min(table[i], table[i - coin] + 1);
-      } else {
-        break;
-      }
+var makeChange = function(total, coins) {
+  coins = coins || [1, 2, 5, 10, 20, 50, 100, 200];
+  if (total === 0) { return 0; }
+
+  var numCoins = [];
+
+  for (const coin of coins) {
+    if (total >= coin) {
+      numCoins.push(makeChange(total - coin, coins) + 1);
     }
   }
-  return table[total];
-};
+
+  return Math.min(...numCoins);
+}
