@@ -86,7 +86,7 @@ var makeChange = function(total) {
         }
       }
     }
-    if (highestValueIndex > 1) {
+    if (highestValueIndex >= 1) {
       return findAllCombos(total, highestValueIndex - 1);
     } else {
       console.log(combinations);
