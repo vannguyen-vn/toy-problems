@@ -35,12 +35,36 @@ var makeChange = function(total) {
     '£1': 100,
     '£2': 200
   }
+
+  var coins = Object.keys(values);
   //find one possibility:
   // iterate across object keys (starting at end)
   //  if the key is less than or equal to total
   //    set firstCoin variable (or add to coins array?)
   //    if total value of coins is still less than value
   //      run again on remaining amount (total minus total value of coins)
+
+  var findCombo = function(total, highestValueIndex) {
+    var combo = [];
+    var sumOfCoins = 0;
+    for (var i = highestValueIndex; i >= 0; i--) {
+      if (sumOfCoins + values[coins[i]] <= total) {
+        combo.push(coins[i]);
+        sumOfCoins += values[coins[i]];
+      }
+    }
+    if (sumOfCoins === total) {
+      return combo;
+    } else {
+      combo.concat(findCombo(total - sumOfCoins, highestValueIndex - 1));
+    }
+  }
+
+  //find all possibilities:
+  //  find one possibility
+  //  add it to an array
+  //  find a second possibility
+  //  if it exists in the array, search again starting at next-to-last key
 };
 
 
