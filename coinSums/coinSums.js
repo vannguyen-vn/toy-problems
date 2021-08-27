@@ -24,8 +24,27 @@ makeChange(1) === 1
 makeChange(2) === 2
 */
 
-var makeChange = function(total) {
+/*
+define coins array
+define dp array, fixed length, only int
+assign dp[0] = 1
+for loop through coins
+  for loop through coins[i] <= total
+    dp
+return do[total]
 
+*/
+
+
+var makeChange = function (total) {
+  var coins = [1, 2, 5, 10, 20, 50, 100, 200];
+  var dp = new Uint32Array(total + 1);
+  dp[0] = 1;
+  for (var i = 0; i < coins.length; i++) {
+    for (var j = coins[i]; j <= total; j++) {
+      dp[j] += dp[j - coins[i]];
+    }
+  }
+  return dp[total];
 };
-
 
