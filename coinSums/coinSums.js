@@ -51,13 +51,22 @@ var makeChange = function (total) {
     if (!sortedcombosCounts[combo]) { sortedcombosCounts[combo] = 0; }
     sortedcombosCounts[combo]++;
   })
-  sortedCombos.forEach((combo, i) => {
-    if (sortedcombosCounts[combo] > 1) {
+  // sortedCombos.forEach((combo, i) => {
+  //   if (sortedcombosCounts[combo] > 1) {
+  //     sortedCombos.splice(i, 1);
+  //     sortedcombosCounts[combo]--;
+  //   }
+  // })
+  console.log(sortedcombosCounts)
+  for (var i = 0; i < sortedCombos.length; i++) {
+    if (sortedcombosCounts[sortedCombos[i]] > 1) {
       sortedCombos.splice(i, 1);
-      sortedcombosCounts[combo]--;
+      sortedcombosCounts[sortedCombos[i]]--;
+      i--;
     }
-  })
+  }
+  console.log(sortedCombos)
   return sortedCombos.length;
 };
 
-
+console.log(makeChange(6));
