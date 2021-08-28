@@ -24,14 +24,32 @@ makeChange(1) === 1
 makeChange(2) === 2
 */
 
+//Total: 3
+//3/1 = 3p
+//3/2 = 1x 2p, 1p
+
+//1p = 5x1
+//2p = 2*2 + 1 * 1
+    // 2*1, 1 * 3
+//5p = 5p x 1
+
+
+//7 or 9
+
+
+
+
+
+
+
 var makeChange = function(total) {
 
   var counter = 0
 
-  var coinage = [0 ,1, 2, 5, 10, 20, 50, 100, 200]
+  var coinage = [0 ,1, 2, 5, 10, 20, 50, 100, 200] //consider eliminating the base and just using the array
 
 
-  var helperFunction = function(base, coin) {
+  var helperFunction = function(base, coin) { //For coin, use an index and convert to a value within the function
 
     if (base + coin > total || base === 0) {
       return;
@@ -39,14 +57,14 @@ var makeChange = function(total) {
 
     if (base === total) {
       counter ++;
-      helperFunction (base -1, coinage[0])
+      helperFunction (base -1, coinage[0]) //Not getting to the rest of the coins?
     }
 
-    coinage.forEach(coin => helperFunction(base, coin));
+    coinage.forEach(coin => helperFunction(base, coin)); //Call this starting at coin index + 1
 
   }
 
-  coinage.forEach(coin => helperFunction(total, coin));
+  coinage.forEach(coin => helperFunction(total, coin)); 
 
 
   return counter;
@@ -57,6 +75,17 @@ console.log('should be 1', makeChange(1))
 console.log('should be 1', makeChange(2))
 console.log('should be 3', makeChange(5))
 
+
+//Input of 5
+  // Total: 5
+
+  // Counter: 1
+
+  // Coinage : [0 ,1, 2, 5, 10, 20, 50, 100, 200]
+
+  //helperFunction(5, 0)
+
+  //helper function(4, 0)
 
 
 
@@ -102,6 +131,9 @@ Smallest step?
 Process
 
 set a counter for solutions, equal to zero
+
+
+//create a helper function that takes in a base amount and a coin amount
 
 //When we have the amount,
   //add one to the solution counter.
