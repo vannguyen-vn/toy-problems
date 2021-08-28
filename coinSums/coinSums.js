@@ -25,7 +25,24 @@ makeChange(2) === 2
 */
 
 var makeChange = function(total) {
+  let counter = 0;
+  const currency = [1, 2, 5, 10, 20, 50, 100, 200];
 
+  let change = (newTotal, i) => {
+    let currentCurrency = currency[i];
+    if (i === 0) {
+      if (newTotal % currentCurrency === 0) counter++;
+      return;
+    }
+    while (newTotal >= 0) {
+      change(newTotal, i - 1);
+      newTotal -= currentCurrency;
+    }
+  }
+  change(total, currency.length - 1);
+  return counter;
 };
 
-
+console.log(makeChange(1));
+console.log(makeChange(2));
+console.log(makeChange(20));
