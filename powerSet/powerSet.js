@@ -18,11 +18,20 @@
  */
 
 var powerSet = function(str) {
+  var newObj = {};
+  for (var j = 0; j < str.length; j++) {
+    if (newObj[str[j]] === undefined) {
+      newObj[str[j]] = 1;
+    } else {
+      newObj[str[j]]++;
+    }
+  }
+  var newStr = Object.keys(newObj).join('');
   var result = [];
   var helper = function(subStr, index) {
     result.push(subStr);
-    for (var i = index; i < str.length; i++) {
-      helper(subStr + str[i], i + 1);
+    for (var i = index; i < newStr.length; i++) {
+      helper(subStr + newStr[i], i + 1);
     }
   };
   helper('', 0);
