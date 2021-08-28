@@ -14,28 +14,49 @@
 
 var allAnagrams = function(string) {
   var anagrams = [];
-  for (var i = 0; i < string.length; i ++) {
-    // for (var n = 1; n < string.length; n++) {
-    //   anagrams.push(string[i]);
-    // }
-    // var remainingString = string.slice(0, i) + string.slice(i + 1);
-    // if (remainingString.length > 0) {
-    //   var anagramsToAdd = allAnagrams(remainingString);
-    //   for (var j = 0; j < string.length; j++) {
-    //     anagrams[j] += anagramsToAdd[j];
-    //   }
 
-    // }
-    var currentAnagram = string[i];
-    var remainingString = string.slice(0, i) + string.slice(i + 1);
-    if (remainingString.length === 1) {
-      return [remainingString];
+  var makeAnagram = function(base, str) {
+    for (var i = 0; i < str.length; i++) {
+      var newBase = base + str[i]
+      if (newBase.length === string.length) {
+        anagrams.push(newBase);
+      } else {
+        var stringWithoutThatLetter = str.slice(0, i) + str.slice(i + 1);
+        makeAnagram(newBase, stringWithoutThatLetter);
+      }
     }
-    var anagramsToAdd = allAnagrams(remainingString);
-    anagrams.concat(anagramsToAdd.map((anagram) => (string[i] + anagram)));
+  }
+
+
+  for (var k = 0; k < string.length; k++) {
+    var stringWithoutThatLetter = string.slice(0, k) + string.slice(k + 1);
+    makeAnagram(string[k], stringWithoutThatLetter);
   }
 
   return anagrams;
+
+  // for (var i = 0; i < string.length; i ++) {
+  //   // for (var n = 1; n < string.length; n++) {
+  //   //   anagrams.push(string[i]);
+  //   // }
+  //   // var remainingString = string.slice(0, i) + string.slice(i + 1);
+  //   // if (remainingString.length > 0) {
+  //   //   var anagramsToAdd = allAnagrams(remainingString);
+  //   //   for (var j = 0; j < string.length; j++) {
+  //   //     anagrams[j] += anagramsToAdd[j];
+  //   //   }
+
+  //   // }
+  //   var currentAnagram = string[i];
+  //   var remainingString = string.slice(0, i) + string.slice(i + 1);
+  //   if (remainingString.length === 1) {
+  //     return [remainingString];
+  //   }
+  //   var anagramsToAdd = allAnagrams(remainingString);
+  //   anagrams.concat(anagramsToAdd.map((anagram) => (string[i] + anagram)));
+  // }
+
+  // return anagrams;
 
   // var anagramBuilder = function(string, anagram);
   // for (var i = 0; i < string.length; i++) {
@@ -53,5 +74,8 @@ var allAnagrams = function(string) {
   //    start a string with each letter, push into an array (as many as length of string - 1)
   //    iterate across that array
   //      continue each string with each successive letter
+
+
+
 
 };
