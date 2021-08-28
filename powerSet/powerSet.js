@@ -17,13 +17,14 @@
  * -> ["", "j", "ju", "jm", "jp", "jmu", "jmp", "jpu", "jmpu", "u", "m", "p", "mu", "mp", "pu", "mpu"]
  */
 
+
 var powerSet = function(str) {
   var result = [''];
 
   var makeSets = function(index) {
     for (var j = index + 1; j < str.length; j++) {
       var set = str[index] + str[j];
-      var setAsArray = set.split[''];
+      var setAsArray = set.split('');
       var sortedArray = setAsArray.sort();
       var sortedSet = sortedArray.join();
       if (!result.includes(sortedSet)) {
