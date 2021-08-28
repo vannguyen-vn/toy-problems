@@ -82,7 +82,22 @@ var makeChange = function(total) {
         if (currentCoin !== '1p') {
           var littleCombo = findCombo(values[currentCoin], coins.indexOf(currentCoin) - 1);
           var newCombo = sortedCombo.slice(0, i).concat(littleCombo).concat(sortedCombo.slice(i + 1));
-        } else if (i === 0) {
+        // } else {
+        //   var littleCombo = findCombo(values[currentCoin] + values[sortedCombo[i + 1]], highestValueIndex)
+        //   var newCombo = sortedCombo.slice(0, i).concat(littleCombo).concat(sortedCombo.slice(i + 2));
+        }
+        var newComboSorted = newCombo.sort();
+        var newComboJoined = newComboSorted.join();
+        if (!combinations.includes(newComboJoined)) {
+          combinations.push(newComboJoined);
+        }
+      }
+      for (var i = 0; i < sortedCombo.length; i++) {
+        var currentCoin = sortedCombo[i];
+        if (currentCoin !== '£2') {
+        //   var littleCombo = findCombo(values[currentCoin], coins.indexOf(currentCoin) - 1);
+        //   var newCombo = sortedCombo.slice(0, i).concat(littleCombo).concat(sortedCombo.slice(i + 1));
+        // // } else {
           var littleCombo = findCombo(values[currentCoin] + values[sortedCombo[i + 1]], highestValueIndex)
           var newCombo = sortedCombo.slice(0, i).concat(littleCombo).concat(sortedCombo.slice(i + 2));
         }
