@@ -19,6 +19,12 @@
 
 var powerSet = function(str) {
   var sets = [];
+  var options = [];
+  for (var i = 0; i < str.length; i++) {
+    if (options.indexOf(str[i]) === -1) {
+      options.push(str[i]);
+    }
+  }
   var recursiveFunction = (string, strArray) => {
     if (sets.indexOf(string.split('').sort().join('') === -1)) {
       sets.push(string.split('').sort().join(''));
@@ -27,6 +33,8 @@ var powerSet = function(str) {
       recursiveFunction(string + letter, strArray.slice(i + 1));
     })
   }
-  recursiveFunction('', str.split(''));
+  recursiveFunction('', options);
   return sets;
 };
+
+console.log(powerSet('bbbaaaa'));
