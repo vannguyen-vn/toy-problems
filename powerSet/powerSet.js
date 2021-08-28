@@ -24,9 +24,11 @@ var powerSet = function(str) {
   var makeSets = function(set, index) {
     for (var j = index + 1; j < str.length; j++) {
       if (!set.includes(str[j])) {
-        set += str[j];
+        var newSet = set + str[j];
+      } else {
+        var newSet = set;
       }
-      var setAsArray = set.split('');
+      var setAsArray = newSet.split('');
       var sortedArray = setAsArray.sort();
       var sortedSet = sortedArray.join('');
       if (!result.includes(sortedSet)) {
