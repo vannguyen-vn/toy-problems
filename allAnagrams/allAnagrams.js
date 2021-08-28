@@ -38,7 +38,7 @@
   }
   // Call recursive function on input
   getAnagrams(input);
-  // Return results
+  // Return array of all object properties (these are our anagrams)
   return Object.getOwnPropertyNames(results);
 };
 

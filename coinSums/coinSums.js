@@ -25,7 +25,13 @@ makeChange(2) === 2
 */
 
 var makeChange = function(total) {
+  // array of denominations
+  var dn = [1, 2, 5, 10, 20, 50, 100, 200];
+  //
+  
+  return;
+}
 
-};
+var test1 = 30;
 
-
+console.log(makeChange(test1));
