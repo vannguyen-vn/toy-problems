@@ -26,7 +26,7 @@ var powerSet = function(str) {
       var set = str[index] + str[j];
       var setAsArray = set.split('');
       var sortedArray = setAsArray.sort();
-      var sortedSet = sortedArray.join();
+      var sortedSet = sortedArray.join('');
       if (!result.includes(sortedSet)) {
         result.push(sortedSet);
       }
