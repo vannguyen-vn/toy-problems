@@ -18,12 +18,12 @@
  */
 
 var powerSet = function (str) {
-  var thePowerSet = [];
+  var thePowerSet = new Set();
 
   function findPowerSet(word, index, subset) {
     if (index === word.length) { return; }
 
-    thePowerSet.push(subset);
+    thePowerSet.add(subset);
 
     for (var i = index + 1; i < word.length; i++) {
       subset += word[i];
@@ -34,6 +34,6 @@ var powerSet = function (str) {
 
   findPowerSet(str, -1, '');
 
-  return thePowerSet;
+  return Array.from(thePowerSet);
 };
 
