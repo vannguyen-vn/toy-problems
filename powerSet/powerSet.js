@@ -17,14 +17,22 @@
  * -> ["", "j", "ju", "jm", "jp", "jmu", "jmp", "jpu", "jmpu", "u", "m", "p", "mu", "mp", "pu", "mpu"]
  */
 
-var powerSet = function(str) {
+var powerSet = function (str) {
   var thePowerSet = [];
 
-  for (var i = 0; i < str.length; i++) {
-  	for (var j = i; j < str.length; j++) {
-    	thePowerSet.push(str.slice(i, j + 1).split('').sort().join(''));
+  function findPowerSet(word, index, subset) {
+    if (index === word.length) { return; }
+
+    thePowerSet.push(subset);
+
+    for (var i = index + 1; i < word.length; i++) {
+      subset += word[i];
+      findPowerSet(word, i, subset);
+      subset = subset.substring(0, subset.length - 1);
     }
   }
+
+  findPowerSet(str, -1, '');
 
   return thePowerSet;
 };
