@@ -23,15 +23,16 @@ Output: array (all possible subsets including the empty set with all sorted char
 
  */
 function powerSet(str) {
+  var uniq = [...new Set(str.split(''))];
   let result = []
 
   function recursion(subSet, index) {
-    if (index >= str.length) {
+    if (index >= uniq.length) {
       result.push(subSet)
       return
     }
     recursion(subSet, index + 1)
-    recursion(subSet + str[index], index + 1)
+    recursion(subSet + uniq[index], index + 1)
   }
 
   recursion("", 0)
