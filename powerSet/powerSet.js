@@ -21,9 +21,11 @@
 var powerSet = function(str) {
   var result = [''];
 
-  var makeSets = function(index) {
+  var makeSets = function(set, index) {
     for (var j = index + 1; j < str.length; j++) {
-      var set = str[index] + str[j];
+      if (!set.includes(str[j])) {
+        set += str[j];
+      }
       var setAsArray = set.split('');
       var sortedArray = setAsArray.sort();
       var sortedSet = sortedArray.join('');
@@ -33,13 +35,15 @@ var powerSet = function(str) {
       if (sortedSet.length === str.length) {
         return;
       }
-      makeSets(j);
+      makeSets(set, j);
     }
   }
 
   for (var i = 0; i < str.length; i++) {
-    result.push(str[i]);
-    makeSets(i);
+    if (!result.includes(str[i])) {
+      result.push(str[i]);
+    }
+    makeSets(str[i], i);
   }
 
   return result;
