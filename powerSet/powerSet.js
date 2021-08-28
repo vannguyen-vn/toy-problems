@@ -22,7 +22,7 @@ var powerSet = function(str) {
   var helper = function(subStr, index) {
     result.push(subStr);
     for (var i = index; i < str.length; i++) {
-      helper(subStr + str[i], index + 1);
+      helper(subStr + str[i], i + 1);
     }
   };
   helper('', 0);
