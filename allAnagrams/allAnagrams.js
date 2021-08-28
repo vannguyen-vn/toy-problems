@@ -12,14 +12,18 @@
   * console.log(anagrams); // [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
   */
 
-var allAnagrams = function(string) {
+ var allAnagrams = function(string) {
   var anagrams = [];
 
   var makeAnagram = function(base, str) {
     for (var i = 0; i < str.length; i++) {
       var newBase = base + str[i]
       if (newBase.length === string.length) {
-        anagrams.push(newBase);
+        if (!anagrams.includes(newBase)) {
+          anagrams.push(newBase);
+        } else {
+          return;
+        }
       } else {
         var stringWithoutThatLetter = str.slice(0, i) + str.slice(i + 1);
         makeAnagram(newBase, stringWithoutThatLetter);
@@ -27,11 +31,7 @@ var allAnagrams = function(string) {
     }
   }
 
-
-  for (var k = 0; k < string.length; k++) {
-    var stringWithoutThatLetter = string.slice(0, k) + string.slice(k + 1);
-    makeAnagram(string[k], stringWithoutThatLetter);
-  }
+  makeAnagram('', string);
 
   return anagrams;
 
@@ -67,15 +67,10 @@ var allAnagrams = function(string) {
   //base
   // remainingString is only one letter
   //  return an array with only that letter
-
-
   //recursive case
   //  iterate across
   //    start a string with each letter, push into an array (as many as length of string - 1)
   //    iterate across that array
   //      continue each string with each successive letter
-
-
-
 
 };
