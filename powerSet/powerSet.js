@@ -37,7 +37,7 @@ var powerSet = function(str) {
       if (sortedSet.length === str.length) {
         return;
       }
-      makeSets(set, j);
+      makeSets(newSet, j);
     }
   }
 
