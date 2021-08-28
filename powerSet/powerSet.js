@@ -18,6 +18,7 @@
  */
 
 var powerSet = function(str) {
+
   var result = [''];
 
   for (var i = 0; i < str.length; i++) {
@@ -32,5 +33,6 @@ var powerSet = function(str) {
       result = result.concat(container);
   }
 
-  return result;
+  var newResult = [...new Set(result)];
+  return newResult;
 };
