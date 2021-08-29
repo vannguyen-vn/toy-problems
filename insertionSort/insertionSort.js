@@ -1,3 +1,6 @@
+// Aug 28: Minimum requirements passed (8/9)
+// Extra credit to be solved
+
 /**
  * Insertion sort is a basic sorting algorithm.
  *
