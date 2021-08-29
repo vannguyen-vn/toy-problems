@@ -52,7 +52,7 @@ var bubbleSort = function(array) {
   return array;
  };
 // test
-console.log(bubbleSort([2,1,3]));
-console.log(bubbleSort([0,-2,1,3]));
-console.log(bubbleSort([0]));
-console.log(bubbleSort([]));
+//console.log(bubbleSort([2,1,3]));
+//console.log(bubbleSort([0,-2,1,3]));
+//console.log(bubbleSort([0]));
+//console.log(bubbleSort([]));
