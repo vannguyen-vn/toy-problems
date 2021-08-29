@@ -43,6 +43,6 @@ var makeChange = function(total) {
   return counter;
 };
 
-console.log(makeChange(1));
-console.log(makeChange(2));
-console.log(makeChange(20));
+// console.log(makeChange(1));
+// console.log(makeChange(2));
+// console.log(makeChange(20));
