@@ -35,4 +35,24 @@
 
 var bubbleSort = function(array) {
   // Your code here.
-};
+  var swap = function(array, position) {
+    var temp = array[position];
+    array[position] = array[position + 1];
+    array[position + 1] = temp;
+  };
+
+  for (var i = array.length - 1; i > 1; i--) {
+    for (var j = 0; j < i; j++) {
+      if (array[j] > array [j + 1]) {
+        swap(array, j);
+      }
+    }
+  }
+
+  return array;
+ };
+// test
+//console.log(bubbleSort([2,1,3]));
+//console.log(bubbleSort([0,-2,1,3]));
+//console.log(bubbleSort([0]));
+//console.log(bubbleSort([]));
