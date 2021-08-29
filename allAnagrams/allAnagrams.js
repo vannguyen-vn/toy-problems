@@ -17,12 +17,10 @@ var allAnagrams = function(string) {
   var len = string.length;
   var chars = string.split('');
   var str = '';
-  var results = [];
+  var results = {};
   var innerFunc = function(str, chars) {
-    if(str.length === len) {
-      if(results.indexOf(str) === -1) {
-        results.push(str);
-      }
+    if(str.length === len && !results[str]) {
+      results[str] = 1;
     } else {
       chars.forEach(function(char, index) {
         var newStr = str + char;
@@ -33,5 +31,5 @@ var allAnagrams = function(string) {
     }
   }
   innerFunc(str, chars);
-  return results;
+  return Object.keys(results);
 };
