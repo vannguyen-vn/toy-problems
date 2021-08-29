@@ -41,23 +41,18 @@ var bubbleSort = function(array) {
     array[position + 1] = temp;
   };
 
-  var loopOnce = function(array) {
-    for (var i = 0; i < array.length - 1; i++) {
-      if (array[i] > array [i + 1]) {
-        swap(array, i);
+  for (var i = array.length - 1; i > 1; i--) {
+    for (var j = 0; j < i; j++) {
+      if (array[j] > array [j + 1]) {
+        swap(array, j);
       }
     }
-    return array;
-  }
-
-  for (var j = array.length; j > 1; j--) {
-    array = loopOnce(array.slice(0, j+1)).concat(array.slice(j+1,));
   }
 
   return array;
  };
 // test
-//console.log(bubbleSort([2,1,3]));
-//console.log(bubbleSort([0,-2,1,3]));
-//console.log(bubbleSort([0]));
-//console.log(bubbleSort([]));
+console.log(bubbleSort([2,1,3]));
+console.log(bubbleSort([0,-2,1,3]));
+console.log(bubbleSort([0]));
+console.log(bubbleSort([]));
