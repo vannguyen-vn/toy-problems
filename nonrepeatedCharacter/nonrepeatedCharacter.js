@@ -1,3 +1,5 @@
+// Aug 28: complete
+
 /**
  * Given an arbitrary input string, return the first nonrepeated character in
  * the string. For example:
@@ -12,21 +14,25 @@ var firstNonRepeatedCharacter = function(string) {
 
   for (var i = 0; i < string.length; i++){
     if(uniqueStorage.hasOwnProperty(string[i])) {
-      delete uniqueStorage[string[i]];
+      uniqueStorage[string[i]].occurrence+= 1;
     } else {
-      uniqueStorage[string[i]] = i;
+      uniqueStorage[string[i]] = {occurrence: 1, index: i};
     }
   }
 
   if (Object.keys(uniqueStorage).length === 0) { return null; }
 
-  var minPosition = string.length;
+  var minPosition = null;
 
   for (var k in uniqueStorage) {
-    if (uniqueStorage[k] < minPosition) {
-      minPosition = uniqueStorage[k];
+    if(uniqueStorage[k].occurrence === 1) {
+      if (minPosition === null || uniqueStorage[k].index < minPosition) {
+        minPosition = uniqueStorage[k].index;
+      }
     }
   }
+
+  if (minPosition === null) { return null; }
 
   return string[minPosition];
 };
@@ -35,6 +41,6 @@ var firstNonRepeatedCharacter = function(string) {
 
 //console.log(firstNonRepeatedCharacter('ABA'));
 //console.log(firstNonRepeatedCharacter('AACBDB'));
-//console.log(firstNonRepeatedCharacter('AABBCC'));
+//console.log(firstNonRepeatedCharacter('AAABBCC'));
 //console.log(firstNonRepeatedCharacter(''));
 
