@@ -18,7 +18,7 @@ var firstNonRepeatedCharacter = function(string) {
     }
   }
 
-  if (uniqueStorage.length === 0) { return ''; }
+  if (Object.keys(uniqueStorage).length === 0) { return null; }
 
   var minPosition = string.length;
 
@@ -35,4 +35,6 @@ var firstNonRepeatedCharacter = function(string) {
 
 //console.log(firstNonRepeatedCharacter('ABA'));
 //console.log(firstNonRepeatedCharacter('AACBDB'));
+//console.log(firstNonRepeatedCharacter('AABBCC'));
 //console.log(firstNonRepeatedCharacter(''));
+
