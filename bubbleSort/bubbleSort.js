@@ -42,10 +42,18 @@ var bubbleSort = function(array) {
   };
 
   for (var i = array.length - 1; i > 0; i--) {
+
+    var needSort = false;
+
     for (var j = 0; j < i; j++) {
       if (array[j] > array [j + 1]) {
+        needSort = true;
         swap(array, j);
       }
+    }
+
+    if (needSort === false) {
+      return array;
     }
   }
 
