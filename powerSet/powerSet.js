@@ -18,14 +18,20 @@
  */
 
 var powerSet = function(str) {
-  var maxLen = str.length;
+  var newStr = '';
+  for (let i = 0; i < str.length; i++) {
+    if (str.indexOf(str[i]) === i) {
+      newStr += str[i];
+    }
+  }
+  var maxLen = newStr.length;
   var results = [];
   var innerFunc = (len, string, currInd) => {
     if (string.length === len) {
       results.push(string);
     } else {
       for (var j = currInd; j < maxLen; j++) {
-        var newString = string + str[j];
+        var newString = string + newStr[j];
         var newInd = j + 1;
         innerFunc(len, newString, newInd);
       }
