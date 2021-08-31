@@ -59,9 +59,13 @@ Tree.prototype.DFSelect = function(filter) {
         results.push(parent.children[i].value);
       }
       if (parent.children[i].children.length > 0) {
-        testChildren(parent.children[i].children);
+        testChildren(parent.children[i]);
+        depth --;
       }
     }
+  }
+  if (filter(this.value, depth)) {
+    results.push(this.value);
   }
 
   testChildren(this);
