@@ -6,6 +6,8 @@
   * in Depth First order, and returns a flat array of node values of the tree
   * for which the filter returns true.
   *
+
+  *
   * Example:
   *   var root1 = new Tree(1);
   *   var branch2 = root1.addChild(2);
@@ -36,8 +38,44 @@ var Tree = function(value) {
 };
 
 Tree.prototype.DFSelect = function(filter) {
+
+  //create a results array
+
+  //create an inner helper function
+
+  //run the value of the current node through the filter function
+    //if it passes the test, push it into a return array
+
+  //if there is a left child
+    //return a call to the inner function
+
+  //if there is a right child,
+    //return a call to the inner function
+
+  //close innner helper function
+
+  //return results array
+
+
 };
 
+/*
+  Restate the prompt:
+  -Accesses each value in each node in the tree, runs the filter function on each value
+  -if true, pushes value into return array
+  -starts from the top, goes to the bottom, then handles siblings
+
+  Inputs: tree, filter function
+  Outputs: array of node values
+  Constraints: Tree must have nodes, nodes must have values
+  Edge Cases: root only - no special case
+
+  Base Case: Current node value either does or does not pass the test
+  Recursive Case: Check the left and right children, if they exist
+
+  Sample Data (White boarded :)
+
+*/
 
 
 /**
