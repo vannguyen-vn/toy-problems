@@ -36,9 +36,25 @@ var Tree = function(value) {
 };
 
 Tree.prototype.DFSelect = function(filter) {
+  var filtered = [];
+
+  const dfs = (node, depth) => {
+    // filter current node value
+    if (filter(node.value, depth)) { filtered.push(node.value); }
+
+    // break recursion if no children
+    if (node.children.length === 0) { return; }
+
+    // dive deeper
+    for (var child of node.children) {
+      dfs(child, depth + 1);
+    }
+  }
+
+  dfs(this, 0);
+
+  return filtered;
 };
-
-
 
 /**
  * You shouldn't need to change anything below here, but feel free to look.
