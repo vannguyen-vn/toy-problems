@@ -35,7 +35,19 @@ var Tree = function(value) {
   this.children = [];
 };
 
+// input: filter function
+// output: array - of all nodes that meet filter criteria
+// constraints: N/A
+// edge cases: if no does meet criteria, return empty array
 Tree.prototype.DFSelect = function(filter) {
+  // base case: if there are no more children
+
+  // create inner function
+  // use recursion to make array of all nodes, for each node have an array of [value, depth]
+  // then, send each value and depth into the filter as parameters
+  // return filtered list
+
+  // call inner function()
 };
 
 
