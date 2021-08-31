@@ -51,7 +51,7 @@ return array
 Tree.prototype.DFSelect = function (filter) {
   var result = [];
 
-  var depth = function (node, depth) {
+  function depth(node, depth) {
     if (filter(node.value, depth)) {
       result.push(node.value);
     }
