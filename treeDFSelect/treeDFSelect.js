@@ -30,14 +30,43 @@
  * Basic tree that stores a value.
  */
 
-var Tree = function(value) {
+
+/*
+input: nodes of tree, filter function
+output: array (nodes value that filter return true)
+
+Pseudocode
+-create a result  = []
+- create a helper function with input are tree and depth
+    - if filter(tree, depth) is true
+      - push tree to result
+    - Go though the children of tree
+      - recursion with input are the child and depth + 1
+return result;
+*/
+
+var Tree = function (value) {
   this.value = value;
   this.children = [];
 };
 
-Tree.prototype.DFSelect = function(filter) {
+Tree.prototype.DFSelect = function (filter) {
+  var result = [];
+  var depth = depth || 0;
+  var preOrder = function (tree, depth) {
+    //console.log(tree)
+    //console.log(tree.children.length);
+    if (filter(tree.value, depth)) {
+      result.push(tree.value);
+    }
+    for (var i = 0; i < tree.children.length; i++) {
+      preOrder(tree.children[i], depth + 1)
+    }
+  }
+  preOrder(this, depth);
+  console.log(result);
+  return result;
 };
-
 
 
 /**
@@ -48,7 +77,7 @@ Tree.prototype.DFSelect = function(filter) {
   * add an immediate child
   * (wrap values in Tree nodes if they're not already)
   */
-Tree.prototype.addChild = function(child) {
+Tree.prototype.addChild = function (child) {
   if (!child || !(child instanceof Tree)) {
     child = new Tree(child);
   }
@@ -66,7 +95,7 @@ Tree.prototype.addChild = function(child) {
   * check to see if the provided tree is already a child of this
   * tree __or any of its sub trees__
   */
-Tree.prototype.isDescendant = function(child) {
+Tree.prototype.isDescendant = function (child) {
   if (this.children.indexOf(child) !== -1) {
     // `child` is an immediate child of this tree
     return true;
@@ -84,7 +113,7 @@ Tree.prototype.isDescendant = function(child) {
 /**
   * remove an immediate child
   */
-Tree.prototype.removeChild = function(child) {
+Tree.prototype.removeChild = function (child) {
   var index = this.children.indexOf(child);
   if (index !== -1) {
     // remove the child
