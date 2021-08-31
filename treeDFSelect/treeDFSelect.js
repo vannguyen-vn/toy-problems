@@ -35,10 +35,24 @@ var Tree = function(value) {
   this.children = [];
 };
 
-Tree.prototype.DFSelect = function(filter) {
+Tree.prototype.DFSelect = function(filter, depth = 0) {
+  let res = [];
+
+  if (filter(this.value, depth)) {
+    res.push(this.value);
+  }
+
+  if (this.children.length === 0) {
+    return res;
+  }
+
+  for (let i = 0; i < this.children.length; i++) {
+    let subres = this.children[i].DFSelect(filter, depth + 1);
+    res.push(...subres);
+  }
+
+  return res;
 };
-
-
 
 /**
  * You shouldn't need to change anything below here, but feel free to look.
