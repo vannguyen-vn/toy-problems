@@ -36,6 +36,37 @@ var Tree = function(value) {
 };
 
 Tree.prototype.DFSelect = function(filter) {
+  // create result array
+  // check parent value at top
+  //  if filter is truthy
+  //    push that value into the result array
+  //  if it has children
+    // check each of that node's children
+    //  if filter is truthy
+    //    push that value into the result array
+    //  if THAT one has children
+    //    check each of that node's children
+    //      if filter is truthy
+    //      push that value into result array
+
+  var results = [];
+  var depth = 0;
+
+  var testChildren = function(parent) {
+    depth ++;
+    for (var i = 0; i < parent.children.length; i++) {
+      if (filter(parent.children[i].value, depth)) {
+        results.push(parent.children[i].value);
+      }
+      if (parent.children[i].children.length > 0) {
+        testChildren(parent.children[i].children);
+      }
+    }
+  }
+
+  testChildren(this);
+
+  return results;
 };
 
 
