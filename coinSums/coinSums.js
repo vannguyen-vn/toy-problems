@@ -33,18 +33,21 @@ var makeChange = function(total) {
 
     var currentCoin = coins[index];
 
-    if( index === 0){
+    if( index === 0) {
+
       if( value % currentCoin === 0){
         count++;
       }
+
       return;
     }
 
-    while( value >= 0 ){
+    while( value >= 0 ) {
       searchCoins(index-1, value);
       value -= currentCoin;
     }
   }
+
   searchCoins(coins.length-1, total);
 
   return count;
