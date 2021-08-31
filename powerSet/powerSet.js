@@ -19,24 +19,24 @@
 
 var powerSet = function(str) {
   var arr = str.split("").sort();
-  var res = [];
+  var res = [""];
   var ind = 0;
 
-  var search = function(array, value, ind) {
-
-    var cur = array[ind];
-
-    for (var i = ind + 1; i < array.length; i++) {
-      res.push(cur.concat(array[i]));
+  var search = function(array, value) {
+    if (value.length === str.length) {
+      res.push(value);
+      return;
     }
 
-    while (ind < array.length) {
-      search(array, cur.concat(ind + 1), ind + 1);
-      ind++;
+    for (var i = 0; i < array.length; i++) {
+      res.push(value.concat(array[i]));
+      if (i + 1 !== array.length) {
+        search(array.slice(i + 1), value.concat(array[i]))
+      }
     }
   }
 
-  search(arr, "", 0);
+  search(arr, "");
 
   return res;
 };
