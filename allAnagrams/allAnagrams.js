@@ -38,17 +38,10 @@
 //   }
   makeAnagram('', string);
 
+
   return anagrams;
 
-  //This code almost works, but the time complexity becomes too much too quickly. 9 characters won't even return anything.
-  //
-  //push the string into the array
-  //switch the last two chars
-  //  if it's not in the array
-  //    push that into the array
-  //  else
-  //  switch the next-to-last and the next-to-next-to-last
-  // repeat until...?
+  //Simplify the Time Complexity...
 
   //original string             // 123456789
   //move the last one over one  // 123456798
