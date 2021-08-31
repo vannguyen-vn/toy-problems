@@ -38,8 +38,9 @@ var powerSet = function(str) {
   }
   genSubset(array, subset, 0);
 
+
   return powerSet;
 
 };
 
-// console.log(powerSet('jump'))
+console.log(powerSet('abc'))
