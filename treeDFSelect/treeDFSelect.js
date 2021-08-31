@@ -36,6 +36,25 @@ var Tree = function(value) {
 };
 
 Tree.prototype.DFSelect = function(filter) {
+  // Store results in flattened array
+  let results = [];
+  // Recursive DFS function
+  let DFS = (node, depth) => {
+    // If has children
+    if(node.children.length > 0) {
+      // Iterate through child list
+      for (var i = 0; i < node.children.length; i++) {
+        // Recursively Call DFS on all children
+        DFS(node.children[i], depth + 1);
+      }
+    }
+    // If current tree node value passes filter, add to results
+    if(filter(node.value, depth)) {results.push(node.value);}
+  }
+  // Invoke recursive function
+  DFS(this, 0);
+  // Return results of flattened tree
+  return results;
 };
 
 
