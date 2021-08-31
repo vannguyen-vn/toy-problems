@@ -38,18 +38,16 @@ var Tree = function(value) {
 Tree.prototype.DFSelect = function(filter) {
   var filtered = [];
 
-  var recurse = function(value, depth) {
-    if (this.children.length === 0) {
-      if (filter(value, depth)) {
-        filtered.push(value);
-      }
+  var recurse = function(node, value, depth) {
+    if (filter(value, depth)) {
+      filtered.push(value);
     }
 
-    for (var i = 0; i < this.children.length; i++) {
-      recurse(this.children[i].value, depth++)
+    for (var i = 0; i < node.children.length; i++) {
+      recurse(node.children[i], node.children[i].value, depth + 1)
     }
   }
-  recurse(this.value, 0);
+  recurse(this, this.value, 0);
 
   return filtered;
 };
