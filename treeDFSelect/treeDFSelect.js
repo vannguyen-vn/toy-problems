@@ -51,19 +51,19 @@ return array
 Tree.prototype.DFSelect = function (filter) {
   var result = [];
 
-  function depth(node, depth) {
+  var traverse = function (node, depth) {
     if (filter(node.value, depth)) {
       result.push(node.value);
     }
     if (node.children.length > 0) {
       for (var i = 0; i < node.children.length; i++) {
-        depth(node.children[i], depth + 1);
+        traverse(node.children[i], depth + 1);
       }
     } else {
       return;
     }
   }
-  depth(this, 0);
+  traverse(this, 0);
   return result;
 };
 
