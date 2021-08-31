@@ -95,8 +95,10 @@
  *
  */
 
-
+// example array [1, 4, 3, 2]
 
 var mergeSort = function(array) {
   // Your code here.
+  // base case is when we have two numbers in two different arrays
+  // we merge them by comparing the difference between each array at index zero, then we merge them and return the array
 };
