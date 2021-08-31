@@ -35,28 +35,36 @@
 var Tree = function(value) {
   this.value = value;
   this.children = [];
+  this.depth = null;
 };
 
 Tree.prototype.DFSelect = function(filter) {
 
   //create a results array
+  var filteredNodeValues = [];
 
   //create an inner helper function
-
+  let checkNodeValue = function(node) {
   //run the value of the current node through the filter function
+    if (Boolean(filter(node.value)) === true) {
     //if it passes the test, push it into a return array
+      filteredNodeValues.push(node.value)
+    }
 
-  //if there is a left child
-    //return a call to the inner function
 
-  //if there is a right child,
-    //return a call to the inner function
+  //if there are any children, call the helper function on them
+  if (node.children.length > 0) {
+    node.children.forEach(checkNodeValue)
+  }
 
   //close innner helper function
+  }
+
+  //call the function on the current node
+  checkNodeValue(this)
 
   //return results array
-
-
+  return filteredNodeValues;
 };
 
 /*
@@ -74,6 +82,25 @@ Tree.prototype.DFSelect = function(filter) {
   Recursive Case: Check the left and right children, if they exist
 
   Sample Data (White boarded :)
+
+  PseudoCode
+
+  //create a results array
+
+  //create an inner helper function
+
+  //run the value of the current node through the filter function
+    //if it passes the test, push it into a return array
+
+  //if there is a left child
+    //return a call to the inner function
+
+  //if there is a right child,
+    //return a call to the inner function
+
+  //close innner helper function
+
+  //return results array
 
 */
 
@@ -131,3 +158,26 @@ Tree.prototype.removeChild = function(child) {
     throw new Error('That node is not an immediate child of this tree');
   }
 };
+
+
+
+
+
+var root1 = new Tree(1);
+var branch2 = root1.addChild(2);
+var branch3 = root1.addChild(3);
+var leaf4 = branch2.addChild(4);
+var leaf5 = branch2.addChild(5);
+var leaf6 = branch3.addChild(6);
+var leaf7 = branch3.addChild(7);
+
+// var test1 = root1.DFSelect(function (value, depth) {
+//   return value % 2;
+// })
+// console.log('should be [1, 5, 3, 7]', test1)// [1, 5, 3, 7]
+
+var test2 = root1.DFSelect(function (value, depth) {
+  return depth === 1;
+})
+// [2, 3]
+console.log('should be [2, 3]', test2)
