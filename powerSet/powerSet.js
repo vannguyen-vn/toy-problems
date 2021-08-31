@@ -18,7 +18,8 @@
  */
 
 var powerSet = function(str) {
-  var arr = str.split("").sort();
+  var array = str.split("").sort();
+  var arr = [...new Set(array)];
   var res = [""];
   var ind = 0;
 
