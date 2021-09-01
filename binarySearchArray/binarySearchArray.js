@@ -11,5 +11,17 @@
  */
 
 var binarySearch = function (array, target) {
-};
+  // find mid value
+  var pivot = Math.floor(array.length / 2);
+  if (array[pivot] === target) {
+    return target;
+  }
 
+  if (array.length === 1) { return null; }
+
+  if (array[pivot] > target) {
+    return binarySearch(array.slice(0, pivot), target);
+  } else {
+    return binarySearch(array.slice(pivot, array.length), target);
+  }
+};
