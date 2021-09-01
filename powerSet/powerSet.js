@@ -29,7 +29,7 @@ var powerSet = function(str) {
   for (let j = 0; j < lettersArr.length; j++) {
     var max = results.length;
     for (let i = 0; i <= max; i++) {
-      if (results[i] !== undefined) {
+      if (results[i] !== undefined && !results[i].includes(lettersArr[j])) {
         results.push(results[i] + lettersArr[j]);
       } else {
         results.push(lettersArr[j]);

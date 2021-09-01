@@ -51,7 +51,7 @@ var makeChange = function(total) {
   for (coin in coinage) {
     if (coinage[coin] < total) {
       //began thy recursive sorcery
-      thyRecursiveChampionRaceHorse(coinage[coin], [coinage[coin]]);
+      // thyRecursiveChampionRaceHorse(coinage[coin], [coinage[coin]]);
     }
   }
   // console.log(changeArray);
