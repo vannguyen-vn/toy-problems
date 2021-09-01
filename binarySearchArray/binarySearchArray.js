@@ -11,27 +11,18 @@
  */
 
 var binarySearch = function (array, target) {
-
-  var helper = (array, target, index) => {
-    var mid = Math.floor(array.length / 2);
-    if (array.length === 1 && target !== array[mid]) {
-      return null;
-    }
-
+  var start = 0;
+  var end = array.length - 1;
+  while (start <= end) {
+    var mid = Math.floor((start + end) / 2);
     if (target === array[mid]) {
-      index += mid;
-      return index;
-    } else if (target < array[mid]) {
-      return helper(array.slice(0, mid), target, index);
+      return mid;
     } else if (target > array[mid]) {
-        index += mid;
-        if (mid + 1 >= array.length) {
-          return null;
-        }
-      return helper(array.slice(mid + 1), target, index + 1);
+      start = mid + 1;
+    } else if (target < array[mid]) {
+      end = mid - 1;
     }
   }
-
-  return helper(array, target, 0);
+  return null;
 };
 
