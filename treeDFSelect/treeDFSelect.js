@@ -36,6 +36,26 @@ var Tree = function(value) {
 };
 
 Tree.prototype.DFSelect = function(filter) {
+  let results = [];
+  // make a recursive function to filter through the tree
+  let climbTree = (tree, depth) => {
+    // run the filter on the current tree value
+    if (filter(tree.value, depth)) {
+      results.push(tree.value);
+    }
+    // check if this tree has children
+    if (tree.children.length === 0) {
+      return;
+    } else {
+      tree.children.forEach((child) => {
+        //call climbTree on children
+        climbTree(child, depth + 1);
+      });
+    }
+  };
+  //began recursive check starting with this tree the function was invoked with at a depth of 0
+  climbTree(this, 0);
+  return results;
 };
 
 

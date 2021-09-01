@@ -18,5 +18,25 @@
  */
 
 var powerSet = function(str) {
-  //TODO fix this function
+  let results = [];
+  let letters = {};
+
+  for (let i = 0; i < str.length; i++) {
+    letters[str[i]] = true;
+  }
+  let lettersArr = Object.keys(letters);
+
+  for (let j = 0; j < lettersArr.length; j++) {
+    var max = results.length;
+    for (let i = 0; i <= max; i++) {
+      if (results[i] !== undefined) {
+        results.push(results[i] + lettersArr[j]);
+      } else {
+        results.push(lettersArr[j]);
+      }
+    }
+  }
+  return results;
 };
+
+console.log(powerSet('jump'));
