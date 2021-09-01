@@ -11,39 +11,20 @@
  */
 
 var binarySearch = function (array, target) {
-  var found = false;
+  let start = 0;
+  let end = array.length - 1;
 
-  var search = (arr, target) => {
-    if (arr.length === 0) {
-      return;
-    }
+  while (start <= end) {
+    let middle = Math.floor((start + end) / 2);
 
-    if (arr.length === 1) {
-      if (arr[0] === target) {
-        found = true;
-        return target;
-      }
-    }
-
-    if (arr.length > 1) {
-      var middleIndex = Math.floor(arr.length / 2);
-      var left = arr.slice(0, middleIndex);
-      var right = arr.slice(middleIndex);
-
-      if (target < right[0]) {
-        binarySearch(left, target);
-      } else {
-        binarySearch(right, target);
-      }
-
-      if (arr.indexOf(target) >= 0) {
-        found = true;
-        return target;
-      }
+    if (target === array[middle]) {
+      return middle;
+    } else if (target < array[middle]) {
+      end = middle - 1;
+    } else {
+      start = middle + 1;
     }
   }
-  search(array, target);
-
-  return found ? array.indexOf(target) : null;
+  return null
 };
 
