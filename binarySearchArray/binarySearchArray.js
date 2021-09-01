@@ -18,7 +18,7 @@ var binarySearch = function (array, target) {
       return pivot;
     }
 
-    if (right <= 1) { return null; }
+    if (pivot >= right) { return null; }
 
     if (target < array[pivot]) {
       return noSlicing(array, target, left, pivot - 1);
