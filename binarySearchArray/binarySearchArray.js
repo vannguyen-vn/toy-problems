@@ -23,17 +23,21 @@ var binarySearch = function (array, target) {
   var middleIndex = Math.floor(array.length/2);
   var middleValue = array[middleIndex];
 
-  if (array.length === 1 && array[0] !== target) {
+  if (array.length <= 1 && array[0] !== target) {
     return null;
   }
   if (middleValue === target) {
     return middleIndex;
   }
   if (middleValue > target) {
-    return binarySearch(array.slice(0, middleIndex))
+    return binarySearch(array.slice(0, middleIndex), target);
   }
   if (middleValue < target) {
-    return binarySearch(middleIndex + 1)
+    var recursiveResult = binarySearch(array.slice(middleIndex + 1), target);
+    if (recursiveResult !== null) {
+      recursiveResult += middleIndex + 1;
+    }
+    return  recursiveResult;
   }
 };
 
