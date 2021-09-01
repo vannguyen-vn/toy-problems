@@ -42,29 +42,15 @@ var Tree = function(value) {
 };
 
 Tree.prototype.DFSelect = function(filter) {
-  var index = 1;
+  var index = 0;
   var results = [];
-  var recursion = (children, index) => {
-    // if (value === undefined) { return }
-    console.log(children);
-    if (index === 1) {
-      if (filter(children.value, index)) {
-        results.push(children.value);
-      }
-    }
-    if (children === undefined) {
-      return;
-    }
-    for (let i = 0; i < children.children.length; i++) {
-      console.log(children.children[i].value, index);
-      if (filter(children.children[i].value, index)) {
-        results.push(children.children[i].value);
-      }
-      recursion(children.children[i], index + 1);
+  var recursion = (tree, index) => {
+    if (filter(tree.value, index)) { results.push(tree.value);}
+    for (let i = 0; i < tree.children.length; i++) {
+      recursion(tree.children[i], index + 1);
     }
   }
-
-  recursion(root1, index);
+  recursion(this, index);
   return results;
 };
 
@@ -130,7 +116,7 @@ Tree.prototype.removeChild = function(child) {
 // var leaf5 = branch2.addChild(5);
 // var leaf6 = branch3.addChild(6);
 // var leaf7 = branch3.addChild(7);
-// // console.log(root1);
+// console.log(root1);
 // // console.log(branch2);
 // // console.log(branch3);
 // // console.log(leaf4);
