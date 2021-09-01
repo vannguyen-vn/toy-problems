@@ -11,17 +11,21 @@
  */
 
 var binarySearch = function (array, target) {
-  // find mid value
-  var pivot = Math.floor(array.length / 2);
-  if (array[pivot] === target) {
-    return pivot;
+  var noSlicing = (array, target, left, right) => {
+    var pivot = Math.floor(left + (right - left) / 2);
+
+    if (array[pivot] === target) {
+      return pivot;
+    }
+
+    if (right <= 1) { return null; }
+
+    if (target < array[pivot]) {
+      return noSlicing(array, target, left, pivot - 1);
+    } else {
+      return noSlicing(array, target, pivot + 1, right);
+    }
   }
 
-  if (array.length === 1) { return null; }
-
-  if (array[pivot] > target) {
-    return binarySearch(array.slice(0, pivot), target);
-  } else {
-    return binarySearch(array.slice(pivot, array.length), target);
-  }
+  return noSlicing(array, target, 0, array.length - 1);
 };
