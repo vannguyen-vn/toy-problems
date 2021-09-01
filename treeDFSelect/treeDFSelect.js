@@ -43,8 +43,7 @@ Tree.prototype.DFSelect = function(filter) {
       filtered.push(currNode.value);
     }
     for (var i = 0; i < currNode.children.length; i++) {
-
-      findNodes(currNode.children[i], curDepth+1);
+      findNodes(currNode.children[i], currDepth+1);
     }
   }
   findNodes(this);
