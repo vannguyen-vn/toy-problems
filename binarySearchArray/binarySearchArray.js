@@ -11,13 +11,13 @@
  */
 
 var binarySearch = function (array, target) {
-  for (let i = 0; i < array.length; i++) {
-    if (array[i] === target) return i;
+  let start = 0;
+  let end = array.length - 1;
+  while (start <= end) {
+    let middle = Math.floor((start + end) / 2);
+    if (array[middle] === target) return middle;
+    else if (array[middle] < target) start = middle + 1;
+    else end = middle - 1;
   }
   return null;
 };
-
-var index = binarySearch([1, 2, 3, 4, 5], 4);
-console.log(index); // 3
-var index1 = binarySearch([1, 2, 3, 4, 5], 8);
-console.log(index1); // null
