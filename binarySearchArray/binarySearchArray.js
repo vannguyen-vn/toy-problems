@@ -20,9 +20,12 @@ var binarySearch = function (array, target) {
       return mid;
     } else if (target < array[mid]) {
       return sub(lowIndex, mid);
-    } else {
+    } else if (target > array[mid])  {
       return sub(mid, highIndex);
+    } else {
+      return null;
     }
   }
+
   return sub(0, array.length);
 }
