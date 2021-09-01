@@ -23,5 +23,5 @@ var binarySearch = function (array, target, low = 0, high = array.length) {
       return midpoint;
     }
   }
-  return null
+  return null;
 };
