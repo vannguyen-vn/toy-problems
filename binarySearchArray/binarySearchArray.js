@@ -14,7 +14,7 @@ var binarySearch = function (array, target) {
   // find mid value
   var pivot = Math.floor(array.length / 2);
   if (array[pivot] === target) {
-    return target;
+    return pivot;
   }
 
   if (array.length === 1) { return null; }
