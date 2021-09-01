@@ -11,37 +11,27 @@
  */
 
 var binarySearch = function (array, target) {
-  // create result === null
-  var result = null;
-  // create a recursive function
+  var index = Math.floor(array.length / 2);
   var binary = (array) => {
-    // find midpoint of current array
-    const midpoint = Math.floor(array.length / 2);
-    // split array at midpoint, designation left and right, lower and higher respectively
-    const left = array.slice(0, midpoint);
-    const right = array.slice(midpoint, array.length);
+    var midpoint = Math.floor(array.length / 2);
+    if (array.length === 1 && array[0] !== target) {
+      return null;
+    }
     if (target > array[midpoint]) {
-      if (left.length === 0 || right.length === 0) {
-        return;
-      }
-      binary(right);
+      index++;
+      return binary(array.slice(midpoint), index);
     } else if (target < array[midpoint]) {
-      // run recursion using the left array
-      if (left.length === 0 || right.length === 0) {
-        return;
-      }
-      binary(left);
+      index--;
+      return binary(array.slice(0, midpoint), index);
     } else if (target === array[midpoint]) {
-      result = array[midpoint];
-      return;
+      return index;
     }
   }
-  binary(array);
-  return result === null ? result : array.indexOf(result);
+  return binary(array, index);
 };
 
-var index = binarySearch([1, 2, 3, 4, 5], 4);
-console.log(index); // 3
+// var index = binarySearch([1, 2, 3, 4, 5], 5);
+// console.log(index); // 3
 
-var index = binarySearch([1, 2, 3, 4, 5], 8);
-console.log(index); // null
+// var index = binarySearch([1, 2, 3, 4, 5], 8);
+// console.log(index); // null
