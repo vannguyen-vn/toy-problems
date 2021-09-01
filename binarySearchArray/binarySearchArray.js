@@ -11,5 +11,27 @@
  */
 
 var binarySearch = function (array, target) {
+  if (array === null) {
+    return null;
+  }
+
+  var low = 0;
+  var high = array.length - 1;
+
+  while (low <= high) {
+    var mid = Math.floor((low + high) / 2);
+
+    if (array[mid] === target) {
+      return mid;
+    }
+
+    if (array[mid] > target) {
+      high = mid - 1;
+    } else {
+      low = mid + 1;
+    }
+  }
+
+  return null;
 };
 
