@@ -26,16 +26,6 @@ var binarySearch = function (array, target) {
       return null;
     }
   }
-  // find middle of array
-  // compare target to array
-  // if equal
-    //return index
-  // if larger than target
-    // search left of the middle
-  // if smaller than target
-    // check right of middle
-
 };
-binarySearch([1, 2, 3, 4, 5], 4);
-module.exports = binarySearch;
+// module.exports = binarySearch;
 
