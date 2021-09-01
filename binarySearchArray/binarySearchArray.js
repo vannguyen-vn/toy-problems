@@ -30,10 +30,10 @@ var binarySearch = function (array, target) {
     return middleIndex;
   }
   if (middleValue > target) {
-    // return binarySearch(lower end)
+    return binarySearch(array.slice(0, middleIndex))
   }
   if (middleValue < target) {
-    // return binarySearch(higher end)
+    return binarySearch(middleIndex + 1)
   }
 };
 
