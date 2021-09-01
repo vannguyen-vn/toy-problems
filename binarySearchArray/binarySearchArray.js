@@ -11,5 +11,18 @@
  */
 
 var binarySearch = function (array, target) {
-};
+  if (target > array[array.length - 1] || (target < array[0])) { return null;}
 
+  var sub = function (lowIndex, highIndex) {
+    if (lowIndex === highIndex) { return null; }
+    var mid = Math.floor((highIndex - lowIndex) / 2) + lowIndex;
+    if (target === array[mid]) {
+      return mid;
+    } else if (target < array[mid]) {
+      return sub(lowIndex, mid);
+    } else {
+      return sub(mid, highIndex);
+    }
+  }
+  return sub(0, array.length);
+}
