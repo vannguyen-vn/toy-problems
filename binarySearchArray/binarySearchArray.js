@@ -32,6 +32,6 @@ var binarySearch = function (array, target) {
       max = middle - 1;
     }
   }
-  return -1
+  return null;
 };
 
