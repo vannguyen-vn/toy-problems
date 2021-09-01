@@ -24,7 +24,32 @@ makeChange(1) === 1
 makeChange(2) === 2
 */
 
+var possibleCoins = [1, 2, 5, 10, 20, 50, 100, 200];
+
 var makeChange = function(total) {
+
+  var makeCoinCombos = function(total) {
+    var results = [];
+
+    if (total === 0)  {
+      return results
+    } else if
+
+    for (var i = 0; i < possibleCoins.length; i++) {
+      var coinValue = possibleCoins[i];
+      if (total - coinValue === 0) {
+
+      }
+    }
+  }
+
+  for (var i = 0; i < possibleCoins.length; i++) {
+    var coinValue = possibleCoins[i];
+    if (total - coinValue === 0) {
+
+    }
+  }
+
 
 };
 
