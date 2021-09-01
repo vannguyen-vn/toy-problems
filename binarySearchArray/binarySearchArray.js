@@ -10,6 +10,19 @@
  * console.log(index); // null
  */
 
-var binarySearch = function (array, target) {
-};
+var binarySearch = function (array, target, low = 0, high = array.length) {
 
+  var midpoint = Math.floor((low + high) / 2);
+
+  if (low >= high && array[midpoint] !== target) {
+    return null;
+  }
+
+  if (target < array[midpoint]) {
+    return binarySearch(array, target, low, midpoint - 1);
+  } else if (target > array[midpoint]) {
+    return binarySearch(array, target, midpoint + 1, high);
+  } else if (target === array[midpoint]) {
+    return midpoint;
+  }
+};
