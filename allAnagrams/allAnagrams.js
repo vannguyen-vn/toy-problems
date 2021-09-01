@@ -14,14 +14,16 @@
 
  var allAnagrams = function(input) {
    // Storage for anagrams
-  var results = [];
+  var results = {};
+  var counter = 1;
+  //var anagram = '';
 
   // Recursive anagram function
   var getAnagrams = (string, anagram = '') => {
     // Base Case
     // If string is empty (all used up) push anagram into results
     if (!string) {
-      results.push(anagram);
+      results[anagram] = counter++;
       return;
     }
     // Iterate over entire string
@@ -36,8 +38,8 @@
   }
   // Call recursive function on input
   getAnagrams(input);
-  // Return results
-  return results;
+  // Return array of all object properties (these are our anagrams)
+  return Object.getOwnPropertyNames(results);
 };
 
 // var test = allAnagrams('ABC');
