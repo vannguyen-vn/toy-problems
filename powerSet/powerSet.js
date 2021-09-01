@@ -24,12 +24,15 @@ var powerSet = function(str) {
     results.push(str);
     return results;
   } else {
-    var recursiveResults = powerSet(str.slice(1));
-    results = results.concat(recursiveResults);
     var letter = str.slice(0, 1);
+    var recursiveResults = powerSet(str.slice(1));
+    if (recursiveResults.includes(letter)) {
+      return recursiveResults;
+    }
     for (var i = 0; i < recursiveResults.length; i++) {
       results.push(letter + recursiveResults[i]);
     }
+    results = results.concat(recursiveResults);
 
     return results;
   }
@@ -38,4 +41,4 @@ var powerSet = function(str) {
 
 //// TESTING /////
 
-// console.log(powerSet('jump'));
+console.log(powerSet('jumpp'));
