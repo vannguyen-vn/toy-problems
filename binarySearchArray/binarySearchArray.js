@@ -19,25 +19,27 @@ var binarySearch = function (array, target) {
   } else if (target === pivot) {
     return midpoint;
   } else if (target < pivot) {
-    var otherHalf = binarySearch(array.slice(0, midpoint), target);
-    if (otherHalf) {
-      return otherHalf;
+    var smallerHalf = binarySearch(array.slice(0, midpoint), target);
+    if (smallerHalf !== null) {
+      return smallerHalf;
+    } else {
+      return null
+    }
+  } else if (target > pivot) {
+    var largerHalf = binarySearch(array.slice(midpoint + 1), target);
+    if (largerHalf !== null) {
+      return midpoint + 1 + largerHalf;
     } else {
       return null;
     }
-  } else { //target > pivot
-    var otherHalf = binarySearch(array.slice(midpoint + 1), target);
-    if (otherHalf) {
-      return midpoint + 1 + otherHalf;
-    } else {
-      return null;
-    }
+  } else {
+    return null;
   }
 };
 
 
 //// testing ////
 var index = binarySearch([1, 2, 3, 4, 5, 7, 9, 11, 14, 16], 9);
-console.log(index); // 3
+console.log(index); // 6
 var index = binarySearch([11, 22, 33, 45, 53, 62], 55);
 console.log(index); // null
