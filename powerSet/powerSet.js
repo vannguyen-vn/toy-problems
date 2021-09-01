@@ -36,4 +36,6 @@ var powerSet = function(str) {
 
 };
 
-console.log(powerSet('jump'));
+//// TESTING /////
+
+// console.log(powerSet('jump'));
