@@ -11,5 +11,23 @@
  */
 
 var binarySearch = function (array, target) {
+  var start = 0;
+  var end = array.length - 1;
+
+  while (start <= end) {
+    var midpoint = Math.floor((start + end) / 2);
+
+    if (array[midpoint] === target) {
+      return array.indexOf(array[midpoint]);
+
+    } if (array[midpoint] > target) {
+      end = midpoint - 1;
+    } else {
+      start = midpoint + 1;
+    }
+  }
+
+ return null;
+
 };
 
