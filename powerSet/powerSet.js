@@ -36,6 +36,7 @@ var powerSet = function(str) {
       }
     }
   }
+  results.push('');
   return results;
 };
 
