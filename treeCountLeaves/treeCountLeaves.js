@@ -15,17 +15,7 @@
   *  /
   * * <- leaf
   *
-  * Example usage:
-  *   var root = new Tree();
-  *   root.countLeaves(); // 1
-  *   root.addChild(new Tree());
-  *   root.countLeaves(); // still 1
-  *   root.addChild(new Tree());
-  *   root.children[0].addChild(new Tree());
-  *   root.children[0].addChild(new Tree());
-  *   root.children[0].children[0].addChild(new Tree());
-  *   root.countLeaves(); // 3
-  *
+
   */
 
 /*
@@ -38,7 +28,22 @@ var Tree = function(value) {
 };
 
 Tree.prototype.countLeaves = function () {
-  // TODO: implement me!
+
+  var count = 0;
+
+  var innerFunc = function(node) {
+    if (node.children.length === 0) {
+      count++;
+      return;
+    } else {
+      for (var i = 0; i < node.children.length; i++) {
+        innerFunc(node.children[i]);
+      }
+    }
+  }
+
+  innerFunc(this);
+  return count;
 };
 
 /**
@@ -94,3 +99,15 @@ Tree.prototype.removeChild = function(child) {
     throw new Error('That node is not an immediate child of this tree');
   }
 };
+
+
+  // var root = new Tree();
+  // root.countLeaves(); // 1
+  // root.addChild(new Tree());
+  // root.countLeaves(); // still 1
+  // root.addChild(new Tree());
+  // root.children[0].addChild(new Tree());
+  // root.children[0].addChild(new Tree());
+  // root.children[0].children[0].addChild(new Tree());
+  // console.log(root.countLeaves()); // 3
+
