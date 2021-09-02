@@ -39,7 +39,7 @@ var Tree = function (value) {
   this.children = [];
 };
 
-ree.prototype.countLeaves = function () {
+Tree.prototype.countLeaves = function () {
   var count = 0;
   var countLeaf = (tree) => {
     if (tree === null) {
