@@ -39,6 +39,20 @@ var Tree = function(value) {
 
 Tree.prototype.countLeaves = function () {
   // TODO: implement me!
+  //if it has children
+  //  count the children
+  //  for each child
+  //    repeat recursively
+  var leafCount = 0;
+  if (this.children.length === 0) {
+    leafCount = 1;
+  } else {
+    for (var i = 0; i < this.children.length; i++) {
+      leafCount += this.children[i].countLeaves();
+    }
+  }
+
+  return leafCount;
 };
 
 /**
@@ -94,3 +108,5 @@ Tree.prototype.removeChild = function(child) {
     throw new Error('That node is not an immediate child of this tree');
   }
 };
+
+// module.exports = Tree;
