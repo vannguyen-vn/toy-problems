@@ -39,6 +39,20 @@ var Tree = function(value) {
 
 Tree.prototype.countLeaves = function () {
   // TODO: implement me!
+  let leafCount = 0;
+
+  let treeTraveller = (tree) => {
+    if (tree.children.length === 0) {
+      return leafCount++;
+    } else {
+      tree.children.forEach((child) => {
+        treeTraveller(child);
+      });
+    }
+  };
+
+  treeTraveller(this);
+  return leafCount;
 };
 
 /**
