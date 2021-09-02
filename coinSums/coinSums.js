@@ -25,7 +25,39 @@ makeChange(2) === 2
 */
 
 var makeChange = function(total) {
-
+  if (total === 0) {
+    return 1;
+  }
+  var values = [1, 2, 5, 10, 20, 50, 100, 200];
+  var count = 0;
+  var results = [];
+  var innerFunc = function(total, value, array, index) {
+    array.push(value);
+    if (total === value) {
+      array.sort();
+      if (results.indexOf(JSON.stringify(array)) === -1) {
+        results.push(JSON.stringify(array));
+        count++;
+      }
+    } else {
+      var newTotal = total - value;
+      for (let j = index; j < values.length; j++) {
+        if (newTotal < values[j]) {
+          break;
+        } else {
+          innerFunc(newTotal, values[j], array.slice(), j);
+        }
+      }
+    }
+  };
+  for (let i = 0; i < values.length; i++) {
+    if (total < values[i]) {
+      break;
+    } else {
+      innerFunc(total, values[i], [], i);
+    }
+  }
+  return count;
 };
 
 
