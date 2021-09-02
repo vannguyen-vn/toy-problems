@@ -37,8 +37,23 @@ var Tree = function(value) {
   this.children = [];
 };
 
+
+
 Tree.prototype.countLeaves = function () {
   // TODO: implement me!
+  //traverse tree DF style, if no children iterate count
+  var leaves = 0;
+  var traverse = (node) => {
+    if (node.children.length === 0) {
+        leaves++;
+      }
+    for (var i = 0; i < node.children.length; i++) {
+        traverse(node.children[i]);
+
+    }
+  }
+  traverse(this);
+  return leaves;
 };
 
 /**
@@ -94,3 +109,15 @@ Tree.prototype.removeChild = function(child) {
     throw new Error('That node is not an immediate child of this tree');
   }
 };
+
+
+var root = new Tree();
+console.log(root.countLeaves()); // 1
+root.addChild(new Tree());
+console.log(root.countLeaves()); // still 1
+root.addChild(new Tree());
+root.children[0].addChild(new Tree());
+root.children[0].addChild(new Tree());
+root.children[0].children[0].addChild(new Tree());
+console.log(root.countLeaves()); // 3
+
