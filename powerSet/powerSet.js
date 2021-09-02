@@ -7,15 +7,33 @@
  * powerSet("abc")
  * -> [ '' , 'a', 'b', 'c', 'ab', 'ac', 'bc', 'abc' ]
  *
- * Note: 
+ * Note:
  *  1. All characters in a subset should be sorted.
- *  2. Sets of the same characters are considered duplicates regardless of order and count only once, e.g. 'ab' and 'ba' are the same. 
- * 
+ *  2. Sets of the same characters are considered duplicates regardless of order and count only once, e.g. 'ab' and 'ba' are the same.
+ *
  * Example 2 :
- * 
+ *
  * powerSet("jump")
  * -> ["", "j", "ju", "jm", "jp", "jmu", "jmp", "jpu", "jmpu", "u", "m", "p", "mu", "mp", "pu", "mpu"]
  */
 
 var powerSet = function(str) {
+  var result = [''];
+  var obj = {};
+
+  for (let i = 0; i < str.length; i++) {
+    obj[str[i]] = true;
+  }
+  let chars = Object.keys(obj);
+
+
+  var recursive = (current, remaining) => {
+    for (let i = 0; i < remaining.length; i++) {
+      var permutation = current + remaining[i];
+      result.push(permutation);
+      recursive(permutation, remaining.slice(i + 1));
+    }
+  }
+  recursive('', chars);
+  return result;
 };
