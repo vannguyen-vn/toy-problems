@@ -24,8 +24,13 @@
   *   })
   *   // [2, 3]
   *
+  *
+  *         1
+  *     2       3
+  *   4   5   6   7
+  *
+  *
   */
-
 /*
  * Basic tree that stores a value.
  */
@@ -36,6 +41,22 @@ var Tree = function(value) {
 };
 
 Tree.prototype.DFSelect = function(filter) {
+  var result = [];
+  var depth = 0;
+  var innerFunc = function(tree, depth) {
+    if (filter(tree.value, depth)) {
+      result = result.concat([tree.value]);
+    }
+    for (var i = 0; i < tree.children.length; i++) {
+      if (i === 0) {
+        depth++;
+      }
+      var child = tree.children[i];
+      innerFunc(child, depth);
+    }
+  };
+  innerFunc(this, depth);
+  return result;
 };
 
 
