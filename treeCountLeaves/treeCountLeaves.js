@@ -38,7 +38,13 @@ var Tree = function(value) {
 };
 
 Tree.prototype.countLeaves = function () {
-  // TODO: implement me!
+
+  if (this.children.length === 0) {
+    return 1
+  }
+
+  //otherwise, call the function on the trees children
+  this.children.forEach(child => this.countLeaves.call(child))
 };
 
 /**
@@ -94,3 +100,46 @@ Tree.prototype.removeChild = function(child) {
     throw new Error('That node is not an immediate child of this tree');
   }
 };
+
+
+var root = new Tree();
+root.countLeaves(); // 1
+root.addChild(new Tree());
+var answer1 = root.countLeaves(); // still 1
+console.log('shouldbe1', answer1)
+root.addChild(new Tree());
+root.children[0].addChild(new Tree());
+root.children[0].addChild(new Tree());
+root.children[0].children[0].addChild(new Tree());
+var answer = root.countLeaves()
+console.log('should be 3', answer) // 3
+
+
+
+
+
+
+
+
+/*
+Input - tree
+Output - number - the number of leaves the tree contains
+Constraints - root wtih no children
+Edge Cases -
+
+Process
+//track count
+
+//look at each tree,
+  //if it has no children, add one to the count
+
+//if the tree has childen, look at the tree's children
+
+PseudoCode
+
+//if a tree has no children
+  //return one
+
+//otherwise, call the function on the trees children
+
+*/
