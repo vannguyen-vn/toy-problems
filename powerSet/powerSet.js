@@ -17,27 +17,30 @@
  * -> ["", "j", "ju", "jm", "jp", "jmu", "jmp", "jpu", "jmpu", "u", "m", "p", "mu", "mp", "pu", "mpu"]
  */
 
-var powerSet = function(str) {
+var powerSet = function (str) {
   var subsets = [];
-  var letters = str.split('');
   subsets.push('');
-  var subsetFinder = (letter) => {
-    //debugger;
-    subsets.push(...letter)
-    var string = letter;
+  var subsetFinder = (string) => {
+    // subsets.push(...letter)
+    // var string = letter;
     letters.forEach((letter, index) => {
       letters.splice(index, 1);
       string += letter;
       subsets.push(string)
-      string = string.slice(0, string.length -1);
+      string = string.slice(0, string.length - 1);
       letters.splice(index, 0, letter);
     });
     if (letters.length > 0) {
-      subsetFinder(letters.splice(0, 1));
+      subsetFinder(string + letters.splice(0, 1));
     }
   }
-  subsetFinder(letters.splice(0, 1));
+  for (var i = 1; i <= str.length; i++) {
+    var letters = str.split('');
+    var letter = letters.splice(0, i)[i-1];
+    console.log(letter);
+    subsets.push(...letter)
+    subsetFinder(...letter);
+  }
   return subsets;
 };
-// powerSet('jump')
-// module.exports = powerSet;
+module.exports = powerSet;

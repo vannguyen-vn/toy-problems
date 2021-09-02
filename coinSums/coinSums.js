@@ -25,6 +25,7 @@ makeChange(2) === 2
 */
 
 var makeChange = function (total) {
+  let temp = total;
   var count = 1;
   var calculateChangeOptions = (total) => {
     if (total / 2 >= 1) {
@@ -32,12 +33,20 @@ var makeChange = function (total) {
       calculateChangeOptions(total % 2);
     }
     if (total / 5 >= 1) {
+      let temp = total
       count += Math.floor(total / 5);
-      calculateChangeOptions(total % 5);
+      while (temp >= 5) {
+        calculateChangeOptions(temp);
+        temp -= 5;
+      }
     }
     if (total / 10 >= 1) {
+      let temp = total;
       count += Math.floor(total / 10);
-      calculateChangeOptions(total % 10);
+      while (temp >= 10) {
+        calculateChangeOptions(temp);
+        temp -= 10;
+      }
     }
     if (total / 20 >= 1) {
       count += Math.floor(total / 20);
@@ -59,6 +68,6 @@ var makeChange = function (total) {
   calculateChangeOptions(total);
   return count;
 };
-//module.exports = makeChange;
+module.exports = makeChange;
 
 
