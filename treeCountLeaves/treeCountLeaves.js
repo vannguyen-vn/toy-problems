@@ -1,29 +1,21 @@
+
 /**
+  * Implement the `countLeaves` function in this Tree class.
   *
-  * Implement a `DFSelect` method on this Tree class.
+  * A leaf node is any node in the tree that has no children. `countLeaves` should
+  * traverse the tree, and return the number of leaf nodes the tree contains.
   *
-  * DFSelect accepts a filter function, calls that function on each of the nodes
-  * in Depth First order, and returns a flat array of node values of the tree
-  * for which the filter returns true.
+  * Illustration of a tree with three leaves:
   *
-  * Example:
-  *   var root1 = new Tree(1);
-  *   var branch2 = root1.addChild(2);
-  *   var branch3 = root1.addChild(3);
-  *   var leaf4 = branch2.addChild(4);
-  *   var leaf5 = branch2.addChild(5);
-  *   var leaf6 = branch3.addChild(6);
-  *   var leaf7 = branch3.addChild(7);
-  *   root1.DFSelect(function (value, depth) {
-  *     return value % 2;
-  *   })
-  *   // [1, 5, 3, 7]
+  *       * <- root
+  *      / \
+  *     *    * <- leaf
+  *    / \
+  *   *   * <- leaf
+  *  /
+  * * <- leaf
   *
-  *   root1.DFSelect(function (value, depth) {
-  *     return depth === 1;
-  *   })
-  *   // [2, 3]
-  *
+
   */
 
 /*
@@ -35,35 +27,27 @@ var Tree = function(value) {
   this.children = [];
 };
 
-Tree.prototype.DFSelect = function(filter) {
+Tree.prototype.countLeaves = function () {
 
-  var result = [];
+  var count = 0;
 
   var innerFunc = function(node) {
-    if (filter(node.value)) {
-      result.push(node.value)
-    }
-    if (node.children.length > 0) {
-      for (var i = 0; i < node.children.length; i++) {
-        var childNode = node.children[i];
-        innerFunc(childNode);
-      }
+    if (node.children.length === 0) {
+      count++;
+      return;
     } else {
-      return
+      for (var i = 0; i < node.children.length; i++) {
+        innerFunc(node.children[i]);
+      }
     }
-
   }
 
   innerFunc(this);
-
-  return result;
+  return count;
 };
 
-
-
-
 /**
- * You shouldn't need to change anything below here, but feel free to look.
+  * You shouldn't need to change anything below here, but feel free to look.
   */
 
 /**
@@ -115,3 +99,15 @@ Tree.prototype.removeChild = function(child) {
     throw new Error('That node is not an immediate child of this tree');
   }
 };
+
+
+  // var root = new Tree();
+  // root.countLeaves(); // 1
+  // root.addChild(new Tree());
+  // root.countLeaves(); // still 1
+  // root.addChild(new Tree());
+  // root.children[0].addChild(new Tree());
+  // root.children[0].addChild(new Tree());
+  // root.children[0].children[0].addChild(new Tree());
+  // console.log(root.countLeaves()); // 3
+
