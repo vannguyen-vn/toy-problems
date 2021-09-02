@@ -101,14 +101,14 @@ Tree.prototype.removeChild = function (child) {
     throw new Error('That node is not an immediate child of this tree');
   }
 };
-var root = new Tree();
-root.countLeaves(); // 1
-root.addChild(new Tree());
-root.countLeaves(); // still 1
-root.addChild(new Tree());
-root.children[0].addChild(new Tree());
-root.children[0].addChild(new Tree());
-root.children[0].children[0].addChild(new Tree());
-root.countLeaves(); // 3
+// var root = new Tree();
+// root.countLeaves(); // 1
+// root.addChild(new Tree());
+// root.countLeaves(); // still 1
+// root.addChild(new Tree());
+// root.children[0].addChild(new Tree());
+// root.children[0].addChild(new Tree());
+// root.children[0].children[0].addChild(new Tree());
+// root.countLeaves(); // 3
 
-module.exports = Tree;
+// module.exports = Tree;
