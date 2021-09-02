@@ -23,7 +23,7 @@ var binarySearch = function (array, target) {
     if (target > array[index]) {
       return recursive(index + 1, max);
     } else {
-      return recursive(min, index - 1);
+      return recursive(min, index);
     }
   }
   return recursive(0, array.length);
