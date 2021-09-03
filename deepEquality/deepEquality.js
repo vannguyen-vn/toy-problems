@@ -18,6 +18,11 @@ var deepEquals = function(apple, orange) {
   // CASES OF INEQUALITY
   // 1. key is in one object but not the other
   // 2. the values don't match
+  // 3. the objects are not equal in number of keys
+
+  if (Object.keys(apple).length !== Object.keys(orange).length) {
+    return false;
+  }
 
   for (var key in apple) {
     if(!key in orange) { return false; }
