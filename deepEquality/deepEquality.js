@@ -11,13 +11,19 @@
   * don't worry about handling cyclical object structures.
   *
   */
- var deepEquals = function(apple, orange) {
+// debugger;
+var deepEquals = function(apple, orange) {
 
   var obj1 = Object.keys(apple)
   var obj2 = Object.keys(orange)
 
-  for (var i = 0; i < obj1.length; i++) {
-      if (JSON.stringify(apple[obj1[i]]) !== JSON.stringify(orange[obj1[i]])) {
+  var object = obj1
+  if (obj2.length > obj1.length) {
+    object = obj2
+  }
+
+  for (var i = 0; i < object.length; i++) {
+      if (JSON.stringify(apple[object[i]]) !== JSON.stringify(orange[object[i]])) {
           return false;
       }
   }
