@@ -12,4 +12,27 @@
   *
   */
 var deepEquals = function(apple, orange) {
+
+  if (apple === orange) {
+    return true;
+  }
+
+  if (typeof apple !== 'object' || typeof orange !=='object') {
+    return false;
+  }
+
+  var appleKeys = Object.keys(apple);
+  var orangeKeys = Object.keys(orange);
+
+  if (appleKeys.length !== orangeKeys.length) {
+    return false;
+  }
+
+  for (var key of appleKeys) {
+    if (!orangeKeys.includes(key) || !deepEquals(apple[key], orange[key])) {
+      return false;
+    }
+  }
+
+  return true;
 };
