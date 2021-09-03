@@ -13,9 +13,13 @@
   */
  var deepEquals = function(apple, orange) {
 
-  if (JSON.stringify(apple) === JSON.stringify(orange)) {
-     return true;
-  }
+  var obj1 = Object.keys(apple)
+  var obj2 = Object.keys(orange)
 
-  return false;
+  for (var i = 0; i < obj1.length; i++) {
+      if (JSON.stringify(apple[obj1[i]]) !== JSON.stringify(orange[obj1[i]])) {
+          return false;
+      }
+  }
+  return true;
 };
