@@ -12,15 +12,15 @@
   *
   */
 var deepEquals = function(apple, orange) {
-  var sortedApple = Object.keys(apple).sort().reduce((obj, key) => {
-    obj[key] = apple[key];
-    return obj;
-  }, {});
+  var sortObj = (unordered) => {
+    return Object.keys(unordered).sort().reduce((obj, key) => {
+      obj[key] = unordered[key];
+      return obj;
+    }, {});
+  };
 
-  var sortedOrange = Object.keys(orange).sort().reduce((obj, key) => {
-    obj[key] = orange[key];
-    return obj;
-  }, {});
+  var sortedApple = sortObj(apple);
+  var sortedOrange = sortObj(orange);
 
   return JSON.stringify(sortedApple) === JSON.stringify(sortedOrange);
 };
