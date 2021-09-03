@@ -15,12 +15,31 @@ var deepEquals = function (apple, orange) {
   //i - two objs
   //o - boolean
   // get keys of each obj
+  const apKey = Object.keys(apple);
+  const orKey = Object.keys(orange);
   //if they both equal eachother reutn true;
+  if (apKey === orKey) {
+    return true
+  };
   // if bang apple and orangr or apple and bang organge return false
+  if (!apple && orange || apple && !orange) {
+    return false;
+  }
   // if keys of orange dont match keys of apple return false
+  if (apKey.length !== orKey.length) {
+    return false
+  };
   // iterate over apple keys
-  // if orange doesnt have properties of current apple key return false
-  // recursion: pass in each obj with index and return false if its not true
-  // it it goes through all of this, return true
+  for (let i = 0; i < apKey.length; i++) {
+    // if orange doesnt have properties of current apple key return false
+    if (!orange.hasOwnPreperty(aKeys[i])) {
+      return false
+    };
+    // recursion: pass in each obj with index and return false if its not true
+    if (!deepEquals(apple[aKeys[i]], orange[aKeys[i]])) {
+      return false;
+    }
+  }
+  return true; // if it goes through all of this, return true
 
 };
