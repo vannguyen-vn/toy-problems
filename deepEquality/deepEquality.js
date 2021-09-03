@@ -23,8 +23,8 @@ var deepEquals = function(apple, orange) {
   //   return true;
   // }
   // return false;
-  var appleKeys = Object.keys(apple);
-  var orangeKeys = Object.keys(orange);
+  var appleKeys = Object.keys(apple).sort();
+  var orangeKeys = Object.keys(orange).sort();
   var areEqual = true;
 
   if (appleKeys.length !== orangeKeys.length) {
@@ -36,13 +36,12 @@ var deepEquals = function(apple, orange) {
     if (currentApple !== currentOrange) {
       return false;
     }
-    if (typeof apple[currentApple] !== typeof orange[currentOrange]) {
+    if (typeof apple[currentApple] !== 'object') {
+      if (apple[currentApple] !== orange[currentOrange])
       return false;
+    } else {
+      areEqual = deepEquals(apple[currentApple], orange[currentOrange]);
     }
-    if (typeof apple[currentApple] !== 'object' && apple[appleKeys[i]] !== orange[orangeKeys[i]]) {
-      return false;
-    }
-    areEqual = deepEquals(apple[currentApple], orange[currentOrange]);
 
   }
 
