@@ -32,7 +32,13 @@ var deepEquals = function(apple, orange) {
     }
   }
   goDeepDish(apple, orange);
-  return isEqual;
+  let appleKeys = Object.keys(apple);
+  let orangeKeys = Object.keys(orange);
+  if (appleKeys.length !== orangeKeys.length) {
+    return false;
+  } else {
+    return isEqual;
+  }
 
 };
 let option1 = deepEquals({a:1, b: {c:3}},{a:1, b: {c:3}});
