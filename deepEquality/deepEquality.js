@@ -12,25 +12,25 @@
   *
   */
 var deepEquals = function(apple, orange) {
-  if (obj1 === obj2) {
+  if (apple === orange) {
     // it's just the same object. No need to compare.
     return true;
   }
-  if (isPrimitive(obj1) && isPrimitive(obj2)) {
+  if (isPrimitive(apple) && isPrimitive(orange)) {
     // compare primitives
-    return obj1 === obj2;
+    return apple === orange;
   }
 
-  if (Object.keys(obj1).length !== Object.keys(obj2).length) {
+  if (Object.keys(apple).length !== Object.keys(orange).length) {
     return false;
   }
 
   // compare objects with same number of keys
-  for (let key in obj1) {
-    if (!(key in obj2)) {
+  for (let key in apple) {
+    if (!(key in orange)) {
       return false; //other object doesn't have this prop
     }
-    if (!deepEqual(obj1[key], obj2[key])) {
+    if (!deepEqual(apple[key], orange[key])) {
       return false;
     }
   }
