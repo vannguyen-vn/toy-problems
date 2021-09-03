@@ -12,6 +12,7 @@
   *
   */
 var deepEquals = function(apple, orange) {
+  if (JSON.stringify(apple).length !== JSON.stringify(orange).length) {return false;}
   for (var key in apple) {
     if (typeof apple[key] === 'object') {
       return deepEquals(apple[key], orange[key]);
@@ -23,3 +24,5 @@ var deepEquals = function(apple, orange) {
   }
   return true;
 }
+
+console.log(deepEquals({a:1}, {a:1, b:2}));
