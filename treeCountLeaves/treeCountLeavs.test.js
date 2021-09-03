@@ -1,5 +1,5 @@
 var Tree = require('./treeCountLeaves.js');
-test('it should count all the leaves in a tree', () => {
+test.skip('it should count all the leaves in a tree', () => {
   var root = new Tree();
   expect(root.countLeaves()).toEqual(1); // 1
   root.addChild(new Tree());
