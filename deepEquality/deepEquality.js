@@ -12,4 +12,15 @@
   *
   */
 var deepEquals = function(apple, orange) {
+  for (let key in apple) {
+    if (typeof apple[key] === 'object') {
+      var subres = deepEquals(apple[key], orange[key]);
+      if (!subres) {
+        return subres;
+      }
+    } else if (apple[key] !== orange[key]) {
+      return false;
+    }
+  }
+  return true;
 };
