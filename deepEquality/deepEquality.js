@@ -37,3 +37,7 @@ var deepEquals = function(apple, orange) {
 
   return true;
 };
+
+var isPrimitive = function(obj) {
+  return (obj !== Object(obj));
+};
