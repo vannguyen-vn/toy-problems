@@ -31,7 +31,7 @@ var deepEquals = function (apple, orange) {
       return false;
     }
 
-    if (!deepEqual(apple[key], orange[key])) {
+    if (!deepEquals(apple[key], orange[key])) {
       return false;
     }
   }
