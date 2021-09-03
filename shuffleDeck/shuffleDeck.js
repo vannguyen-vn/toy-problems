@@ -41,7 +41,7 @@ var shuffleDeck = function(deck) {
     // Set card index equal to new array index and push into result array
     shuffled.push(deck[randomAssign]);
     //Pop the random value from deck
-    deck.pop(randomAssign);
+    deck.splice(randomAssign, 1);
   }
   // Return result array
   return shuffled;
