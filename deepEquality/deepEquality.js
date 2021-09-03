@@ -19,7 +19,7 @@ var deepEquals = function(apple, orange) {
     //if the input is a number
     //return a string plus a number
     if (typeof input === 'number') {
-      return '' += input;
+      return '' + input;
     }
 
     //if the input is a string
@@ -31,7 +31,7 @@ var deepEquals = function(apple, orange) {
     //if the object is a boolean value
       //return a string plus the value
       if (typeof input === 'boolean') {
-        return '' += input;
+        return '' + input;
       }
 
     //if the object is null
