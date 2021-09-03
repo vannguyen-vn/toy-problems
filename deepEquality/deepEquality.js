@@ -30,7 +30,7 @@ var deepEquals = function(apple, orange) {
     if (!(key in orange)) {
       return false; //other object doesn't have this prop
     }
-    if (!deepEqual(apple[key], orange[key])) {
+    if (!deepEquals(apple[key], orange[key])) {
       return false;
     }
   }
