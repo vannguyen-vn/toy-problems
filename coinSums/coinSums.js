@@ -25,48 +25,31 @@ makeChange(2) === 2
 */
 
 var makeChange = function (total) {
-  let temp = total;
-  var count = 1;
-  var calculateChangeOptions = (total) => {
-    if (total / 2 >= 1) {
-      count += Math.floor(total / 2);
-      calculateChangeOptions(total % 2);
+  // var coins = [1, 2, 5, 10, 20, 50, 100, 200];
+  var coins = [200, 100, 50, 20, 10, 5, 2, 1];
+
+   var makeChangeForNCoinTypes = (total, coins, memo = {}) => {
+    if (total === 0) {
+      return 1;
     }
-    if (total / 5 >= 1) {
-      let temp = total
-      count += Math.floor(total / 5);
-      while (temp >= 5) {
-        calculateChangeOptions(temp);
-        temp -= 5;
-      }
+    if (total < 0) {
+      return 0;
     }
-    if (total / 10 >= 1) {
-      let temp = total;
-      count += Math.floor(total / 10);
-      while (temp >= 10) {
-        calculateChangeOptions(temp);
-        temp -= 10;
-      }
+    if (total in memo) {
+      return 0;
     }
-    if (total / 20 >= 1) {
-      count += Math.floor(total / 20);
-      calculateChangeOptions(total % 20);
-    }
-    if (total / 50 >= 1) {
-      count += Math.floor(total / 50);
-      calculateChangeOptions(total % 50);
-    }
-    if (total / 100 >= 1) {
-      count += Math.floor(total / 100);
-      calculateChangeOptions(total % 100);
-    }
-    if (total / 200 >= 1) {
-      count += Math.floor(total / 200);
-      calculateChangeOptions(total % 200);
-    }
+    memo[total] =  coins.reduce((solutionsCount, coin) => {
+      return solutionsCount + makeChangeForNCoinTypes(total-coin, coins, memo);
+    }, 0);
+    return memo[total];
   }
-  calculateChangeOptions(total);
-  return count;
+  var totalChangeOptions = 0;
+  coins.forEach((coin, index)=> {
+    if (total > coin) {
+      totalChangeOptions += makeChangeForNCoinTypes(total, coins.slice(index));
+    }
+  })
+  return totalChangeOptions;
 };
 module.exports = makeChange;
 
