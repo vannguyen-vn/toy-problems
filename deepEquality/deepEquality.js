@@ -32,11 +32,11 @@ var deepEquals = function (apple, orange) {
   // iterate over apple keys
   for (let i = 0; i < apKey.length; i++) {
     // if orange doesnt have properties of current apple key return false
-    if (!orange.hasOwnPreperty(aKeys[i])) {
+    if (!orange.hasOwnPreperty(apKeys[i])) {
       return false
     };
     // recursion: pass in each obj with index and return false if its not true
-    if (!deepEquals(apple[aKeys[i]], orange[aKeys[i]])) {
+    if (!deepEquals(apple[apKeys[i]], orange[apKeys[i]])) {
       return false;
     }
   }
