@@ -38,21 +38,18 @@ var Tree = function(value) {
 Tree.prototype.DFSelect = function(filter) {
   var filtered = [];
 
+  console.log(this.value);
+  if (filter(this.value, 0)) { filtered.push(this.value); }
+
   const dfs = (node, depth) => {
-    // filter current node value
-    if (filter(node.value, depth)) { filtered.push(node.value); }
-
-    // break recursion if no children
     if (node.children.length === 0) { return; }
-
-    // dive deeper
     for (var child of node.children) {
       dfs(child, depth + 1);
+      if (filter(child.value, depth)) { filtered.push(child.value); }
     }
   }
 
-  dfs(this, 0);
-
+  dfs(this, 1);
   return filtered;
 };
 
