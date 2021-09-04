@@ -1,9 +1,9 @@
 /**
   *
-  * Implement a `DFSelect` method on this Tree class.
+  * Implement a `BFSelect` method on this Tree class.
   *
-  * DFSelect accepts a filter function, calls that function on each of the nodes
-  * in Depth First order, and returns a flat array of node values of the tree
+  * BFSelect accepts a filter function, calls that function on each of the nodes
+  * in Breadth First order, and returns a flat array of node values of the tree
   * for which the filter returns true.
   *
   * Example:
@@ -14,12 +14,12 @@
   *   var leaf5 = branch2.addChild(5);
   *   var leaf6 = branch3.addChild(6);
   *   var leaf7 = branch3.addChild(7);
-  *   root1.DFSelect(function (value, depth) {
+  *   root1.BFSelect(function (value, depth) {
   *     return value % 2;
   *   })
-  *   // [1, 5, 3, 7]
+  *   // [1, 3, 5, 7]
   *
-  *   root1.DFSelect(function (value, depth) {
+  *   root1.BFSelect(function (value, depth) {
   *     return depth === 1;
   *   })
   *   // [2, 3]
@@ -35,29 +35,34 @@ var Tree = function(value) {
   this.children = [];
 };
 
-Tree.prototype.DFSelect = function(filter) {
-  // Store results in flattened array
-  let results = [];
-  // Recursive DFS function
-  let DFS = (node, depth) => {
-    // If has children
-    if(node.children.length > 0) {
-      // If current tree node value passes filter, add to results
-      if(filter(node.value, depth)) {results.push(node.value);}
-      // Iterate through child list
-      for (var i = 0; i < node.children.length; i++) {
-        // Recursively Call DFS on all children
-        DFS(node.children[i], depth + 1);
+
+
+Tree.prototype.BFSelect = function(filter) {
+  // return an array of values for which the function filter(value, depth) returns true
+  var results = [];
+
+  var BFS = (node, depth) => {
+    // Check root node only once
+    if(filter(node.value, depth) && depth === 0) {
+      results.push(node.value);
+    }
+    // Check all children
+    for(let i = 0; i < node.children.length; i++) {
+      if(filter(node.children[i].value, depth)) {
+        results.push(node.children[i].value);
       }
     }
+    // Call recursively on all children
+    for(let j = 0; j < node.children.length; j++) {
+      BFS(node.children[j], depth + 1);
+    }
+
   }
-  // Invoke recursive function
-  DFS(this, 0);
-  // Return results of flattened tree
-  return results;
+  // Call recursive function
+  BFS(this, 0);
+
+  return filtered;
 };
-
-
 
 /**
  * You shouldn't need to change anything below here, but feel free to look.
@@ -112,20 +117,3 @@ Tree.prototype.removeChild = function(child) {
     throw new Error('That node is not an immediate child of this tree');
   }
 };
-
-var root1 = new Tree(1);
-var branch2 = root1.addChild(2);
-var branch3 = root1.addChild(3);
-var leaf4 = branch2.addChild(4);
-var leaf5 = branch2.addChild(5);
-var leaf6 = branch3.addChild(6);
-var leaf7 = branch3.addChild(7);
-root1.DFSelect(function (value, depth) {
-  return value % 2;
-})
-// [1, 5, 3, 7]
-
-root1.DFSelect(function (value, depth) {
-  return depth === 1;
-})
-// [2, 3]
