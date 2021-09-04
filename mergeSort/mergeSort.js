@@ -122,9 +122,19 @@ var mergeSort = function (array) {
   }
 };
 
-// var myArr = new Array(10000);
-// myArr.fill(5);
-// // console.log(myArr);
-// var myArr = [7,8,6,9,2,3,4,1,0,9,3,5,2,7,9,4,7,6];
-// var sortedArr = mergeSort(myArr);
-// console.log(sortedArr);
+var myArr = new Array(10000);
+myArr.fill(5);
+// console.log(myArr);
+var myArr = [7,8,6,9,2,3,4,1,0,9,3,5,2,7,9,4,7,6];
+var sortedArr = mergeSort(myArr);
+console.log(sortedArr);
+
+// large input test
+var input = [];
+    var sorted;
+    var n = 1000000;
+    for (var i = 0; i < n; i++) {
+      var number = Math.floor(Math.random() * n);
+      input.push(number);
+    }
+    sorted = input.sort(function (a, b) { return a - b; });
