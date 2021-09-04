@@ -30,15 +30,46 @@
  * Basic tree that stores a value.
  */
 
-var Tree = function(value) {
+var Tree = function (value) {
   this.value = value;
   this.children = [];
 };
 
 
 
-Tree.prototype.BFSelect = function(filter) {
+Tree.prototype.BFSelect = function (filter) {
   // return an array of values for which the function filter(value, depth) returns true
+  var queue = [];
+  var selected = [];
+  queue.push(this);
+
+  var search = (node, depth) => {
+    var first;
+    var nextDepth = [];
+    while (queue.length > 0) {
+      first = queue.shift();
+      if (filter(first.value, depth)) {
+        selected.push(first.value);
+      }
+      for (var i = 0; i < first.children.length; i++) {
+        nextDepth.push(first.children[i]);
+      }
+    }
+    if (queue.length === 0) {
+      if (nextDepth.length > 0) {
+        queue = nextDepth;
+      }
+    }
+
+    if (nextDepth.length === 0) {
+      return;
+    }
+
+    search(nextDepth[0], depth + 1);
+  }
+  search(this, 0);
+
+  return selected
 };
 
 /**
@@ -49,7 +80,7 @@ Tree.prototype.BFSelect = function(filter) {
   * add an immediate child
   * (wrap values in Tree nodes if they're not already)
   */
-Tree.prototype.addChild = function(child) {
+Tree.prototype.addChild = function (child) {
   if (!child || !(child instanceof Tree)) {
     child = new Tree(child);
   }
@@ -67,7 +98,7 @@ Tree.prototype.addChild = function(child) {
   * check to see if the provided tree is already a child of this
   * tree __or any of its sub trees__
   */
-Tree.prototype.isDescendant = function(child) {
+Tree.prototype.isDescendant = function (child) {
   if (this.children.indexOf(child) !== -1) {
     // `child` is an immediate child of this tree
     return true;
@@ -85,7 +116,7 @@ Tree.prototype.isDescendant = function(child) {
 /**
   * remove an immediate child
   */
-Tree.prototype.removeChild = function(child) {
+Tree.prototype.removeChild = function (child) {
   var index = this.children.indexOf(child);
   if (index !== -1) {
     // remove the child
