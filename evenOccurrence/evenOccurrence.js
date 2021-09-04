@@ -13,15 +13,15 @@
 var evenOccurrence = function(arr) {
   // Your code here.
   // iterate through array
-  for (let i = 0; i < arr.length; i++) {
-    let result;
+  for (var i = 0; i < arr.length; i++) {
+    var result;
     // declare variable for occurence
-    let occurence = 1;
+    var occurence = 1;
     // iterate through array again ahead of first increment
-    for (let j = i + 1; j < arr.length - 1; j++) {
+    for (var j = i + 1; j < arr.length - 1; j++) {
       // declare variables
-      let current = arr[i];
-      let testNum = arr[j];
+      var current = arr[i];
+      var testNum = arr[j];
       // if current equals num
       if (current = testNum) {
         // occurrence plus 1

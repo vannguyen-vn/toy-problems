@@ -39,6 +39,26 @@ var Tree = function(value) {
 
 Tree.prototype.countLeaves = function () {
   // TODO: implement me!
+  // declare count
+  let count = 0;
+
+  const innerFunc = (node) => {
+    // check if it does not have children
+    if (node.children.length === 0) {
+      // increment count
+      count++;
+//       return;
+    }
+    // iterate through tree.children
+    for (let i = 0; i < node.children.length; i++) {
+      // recursively call innerFunc on the children
+      innerFunc(node.children[i]);
+    }
+  }
+  innerFunc(this);
+
+  // return count
+  return count;
 };
 
 /**

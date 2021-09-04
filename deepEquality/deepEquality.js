@@ -12,4 +12,5 @@
   *
   */
 var deepEquals = function(apple, orange) {
+  apple === orange ? true : false;
 };

@@ -36,6 +36,25 @@ var Tree = function(value) {
 };
 
 Tree.prototype.DFSelect = function(filter) {
+  // declare result
+  var values = [];
+
+  // innerfunction
+  var innerFunc = (node, depth) => {
+    // if there is a value, push to result
+    if (filter(node.value, depth)) {
+      values.push(node.value);
+    }
+    // iterate over nodes
+    for (var i = 0; i < node.children.length; i++) {
+      // invoke filteron nodes, incrementing on depth
+      filter(node.children[i], depth+1);
+    }
+  }
+  // invoke innerfunc
+  innerFunc(this, 0);
+  // return result
+  return values;
 };
 
 

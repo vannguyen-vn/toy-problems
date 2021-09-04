@@ -24,8 +24,40 @@ makeChange(1) === 1
 makeChange(2) === 2
 */
 
-var makeChange = function(total) {
 
+var makeChange = function (total) {
+  // declare coins array
+  var coins = [1, 2, 5, 10, 20, 50, 100, 200];
+  // declare count
+  var count = 0;
+
+  // base case:
+  // declare inner function
+  var subtractTotal = function (index, total) {
+    // declare current coin
+    var currentCoin = coins[index];
+    // if index reaches 0 and remainder of total is 0
+    if (index === 0) {
+      // increment count
+      if (total % currentCoin === 0) {
+        count++;
+      }
+      // return
+      return;
+    }
+
+    // while total is greater than 0
+    while (total >= 0) {
+      // recursively call subtractTotal, decrementing index
+      subtractTotal(index - 1, total);
+      // subtract total from current coin
+      total -= currentCoin;
+    }
+  }
+
+  // call subtractTotal
+  subtractTotal(coins.length - 1, total);
+
+  return count;
 };
-
 
