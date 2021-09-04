@@ -12,4 +12,10 @@
   *
   */
 var deepEquals = function(apple, orange) {
+  return JSON.stringify(apple) === JSON.stringify(orange) ? true : false;
 };
+
+//// TESTING //////
+// Examples:
+console.log(deepEquals({a:1, b: {c:3}},{a:1, b: {c:3}})); // true
+console.log(deepEquals({a:1, b: {c:5}},{a:1, b: {c:6}})); // false
