@@ -42,9 +42,9 @@ Tree.prototype.BFSelect = function(filter) {
   // Create result array
   var result = [];
   // If the value and depth return true passed into the filter array
-  if (filter(value, depth)) {
+  if (filter(this.value, depth)) {
     // Push value into result
-    result.push(value);
+    result.push(this.value);
   }
   // Iterate over the children array
   // recursively call BFSelect on the child array
