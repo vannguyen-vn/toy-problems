@@ -46,6 +46,7 @@ Tree.prototype.BFSelect = function (filter) {
   var search = (node, depth) => {
     var first;
     var nextDepth = [];
+
     while (queue.length > 0) {
       first = queue.shift();
       if (filter(first.value, depth)) {
@@ -55,14 +56,13 @@ Tree.prototype.BFSelect = function (filter) {
         nextDepth.push(first.children[i]);
       }
     }
+
     if (queue.length === 0) {
       if (nextDepth.length > 0) {
         queue = nextDepth;
+      } else {
+        return;
       }
-    }
-
-    if (nextDepth.length === 0) {
-      return;
     }
 
     search(nextDepth[0], depth + 1);
