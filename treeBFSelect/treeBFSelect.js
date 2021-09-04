@@ -39,6 +39,33 @@ var Tree = function(value) {
 
 Tree.prototype.BFSelect = function(filter) {
   // return an array of values for which the function filter(value, depth) returns true
+  const matches = [];
+  var depther = 0;
+  var depthChecker = 0;
+
+  const bf = (tree, counter) => {
+    if (counter > depthChecker) { depthChecker = counter }
+    if (filter(tree.value, counter)) {
+      matches.push([tree.value, counter]);
+    }
+    for (let i = 0; i < tree.children.length;i ++) {
+      bf(tree.children[i], counter + 1);
+    }
+  }
+
+  bf(this, depther);
+
+  const final = [];
+  for (let i = 0; i <= depthChecker; i++) {
+    for (let j = 0; j < matches.length; j++) {
+      if (matches[j][1] === i) {
+        final.push(matches[j][0]);
+      }
+    }
+  }
+
+  return final;
+
 };
 
 /**
