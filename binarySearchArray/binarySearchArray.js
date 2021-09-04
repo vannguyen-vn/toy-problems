@@ -19,8 +19,10 @@ var binarySearch = function (array, target) {
   var startIndex = 0;
   var lastIndex = array.length - 1;
   var midpoint = Math.floor((startIndex+lastIndex)/2);
+  if (array[startIndex] === target) return startIndex;
+  if (array[lastIndex] === target) return lastIndex;
   for (var i = 0; i < array.length; i++) {
-    console.log(startIndex, lastIndex, midpoint, 'val:', array[midpoint]);
+    // console.log(startIndex, lastIndex, midpoint, 'val:', array[midpoint]);
     if (startIndex > lastIndex) {
       return null;
     }
@@ -41,5 +43,5 @@ var binarySearch = function (array, target) {
 };
 
 
-// var array = [1, 4, 6 , 7, 9, 24, 24, 37, 60];
-// console.log(binarySearch(array, 8));
+var array = [1, 4, 6 , 7, 9, 24, 24, 37, 60];
+console.log(binarySearch(array, 60));

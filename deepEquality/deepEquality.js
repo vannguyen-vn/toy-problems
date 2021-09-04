@@ -23,15 +23,15 @@ var deepEquals = function(apple, orange) {
   for (var key in apple) {
     if (!deepEquals(apple[key], orange[key])) {
       return false;
-    } else {
-      if (!Object.keys(orange).includes(key)) {
+    }
+
+    if (!Object.keys(orange).includes(key)) {
+      return false;
+    }
+
+    if ((typeof(orange[key]) === 'function' || typeof(apple[key]) === 'function')) {
+      if (orange[key].toString() !== apple[key].toString()) {
         return false;
-      }
-    } else {
-      if ((typeof(orange[key]) === 'function' || typeof(apple[key]) === 'function')) {
-        if (orange[key].toString() !== apple[key].toString()) {
-          return false;
-        }
       }
     }
   }
