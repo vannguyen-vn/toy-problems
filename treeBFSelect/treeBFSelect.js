@@ -30,16 +30,34 @@
  * Basic tree that stores a value.
  */
 
-var Tree = function(value) {
+var Tree = function (value) {
   this.value = value;
   this.children = [];
 };
 
 
 
-Tree.prototype.BFSelect = function(filter) {
+Tree.prototype.BFSelect = function (filter) {
   // return an array of values for which the function filter(value, depth) returns true
+  var result = [];
+  var depth = 0;
+  var queue = [];
+  queue.push({ tree: this, depth: depth });
+  console.log(queue.length);
+  while (queue.length > 0) {
+    var currNode = queue.shift();
+    //console.log('curr:',currNode);
+    if (filter(currNode.tree.value, currNode.depth)) {
+      result.push(currNode.tree.value);
+    }
+    currNode.tree.children.forEach((node) => {
+      queue.push({ tree: node, depth: currNode.depth + 1 });
+    });
+  }
+  //console.log(result);
+  return result;
 };
+
 
 /**
  * You shouldn't need to change anything below here, but feel free to look.
@@ -49,7 +67,7 @@ Tree.prototype.BFSelect = function(filter) {
   * add an immediate child
   * (wrap values in Tree nodes if they're not already)
   */
-Tree.prototype.addChild = function(child) {
+Tree.prototype.addChild = function (child) {
   if (!child || !(child instanceof Tree)) {
     child = new Tree(child);
   }
@@ -67,7 +85,7 @@ Tree.prototype.addChild = function(child) {
   * check to see if the provided tree is already a child of this
   * tree __or any of its sub trees__
   */
-Tree.prototype.isDescendant = function(child) {
+Tree.prototype.isDescendant = function (child) {
   if (this.children.indexOf(child) !== -1) {
     // `child` is an immediate child of this tree
     return true;
@@ -85,7 +103,7 @@ Tree.prototype.isDescendant = function(child) {
 /**
   * remove an immediate child
   */
-Tree.prototype.removeChild = function(child) {
+Tree.prototype.removeChild = function (child) {
   var index = this.children.indexOf(child);
   if (index !== -1) {
     // remove the child
