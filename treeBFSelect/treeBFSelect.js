@@ -35,11 +35,31 @@ var Tree = function(value) {
   this.children = [];
 };
 
-
-
 Tree.prototype.BFSelect = function(filter) {
-  // return an array of values for which the function filter(value, depth) returns true
+  // create a new "queue" to keep the order breadth first
+  var queue = [];
+  // add root node to the queue and keep track of depth
+  queue.push({tree: this, depth: 0});
+  //create a result variable to store filtered results
+  var results = [];
+
+  // create while loop that always checks first node in the queue, and if there are any nodes left
+  while (node = queue.shift()) {
+    var tree = node.tree;
+    var depth = node.depth;
+    // check if current node passes filtered test
+    if (filter(tree.value, depth)) {
+      results.push(tree.value);
+    }
+    // iterate through current node/tree and add the children too queue
+    for (var i = 0; i < tree.children.length; i++) {
+      var child = tree.children[i];
+      queue.push({tree: child, depth: depth + 1});
+    }
+  }
+  return results;
 };
+
 
 /**
  * You shouldn't need to change anything below here, but feel free to look.
