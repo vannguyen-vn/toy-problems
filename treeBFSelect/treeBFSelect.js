@@ -37,9 +37,31 @@ var Tree = function(value) {
 
 
 
+
 Tree.prototype.BFSelect = function(filter) {
   // return an array of values for which the function filter(value, depth) returns true
+  let filtered = [];
+  if (filter(this.value, 0)) {
+    filtered.push(this.value);
+  }
+
+  let BFSearch = (currChildren, currDepth) => {
+    let nextDepthChildren = [];
+    for (var i = 0; i < currChildren.length; i++) {
+      if (filter(currChildren[i].value, currDepth)) {
+        filtered.push(currChildren[i].value);
+      }
+      nextDepthChildren = [...nextDepthChildren, ...currChildren[i].children];
+    }
+    if (nextDepthChildren.length !== 0) {
+      BFSearch(nextDepthChildren, currDepth+1);
+    }
+  }
+  BFSearch(this.children, 1);
+  return filtered;
 };
+
+
 
 /**
  * You shouldn't need to change anything below here, but feel free to look.
