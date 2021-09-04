@@ -48,7 +48,7 @@ Tree.prototype.DFSelect = function(filter) {
 
      // dive deeper
      for (var child of node.children) {
-       bfs(child, depth + 1);
+       dfs(child, depth + 1);
      }
    }
 
