@@ -1,9 +1,9 @@
 /**
   *
-  * Implement a `DFSelect` method on this Tree class.
+  * Implement a `BFSelect` method on this Tree class.
   *
-  * DFSelect accepts a filter function, calls that function on each of the nodes
-  * in Depth First order, and returns a flat array of node values of the tree
+  * BFSelect accepts a filter function, calls that function on each of the nodes
+  * in Breadth First order, and returns a flat array of node values of the tree
   * for which the filter returns true.
   *
   * Example:
@@ -14,12 +14,12 @@
   *   var leaf5 = branch2.addChild(5);
   *   var leaf6 = branch3.addChild(6);
   *   var leaf7 = branch3.addChild(7);
-  *   root1.DFSelect(function (value, depth) {
+  *   root1.BFSelect(function (value, depth) {
   *     return value % 2;
   *   })
-  *   // [1, 5, 3, 7]
+  *   // [1, 3, 5, 7]
   *
-  *   root1.DFSelect(function (value, depth) {
+  *   root1.BFSelect(function (value, depth) {
   *     return depth === 1;
   *   })
   *   // [2, 3]
@@ -35,21 +35,26 @@ var Tree = function(value) {
   this.children = [];
 };
 
-Tree.prototype.DFSelect = function(filter) {
+
+
+Tree.prototype.BFSelect = function(filter) {
+  // return an array of values for which the function filter(value, depth) returns true
   var filtered = [];
 
-  console.log(this.value);
-  if (filter(this.value, 0)) { filtered.push(this.value); }
+  const bfs = (node, depth) => {
+    // filter current node value
+    if (filter(node.value, depth)) { filtered.push(node.value); }
 
-  const dfs = (node, depth) => {
+    // break recursion if no children
     if (node.children.length === 0) { return; }
+
+    // dive deeper
     for (var child of node.children) {
-      dfs(child, depth + 1);
-      if (filter(child.value, depth)) { filtered.push(child.value); }
+      bfs(child, depth + 1);
     }
   }
 
-  dfs(this, 1);
+  bfs(this, 0);
   return filtered;
 };
 
