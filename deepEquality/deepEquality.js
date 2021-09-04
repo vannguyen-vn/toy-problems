@@ -12,4 +12,34 @@
   *
   */
 var deepEquals = function(apple, orange) {
+  if (typeof apple !== typeof orange || typeof apple !== 'object') {
+    return false;
+  }
+  var appleKeys = Object.keys(apple);
+  var orangeKeys = Object.keys(orange);
+  var result = true;
+  if (appleKeys.length !== orangeKeys.length) {
+    return false
+  }
+  for (var key in apple) {
+    if (orange[key] === undefined) {
+      return false;
+    }
+    var isSameType = typeof apple[key] === typeof orange[key];
+
+    if (!isSameType) {
+      return false;
+    }
+
+    if (typeof apple[key] === 'object') {
+      if (!deepEquals(apple[key], orange[key])) {
+        return false;
+      }
+    } else {
+      if (apple[key] !== orange[key]) {
+        return false;
+      }
+    }
+  }
+  return true;
 };

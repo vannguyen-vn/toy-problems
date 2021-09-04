@@ -24,6 +24,9 @@
   *   })
   *   // [2, 3]
   *
+  *         1
+  *    2         3
+  *  4    5   6     7
   */
 
 /*
@@ -39,6 +42,23 @@ var Tree = function(value) {
 
 Tree.prototype.BFSelect = function(filter) {
   // return an array of values for which the function filter(value, depth) returns true
+  var results = [];
+  var queue = [this];
+  var innerFunc = function(tree, depth) {
+    if (filter(tree.value, depth)) {
+      results.push(tree.value);
+    }
+    queue.shift();
+    depth++;
+    tree.children.forEach(function(child) {
+      queue.push([child, depth]);
+    })
+    for (var i = 0; i < queue.length; i++) {
+      innerFunc(queue[i][0], queue[i][1]);
+    }
+  }
+  innerFunc(this, 0);
+  return results;
 };
 
 /**
