@@ -33,12 +33,13 @@
 var Tree = function (value) {
   this.value = value;
   this.children = [];
+  this.depth = 0;
 };
 
 Tree.prototype.DFSelect = function (filter) {
   var results = [];
 
-  if (filter(this.value)) {
+  if (filter(this.value, this.depth)) {
     results.push(this.value);
   }
   if (this.children.length !== 0) {
@@ -66,6 +67,9 @@ Tree.prototype.addChild = function (child) {
   }
 
   if (!this.isDescendant(child)) {
+    var depth = this.depth;
+    depth++;
+    child.depth = depth;
     this.children.push(child);
   } else {
     throw new Error('That child is already a child of this tree');
@@ -110,21 +114,21 @@ Tree.prototype.removeChild = function (child) {
 //// TESTING ////
 
 
-// var root1 = new Tree(1);
-// var branch2 = root1.addChild(2);
-// var branch3 = root1.addChild(3);
-// var leaf4 = branch2.addChild(4);
-// var leaf5 = branch2.addChild(5);
-// var leaf6 = branch3.addChild(6);
-// var leaf7 = branch3.addChild(7);
+var root1 = new Tree(1);
+var branch2 = root1.addChild(2);
+var branch3 = root1.addChild(3);
+var leaf4 = branch2.addChild(4);
+var leaf5 = branch2.addChild(5);
+var leaf6 = branch3.addChild(6);
+var leaf7 = branch3.addChild(7);
 
-// console.log(root1.DFSelect(function (value, depth) {
-//   return value % 2;
-// }))
-// // [1, 5, 3, 7]
+console.log(root1.DFSelect(function (value, depth) {
+  return value % 2;
+}))
+// [1, 5, 3, 7]
 
-// console.log(root1.DFSelect(function (value, depth) {
-//   return depth === 1;
-// }))
-//    // [2, 3]
+console.log(root1.DFSelect(function (value, depth) {
+  return depth === 1;
+}))
+   // [2, 3]
 
