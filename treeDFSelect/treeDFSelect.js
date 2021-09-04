@@ -42,10 +42,12 @@ Tree.prototype.DFSelect = function(filter) {
   if (filter(this.value, 0)) { filtered.push(this.value); }
 
   const dfs = (node, depth) => {
+    if (filter(node.value, depth)) { filtered.push(node.value); }
+
     if (node.children.length === 0) { return; }
+
     for (var child of node.children) {
       dfs(child, depth + 1);
-      if (filter(child.value, depth)) { filtered.push(child.value); }
     }
   }
 
