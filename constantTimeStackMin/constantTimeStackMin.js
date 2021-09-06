@@ -60,7 +60,11 @@ Stack.prototype.size = function () {
 
 // return the minimum value in the stack
 Stack.prototype.min = function () {
-  return Object.keys(this.mini)[0];
+  return Number(Object.keys(this.mini)[0]);
 };
 
+// Since I used an object to keep track of the minimum, when I retreived the minimum in stack
+// it would return as a string and not a number. But Object.keys, I just found out is, linear in
+// time complexity. Adding Number( ) should pass all the tests, but I need to come back and aim
+// for true constant time complexity.
 

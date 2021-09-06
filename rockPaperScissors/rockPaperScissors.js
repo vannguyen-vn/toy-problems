@@ -18,23 +18,23 @@
 *
 */
 
-var rockPaperScissors = function () {
+var rockPaperScissors = function (rounds, playedSoFar, results) {
 
-  var results = [];
-  var rsp = ['R','P','S']
+  results = results || [];
+  playedSoFar = playedSoFar || '';
+  rounds = rounds || 3;
 
+  if (playedSoFar.length === rounds) {
+    results.push(playedSoFar);
+    return;
+  }
 
-    for(var r = 0; r < rsp.length; r++) {
-      for(var s = 0; s < rsp.length; s++) {
-        for(var p = 0; p < rsp.length; p++) {
-        results.push([rsp[r], rsp[s], rsp[p]]);
-        }
-      }
-    }
+  ['R', 'P', 'S'].forEach((currentPlay) => {
+    rockPaperScissors(rounds, playedSoFar + currentPlay, results)
+  })
 
   return results;
 };
 
 
-// Very simple and basic approach, I had trouble figuring out a way to solve using recursion.
-// Will defintely come back and figure out the extra credit
+// Refactored to deal with any number of rounds, and without use of inner function

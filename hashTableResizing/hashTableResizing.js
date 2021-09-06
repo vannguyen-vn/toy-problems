@@ -32,54 +32,91 @@ var makeHashTable = function() {
     var bucket = storage[index] || [];
 
     if (bucket.length === 0) {
-      storage[index].push([key, value]);
+      bucket.push([key, value]);
       size++;
     } else {
       for (var i = 0; i < bucket.length; i++) {
         if (bucket[i][0] === key) {
           bucket[i][1] = value;
+          return;
         }
       }
       bucket.push([key, value]);
+      size++;
     }
 
-
-
+    if (size >= storageLimit * 0.75) {
+      resize(storageLimit * 2);
+    }
   };
 
   result.retrieve = function(key) {
     var index = getIndexBelowMaxForKey(key, storageLimit);
 
-    if (storage[index]) {
-      for (var i = 0; i < storage[index].length; i++) {
-        if (storage[index][i][0] === key) {
-          return storage[index][i][1];
+    var bucket = storage[index]
+
+    if (bucket.length > 0) {
+      for (var i = 0; i < bucket.length; i++) {
+        if (bucket[i][0] === key) {
+          return bucket[i][1];
         }
       }
     } else {
-      return null;
+      return;
     }
   };
 
   result.remove = function(key) {
     var index = getIndexBelowMaxForKey(key, storageLimit);
 
-    if (storage[index]) {
-      for (var i = 0; i < storage[index].length; i++) {
-        if (storage[index][i][0] === key) {
-          storage[index].splice(i, 1);
+    var bucket = storage[index]
+
+    if (bucket.length > 0) {
+      for (var i = 0; i < bucket.length; i++) {
+        if (bucket[i][0] === key) {
+          bucket.splice(i, 1);
+          size--;
         }
+
+        if (size <= storageLimit * 0.25) {
+          resize(storageLimit / 2);
+        }
+        return bucket[i][1]
       }
     }
+  };
 
-    // if storage[index] not holding any tuples
-    // size--
-
+  var resize = function(newMax) {
+    // create an array to store all tuples
+    var tuples = [];
+    // iterate through storage array
+    for (var i = 0; i < storage.length; i++) {
+      var bucket = storage[i]
+      // if current bucket is empty, skip
+      if (bucket.length === 0) {
+        continue;
+      }
+      // iterate through bucket
+      for (var j = 0; j < bucket.length; j++) {
+        if (!bucket[j]) {
+          continue;
+        }
+        // push all tuples to tuples array
+        tuples.push(bucket[j])
+      }
+    }
+    // set the new size of storage array
+    storageLimit = newMax;
+    // reset the storage array
+    storage = [];
+    // reset size count
+    size = 0;
+    for (i = 0; i < tuples.length; i++) {
+      // reinsert key/value pairs inside of HashTable
+      result.insert(tuples[i][0], tuples[i][1]);
+    }
   };
 
   return result;
 };
 
-////// resizing ///////////
-
-// iterate
