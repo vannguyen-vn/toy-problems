@@ -17,7 +17,7 @@
 /**
   * Stack Class
   */
-var Stack = function () {
+ var Stack = function () {
 
   this.storage = {};
   this.count = 0;
@@ -33,7 +33,11 @@ Stack.prototype.push = function (value) {
   this.storage[this.count] = value;
   this.count++;
 
-  this.mini[value] = value;
+  if (this.mini[value]) {
+    this.mini[value]++
+  } else {
+    this.mini[value] = 1
+  }
 
 };
 
@@ -46,8 +50,10 @@ Stack.prototype.pop = function () {
   }
 
   var pop =  this.storage[this.count];
-  //delete this.mini[(this.storage[this.count])];
-  delete this.storage[this.count]
+  this.mini[(this.storage[this.count])]--;
+  if (this.mini[(this.storage[this.count])] === 0) {
+   delete this.mini[(this.storage[this.count])];
+  }
   return pop;
 
 
