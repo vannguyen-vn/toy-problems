@@ -34,22 +34,24 @@ var Tree = function(value) {
   this.value = value;
   this.children = [];
 };
-
+  // updated function to deal with depth
 Tree.prototype.DFSelect = function(filter) {
   var flattened = [];
-  var innerFunc = function(node) {
+  var innerFunc = function(node, depth) {
 
-    if(filter(node.value)) {
+    depth = depth || 0;
+
+    if(filter(node.value, depth)) {
       flattened.push(node.value)
     }
 
     if (node.children.length > 0) {
       for (var i = 0; i < node.children.length; i++) {
-        innerFunc(node.children[i]);
+        innerFunc(node.children[i], depth + 1  );
       }
     }
   }
-  innerFunc(this);
+  innerFunc(this, 0);
   return flattened;
 };
 
