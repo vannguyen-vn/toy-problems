@@ -40,14 +40,12 @@
  var shuffleDeck = function(deck) {
 
   for (var i = 0; i < deck.length - 1; i++) {
-    var random = Math.floor(Math.random() * deck.length)
-    var tempIndex = deck[random];
-    deck[random] = deck[i];
-    deck[i] = tempIndex
+    var random = i + Math.floor(Math.random() * (deck.length - i));
+    var tempIndex = deck[i];
+    deck[i] = deck[random];
+    deck[random] = tempIndex
   }
-
   return deck;
-
 };
 
 // Ordered deck generator provided for your testing convenience

@@ -14,25 +14,23 @@ var evenOccurrence = function (arr) {
 
   var storage = {};
 
+  // store a boolean in storage obj
   for (var i = 0; i < arr.length; i++) {
-    if (storage[arr[i]]) {
-      storage[arr[i]]++;
-    } else {
-      storage[arr[i]] = 1;
-    }
+    //if not present it's value will be set to true, or false if present already
+    storage[arr[i]] = !storage[arr[i]];
   }
 
-  var first = null;
-  for (var j = 0; j < arr.length; j++) {
-    for (var key in storage) {
-      if (storage[key] >= 2 && storage[key] % 2 === 0) {
-        if (arr[j] === Number(key)) {
-          first = arr[j];
-          return first;
-        }
-      }
-    }
+  // loop over original arr once more to retreive the first in the arr that occurred even times
+  for (i = 0; i < arr.length; i++) {
+    // if items value if false in storage(meaning occured even times) return item
+    if (!storage[arr[i]]) { return arr[i]}
   }
 
-  return first;
+  // if no items occurred even times, return null
+  return null;
 };
+
+//I had the right idea at first time around but I over complicated the process,
+// and set it up to only deal with numbers not strings.
+
+// ** Time Complexity is linear for this problem ** //
