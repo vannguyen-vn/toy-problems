@@ -42,33 +42,33 @@ var phoneDigitsToLetters = {
 
 
 var telephoneWords = function(digitString) {
+  // create a storage variable to store all permutations
+  var words = [];
 
-  var rounds = digitString.length;
-  var combinations = [];
-  var variations = [];
 
-  for (var i = 0; i < digitString.length; i++) {
-    variations.push(phoneDigitsToLetters[digitString[i]])
-  }
-
-  var playRounds = function (playedSoFar) {
-    playedSoFar = playedSoFar || '';
-
-    if (playedSoFar.length === rounds) {
-      combinations.push(playedSoFar);
+  var innerfunc = function(word, digits) {
+    // base case, no more digits/letters to add
+    if (digits.length === 0) {
+      //push current permutation
+      words.push(word);
+      // return to go to next letter
       return;
     }
 
-  variations.forEach(function(letter) {
-    for (var j = 0; j < letter.length; j++) {
-      playRounds(playedSoFar + letter[j])
+    // here we are grabing the letter combination associated with current number
+    var letters = phoneDigitsToLetters[digits[0]].split('');
+    // iterate through the letters array we just created above
+    for (var i = 0; i < letters.length; i++) {
+      // send the current word plus next letter in sequence back to helper func
+      innerfunc(word + letters[i], digits.slice(1));
     }
-  });
   }
-  playRounds();
-  return combinations;
+  // invoke helper func to start the recursive process
+  innerfunc('', digitString.split(''));
+
+  // return the permutations stored in the words array
+  return words;
+
 };
 
-// //for (var j = 0; j < phoneDigitsToLetters[digitString[i]].length; j++) {
-//   playRounds(playedSoFar + phoneDigitsToLetters[digitString[i]][j]);
-// }
+
