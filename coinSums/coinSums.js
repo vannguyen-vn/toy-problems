@@ -26,6 +26,22 @@ makeChange(2) === 2
 
 var makeChange = function(total) {
 
+  var differentWaysToMakeChange = 0;
+  var coins = [1, 2, 5, 10, 20, 50, 100, 200];
+
+  var innerFunc = function (index, total) {
+    var currentCoin = coins[index];
+    if (index === 0) {
+      total % currentCoin === 0 && differentWaysToMakeChange++;
+      return;
+    }
+
+    while(total >= 0) {
+      innerFunc(index - 1, total);
+      total -= currentCoin;
+    }
+  }
+  innerFunc(coins.length - 1, total)
+
+  return differentWaysToMakeChange;
 };
-
-
