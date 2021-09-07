@@ -35,22 +35,19 @@ var Tree = function(value) {
   this.children = [];
 };
 
-Tree.prototype.DFSelect = function(filter, depth = 0) {
-  let res = [];
+Tree.prototype.DFSelect = function(filter) {
+  var res = [];
 
-  if (filter(this.value, depth)) {
-    res.push(this.value);
-  }
+  var helper = (node, depth) => {
+    if (filter(node.value, depth)) {
+      res.push(node.value);
+    }
+    for (var i = 0; i < node.children.length; i++) {
+      helper(node.children[i], depth + 1);
+    }
+  };
 
-  if (this.children.length === 0) {
-    return res;
-  }
-
-  for (let i = 0; i < this.children.length; i++) {
-    let subres = this.children[i].DFSelect(filter, depth + 1);
-    res.push(...subres);
-  }
-
+  helper(this, 0);
   return res;
 };
 
