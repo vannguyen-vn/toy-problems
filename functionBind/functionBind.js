@@ -23,10 +23,25 @@
  *
 */
 
-var bind = function(
-) {
-  // TODO: Your code here
+var bind = function(function, thisArgument) {
+  return function() {
+    return function(argument)
+  }
 };
+
+/*
+I: function, object
+O: A function that returns a new function, with the passed in variable bound to the "this" parameter, that when called, returns the value of the passed in function with the passed in arguments bound to this.
+C: N/A
+E: N/A
+
+//PSEUDOCODE
+  //return an anonymous function
+    //inside of the function, return a call the input function using the argument
+*/
+
+
+
 
 /*
  * Function.prototype.bind:
@@ -53,7 +68,7 @@ var bind = function(
  *
 */
 
-Function.prototype.bind = function(
-) {
-  // TODO: Your code here
+Function.prototype.bind = function(methodFromObject, thisArgumentObject) {
+  thisAgumentObject.newBoundMethod = methodFromObject;
+  return thisAgumentObject.newBoundMethod;
 };
