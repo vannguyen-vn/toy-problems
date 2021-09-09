@@ -26,9 +26,9 @@
 var bind = function(fun, obj, ...args) {
   obj = obj || {};
 
-  return () => {
+  return (...inners) => {
     obj.bound = fun;
-    return obj.bound(...args);
+    return obj.bound(...args, ...inners);
   }
 };
 
