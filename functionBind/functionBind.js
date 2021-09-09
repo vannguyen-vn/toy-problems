@@ -23,10 +23,16 @@
  *
 */
 
-var bind = function (callback, ...params) {
+var bind = function (func, context, param) {
   // TODO: Your code here
-  return () => {
-    callback.call(...params);
+  if (arguments.length === 2) {
+    return () => {
+      func.call(arguments[1]);
+    }
+  } else {
+    return () => {
+      func.call(context, param);
+    }
   }
 };
 
@@ -55,9 +61,15 @@ var bind = function (callback, ...params) {
  *
 */
 
-Function.prototype.bind = function (callback, ...params) {
+Function.prototype.bind = function (func, context, param) {
   // TODO: Your code here
-  return () => {
-    callback.call(this, ...params);
+  if (arguments.length === 2) {
+    return () => {
+      func.call(this, arguments[1]);
+    }
+  } else {
+    return () => {
+      func.call(context, param);
+    }
   }
 };
