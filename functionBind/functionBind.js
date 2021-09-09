@@ -26,6 +26,8 @@
 var bind = function(
 ) {
   // TODO: Your code here
+
+  return arguments[0].call(arguments[1]);
 };
 
 /*
@@ -53,7 +55,11 @@ var bind = function(
  *
 */
 
-Function.prototype.bind = function(
-) {
-  // TODO: Your code here
+Function.prototype.bind = function() {
+  var func = this;
+  var args = arguments;
+  var callBound = () {
+    return func.call(args);
+  }
+  return callBound();
 };

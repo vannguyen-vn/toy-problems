@@ -2,6 +2,7 @@ const add = require("./exampleModule").add;
 const multiply = require("./exampleModule").multiply;
 const shuffleDeck = require('./shuffleDeck/shuffleDeck.js').shuffleDeck;
 const orderedDeck = require('./shuffleDeck/shuffleDeck.js').orderedDeck;
+const Tree = require('./treeCountLeaves/treeCountLeaves.js');
 
 /*
 A "describe" block can be used to group together multiple tests
@@ -30,7 +31,7 @@ Notice the method "only" above. Because it is there, the describe block below wo
 You'll need to remove the "only" from the block above. You can use that method to only run tests
 on the toy problem you're currently working on. https://jestjs.io/docs/en/api#describeonlyname-fn
 */
-describe("shuffleDeck", function(){
+xdescribe("shuffleDeck", function(){
   test("should return a different deck of the same size", function(){
     // It's possible to have multiple expects in a single test like this. However, it is often unhelpful.
     // Just write two tests referring to the "Example Suites" example above for reference.
@@ -40,5 +41,23 @@ describe("shuffleDeck", function(){
 
     expect(shuffleDeck([1,0]).length).toBe(2);
     expect(testShuffle).not.toBe(testDeck);
+  });
+});
+
+describe("countLeaves", function(){
+  test("should count all the leaves", function(){
+    // It's possible to have multiple expects in a single test like this. However, it is often unhelpful.
+    // Just write two tests referring to the "Example Suites" example above for reference.
+    var root = new Tree();
+    root.countLeaves(); // 1
+    root.addChild(new Tree());
+    root.countLeaves(); // still 1
+    root.addChild(new Tree());
+    root.children[0].addChild(new Tree());
+    root.children[0].addChild(new Tree());
+    root.children[0].children[0].addChild(new Tree());
+    var count = root.countLeaves(); // 3
+
+    expect(count).toBe(3);
   });
 });

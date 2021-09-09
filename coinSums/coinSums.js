@@ -36,6 +36,7 @@ var makeChange = function(total) {
     '£2': 200
   }
   var coins = Object.keys(values);
+  var valuesArray = Object.values(values);
   var combinations = [];
   //find one possibility:
   // iterate across object keys (starting at end)
@@ -47,10 +48,13 @@ var makeChange = function(total) {
   var findCombo = function(total, highestValueIndex) {
     var combo = [];
     var sumOfCoins = 0;
-    for (var i = highestValueIndex; i >= 0; i--) {
+    var i = highestValueIndex;
+    while (i >= 0) {
       if (sumOfCoins + values[coins[i]] <= total) {
         combo.push(coins[i]);
         sumOfCoins += values[coins[i]];
+      } else {
+        i--;
       }
     }
     if (sumOfCoins === total) {
@@ -59,63 +63,65 @@ var makeChange = function(total) {
       return combo.concat(findCombo(total - sumOfCoins, highestValueIndex));
     }
   }
-
-  //find all possibilities:
-  //  find one possibility
+  
+  //find all possibilities (rethink):
+  //  find it using all 1p
   //  if it doesn't exist in the array (as a joined string)
-  //    push it into the array
-  //  if it exists in the array (as a joined string),
-  //    iterate across the combo array (starting at end)
-  //      remove THAT coin from the combo (array.splice)
-  //      search for a combo of THAT coin's value, starting at its index - 1
-  //      concat that result with the combo array
+  //    push it into the combinations array
+  //  if it does
+  //    iterate across the combo array
+  //    if current coin plus next coin add up to an available coin
+  //      replace the pair with that coin
+  //      sort and join
+  //      if it doesn't exist in the array
+  //        push it in
+  //      if it does
+  //        continue the loop
+  
+  // var findAllCombos = function(total, highestValueIndex) {
 
-  var findAllCombos = function(total, highestValueIndex) {
-    var combo = findCombo(total, highestValueIndex)
-    var sortedCombo = combo.sort();
-    var joinedCombo = sortedCombo.join();
-    if (!combinations.includes(joinedCombo)) {
-      combinations.push(joinedCombo);
-    } else {
-      for (var i = sortedCombo.length - 1; i >= 0; i--) {
-        var currentCoin = sortedCombo[i];
-        if (currentCoin !== '1p') {
-          var littleCombo = findCombo(values[currentCoin], coins.indexOf(currentCoin) - 1);
-          var newCombo = sortedCombo.slice(0, i).concat(littleCombo).concat(sortedCombo.slice(i + 1));
-        // } else {
-        //   var littleCombo = findCombo(values[currentCoin] + values[sortedCombo[i + 1]], highestValueIndex)
-        //   var newCombo = sortedCombo.slice(0, i).concat(littleCombo).concat(sortedCombo.slice(i + 2));
-        }
-        var newComboSorted = newCombo.sort();
-        var newComboJoined = newComboSorted.join();
-        if (!combinations.includes(newComboJoined)) {
-          combinations.push(newComboJoined);
-        }
-      }
-      for (var i = 0; i < sortedCombo.length; i++) {
-        var currentCoin = sortedCombo[i];
-        if (currentCoin !== '£2') {
-        //   var littleCombo = findCombo(values[currentCoin], coins.indexOf(currentCoin) - 1);
-        //   var newCombo = sortedCombo.slice(0, i).concat(littleCombo).concat(sortedCombo.slice(i + 1));
-        // // } else {
-          var littleCombo = findCombo(values[currentCoin] + values[sortedCombo[i + 1]], highestValueIndex)
-          var newCombo = sortedCombo.slice(0, i).concat(littleCombo).concat(sortedCombo.slice(i + 2));
-        }
-        var newComboSorted = newCombo.sort();
-        var newComboJoined = newComboSorted.join();
-        if (!combinations.includes(newComboJoined)) {
-          combinations.push(newComboJoined);
-        }
-      }
-    }
-    if (highestValueIndex >= 1) {
-      return findAllCombos(total, highestValueIndex - 1);
-    } else {
-      console.log(combinations);
-      return combinations;
-    }
-  }
-
+  // }
+  
   findAllCombos(total, coins.length - 1);
   return combinations.length;
 };
+
+
+// //find all possibilities:
+// //  find one possibility
+// //  if it doesn't exist in the array (as a joined string)
+// //    push it into the array
+// //  if it exists in the array (as a joined string),
+// //    iterate across the combo array (starting at end)
+// //      remove THAT coin from the combo (array.splice)
+// //      search for a combo of THAT coin's value, starting at its index - 1
+// //      concat that result with the combo array
+
+// var findAllCombos = function(total, highestValueIndex) {
+//   var combo = findCombo(total, highestValueIndex)
+//   var sortedCombo = combo.sort();
+//   var joinedCombo = sortedCombo.join();
+//   if (!combinations.includes(joinedCombo)) {
+//     combinations.push(joinedCombo);
+//   } else {
+//     for (var i = sortedCombo.length - 1; i >= 0; i--) {
+//       var currentCoin = sortedCombo[i];
+//       var littleCombo, newCombo;
+//       if (currentCoin !== '1p') {
+//         littleCombo = findCombo(values[currentCoin], coins.indexOf(currentCoin) - 1);
+//         newCombo = sortedCombo.slice(0, i).concat(littleCombo).concat(sortedCombo.slice(i + 1));
+//         var newComboSorted = newCombo.sort();
+//         var newComboJoined = newComboSorted.join();
+//         if (!combinations.includes(newComboJoined)) {
+//           combinations.push(newComboJoined);
+//         }
+//       }
+//     }
+//   }
+//   if (highestValueIndex >= 1) {
+//     return findAllCombos(total, highestValueIndex - 1);
+//   } else {
+//     console.log(combinations);
+//     return combinations;
+//   }
+// }
