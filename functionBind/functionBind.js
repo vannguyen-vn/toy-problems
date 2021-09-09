@@ -26,6 +26,11 @@
 var bind = function(
 ) {
   // TODO: Your code here
+  // lookup how to access all the arguments
+  // lookup how to check if an argument is a function
+  // proceed to bind the other arguments through that function
+  // return the bound function
+  return args...;
 };
 
 /*
