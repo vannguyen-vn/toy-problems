@@ -23,16 +23,18 @@
  *
 */
 
-var bind = function (func, context, param) {
+var bind = function (func, ...rest) {
   // TODO: Your code here
-  if (arguments.length === 2) {
-    return () => {
-      return func.call(arguments[1]);
-    }
-  } else {
-    return () => {
-      return func.call(context, param);
-    }
+  // const argsToApply = [...rest];
+  // used with func.apply
+
+  // arrow functions have different arguments from functions written with function
+  // if an arrow function is used here, the argsReceivedAtInvocation will result in a lookup
+  // and return the ...rest arguments
+  // make sure to write function() here
+  return function() {
+    const argsReceivedAtInvocation = arguments;
+    return func.call(...rest, ...argsReceivedAtInvocation);
   }
 };
 
@@ -61,15 +63,14 @@ var bind = function (func, context, param) {
  *
 */
 
-Function.prototype.bind = function (func, context, param) {
+Function.prototype.bind = function () {
   // TODO: Your code here
-  if (arguments.length === 2) {
-    return () => {
-      return func.call(this, arguments[1]);
-    }
-  } else {
-    return () => {
-      return func.call(context, param);
-    }
+  const functionBeingBound = this;
+  var contextBeingBound = [...arguments][0];
+  const argsBeingBound = [...arguments].slice(1);
+
+  return function() {
+    const allArgs = [...argsBeingBound, ...arguments];
+    return functionBeingBound.apply(contextBeingBound, allArgs);
   }
 };
