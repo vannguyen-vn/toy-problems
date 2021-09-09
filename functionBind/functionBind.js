@@ -23,9 +23,14 @@
  *
 */
 
-var bind = function(
-) {
-  // TODO: Your code here
+var bind = function(func, newThis) {
+  var args = Array.prototype.slice.call(arguments);
+  args = args.slice(2);
+  return function() {
+    args = args.concat(Array.prototype.slice.call(arguments));
+    newThis.func = func;
+    newThis.func(...args);
+  }
 };
 
 /*
@@ -53,7 +58,23 @@ var bind = function(
  *
 */
 
-Function.prototype.bind = function(
+Function.prototype.bind = function(newThis
 ) {
-  // TODO: Your code here
+  var args = Array.prototype.slice.call(arguments);
+  args = args.slice(1);
+  newThis.func = this;
+  return function() {
+    args = args.concat(Array.prototype.slice.call(arguments));
+    args = args.concat();
+    newThis.func(...args);
+  }
 };
+
+
+var returnThis = function(a, b, c) {
+  console.log(a, b, c, this.name);
+}
+var obj = {name: 'matt', func: returnThis}
+
+var bound = obj.func.bind({name: 'daniel'}, 'hello', 'my name', 'is' );
+bound();
