@@ -1,9 +1,9 @@
 /**
   *
-  * Implement a `DFSelect` method on this Tree class.
+  * Implement a `BFSelect` method on this Tree class.
   *
-  * DFSelect accepts a filter function, calls that function on each of the nodes
-  * in Depth First order, and returns a flat array of node values of the tree
+  * BFSelect accepts a filter function, calls that function on each of the nodes
+  * in Breadth First order, and returns a flat array of node values of the tree
   * for which the filter returns true.
   *
   * Example:
@@ -14,12 +14,12 @@
   *   var leaf5 = branch2.addChild(5);
   *   var leaf6 = branch3.addChild(6);
   *   var leaf7 = branch3.addChild(7);
-  *   root1.DFSelect(function (value, depth) {
+  *   root1.BFSelect(function (value, depth) {
   *     return value % 2;
   *   })
-  *   // [1, 5, 3, 7]
+  *   // [1, 3, 5, 7]
   *
-  *   root1.DFSelect(function (value, depth) {
+  *   root1.BFSelect(function (value, depth) {
   *     return depth === 1;
   *   })
   *   // [2, 3]
@@ -35,19 +35,25 @@ var Tree = function(value) {
   this.children = [];
 };
 
-Tree.prototype.DFSelect = function(filter) {
+
+
+Tree.prototype.BFSelect = function(filter) {
+  var queue = [];
   var res = [];
+  var depth = 0;
 
-  var helper = (node, depth) => {
-    if (filter(node.value, depth)) {
-      res.push(node.value);
-    }
-    for (var i = 0; i < node.children.length; i++) {
-      helper(node.children[i], depth + 1);
-    }
-  };
+  queue.push({tree: this, depth: depth});
 
-  helper(this, 0);
+  while (queue.length > 0) {
+    var current = queue.shift();
+    if (filter(current.tree.value, current.depth)) {
+      res.push(current.tree.value);
+    }
+    for (var i = 0; i < current.tree.children.length; i++) {
+      queue.push({tree: current.tree.children[i], depth: current.depth + 1})
+    }
+  }
+
   return res;
 };
 
