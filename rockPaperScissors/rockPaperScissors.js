@@ -34,3 +34,5 @@ var rockPaperScissors = function(rounds, combo) {
   }
   return result;
 };
+
+// module.exports = rockPaperScissors; comment out for PRs
