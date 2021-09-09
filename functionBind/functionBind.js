@@ -56,7 +56,7 @@ var bind = function(fn, obj) {
  *
 */
 
-Function.prototype.bind2 = function(obj) {
+Function.prototype.bind = function(obj) {
   //this = Function;
   var args1 = [...arguments].slice(1);
   var func = this;
