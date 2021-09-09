@@ -23,9 +23,14 @@
  *
 */
 
-var bind = function(
+var bind = function(func, context
 ) {
-  // TODO: Your code here
+  let previousArgs = [].slice.call(arguments, 2);
+
+  return function() {
+    let currentArgs = [].slice.call(arguments);
+    let combinedArgs = [].concat(previousArgs, currentArgs);
+  };
 };
 
 /*
@@ -55,5 +60,12 @@ var bind = function(
 
 Function.prototype.bind = function(
 ) {
-  // TODO: Your code here
+  let func = this;
+  let previousArgs = [].slice.call(arguments, 1);
+
+  return function() {
+    let currentArgs = [].slice.call(arguments);
+    let combinedArgs = [].concat(previousArgs, currentArgs);
+    return func.apply(context, combinedArgs);
+  };
 };
