@@ -23,9 +23,13 @@
  *
 */
 
-var bind = function(
-) {
-  // TODO: Your code here
+var bind = function(callback) {
+  var args = Array.prototype.slice.call(arguments);
+  return (
+    () => {
+      callback(args[1]);
+    }
+  )
 };
 
 /*
