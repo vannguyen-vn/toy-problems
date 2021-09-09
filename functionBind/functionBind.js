@@ -27,11 +27,11 @@ var bind = function (func, context, param) {
   // TODO: Your code here
   if (arguments.length === 2) {
     return () => {
-      func.call(arguments[1]);
+      return func.call(arguments[1]);
     }
   } else {
     return () => {
-      func.call(context, param);
+      return func.call(context, param);
     }
   }
 };
@@ -65,11 +65,11 @@ Function.prototype.bind = function (func, context, param) {
   // TODO: Your code here
   if (arguments.length === 2) {
     return () => {
-      func.call(this, arguments[1]);
+      return func.call(this, arguments[1]);
     }
   } else {
     return () => {
-      func.call(context, param);
+      return func.call(context, param);
     }
   }
 };
