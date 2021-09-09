@@ -23,9 +23,11 @@
  *
 */
 
-var bind = function(
-) {
-  // TODO: Your code here
+var bind = function(fun, obj) {
+  return () => {
+    obj.bound = fun;
+    return obj.bound();
+  }
 };
 
 /*
@@ -53,7 +55,11 @@ var bind = function(
  *
 */
 
-Function.prototype.bind = function(
-) {
-  // TODO: Your code here
+Function.prototype.bind = function(obj, ...args) {
+  obj = obj || {};
+
+  return (...inners) => {
+     obj.bound = this;
+     return obj.bound(...args, ...inners);
+  }
 };
