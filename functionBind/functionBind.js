@@ -23,9 +23,11 @@
  *
 */
 
-var bind = function(
-) {
+var bind = function (callback, ...params) {
   // TODO: Your code here
+  return () => {
+    callback.call(...params);
+  }
 };
 
 /*
@@ -53,7 +55,9 @@ var bind = function(
  *
 */
 
-Function.prototype.bind = function(
-) {
+Function.prototype.bind = function (callback, ...params) {
   // TODO: Your code here
+  return () => {
+    callback.call(this, ...params);
+  }
 };
