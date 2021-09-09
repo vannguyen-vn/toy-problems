@@ -25,7 +25,12 @@
 
 var bind = function(
 ) {
-  // TODO: Your code here
+  var func = arguments[0];
+  var context = arguments[1];
+  var args = [...arguments].slice(2);
+  return function() {
+    return func.apply(context, [...args, ...arguments]);
+  };
 };
 
 /*
@@ -55,5 +60,10 @@ var bind = function(
 
 Function.prototype.bind = function(
 ) {
-  // TODO: Your code here
+  var func = this;
+  var context = [...arguments][0];
+  var args = [...arguments].slice(1);
+  return function() {
+    return func.apply(context, [...args, ...arguments]);
+  };
 };
