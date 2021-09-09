@@ -22,10 +22,13 @@
  * result === 'foobar'; // true
  *
 */
-
-var bind = function(
-) {
-  // TODO: Your code here
+//binding an object to a particular function such that the meaning of 'this' in the function refers to that particular object
+var bind = function(fn, obj) {
+  var args1 = [...arguments].slice(2);
+  return function() {
+    var args2 = [...arguments];
+    fn.call(obj, ...args1, ...args2);
+  }
 };
 
 /*
@@ -53,7 +56,12 @@ var bind = function(
  *
 */
 
-Function.prototype.bind = function(
-) {
-  // TODO: Your code here
+Function.prototype.bind2 = function(obj) {
+  //this = Function;
+  var args1 = [...arguments].slice(1);
+  var func = this;
+  return function() {
+    var args2 = [...arguments];
+    return func.call(obj, ...arg1, ...args2);
+  }
 };
