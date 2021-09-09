@@ -56,10 +56,10 @@ var bind = function(
 */
 
 Function.prototype.bind = function() {
-  var func = this;
-  var args = arguments;
-  var callBound = () {
-    return func.call(args);
-  }
-  return callBound();
+  // var func = this;
+  // var args = arguments;
+  // var callBound = () {
+  //   return func.call(args);
+  // }
+  return this.call(arguments[0]);
 };
