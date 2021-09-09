@@ -23,10 +23,12 @@
  *
 */
 
-var bind = function(fun, obj) {
+var bind = function(fun, obj, ...args) {
+  obj = obj || {};
+
   return () => {
     obj.bound = fun;
-    return obj.bound();
+    return obj.bound(...args);
   }
 };
 
