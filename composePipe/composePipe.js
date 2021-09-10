@@ -34,16 +34,10 @@
 'use strict';
 
 var compose = function (fn, fn2) {
-  // i -  functions
-  // o -
-  // c -
-  // e -
   var functions = [...arguments];
-
   return (haha) => {
     for (var i = functions.length - 1; i >= 0; i--) {
       haha = functions[i](haha);
-      // console.log(haha)
     }
     return haha;
   }
@@ -53,33 +47,11 @@ var compose = function (fn, fn2) {
 
 
 var pipe = function () {
-
   var functions = [...arguments];
-
   return (haha) => {
     for (var i = 0; i < arguments.length; i++) {
       haha = functions[i](haha);
-      // console.log(haha)
     }
     return haha;
   }
-
-
 };
-
-var add2 = function (number) { return number + 2; }
-var multiplyBy3 = function (number) { return number * 3; }
-pipe(add2, multiplyBy3)(5) // 21
-pipe(add2, multiplyBy3, multiplyBy3)(5) // 63
-
-console.log(pipe(add2, multiplyBy3, multiplyBy3)(5))
-
-// var greet = function (name) {
-//   return 'hi: ' + name;
-// }
-// var exclaim = function (statement) {
-//   return statement.toUpperCase() + '!';
-// }
-// var welcome = compose(greet, exclaim);
-
-// console.log(welcome('phillip')); // 'hi: PHILLIP!'
