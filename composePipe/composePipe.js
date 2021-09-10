@@ -45,9 +45,3 @@ var pipe = function() {
     }, i);
   }
 };
-
-
-var add2 = function(number){ return number + 2; }
-var multiplyBy3 = function(number){ return number * 3; }
-console.log(pipe(add2, multiplyBy3)(5)) // 21
-console.log(pipe(add2, multiplyBy3, multiplyBy3)(5)) // 63
