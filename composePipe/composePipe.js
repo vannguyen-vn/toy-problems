@@ -34,13 +34,15 @@
 'use strict';
 
 var compose = function(...functions) {
-  return function(arguments) {
-    return functions.reduceRight((arg, fn) => fn(arg), arguments);
+  var argsAtInvocation = arguments;
+  return function(argsAtInvocation) {
+    return functions.reduceRight((arg, fn) => fn(arg), argsAtInvocation);
   }
 }
 
 var pipe = function(...functions) {
-  return function(arguments) {
-    return functions.reduce((arg, fn) => fn(arg), arguments);
+  var argsAtInvocation = arguments;
+  return function(argsAtInvocation) {
+    return functions.reduce((arg, fn) => fn(arg), argsAtInvocation);
   }
 };
