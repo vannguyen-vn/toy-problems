@@ -29,7 +29,7 @@ var bind = function(func, newThis) {
   return function() {
     args = args.concat(Array.prototype.slice.call(arguments));
     newThis.func = func;
-    newThis.func(...args);
+    return newThis.func(...args);
   }
 };
 
@@ -66,7 +66,7 @@ Function.prototype.bind = function(newThis
   return function() {
     args = args.concat(Array.prototype.slice.call(arguments));
     args = args.concat();
-    newThis.func(...args);
+    return newThis.func(...args);
   }
 };
 
