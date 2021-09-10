@@ -47,6 +47,6 @@ var pipe = function() {
   return function(i) {
     return funcs.reduce((acc, x) => {
       return x(acc);
-    }
+    }, i)
   }
 }
