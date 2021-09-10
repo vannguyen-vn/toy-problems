@@ -37,7 +37,7 @@ var compose = function(...funs) {
   return (...args) => {
     var ret = funs[funs.length - 1](...args);
 
-    for (var i = funs.length - 1; i >= 0; i--) {
+    for (var i = funs.length - 2; i >= 0; i--) {
       ret = funs[i](ret);
     }
 
@@ -45,7 +45,7 @@ var compose = function(...funs) {
   }
 };
 
-var pipe = function(...fans) {
+var pipe = function(...funs) {
   return (...args) => {
     var ret = funs[0](...args);
 
