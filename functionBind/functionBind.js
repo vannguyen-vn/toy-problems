@@ -23,14 +23,14 @@
  *
 */
 
-var bind = function(func, callback) {
-  let temp = Array.prototype.slice.call(arguments, 2)
-  return () => {
-    let newTemp = Array.prototype.slice.call(arguments);
-    let results = Array.prototype.concat(temp, newTemp);
-    return func.apply(callback, results);
-  }
-};
+var bind = function() {
+    let func = arguments[0];
+    let context = arguments[1];
+    let args = [...arguments].slice(2);
+    return () => {
+      return func.apply(context, [...args, ...arguments]);
+    };
+  };
 
 /*
  * Function.prototype.bind:
@@ -57,11 +57,11 @@ var bind = function(func, callback) {
  *
 */
 
-Function.prototype.bind = function (func) {
-  let temp = Array.prototype.slice.call(arguments, 1);;
-  return () => {
-    let newTemp = Array.prototype.slice.call(arguments);
-    let results = Array.prototype.concat(temp, newTemp);
-    return this.apply(func, results)
-  }
-};
+Function.prototype.bind = function() {
+    let func = this;
+    let context = [...arguments][0];
+    let args = [...arguments].slice(1);
+    return function() {
+      return func.apply(context, [...args, ...arguments]);
+    };
+  };
