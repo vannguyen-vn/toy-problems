@@ -34,7 +34,7 @@
 'use strict';
 
 var compose = function(...functions) {
-  return x => args.reduceRight((acc,fn) => fn(acc), x)
+  return x => functions.reduceRight((acc,fn) => fn(acc), x)
 };
 
 var pipe = function(...functions) {
