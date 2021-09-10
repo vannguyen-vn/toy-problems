@@ -32,9 +32,14 @@ var bind = function (func, ...rest) {
   // if an arrow function is used here, the argsReceivedAtInvocation will result in a lookup
   // and return the ...rest arguments
   // make sure to write function() here
-  return function() {
-    const argsReceivedAtInvocation = arguments;
-    return func.call(...rest, ...argsReceivedAtInvocation);
+  // return function() {
+  //   const argsReceivedAtInvocation = arguments;
+  //   return func.call(...rest, ...argsReceivedAtInvocation);
+  // }
+
+  // OR, use ...args with arrow functions to extract arguments passed in at invocation
+  return (...args) => {
+    return func.call(...rest, ...args);
   }
 };
 
@@ -66,7 +71,7 @@ var bind = function (func, ...rest) {
 Function.prototype.bind = function () {
   // TODO: Your code here
   const functionBeingBound = this;
-  var contextBeingBound = [...arguments][0];
+  const contextBeingBound = [...arguments][0];
   const argsBeingBound = [...arguments].slice(1);
 
   return function() {
