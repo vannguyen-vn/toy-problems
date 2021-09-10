@@ -1,7 +1,7 @@
 var compose = require('./composePipe.js').compose;
 var pipe = require('./composePipe.js').pipe;
 
-describe('compsose', () => {
+describe.skip('compsose', () => {
   var greet = function (name) { return 'hi: ' + name; }
   var exclaim = function (statement) { return statement.toUpperCase() + '!'; }
   var welcome = compose(greet, exclaim);
@@ -14,7 +14,7 @@ describe('compsose', () => {
   })
 })
 
-describe('pipe', () => {
+describe.skip('pipe', () => {
   var add2 = function (number) { return number + 2; }
   var multiplyBy3 = function (number) { return number * 3; }
   var piped = pipe(add2, multiplyBy3) // 5 21
