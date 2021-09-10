@@ -58,7 +58,7 @@ var bind = function (fn, current) {
  *
 */
 
-Function.prototype.bind = function (current) {
+Function.prototype.bind = function (context) {
   var func = this;
   var prevArgs = [].slice.call(arguments, 1);
 
