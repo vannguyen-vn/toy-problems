@@ -27,7 +27,7 @@ var bind = function() {
   let func = arguments[0];
   let context = arguments[1];
   let args = [...arguments].slice(2);
-  return () => {
+  return function() {
     return func.apply(context, [...args, ...arguments]);
   };
 };
