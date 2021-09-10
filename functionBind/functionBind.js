@@ -23,15 +23,15 @@
  *
 */
 
-var bind = function (func, context) {
-  var previousArgs = [].slice.call(arguments, 2);
+let bind = function (func, context) {
+  let previousArgs = [].slice.call(arguments, 2);
   return function () {
-    var currAgrs = [].slice.call(arguments);
-    var compl
-    func.apply(context,);
+    let currentArgs = [].slice.call(arguments);
+    let combinedArgs = [].concat(previousArgs, currentArgs);
+    return func.apply(context, combinedArgs);
   }
-
 };
+
 
 /*
  * Function.prototype.bind:
@@ -57,13 +57,12 @@ var bind = function (func, context) {
  * result === 'foobar'; // true
  *
 */
-
 Function.prototype.bind = function (context) {
   let func = this;
   let previousArgs = [].slice.call(arguments, 1);
-  return function(){
+  return function () {
     let currAgrs = [].slice.call(arguments, 1);
-    let combineArgs = [].concat(previousArgs,currAgrs);
+    let combineArgs = [].concat(previousArgs, currAgrs);
     return func.apply(context, combineArgs);
   }
 };
