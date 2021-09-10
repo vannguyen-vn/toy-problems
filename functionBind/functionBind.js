@@ -62,6 +62,11 @@ Function.prototype.bind = function(obj) {
   var func = this;
   return function() {
     var args2 = [...arguments];
-    return func.call(obj, ...arg1, ...args2);
+    return func.call(obj, ...args1, ...args2);
   }
 };
+
+
+
+
+
