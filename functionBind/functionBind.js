@@ -60,7 +60,7 @@ var bind = function (fn, current) {
 
 Function.prototype.bind = function (current) {
   var func = this;
-  var prevArgs = [].slice.call(arguments);
+  var prevArgs = [].slice.call(arguments, 1);
 
   return function () {
     var curArgs = [].slice.call(arguments);
