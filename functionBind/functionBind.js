@@ -24,13 +24,13 @@
 */
 
 var bind = function() {
-    let func = arguments[0];
-    let context = arguments[1];
-    let args = [...arguments].slice(2);
-    return () => {
-      return func.apply(context, [...args, ...arguments]);
-    };
+  let func = arguments[0];
+  let context = arguments[1];
+  let args = [...arguments].slice(2);
+  return () => {
+    return func.apply(context, [...args, ...arguments]);
   };
+};
 
 /*
  * Function.prototype.bind:
@@ -58,10 +58,10 @@ var bind = function() {
 */
 
 Function.prototype.bind = function() {
-    let func = this;
-    let context = [...arguments][0];
-    let args = [...arguments].slice(1);
-    return function() {
-      return func.apply(context, [...args, ...arguments]);
-    };
+  let func = this;
+  let context = [...arguments][0];
+  let args = [...arguments].slice(1);
+  return function() {
+    return func.apply(context, [...args, ...arguments]);
   };
+};
