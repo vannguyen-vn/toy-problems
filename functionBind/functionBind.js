@@ -16,17 +16,20 @@
  *
  * example 2:
  *
-var func = function(a, b){ return a + b };
- var boundFunc = bind(func, null, 'foo');
-var result = boundFunc('bar');
- result === 'foobar';
- // true
+ * var func = function(a, b){ return a + b };
+ * var boundFunc = bind(func, null, 'foo');
+ * var result = boundFunc('bar');
+ * result === 'foobar'; // true
  *
 */
 
-var bind = function (fn, obj) {
-  return () => {
-    return fn.apply(obj, arguments);
+var bind = function (fn, current) {
+  var prevArgs = [].slice.call(arguments, 2);
+
+  return function () {
+    var curArgs = [].slice.call(arguments);
+    var combinedArgs = [].concat(prevArgs, curArgs);
+    return fn.apply(current, combinedArgs);
   }
 };
 
@@ -55,6 +58,13 @@ var bind = function (fn, obj) {
  *
 */
 
-Function.prototype.bind = function () {
-  return () => this.call(...arguments);
+Function.prototype.bind = function (current) {
+  var func = this;
+  var prevArgs = [].slice.call(arguments);
+
+  return function () {
+    var curArgs = [].slice.call(arguments);
+    var combinedArgs = [].concat(prevArgs, curArgs);
+    return func.apply(context, combinedArgs);
+  };
 };
