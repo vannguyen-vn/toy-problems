@@ -16,16 +16,18 @@
  *
  * example 2:
  *
- * var func = function(a, b){ return a + b };
- * var boundFunc = bind(func, null, 'foo');
- * var result = boundFunc('bar');
- * result === 'foobar'; // true
+var func = function(a, b){ return a + b };
+ var boundFunc = bind(func, null, 'foo');
+var result = boundFunc('bar');
+ result === 'foobar';
+ // true
  *
 */
 
-var bind = function(
-) {
-  // TODO: Your code here
+var bind = function (fn, obj) {
+  return () => {
+    return fn.apply(obj, arguments);
+  }
 };
 
 /*
@@ -53,7 +55,6 @@ var bind = function(
  *
 */
 
-Function.prototype.bind = function(
-) {
-  // TODO: Your code here
+Function.prototype.bind = function () {
+  return () => this.call(...arguments);
 };
