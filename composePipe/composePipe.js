@@ -34,13 +34,20 @@
 'use strict';
 
 var compose = function() {
+  return [...arguments];
 };
 
 var pipe = function() {
-  var funcs = [...arguments];
+  var funcs = compose(...arguments);
   return function(i) {
     return funcs.reduce((memo, x) => {
       return x(memo);
     }, i);
   }
 };
+
+
+var add2 = function(number){ return number + 2; }
+var multiplyBy3 = function(number){ return number * 3; }
+console.log(pipe(add2, multiplyBy3)(5)) // 21
+console.log(pipe(add2, multiplyBy3, multiplyBy3)(5)) // 63
