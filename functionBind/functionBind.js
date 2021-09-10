@@ -61,7 +61,7 @@ Function.prototype.bind = function (context) {
   let func = this;
   let previousArgs = [].slice.call(arguments, 1);
   return function () {
-    let currAgrs = [].slice.call(arguments, 1);
+    let currAgrs = [].slice.call(arguments);
     let combineArgs = [].concat(previousArgs, currAgrs);
     return func.apply(context, combineArgs);
   }
