@@ -34,19 +34,22 @@
 'use strict';
 
 var compose = function() {
-  var funcs = [...args].reverse();
+  var funcs = [...arguments].reverse();
   return function(c) {
-    return funcs.reduce((acc, x) => {
-      return x(acc);
+    return funcs.reduce((memo, x) => {
+      return x(memo);
     }, c);
-  }
+  };
 };
 
+
+
+
 var pipe = function() {
-  var funcs = [...args];
+  var funcs = [...arguments];
   return function(i) {
-    return funcs.reduce((acc, x) => {
-      return x(acc);
-    }, i)
-  }
-}
+    return funcs.reduce((memo, x) => {
+      return x(memo);
+    }, i);
+  };
+};
