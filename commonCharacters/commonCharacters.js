@@ -28,7 +28,7 @@ var commonCharacters = function (...strings) {
   };
 
   for (var key in commonObj) {
-    if (commonObj[key] > 1 && key !== ' ') {
+    if (commonObj[key] === strings.length && key !== ' ') {
       commonStr += key;
     }
   }
