@@ -12,6 +12,19 @@
 
 
 
-var commonCharacters = function(string1, string2) {
-  // TODO: Your code here!
+var commonCharacters = function (string1, string2) {
+
+  var container = {}
+  var result = '';
+
+  for (var i = 0; i < string1.length; i++) {
+    container[string1[i]] = true;
+  }
+
+  for (var j = 0; j < string2.length; j++) {
+    if (container.hasOwnProperty(string2[j])) {
+      result += string2[j];
+    }
+  }
+  return result;
 };
