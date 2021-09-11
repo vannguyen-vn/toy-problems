@@ -23,6 +23,7 @@
  *
 */
 
+
 var bind = function (fn, current) {
   var prevArgs = [].slice.call(arguments, 2);
 
