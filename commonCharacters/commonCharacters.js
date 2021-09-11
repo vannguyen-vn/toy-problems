@@ -12,6 +12,26 @@
 
 
 
-var commonCharacters = function(string1, string2) {
-  // TODO: Your code here!
+var commonCharacters = function (string1, string2) {
+  var result = '';
+  var str1 = strCheckLetter(string1);
+  var str2 = strCheckLetter(string2);
+  for (var i = 0; i < string1.length; i++) {
+    var char = string1[i];
+    if (str1[char] && str2[char] && result.indexOf(char) === -1) {
+      result += char;
+    }
+  }
+  return result;
 };
+
+
+var strCheckLetter = function (string) {
+  var stringArr = string.split('');
+  return stringArr.reduce((charArr, char) => {
+    if (char.match(/[a-z]/i)) {
+      charArr[char] = true;
+    }
+    return charArr;
+  }, {})
+}
