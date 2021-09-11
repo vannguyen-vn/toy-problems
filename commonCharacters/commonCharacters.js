@@ -12,6 +12,26 @@
 
 
 
-var commonCharacters = function(string1, string2) {
+var commonCharacters = function (...strings) {
   // TODO: Your code here!
+  var commonStr = '';
+  var commonObj = {};
+
+  for (string of strings) {
+    for (var i = 0; i < string.length; i++) {
+      if (commonObj[string[i]] === undefined) {
+        commonObj[string[i]] = 1;
+      } else {
+        commonObj[string[i]]++;
+      }
+    }
+  };
+
+  for (var key in commonObj) {
+    if (commonObj[key] > 1 && key !== ' ') {
+      commonStr += key;
+    }
+  }
+
+  return commonStr;
 };
