@@ -13,5 +13,16 @@
 
 
 var commonCharacters = function(string1, string2) {
-  // TODO: Your code here!
+  var result = '';
+  string1 = string1.replace(/\W/g, '').toLowerCase();
+  string2 = string2.replace(/\W/g, '').toLowerCase();
+
+  for (var i = 0; i < string1.length; i++) {
+    for (var j = 0; j < string2.length; j++) {
+      if (string1[i] === string2[j] && result.indexOf(string1[i]) === -1) {
+        result += string1[i];
+      }
+    }
+  }
+  return result;
 };
