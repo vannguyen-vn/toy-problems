@@ -14,17 +14,16 @@
 
 var commonCharacters = function (string1, string2) {
 
-  var container = {}
+  var container = string1.split('');
   var result = '';
 
-  for (var i = 0; i < string1.length; i++) {
-    container[string1[i]] = true;
-  }
-
-  for (var j = 0; j < string2.length; j++) {
-    if (container.hasOwnProperty(string2[j])) {
-      result += string2[j];
+  for (var i = 0; i < container.length; i++) {
+    for (var j = 0; j < string2.length; j++) {
+      if (container[i] === string2[j]) {
+        result += container[i];
+      }
     }
   }
+
   return result;
 };
