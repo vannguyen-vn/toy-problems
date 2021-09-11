@@ -12,6 +12,32 @@
 
 
 
-var commonCharacters = function(string1, string2) {
+var commonCharacters = function (string1, string2) {
+  var commonLetters = {};
+  var stringObj = {}
+  for (var i = 0; i < string1.length; i++) {
+    if (string1[i] !== ' ') {
+      stringObj[string1[i]] = true;
+    }
+  }
+  var checkString = (string) => {
+    for (var i = 0; i < string.length; i++) {
+      if (string[i] !== ' ') {
+        if (stringObj[string[i]]) {
+          commonLetters[string[i]] = true;
+        }
+      }
+    }
+  }
+  for (var i = 1; i < arguments.length; i++) {
+    checkString(arguments[i]);
+    stringObj = commonLetters;
+    commonLetters = {};
+  }
+
+
+  return Object.keys(stringObj).join('')
   // TODO: Your code here!
 };
+
+// module.exports = commonCharacters;
