@@ -12,16 +12,36 @@
 
 
 
-var commonCharacters = function(str1, str2) {
-  var result = {};
-  for (var i = 0; i < str1.length; i++) {
-    if (str2.indexOf(str1[i]) > -1) {
-      if (result[str1[i]] === undefined) {
-        result[str1[i]] = 1;
-      } else {
-        result[str1[i]]++;
+var commonCharacters = function() {
+  var args = Array.prototype.slice.call(arguments);
+  var result = "";
+  // var result = {};
+  // for (var i = 0; i < args[0].length; i++) {
+  //   if (str2.indexOf(str1[i]) > -1) {
+  //     if (result[str1[i]] === undefined) {
+  //       result[str1[i]] = 1;
+  //     } else {
+  //       result[str1[i]]++;
+  //     }
+  //   }
+  // }
+
+  var helper = function (str, arr) {
+    var count = 0;
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i].indexOf(str) > -1) {
+        count++;
       }
     }
+    if (count >= arr.length) {
+      result += str;
+    }
   }
-  return Object.keys(result).join("");
+
+  for (var i = 0; i < args[0].length; i++) {
+    helper(args[0][i], args.slice(1));
+  }
+
+  // return Object.keys(result).join("");
+  return result;
 };
