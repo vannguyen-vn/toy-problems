@@ -12,6 +12,16 @@
 
 
 
-var commonCharacters = function(string1, string2) {
-  // TODO: Your code here!
+var commonCharacters = function(str1, str2) {
+  var result = {};
+  for (var i = 0; i < str1.length; i++) {
+    if (str2.indexOf(str1[i]) > -1) {
+      if (result[str1[i]] === undefined) {
+        result[str1[i]] = 1;
+      } else {
+        result[str1[i]]++;
+      }
+    }
+  }
+  return Object.keys(result).join("");
 };
