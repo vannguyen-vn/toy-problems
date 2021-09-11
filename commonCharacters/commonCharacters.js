@@ -12,6 +12,17 @@
 
 
 
-var commonCharacters = function(string1, string2) {
-  // TODO: Your code here!
-};
+ var commonCharacters = function(string1, string2) {
+
+    var resultStr = '';
+    var arrStr = string1.split('');
+    for (var i = 0; i < arrStr.length; i++) {
+      for (var j = 0; j < string2.length; j++) {
+        if (arrStr[i] === string2[j]) {
+          resultStr += arrStr[i]
+          arrStr.splice(i, 1)
+        }
+      }
+    }
+    return resultStr
+  };
