@@ -37,7 +37,7 @@
 var compose = function() {
   var args = Array.from(arguments).reverse();
   return (value) => {
-    return args.reduce((accu, curr) => curr(accu), value);
+    return args.reduce((accu, cur) => curr(accu), value);
   };
 };
 
@@ -45,6 +45,6 @@ var compose = function() {
 var pipe = function() {
   var args = Array.from(arguments);
   return (value) => {
-    return args.reduce((accu, curr) => curr(accu), value);
+    return args.reduce((accu, cur) => curr(accu), value);
   };
 };
