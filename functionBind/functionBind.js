@@ -23,16 +23,15 @@
  *
 */
 
-var bind = function(func, newThis) {
-  var args = Array.prototype.slice.call(arguments);
-  args = args.slice(2);
-  return function() {
-    args = args.concat(Array.prototype.slice.call(arguments));
-    if(newThis) {
+var bind = function (func, newThis) {
+  var boundArgs = Array.prototype.slice.call(arguments);
+  boundArgs = boundArgs.slice(2);
+  return function () {
+    args = boundArgs.concat(Array.prototype.slice.call(arguments));
+    if (newThis) {
       newThis.func = func;
       return newThis.func(...args);
-    }
-    else {
+    } else {
       return func(...args);
     }
   }
@@ -63,14 +62,12 @@ var bind = function(func, newThis) {
  *
 */
 
-Function.prototype.bind = function(newThis
+Function.prototype.bind = function (newThis
 ) {
-  var args = Array.prototype.slice.call(arguments);
-  args = args.slice(1);
-  newThis.func = this;
-  return function() {
-    args = args.concat(Array.prototype.slice.call(arguments));
-    args = args.concat();
+  var boundArgs = Array.prototype.slice.call(arguments);
+  boundArgs = boundArgs.slice(1);
+  return function () {
+    args = boundArgs.concat(Array.prototype.slice.call(arguments));
     if (newThis) {
       return newThis.func(...args);
     } else {
@@ -79,7 +76,19 @@ Function.prototype.bind = function(newThis
   }
 };
 
-
+// var func = function func(a, b) {
+//   return a + b;
+// };
+// var context = null;
+// var boundFunc = bind(func, context, 'wow '); // "bind" 'wow ' => the first argument (a)
+// var result1 = boundFunc('dawg');
+// console.log(result1);
+// var result2 = boundFunc('man');
+// console.log(result2)
+// module.exports = {
+//   bind: bind,
+//   proto: Function.prototype.bind
+// }
 // var returnThis = function(a, b, c) {
 //   console.log(a, b, c, this.name);
 // }
