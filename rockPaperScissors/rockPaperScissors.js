@@ -82,3 +82,5 @@ var rockPaperScissors = function (n) {
 
   generateOutcome();
   */
+
+  module.exports = rockPaperScissors;

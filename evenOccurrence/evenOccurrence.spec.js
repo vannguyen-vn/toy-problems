@@ -1,3 +1,5 @@
+/*
+
 describe("Test for evenOccurrence problem", function(){
   test("Should return null if input is an empty array", function(){
 
@@ -27,3 +29,5 @@ describe("Test for evenOccurrence problem", function(){
     expect(evenOccurrence([1, 7, 2, -4, 5, -6, 8, 9, -6, -4])).toBe(-4);
   });
 });
+
+*/
