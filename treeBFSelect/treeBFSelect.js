@@ -38,57 +38,49 @@ var Tree = function (value) {
 
 
 Tree.prototype.BFSelect = function (filter) {
-  debugger;
-  var output = [];
-  if (filter(this.value, 0)) {
-    output.push(this.value);
-  }
-  var filterChildren = (node, depth) => {
-    var hasAnotherLayer = false;
-    node.children.forEach((child) => {
-      if (filter(child.value, depth + 1)) {
-        output.push(child.value);
+
+  //returns true if there are more children to search
+  var filterDepth = (currentNode, targetDepth, currentDepth = 0) => {
+    if (targetDepth === currentDepth) {
+      if(filter(currentNode.value, currentDepth)) {
+        output.push(currentNode.value)
       }
-      if (child.children.length > 0) {
-        hasAnotherLayer = true;
-      }
-    })
-    return hasAnotherLayer;
-  }
-  var filterDepth = (depth, currentDepth, node = this) => {
-    if (depth === 0) {
-      if (filterChildren(node, currentDepth)) {
+      if(currentNode.children) {
         return true;
       } else {
-        return false
+        return false;
       }
     } else {
-      node.children.reduce((accumulator, child) => {
-        accumulator || filterDepth(depth - 1, currentDepth+1, child)
-      }, false);
+      if (currentNode.children) {
+        return currentNode.children.reduce((accumulator, child) => {
+          return filterDepth(child, targetDepth, currentDepth + 1) || accumulator;
+        }, false);
+      } else {
+        return false;
+      }
     }
   }
+  var output = [];
   var depth = 0;
-  while (true) {
-    var currentDepth = 0;
-    if (!filterDepth(depth, currentDepth)) {
-      break;
-    }
-
-    depth++;
+  var hasMoreDepth = true;
+  while(hasMoreDepth) {
+    debugger;
+    hasMoreDepth = filterDepth(this, depth);
+    depth ++;
   }
-  return output;
-  // return an array of values for which the function filter(value, depth) returns true
+
+  return output
+
 };
 
 /**
  * You shouldn't need to change anything below here, but feel free to look.
-  */
+ */
 
 /**
-  * add an immediate child
-  * (wrap values in Tree nodes if they're not already)
-  */
+* add an immediate child
+* (wrap values in Tree nodes if they're not already)
+*/
 Tree.prototype.addChild = function (child) {
   if (!child || !(child instanceof Tree)) {
     child = new Tree(child);
@@ -133,6 +125,11 @@ Tree.prototype.removeChild = function (child) {
   } else {
     throw new Error('That node is not an immediate child of this tree');
   }
+};
+
+
+var all = function all() {
+  return true;
 };
 
 // module.exports = Tree;

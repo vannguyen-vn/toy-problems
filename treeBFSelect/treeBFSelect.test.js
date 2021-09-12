@@ -1,5 +1,5 @@
 var Tree = require('./treeBFSelect.js');
-describe('treeBFSelect', () => {
+describe.skip('treeBFSelect', () => {
   test('it should pass values that pass the filter function in a bredth first order', () => {
     var root1 = new Tree(1);
     var branch2 = root1.addChild(2);
