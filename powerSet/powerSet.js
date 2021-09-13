@@ -22,20 +22,32 @@ var powerSet = function (str) {
 
   var subsetsMemo = {};
   var output = [''];
-
-  var getPowerSet = (string, letters, index = 0) => {
-    for (var i = index; i < letters.length; i++) {
-      var set = string + letters[i];
-      if(subsetsMemo[letters[i]]) {
-
-      } else {
-        output.push(set);
-      }
-
+  var iterationTracker = 0;
+  var getPowerSet = (letters, index = 0) => {
+    if(iterationTracker === letters.length) {
+      return;
     }
+    var maxIndex = output.length;
+    for (var j = index; j < maxIndex; j++) {
+      for (var i = 0; i < letters.length; i++) {
+        if(!new RegExp(letters[i]).test(output[j])) {
+          var set = output[j] + letters[i];
+          set = set.split('');
+          set.sort();
+          set = set.join('');
+          if(!subsetsMemo[set]) {
+            output.push(set);
+            subsetsMemo[set] = true;
+          }
+        }
+      }
+    }
+    iterationTracker ++;
+    getPowerSet(letters, maxIndex)
   }
-  getPowerSet('', letters);
-  getPowerSet(letters[0], letters.slice(1));
+
+  getPowerSet(letters);
+  debugger;
 return output;
 
 
@@ -66,5 +78,5 @@ return output;
   // }
   // return subsets;
 };
-console.log(powerSet('bicycle'))
+console.log(powerSet('bicyle'))
 module.exports = powerSet;

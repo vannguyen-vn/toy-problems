@@ -1,5 +1,5 @@
-var bind = require('./functionBind.js').bind;
-Function.prototype.bind = require('./functionBind.js').proto;
+// var bind = require('./functionBind.js').bind;
+// Function.prototype.bind = require('./functionBind.js').proto;
 
 describe.skip('functionBind', () => {
   test('bind should allow the bound function to be called multiple times with different arguments', () => {
