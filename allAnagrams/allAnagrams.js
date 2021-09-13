@@ -12,6 +12,20 @@
   * console.log(anagrams); // [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
   */
 
-var allAnagrams = function(string) {
-  // Your code here.
+ var allAnagrams = function(string) {
+
+  var result = [];
+
+  var innerFunc = (string, resultString) => {
+    if (resultString.length === string.length) {
+      result.push(resultString)
+      return
+    }
+    for (var i = 0; i < string.length; i++) {
+      innerFunc(string, resultString + string[i]);
+    }
+  }
+  innerFunc(string, '');
+
+  return result;
 };
