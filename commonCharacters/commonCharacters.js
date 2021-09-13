@@ -13,5 +13,30 @@
 
 
 var commonCharacters = function(string1, string2) {
-  // TODO: Your code here!
+  var commonCharacters = function(string1, string2) {
+    var obj = {};
+    var result = '';
+    for (var i = 0; i < string1.length; i++) {
+      var currentElement = string1[i];
+      if (currentElement === ' ') {
+        continue;
+      }
+      obj[currentElement] = 1;
+    }
+    for (var i = 0; i < string2.length; i++) {
+      var currentElement = string2[i];
+      if (currentElement === ' ') {
+        continue;
+      }
+      if (obj[currentElement]) {
+        obj[currentElement]++;
+      }
+    }
+    for (var key in obj) {
+      if (obj[key] === 2) {
+        result += key;
+      }
+    }
+    return result;
+  };
 };
