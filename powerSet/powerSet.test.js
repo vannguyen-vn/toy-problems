@@ -1,7 +1,7 @@
 const powerSet = require('./powerSet.js');
 
-describe('powerSet' , () => {
-  test('powerSet should work for sets of length 3', () => {
+describe.('powerSet' , () => {
+  test.skip('powerSet should work for sets of length 3', () => {
         // recall that with sets, order doesn't matter (if order did matter, it
     // wouldn't be called a `set`.) so the set 'abc' is equivalent to 'bca',
     // 'cba', etc. this allows us to do `sortSet('abc') === sortSet('bca')` to
