@@ -65,34 +65,22 @@ var bind = function (func, newThis) {
 Function.prototype.bind = function (newThis
 ) {
   var boundArgs = Array.prototype.slice.call(arguments);
+  if (newThis) {
+    newThis.func = this
+  } else {
+    var func = this;
+  }
   boundArgs = boundArgs.slice(1);
   return function () {
     args = boundArgs.concat(Array.prototype.slice.call(arguments));
     if (newThis) {
       return newThis.func(...args);
     } else {
-      return this(...args);
+      return func(...args);
     }
   }
 };
-
-// var func = function func(a, b) {
-//   return a + b;
-// };
-// var context = null;
-// var boundFunc = bind(func, context, 'wow '); // "bind" 'wow ' => the first argument (a)
-// var result1 = boundFunc('dawg');
-// console.log(result1);
-// var result2 = boundFunc('man');
-// console.log(result2)
 // module.exports = {
 //   bind: bind,
 //   proto: Function.prototype.bind
 // }
-// var returnThis = function(a, b, c) {
-//   console.log(a, b, c, this.name);
-// }
-// var obj = {name: 'matt', func: returnThis}
-
-// var bound = obj.func.bind({name: 'daniel'}, 'hello', 'my name', 'is' );
-// bound();
