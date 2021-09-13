@@ -18,29 +18,53 @@
  */
 
 var powerSet = function (str) {
-  var subsets = [];
-  subsets.push('');
-  var subsetFinder = (string) => {
-    // subsets.push(...letter)
-    // var string = letter;
-    letters.forEach((letter, index) => {
-      letters.splice(index, 1);
-      string += letter;
-      subsets.push(string)
-      string = string.slice(0, string.length - 1);
-      letters.splice(index, 0, letter);
-    });
-    if (letters.length > 0) {
-      subsetFinder(string + letters.splice(0, 1));
+  var letters = [...new Set(str)].join('');
+
+  var subsetsMemo = {};
+  var output = [''];
+
+  var getPowerSet = (string, letters, index = 0) => {
+    for (var i = index; i < letters.length; i++) {
+      var set = string + letters[i];
+      if(subsetsMemo[letters[i]]) {
+
+      } else {
+        output.push(set);
+      }
+
     }
   }
-  for (var i = 1; i <= str.length; i++) {
-    var letters = str.split('');
-    var letter = letters.splice(0, i)[i-1];
-    console.log(letter);
-    subsets.push(...letter)
-    subsetFinder(...letter);
-  }
-  return subsets;
+  getPowerSet('', letters);
+  getPowerSet(letters[0], letters.slice(1));
+return output;
+
+
+
+
+  // var subsets = [];
+  // subsets.push('');
+  // var subsetFinder = (string) => {
+  //   // subsets.push(...letter)
+  //   // var string = letter;
+  //   letters.forEach((letter, index) => {
+  //     letters.splice(index, 1);
+  //     string += letter;
+  //     subsets.push(string)
+  //     string = string.slice(0, string.length - 1);
+  //     letters.splice(index, 0, letter);
+  //   });
+  //   if (letters.length > 0) {
+  //     subsetFinder(string + letters.splice(0, 1));
+  //   }
+  // }
+  // for (var i = 1; i <= str.length; i++) {
+  //   var letters = str.split('');
+  //   var letter = letters.splice(0, i)[i-1];
+  //   console.log(letter);
+  //   subsets.push(...letter)
+  //   subsetFinder(...letter);
+  // }
+  // return subsets;
 };
+console.log(powerSet('bicycle'))
 module.exports = powerSet;
