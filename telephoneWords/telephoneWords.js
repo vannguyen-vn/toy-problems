@@ -54,19 +54,18 @@ var phoneDigitsToLetters = {
 
 var telephoneWords = function(digitString) {
   var result = [];
-  // loop over the digit string
-
-  var innerFunc = function(resultString) {
-    if (resultString === undefined) {
-      resultString = '';
-    }
-    if (resultString.length === numberLength) {
-      result.push(resultString);
+  var innerFunc = (numString, letterString) => {
+    if (letterString.length === digitString.length) {
+      result.push(letterString)
       return;
     }
-
+    for (var i = 0; i < phoneDigitsToLetters[numString[0]].length; i++) {
+      let currentLetter = phoneDigitsToLetters[numString[0]][i];
+      let newLetterString = letterString + currentLetter;
+      let newNumString = numString.slice(1);
+      innerFunc(newNumString, newLetterString);
+    }
   }
-
-  innerFunc();
-  return reuslt;
+  innerFunc(digitString, '');
+  return result;
 };
