@@ -13,12 +13,10 @@
   */
 
 var allAnagrams = function(string) {
-  var anagrams = [];
+  var anagrams = {};
   var anagramMaker = (string, anagram = '') => {
     if (string.length === 0) {
-      if (!anagrams.includes(anagram)) {
-        anagrams.push(anagram);
-      }
+        anagrams[anagram] = true;
     }
     var letters = string.split('');
     for (var i = 0; i < letters.length; i++) {
@@ -28,7 +26,7 @@ var allAnagrams = function(string) {
     }
   }
   anagramMaker(string);
-  return anagrams;
+  return Object.keys(anagrams);
 };
 
 //module.exports = {allAnagrams: allAnagrams};
