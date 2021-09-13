@@ -1,7 +1,7 @@
 /*
  * Write Compose and Pipe functions.
- * 
- * Step 1: Implement the function Compose: 
+ *
+ * Step 1: Implement the function Compose:
  *
  * Compose should return a function that is the composition of a list of
  * functions of arbitrary length.
@@ -19,11 +19,11 @@
  * Step 2: Implement the function Pipe:
  *
  * Pipe composes a series of functions and returns the resulting function.
- * 
+ *
  * Each function is called on the return value of the preceding function.
  *
  * You can view pipe as moving left to right through its arguments.
- * 
+ *
  * Pipe Example:
  *  var add2 = function(number){ return number + 2; }
  *  var multiplyBy3 = function(number){ return number * 3; }
@@ -33,8 +33,22 @@
 
 'use strict';
 
-var compose = function() {
+var compose = function(...funs) {
+  return (...args) => {
+    let result = funs[funs.length - 1](...args);
+    for (let i = funs.length - 2; i >= 0; i--) {
+      result = funs[i](result);
+    }
+    return result;
+  }
 };
 
-var pipe = function() {
+let pipe = function(...funs) {
+  return (...args) => {
+    let result = funs[0](...args);
+    for (let i = 1; i < funs.length; i++) {
+      result = funs[i](result);
+    }
+    return result;
+  }
 };
