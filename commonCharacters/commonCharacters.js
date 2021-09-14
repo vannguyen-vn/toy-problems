@@ -12,6 +12,21 @@
 
 
 
-var commonCharacters = function(string1, string2) {
-  // TODO: Your code here!
+ var commonCharacters = function() {
+  let results = ''
+  let args = Array.prototype.slice.call(arguments);
+
+  let helper = function (str, arr) {
+    let counter = 0;
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].indexOf(str) > -1) counter++;
+    }
+    if (counter >= arr.length) results += str;
+  }
+
+  for (let i = 0; i < args[0].length; i++) {
+    helper(args[0][i], args.slice(1));
+  }
+
+  return results;
 };
