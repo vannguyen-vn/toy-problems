@@ -29,3 +29,5 @@
 
   return result;
 };
+
+console.log(allAnagrams('abc'))
