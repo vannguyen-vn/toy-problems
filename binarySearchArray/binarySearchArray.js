@@ -12,22 +12,24 @@
 
 
 var binarySearch = function (array, target) {
-  var i = Math.floor(array.length / 2);
-  var val = array[i];
+  var min = 0;
+  var max = array.length - 1;
+  var index;
 
-  if (target === val) {
-    return i;
+  while (min <= max) {
+    index = Math.floor((max + min) / 2);
+
+    if (target === array[index]) {
+      return index;
+    }
+
+    if (target > array[index]) {
+      min = index + 1;
+    } else {
+      max = index - 1;
+    }
   }
-  if (target < val) {
-    var low = array.slice(0, i);
-	binarySearch(low, target);
-  } else {
-    var high = array.slice(i, array.length);
-	binarySearch(high, target);
-  }
-
-  return i;
-
+  return null;
 };
 
 

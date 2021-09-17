@@ -97,8 +97,20 @@
 
 
 
-var mergeSort = function(array) {
+var mergeSort = function (array) {
   // Your code here.
+  // find halfway point in array
+  var half = array.length / 2;
+
+  // base case
+  // return if array has element of one
+  if (array.length < 2) {
+    return array;
+  }
+
+  // inner function
+  // pass in left and right array
+  var merge = function (left, right) {
   // find halfway point in array
   var half = array.length / 2;
 
@@ -113,22 +125,25 @@ var mergeSort = function(array) {
   var merge = function(left, right) {
     // declare a var array
     var sorted = [];
-    // compare if left element is smaller than right
-    if (left[0] < right[0]) {
-      // push left to array
-      sorted.push(left[0]);
-    // else
-    } else {
-      // push right
-      sorted.push(right[0]);
+    // while left and right has values
+    while (left.length && right.length) {
+      // compare if left element is smaller than right
+      if (left[0] < right[0]) {
+        // push left to array
+        sorted.push(left.shift());
+      // else
+      } else {
+        // push right
+        sorted.push(right.shift());
+      }
     }
     // return array
-    return sorted;
+    return sorted.concat(left.slice().concat(right.slice()));
   }
 
   // invoker inner function
   // declare left array
   var left = array.splice(0, half);
   // invoke merge sort
-  return mergeSort(merge(left), merge(array));
-};
+  return merge(mergeSort(left), mergeSort(array));
+  };
