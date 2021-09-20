@@ -14,4 +14,16 @@
 
 var commonCharacters = function(string1, string2) {
   // TODO: Your code here!
+  let common = {};
+  let result = '';
+  for (let i = 0; i < string1.length; i++) {
+    let current = string1[i]
+    if (common[current] === undefined) {
+      common[current] = true;
+      if (string2.indexOf(current) !== -1) {
+        result += current;
+      }
+    }
+  }
+  return result;
 };
