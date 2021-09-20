@@ -39,6 +39,29 @@ var Tree = function(value) {
 
 Tree.prototype.BFSelect = function(filter) {
   // return an array of values for which the function filter(value, depth) returns true
+
+  let result = [];
+  let depthObj = {};
+
+  let recursive = (current, currentLevel) => {
+    let level = currentLevel + 1;
+    if (depthObj[level] === undefined) {
+      depthObj[level] = [];
+    }
+    if (filter(current.value, currentLevel)) {
+      depthObj[level].push(current.value);
+    }
+    for (let i = 0; i < current.children.length; i++) {
+      recursive(current.children[i], level);
+    }
+  }
+  recursive(this, 0);
+
+  for (let i = 1; i <= Object.keys(depthObj).length; i++) {
+    result = result.concat(depthObj[i]);
+  }
+
+  return result;
 };
 
 /**
