@@ -1,9 +1,9 @@
 /**
   *
-  * Implement a `DFSelect` method on this Tree class.
+  * Implement a `BFSelect` method on this Tree class.
   *
-  * DFSelect accepts a filter function, calls that function on each of the nodes
-  * in Depth First order, and returns a flat array of node values of the tree
+  * BFSelect accepts a filter function, calls that function on each of the nodes
+  * in Breadth First order, and returns a flat array of node values of the tree
   * for which the filter returns true.
   *
   * Example:
@@ -14,12 +14,12 @@
   *   var leaf5 = branch2.addChild(5);
   *   var leaf6 = branch3.addChild(6);
   *   var leaf7 = branch3.addChild(7);
-  *   root1.DFSelect(function (value, depth) {
+  *   root1.BFSelect(function (value, depth) {
   *     return value % 2;
   *   })
-  *   // [1, 5, 3, 7]
+  *   // [1, 3, 5, 7]
   *
-  *   root1.DFSelect(function (value, depth) {
+  *   root1.BFSelect(function (value, depth) {
   *     return depth === 1;
   *   })
   *   // [2, 3]
@@ -35,23 +35,34 @@ var Tree = function(value) {
   this.children = [];
 };
 
-Tree.prototype.DFSelect = function(filter) {
-  var result = [];
 
-  var recursive = (current, currentLevel) => {
+
+Tree.prototype.BFSelect = function(filter) {
+  // return an array of values for which the function filter(value, depth) returns true
+
+  let result = [];
+  let depthObj = {};
+
+  let recursive = (current, currentLevel) => {
     let level = currentLevel + 1;
+    if (depthObj[level] === undefined) {
+      depthObj[level] = [];
+    }
     if (filter(current.value, currentLevel)) {
-      result.push(current.value);
+      depthObj[level].push(current.value);
     }
     for (let i = 0; i < current.children.length; i++) {
       recursive(current.children[i], level);
     }
   }
   recursive(this, 0);
+
+  for (let i = 1; i <= Object.keys(depthObj).length; i++) {
+    result = result.concat(depthObj[i]);
+  }
+
   return result;
 };
-
-
 
 /**
  * You shouldn't need to change anything below here, but feel free to look.
