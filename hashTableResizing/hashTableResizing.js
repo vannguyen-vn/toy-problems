@@ -26,30 +26,77 @@ var makeHashTable = function() {
   result.storageLimit = 4;
   result.size = 0;
 
+  var resize = (size) => {
+    var pairs = [];
+    for (let i = 0; i < result.storage.length; i++) {
+      if (storage[i]) {
+        for (let j = 0; j < result.storage[i].length; j++) {
+          if (storage[i][j]) {
+            paris.push(storage[i][j]);
+          }
+        }
+      }
+    }
+    result.storageLimit = size;
+    result.storage = [];
+    size = 0;
+    for (let i = 0; i < pairs.length; i++) {
+      result.insert(pairs[i][0], pairs[i][1]);
+    }
+  }
+
   result.insert = function(key, val) {
     // TODO: implement `insert`
-    var max = 3/4;
-    var hashKey = getIndexBelowMaxForKey(key, this.storageLimit);
-    if (this.storage[hashkey] === undefined) {
-      this.storage[hashkey] = [];
-    }
-    this.storage[hashKey].push(val);
-    this.size++;
-    if ((this.size / this.storageLimit) > max) {
-      storageLimit *= 2;
+    const index = getIndexBelowMaxForKey(key, result.storageLimit);
+    // result.storage[index] = result.storage[index] || [];
+    let pairs = result.storage[index];
+    // let pair;
+    for (let i = 0; i < pairs.length; i++) {
+      let pair = pairs[i];
+      if (pair[0] === key) {
+        pair[1] = val;
+        return;
+      }
     }
 
+    pairs.push([key, val]);
+    result.size++;
+
+    if (result.size >= result.storageLimit * 0.75) {
+      resize(storageLimit * 2);
+    }
   };
 
   result.retrieve = function(key) {
     // TODO: implement `retrieve`
-    var min = 1/4;
-    var hashKey = getIndexBelowMaxForKey(key, this.storageLimit);
+    let index = getIndexBelowMaxForKey(key, result.storageLimit);
+    let pairs = result.storage[index];
+    if (pairs) {
+      for (let i = 0; i < pairs.length; i++) {
+        let pair = pairs[i];
+        if (pair && pair[0] === key) {
+          return pair[1];
+        }
+      }
+    }
   };
 
-  result.remove = function(/*...*/
-) {
+  result.remove = function(key) {
     // TODO: implement `remove`
+    let index = getIndexBelowMaxForKey(key, result.storageLimit);
+    let pairs = result.storage[index];
+    for (let i = 0; i < pairs.length; i++) {
+      let pair = pairs[i];
+      if (pair[0] === key) {
+        let val = pair[1];
+        pairs.splice(i, 1);
+        size--;
+        if (size <= storageLimit * 0.25) {
+          resize(storageLimit / 2);
+        }
+        return val;
+      }
+    }
   };
 
   return result;
