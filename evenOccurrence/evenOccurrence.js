@@ -13,15 +13,25 @@
 var evenOccurrence = arr => {
   var storage = {};
   var returnEle = null;
+  var evens = [];
 
   arr.forEach(element => {
     if (storage[element] === 1) {
-      returnEle = element;
+      storage[element] ++
+      evens.push(element)
     } else {
       storage[element] = 1;
     }
   });
 
-  return returnEle;
+  for (var i = 0; i < evens.length; i++) {
+    if (storage[evens[i]] % 2 === 0) {
+      return evens[i]
+    } else {
+      continue
+    }
+  }
+
+  return null
 
 };
