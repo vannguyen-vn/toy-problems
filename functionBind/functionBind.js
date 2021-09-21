@@ -65,7 +65,7 @@ Function.prototype.bind = function() {
   //   return func.call(args);
   // }
   return function() {
-    Function.apply(args[0], args.slice(1));
+    Function.apply(args[0], args[1]);
   }
   this.call(arguments[0]);
 };
