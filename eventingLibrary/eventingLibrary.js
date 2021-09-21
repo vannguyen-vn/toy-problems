@@ -4,7 +4,8 @@
  *
  * Example usage:
  * var obj = mixEvents({ name: 'Alice', age: 30 });
- * obj.on('ageChange', function(){ // On takes an event name and a callback function
+ *  // On takes an event name and a callback function
+ * obj.on('ageChange', function(){
  *    console.log('Age changed');
  * });
  * obj.age++;
@@ -20,7 +21,26 @@
  * - It is not necessary to write a way to remove listeners.
  */
 
-var mixEvents = function(obj) {
-  // TODO: Your code here
+var mixEvents = function (obj) {
+  var events = {};
+
+  obj.on = (event, callback) => {
+    if (events[event]) {
+      events[event].push(callback);
+    } else {
+      events[event] = [callback];
+    }
+  }
+
+  obj.trigger = function (event) {
+    var args = Array.prototype.slice.call(arguments, 1);
+
+    if (events[event]) {
+      events[event].forEach(function (cb) {
+        cb.apply(null, args);
+      })
+    }
+  }
+
   return obj;
 };
