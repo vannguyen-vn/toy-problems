@@ -29,4 +29,7 @@ describe.skip('eventingLibrary', () => {
     })
     expect(testObj.trigger('ageChange', '100')).toEqual(['age changed', 'even older', '100'])
   })
+  test('it should not error out if the event listener does not exist', () => {
+    expect(() => testObj.trigger('nameChange')).not.toThrow();
+  })
 })

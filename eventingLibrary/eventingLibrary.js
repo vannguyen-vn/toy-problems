@@ -33,6 +33,9 @@ var mixEvents = function(obj) {
     var args = Array.prototype.slice.call(arguments);
     args = args.slice(1);
     var results = [];
+    if(!this.events[event]) {
+      return;
+    }
     for (var i = 0; i < this.events[event].length; i++) {
       results.push(this.events[event][i](...args));
     }
