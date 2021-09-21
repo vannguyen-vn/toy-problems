@@ -11,22 +11,20 @@
 */
 
 var evenOccurrence = arr => {
+
   var storage = {};
-  var returnEle = null;
-  var evens = [];
 
   arr.forEach(element => {
-    if (storage[element] === 1) {
-      storage[element] ++
-      evens.push(element)
+    if (storage[element] !== undefined) {
+      storage[element] += 1;
     } else {
       storage[element] = 1;
     }
   });
 
-  for (var i = 0; i < evens.length; i++) {
-    if (storage[evens[i]] % 2 === 0) {
-      return evens[i]
+  for (var i = 0; i < arr.length; i++) {
+    if (storage[arr[i]] % 2 === 0) {
+      return arr[i]
     } else {
       continue
     }
@@ -35,3 +33,4 @@ var evenOccurrence = arr => {
   return null
 
 };
+
