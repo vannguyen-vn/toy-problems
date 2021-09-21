@@ -33,6 +33,21 @@
 
 'use strict';
 
+
+// _.reduce = function(collection, iterator, accumulator) {
+//   // TIP: To support both arrays and objects, try re-using each() here
+//   var accumulator = accumulator;
+//   var inputValues = collection;
+//   if ( accumulator === undefined ) {
+//     accumulator = collection[0];
+//     inputValues = collection.slice(1);
+//   }
+//   _.each( inputValues, function(value) {
+//     accumulator = iterator(accumulator, value);
+//   });
+//   return accumulator;
+// };
+
 var compose = function(...fxns) {
   //takes in an arbitrary list of functions
   //reduces the functions to one extended function chain a(b(c(..args)))
@@ -44,6 +59,7 @@ var compose = function(...fxns) {
   })
 };
 //compose returns a reduced function, which takes in any numbr of parameter arguments
+//each reduce loop returns a function,
 //the reduced function looks like a(b(c(..args))) where the last function in the arguments list is invoked with the parameter arguments first
 
 var pipe = function(fxn, ...fxns) {
