@@ -1,6 +1,6 @@
 const powerSet = require('./powerSet.js');
 
-describe.('powerSet' , () => {
+describe.skip('powerSet' , () => {
   test.skip('powerSet should work for sets of length 3', () => {
         // recall that with sets, order doesn't matter (if order did matter, it
     // wouldn't be called a `set`.) so the set 'abc' is equivalent to 'bca',

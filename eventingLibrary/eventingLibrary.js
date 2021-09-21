@@ -21,6 +21,25 @@
  */
 
 var mixEvents = function(obj) {
+  obj.events = {};
+  obj.on = function(event, func) {
+    if (this.events[event]) {
+      this.events[event] = [...this.events[event], func];
+    } else {
+      this.events[event] = [func];
+    }
+  }
+  obj.trigger = function(event) {
+    var args = Array.prototype.slice.call(arguments);
+    args = args.slice(1);
+    var results = [];
+    for (var i = 0; i < this.events[event].length; i++) {
+      results.push(this.events[event][i](...args));
+    }
+    return results;
+  }
   // TODO: Your code here
   return obj;
 };
+
+// module.exports = mixEvents;
