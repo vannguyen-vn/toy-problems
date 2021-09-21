@@ -12,17 +12,21 @@
 
 var evenOccurrence = arr => {
   var storage = {};
-  var returnEle;
+  var returnEle = null;
 
   arr.forEach(element => {
     if (storage[element] !== undefined) {
-      returnEle = element;
+      storage[element] += 1;
     } else {
       storage[element] = 1;
     }
   });
 
-  return returnEle
+  for (var element in storage) {
+    if ( (storage[element] > 0) && (storage[element] % 2 === 0) ) {
+      return element
+    }
+    return null;
+  }
 
 };
-
