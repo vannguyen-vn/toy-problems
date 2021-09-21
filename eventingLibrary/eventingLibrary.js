@@ -23,6 +23,7 @@
 var mixEvents = function(obj) {
   var events = {};
 
+  //store an object where the key is the event name an the values are an array of stored callbacks
   obj.on = (event, callback) => {
     if (!events[event]) {
       events[event] = [callback];
@@ -31,12 +32,14 @@ var mixEvents = function(obj) {
     }
   }
 
-  obj.trigger = (event) => {
-    var args = [...arguments].slice(1);
-    console.log(args);
+  //when that key/event is called, iterate all the callbacks in the array and apply all the cb's to the obj
+  //you can also pass in more args
+  obj.trigger = (event, ...args) => {
+    var args2 = [...args].slice(1);
+    // console.log(args);
     if (events[event]) {
       events[event].forEach((cb) => {
-        cb.apply(null, args);
+        cb.apply(null, args2);
       })
     }
   }
@@ -44,9 +47,9 @@ var mixEvents = function(obj) {
   return obj;
 };
 
-// var obj = mixEvents({ name: 'Alice', age: 30 }, 1, 2, 3, 4);
-// obj.on('ageChange', function(){ // On takes an event name and a callback function
-//    console.log('Another One');
-// });
-// obj.age++;
-// obj.trigger('ageChange'); // This should call our callback! Should log 'age changed'.
+var obj = mixEvents({ name: 'Alice', age: 30 });
+obj.on('ageChange', function(){ // On takes an event name and a callback function
+   console.log('Another One');
+});
+obj.age++;
+obj.trigger('ageChange', 1, 2, 3, 4, 5); // This should call our callback! Should log 'age changed'.
