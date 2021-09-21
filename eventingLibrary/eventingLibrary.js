@@ -22,11 +22,14 @@
 
 var mixEvents = function(obj) {
   obj['on'] = (string, cb) => {
-    return cb(string);
+    obj['on'][string] = cb;
   }
 
   obj['trigger'] = (string) => {
-    return obj['on'](string);
+    if (obj['on'][string] === undefined) {
+      return null;
+    }
+    return obj['on'][string]();
   }
 
   return obj;
