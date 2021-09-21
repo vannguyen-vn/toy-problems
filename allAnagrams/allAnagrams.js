@@ -24,7 +24,9 @@
     for (var i = 0; i < string.length; i++) {
       innerFunc(string, resultString + string[i]);
     }
+    return;
   }
+
   innerFunc(string, '');
 
   return result;
