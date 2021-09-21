@@ -32,11 +32,13 @@ var mixEvents = function (obj) {
   }
   obj.trigger = (occur) => {
     let args = Array.slice.call(arguments, 1);
-    if (events[event]) {
-      events[event].forEach((callback) => {
+    if (events[occur]) {
+      events[occur].forEach((callback) => {
         callback.apply(null, args)
       })
     }
   }
   return obj;
 };
+
+console.log(mixEvents({ name: 'Alice', age: 30 }));
