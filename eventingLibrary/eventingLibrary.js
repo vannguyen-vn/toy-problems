@@ -22,5 +22,23 @@
 
 var mixEvents = function(obj) {
   // TODO: Your code here
+  var events = {};
+
+  Object.assign(obj, {on: (name, callback) => {
+    if (!events[name]) {
+      events[name] = [callback];
+    } else {
+      events[name].push(callback);
+    }
+
+    Object.assign(obj, {trigger: (name, ...args) => {
+      if (events[name]) {
+        for (callback of events[name]) {
+          callback(...args);
+        }
+      }
+    }});
+  }})
+
   return obj;
 };
