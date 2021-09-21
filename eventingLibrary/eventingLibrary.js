@@ -22,5 +22,25 @@
 
 var mixEvents = function(obj) {
   // TODO: Your code here
+  obj.on = function(eventName, callbackFunction) {
+    if (!obj.hasOwnProperty(eventName)) {
+      obj[eventName] = function(params) {
+        callbackFunction(params);
+      }
+    } else {
+      obj[eventName] = function(params) {
+        obj[eventName](params);
+        callbackFunction(params);
+      };
+    }
+  };
+
+
+  obj.trigger = function(eventName, params) {
+    if (obj.hasOwnProperty(eventName)) {
+      obj[eventName](params);
+    }
+
+  };
   return obj;
 };
