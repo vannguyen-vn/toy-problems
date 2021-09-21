@@ -25,9 +25,12 @@
 
 var bind = function(
 ) {
+  var func = arguments[0];
+  var context = arguments[1];
   // TODO: Your code here
-
-  return arguments[0].call(arguments[1]);
+  return function(args) {
+    func.apply(context, args);
+  }
 };
 
 /*
@@ -56,10 +59,13 @@ var bind = function(
 */
 
 Function.prototype.bind = function() {
-  // var func = this;
-  // var args = arguments;
+  var func = this;
+  var args = arguments;
   // var callBound = () {
   //   return func.call(args);
   // }
-  return this.call(arguments[0]);
+  return function() {
+    Function.apply(args[0], args[1]);
+  }
+  this.call(arguments[0]);
 };

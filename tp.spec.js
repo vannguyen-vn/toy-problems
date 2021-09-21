@@ -3,6 +3,7 @@ const multiply = require("./exampleModule").multiply;
 const shuffleDeck = require('./shuffleDeck/shuffleDeck.js').shuffleDeck;
 const orderedDeck = require('./shuffleDeck/shuffleDeck.js').orderedDeck;
 const Tree = require('./treeCountLeaves/treeCountLeaves.js');
+const commonCharacters = require('./commonCharacters/commonCharacters.js');
 
 /*
 A "describe" block can be used to group together multiple tests
@@ -45,7 +46,7 @@ xdescribe("shuffleDeck", function(){
 });
 
 describe("countLeaves", function(){
-  test("should count all the leaves", function(){
+  it("should count all the leaves", function(){
     // It's possible to have multiple expects in a single test like this. However, it is often unhelpful.
     // Just write two tests referring to the "Example Suites" example above for reference.
     var root = new Tree();
@@ -59,5 +60,15 @@ describe("countLeaves", function(){
     var count = root.countLeaves(); // 3
 
     expect(count).toBe(3);
+  });
+});
+
+xdescribe("commonCharacters", function(){
+  it("should return a new string with all repeated characters", function() {
+    var a = 'acexivou';
+    var b = 'aegihobu';
+    var result = commonCharacters(a, b);
+
+    expect(result).toBe('aeiou');
   });
 });
