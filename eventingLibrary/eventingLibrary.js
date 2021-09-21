@@ -27,22 +27,24 @@ var mixEvents = function(obj) {
   obj.on = function(eventName, callbackFunction) {
     if (!obj.hasOwnProperty(eventName)) {
       obj[eventName] = function(params) {
-        callbackFunction(params);
+        callbackFunction.apply(this, params);
       }
     } else {
+      const f = obj[eventName];
       obj[eventName] = function(params) {
-        obj[eventName](params);
-        callbackFunction(params);
+        f(params);
+        callbackFunction.apply(this, params);
       };
     }
   };
 
 
-  obj.trigger = function(eventName, params) {
+  obj.trigger = function(eventName) {
     if (obj.hasOwnProperty(eventName)) {
-      obj[eventName](params);
+      obj[eventName](arguments);
     }
 
   };
   return obj;
 };
+
