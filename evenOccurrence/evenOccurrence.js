@@ -15,18 +15,13 @@ var evenOccurrence = arr => {
   var returnEle = null;
 
   arr.forEach(element => {
-    if (storage[element] !== undefined) {
-      storage[element] += 1;
+    if (storage[element] === 1) {
+      returnEle = element;
     } else {
       storage[element] = 1;
     }
   });
 
-  for (var element in storage) {
-    if ( (storage[element] > 0) && (storage[element] % 2 === 0) ) {
-      return element
-    }
-    return null;
-  }
+  return returnEle;
 
 };
