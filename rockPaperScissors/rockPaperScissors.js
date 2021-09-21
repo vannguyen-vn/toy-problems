@@ -25,33 +25,33 @@ var rockPaperScissors = function (rounds) {
   var throws = ['R', 'P', 'S'];
   var combinations = [];
   // iterate across possible throws array
-  // for (var i = 0; i < throws.length; i++) {
-  //   // make a string with that letter first
-  //   // currentCombo += throws[i];
-  //   for (var j = 0; j < throws.length; j++) {
-  //     // currentCombo += throws[j]
-  //     for (var k = 0; k < throws.length; k++) {
-  //       // currentCombo += throws[k];
-  //       combinations.push(throws[i] + throws[j] + throws[k]);
-  //     }
-  //   }
-  // }
-
-
-  var comboBuilder = function(currentCombo) {
-    // base
-    if (currentCombo.length === rounds) {
-      combinations.push(currentCombo);
-      currentCombo = '';
-      return;
+  for (var i = 0; i < throws.length; i++) {
+    // make a string with that letter first
+    // currentCombo += throws[i];
+    for (var j = 0; j < throws.length; j++) {
+      // currentCombo += throws[j]
+      for (var k = 0; k < throws.length; k++) {
+        // currentCombo += throws[k];
+        combinations.push(throws[i] + throws[j] + throws[k]);
+      }
     }
-    // recursion
-    for (var i = 0; i < throws.length; i++) {
-      currentCombo += throws[i];
-      comboBuilder(currentCombo);
-    }
-
   }
+
+
+  // var comboBuilder = function(currentCombo) {
+  //   // base
+  //   if (currentCombo.length === rounds) {
+  //     combinations.push(currentCombo);
+  //     currentCombo = '';
+  //     return;
+  //   }
+  //   // recursion
+  //   for (var i = 0; i < throws.length; i++) {
+  //     currentCombo += throws[i];
+  //     comboBuilder(currentCombo);
+  //   }
+
+  // }
 
   comboBuilder('');
 
