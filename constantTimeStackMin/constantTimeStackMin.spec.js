@@ -1,4 +1,3 @@
-/*
 const Stack = require("./constantTimeStackMin").Stack;
 
 describe("Find the minimum value in a stack using constant time", function(){
@@ -66,4 +65,3 @@ describe("Find the minimum value in a stack using constant time", function(){
       expect(stack.min()).toBe(2);
     });
 });
-*/

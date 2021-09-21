@@ -1,4 +1,4 @@
-/*
+
 
 describe("Test for evenOccurrence problem", function(){
   test("Should return null if input is an empty array", function(){
@@ -30,4 +30,3 @@ describe("Test for evenOccurrence problem", function(){
   });
 });
 
-*/

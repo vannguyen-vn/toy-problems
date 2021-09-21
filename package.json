@@ -2,7 +2,7 @@
   "name": "toy-problem-tests",
   "version": "1.0.0",
   "description": "Starter files for student generated tests for their toy problems",
-  "main": "tp.specs.js",
+  "main": "tp.spec.js",
   "scripts": {
     "test": "jest"
   },
