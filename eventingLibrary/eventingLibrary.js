@@ -21,6 +21,12 @@
  */
 
 var mixEvents = function(obj) {
-  // TODO: Your code here
+  obj.eventListeners = {};
+  obj.on = function(event, callback) {
+    obj.eventListeners.event = callback;
+  }
+  obj.trigger = function(event) {
+    obj.eventListeners.event();
+  }
   return obj;
 };
