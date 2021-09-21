@@ -21,6 +21,32 @@
  */
 
 var mixEvents = function(obj) {
-  // TODO: Your code here
+  var events = {};
+
+  obj.on = (event, callback) => {
+    if (!events[event]) {
+      events[event] = [callback];
+    } else {
+      events[event].push(callback);
+    }
+  }
+
+  obj.trigger = (event) => {
+    var args = [...arguments].slice(1);
+    console.log(args);
+    if (events[event]) {
+      events[event].forEach((cb) => {
+        cb.apply(null, args);
+      })
+    }
+  }
+
   return obj;
 };
+
+// var obj = mixEvents({ name: 'Alice', age: 30 }, 1, 2, 3, 4);
+// obj.on('ageChange', function(){ // On takes an event name and a callback function
+//    console.log('Another One');
+// });
+// obj.age++;
+// obj.trigger('ageChange'); // This should call our callback! Should log 'age changed'.
