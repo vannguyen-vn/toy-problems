@@ -41,4 +41,3 @@ var mixEvents = function (obj) {
   return obj;
 };
 
-console.log(mixEvents({ name: 'Alice', age: 30 }));
