@@ -12,6 +12,27 @@
 
 
 
-var commonCharacters = function(string1, string2) {
-  // TODO: Your code here!
+var commonCharacters = function (string1, string2) {
+  var str1 = {};
+  var results = '';
+  for (var i = 0; i < string1.length; i++) {
+    str1[string1[i]] = false;
+  }
+  for (var j = 0; j < string2.length; j++) {
+    if (str1[string2[j]] === false) {
+      str1[string2[j]] = true;
+    }
+  }
+  Object.keys(str1).forEach((key) => {
+    if (str1[key]) {
+      results = results + key;
+    }
+  });
+  return results;
+
 };
+
+//// TESTING ////
+
+// var test = commonCharacters('acexivou', 'aegihobu');
+// console.log(test);
