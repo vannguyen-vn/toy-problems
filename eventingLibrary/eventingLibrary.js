@@ -21,6 +21,31 @@
  */
 
 var mixEvents = function(obj) {
-  // TODO: Your code here
+  // create obj to store handlers
+  var handlers = {};
+
+  obj.on = function (event, callback) {
+    // if handler for specific event exist already, add it to events array within handlers
+    if (handlers[event]) {
+      handlers[event].push(callback);
+    } else {
+      // if not create an array an assign to handlers obj at key [event]
+      handlers[event] = [callback];
+    }
+  }
+
+  obj.trigger = function(event) {
+    // pull the arguments that may be added when .trigger is called
+    var args = Array.prototype.slice.call(arguments, 1);
+    // if a listner/handler exists for this specific event
+    if (handlers[event]) {
+      // call each function that was stored at that event handler on the args
+      handlers[event].forEach(function (callback) {
+        callback.apply(null, args);
+      })
+    }
+  };
+
   return obj;
 };
+
