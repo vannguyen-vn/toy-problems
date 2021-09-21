@@ -21,6 +21,13 @@
  */
 
 var mixEvents = function(obj) {
-  // TODO: Your code here
+  obj['on'] = (string, cb) => {
+    return cb(string);
+  }
+
+  obj['trigger'] = (string) => {
+    return obj['on'](string);
+  }
+
   return obj;
 };
