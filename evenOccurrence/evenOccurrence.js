@@ -13,10 +13,10 @@
 var evenOccurrence = function(arr) {
   var result = 'no even occurances';
 
-  for(int i = 0; i < arr.length; i++) {
+  for(let i = 0; i < arr.length; i++) {
     var counter = 0;
     var temp = arr[i];
-    for(int j = 0; j < arr.length; j++) {
+    for(let j = 0; j < arr.length; j++) {
       if(arr[j] === arr[i]) {
         counter++;
       }
