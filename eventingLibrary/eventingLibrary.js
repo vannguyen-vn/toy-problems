@@ -39,12 +39,23 @@ var mixEvents = function(obj) {
   };
 
 
-  obj.trigger = function(eventName) {
+  obj.trigger = function(eventName, ...params) {
     if (obj.hasOwnProperty(eventName)) {
-      obj[eventName](arguments);
+      obj[eventName](params);
     }
 
   };
   return obj;
 };
+/*
+
+var dinner = mixEvents({});
+var result;
+dinner.on('order', function (dish, side) {
+  result = dish + ' with a side of ' + side;
+});
+dinner.trigger('order', 'spam', 'spinach');
+console.log(`Expected spam with a side of spinach Actual ${result}`);
+*/
+
 
