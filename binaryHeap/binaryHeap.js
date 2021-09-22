@@ -10,7 +10,7 @@
  * parent of the 3rd and 4th nodes, and the 2nd node will be the parent of the 5th and
  * 6th nodes. In a specific kind of binary heap, the binary min heap, every node is
  * less than its immediate children:
- * 
+ *
  *          0
  *     1         2
  *   3   4     5   6
@@ -67,7 +67,7 @@
 // and then iteratively returns the root of the `BinaryHeap` until its empty, thus returning a sorted array.
 
 
-function BinaryHeap () {
+function BinaryHeap() {
   this._heap = [];
   // this compare function will result in a minHeap, use it to make comparisons between nodes in your solution
   this._compare = function (i, j) { return i < j };
@@ -79,9 +79,42 @@ BinaryHeap.prototype.getRoot = function () {
 }
 
 BinaryHeap.prototype.insert = function (value) {
-  // TODO: Your code here
+  this._heap.push(value);
+  var index = this._heap.length - 1;
+  var parentIndex = Math.floor((index - 1) / 2);
+
+  while (index > 0 && (this._compare(this._heap[index], this._heap[parentIndex]))) {
+
+    var temp = this._heap[index];
+    this._heap[index] = this._heap[parentIndex];
+    this._heap[parentIndex] = temp;
+
+    index = parentIndex;
+    parentIndex = Math.floor((index - 1) / 2);
+  }
 }
 
 BinaryHeap.prototype.removeRoot = function () {
-  // TODO: Your code here
+  var index = this._heap.length - 1;
+
+  var temp = this._heap[index];
+  this._heap[index] = this.getRoot;
+  this._heap[0] = temp;
+
+  var originalRoot = this._heap.pop();
+  var tempRoot = 0;
+
+  var lowerChildIndex = this._compare(this._heap[tempRoot * 2 + 1], this._heap[tempRoot * 2 + 2]) ? tempRoot * 2 + 1 : tempRoot * 2 + 2;
+
+  while (lowerChildIndex && this._compare(this._heap[lowerChildIndex], this._heap[tempRoot])) {
+
+    var temp = this._heap[lowerChildIndex];
+    this._heap[lowerChildIndex] = this._heap[tempRoot];
+    this._heap[tempRoot] = temp;
+
+    tempRoot = lowerChildIndex;
+    lowerChildIndex = this._compare(this._heap[tempRoot * 2 + 1], this._heap[tempRoot * 2 + 2]) ? tempRoot * 2 + 1 : tempRoot * 2 + 2;
+  }
+
+  return originalRoot;
 }
