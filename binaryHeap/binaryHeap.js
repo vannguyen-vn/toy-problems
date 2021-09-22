@@ -98,7 +98,7 @@ BinaryHeap.prototype.removeRoot = function () {
   var index = this._heap.length - 1;
 
   var temp = this._heap[index];
-  this._heap[index] = this.getRoot;
+  this._heap[index] = this.getRoot();
   this._heap[0] = temp;
 
   var originalRoot = this._heap.pop();
