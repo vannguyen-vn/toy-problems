@@ -10,7 +10,7 @@
  * parent of the 3rd and 4th nodes, and the 2nd node will be the parent of the 5th and
  * 6th nodes. In a specific kind of binary heap, the binary min heap, every node is
  * less than its immediate children:
- * 
+ *
  *          0
  *     1         2
  *   3   4     5   6
@@ -79,9 +79,80 @@ BinaryHeap.prototype.getRoot = function () {
 }
 
 BinaryHeap.prototype.insert = function (value) {
-  // TODO: Your code here
+
+  if (this._heap.length === 0) {
+    this._heap.push(value)
+    return
+  }
+
+  this._heap.push(value)
+
+  let valueIndex = this._heap.length - 1
+
+  let parentIndex = this.getParent(valueIndex)
+
+  while (value >= this._heap[parentIndex]) {
+    if (this._compare(value, this._heap[parentIndex])) {
+      valueIndex = this._heap[parentIndex];
+      this._heap[parentIndex] = value;
+      valueIndex = parentIndex;
+    } else {
+      return;
+    }
+  }
 }
 
 BinaryHeap.prototype.removeRoot = function () {
-  // TODO: Your code here
+  this._heap.shift()
+  var newMin = this._heap.pop()
+  this._heap.unshift(newMin)
+
+  let newMinIndex = 0
+
+  while (true) {
+  var children = this.getChildren(0)
+  var leftChildIndex = children[0]
+  var rigthChildIndex = children[1]
+  var temp = null;
+
+  if (this._heap[leftChildIndex] !== undefined) {
+    leftChild = this._heap[leftChildIndex]
+    if (!this.compare(leftChild, value)){
+      temp = leftChildIndex
+    }
+  }
+
+  if (this._heap[rightChildIndex] !== undefined) {
+    rightChild = this._heap[rigthChildIndex]
+    if (temp === null && this.compare(value, rightChild) || (swap !== null && this.compare(leftChild, rightChild))) {
+      temp = rightChildIndex;
+    }
+  }
+
+  if (temp === null) {
+    break
+  }
+
+  this._heap[newMindIndex] = this._heap[temp];
+  this._heap[temp] = element;
+  newMinIndex = temp;
+
 }
+
+BinaryHeap.getParent = function(index) {
+  return Math.floor( (index - 1) / 2 )
+}
+
+BinaryHeap.getChildren = function(index) {
+  var left = index * 2 + 1 || null
+  var right = index * 2 + 2 || null
+
+  return [left, right]
+}
+
+//Whiteboard Link: https://excalidraw.com/
+
+/*
+* parentIndex = Math.floor( (index - 1) / 2 )
+* childrenIndices = [index * 2 + 1, index * 2 + 2]
+*/
