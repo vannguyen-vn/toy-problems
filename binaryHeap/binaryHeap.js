@@ -103,6 +103,21 @@ BinaryHeap.prototype.insert = function (value) {
 
 BinaryHeap.prototype.removeRoot = function () {
   // TODO: Your code here
+  // switch the values at the first and last indicies of the array
+  // remove the last value
+  // context
+  // swapper (index, context)
+  // use fn provided to get child indicies
+  // then get child values
+  // if the current value < first child value
+  // swap
+  // swapper (first child index, context)
+  // if current value < second child value
+  // swap
+  // swapper (second child index, context)
+  // else
+  // return
+  // swapper (index, context)
 }
 
 // var heap = new BinaryHeap();
