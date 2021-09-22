@@ -115,13 +115,13 @@ var makeHashTable = function() {
 };
 
 //For Tests
-// var test = makeHashTable();
-// test.insert('1', 1)
-// test.insert('2', 2)
-// test.insert('3', 3)
-// test.insert('4', 4)
-// console.log('After adding fourth element', test.storage)
-// test.remove('4')
-// test.remove('3', 3)
-// test.remove('2', 2)
-// console.log('After removing second element', test.storage)
+var test = makeHashTable();
+test.insert('1', 1)
+test.insert('2', 2)
+test.insert('3', 3)
+test.insert('4', 4)
+console.log('After adding fourth element', test.storage)
+test.remove('4')
+test.remove('3', 3)
+test.remove('2', 2)
+console.log('After removing second element', test.storage)
