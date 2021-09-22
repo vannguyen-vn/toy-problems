@@ -20,11 +20,17 @@ var allAnagrams = function(string) {
 
     if (!string) {
       result.push(anagram);
+      return;
     }
 
     for (var i = 0; i < string.length; i++) {
-      anagram = string[i];
-      getAnagram(string.splice(0, i) + string.splice(i+1), anagram);
+      anagram += string[i];
+
+      if (string.indexOf(string[i]) != i) {
+        continue;
+      }
+
+      getAnagram(string.slice(0, i) + string.slice(i+1), anagram);
       anagram = anagram.slice(0, anagram.length - 1);
     }
   }
