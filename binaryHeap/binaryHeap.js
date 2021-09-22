@@ -98,8 +98,17 @@ BinaryHeap.prototype.insert = function (value) {
       context.reOrder(node);
     }
   }
+  this.reOrder(value);
 }
 
 BinaryHeap.prototype.removeRoot = function () {
   // TODO: Your code here
 }
+
+// var heap = new BinaryHeap();
+// heap.insert(5)
+// heap.insert(6)
+// heap.insert(3)
+// heap.insert(1)
+
+// console.log(heap._heap)
