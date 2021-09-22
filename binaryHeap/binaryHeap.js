@@ -10,7 +10,7 @@
  * parent of the 3rd and 4th nodes, and the 2nd node will be the parent of the 5th and
  * 6th nodes. In a specific kind of binary heap, the binary min heap, every node is
  * less than its immediate children:
- * 
+ *
  *          0
  *     1         2
  *   3   4     5   6
@@ -67,10 +67,10 @@
 // and then iteratively returns the root of the `BinaryHeap` until its empty, thus returning a sorted array.
 
 
-function BinaryHeap () {
+function BinaryHeap (filter) {
   this._heap = [];
   // this compare function will result in a minHeap, use it to make comparisons between nodes in your solution
-  this._compare = function (i, j) { return i < j };
+  this._compare = filter || function (i, j) { return i < j };
 }
 
 // This function works just fine and shouldn't be modified
@@ -79,9 +79,78 @@ BinaryHeap.prototype.getRoot = function () {
 }
 
 BinaryHeap.prototype.insert = function (value) {
-  // TODO: Your code here
+  // Min Heap
+  //
+  // []
+  // [3]
+  // [3, 2]
+  // parent index of 2 -> Math.floor( (index - 1) / 2 )
+  // index of new pushed value === this._heap.length - 1;
+  // parent value is 3
+  // this._compare(2, 3)
+  // Swap! [2, 3]
+
+  this._heap.push(value);
+  if (this._heap.length === 1) { return; }
+
+  const inner = (currentIndex, parentIndex) => {
+    if (currentIndex === 0) { return; }
+
+    if (this._compare(this._heap[currentIndex], this._heap[parentIndex])) {
+      console.log(this._heap[currentIndex], this._heap[parentIndex])
+      var temp = this._heap[parentIndex];
+      this._heap[parentIndex] = this._heap[currentIndex];
+      this._heap[currentIndex] = temp;
+    }
+
+    inner(parentIndex, Math.floor((parentIndex - 1) / 2));
+  }
+
+  const currentIndex = this._heap.length - 1;
+  const parentIndex = Math.floor((currentIndex - 1) / 2);
+  inner(currentIndex, parentIndex);
 }
 
 BinaryHeap.prototype.removeRoot = function () {
-  // TODO: Your code here
+  var lastIndex = this._heap.length - 1;
+  var temp = this._heap[this._heap.length - 1];
+  this._heap[this._heap.length - 1] = this.getRoot();
+  var ret = this._heap.pop();
+
+  this._heap[0] = temp;
+
+  const inner = (currentIndex) => {
+    // Children -> [index * 2 + 1, index * 2 + 2]
+    const childIndexA = currentIndex * 2 + 1;
+    const childIndexB = currentIndex * 2 + 2;
+
+    if (!this._heap[childIndexA] && !this._heap[childIndexB]) {
+      return;
+    }
+
+    const goodChild = this._compare(
+      this._heap[childIndexA], this._heap[childIndexB])
+      ? childIndexA
+      : childIndexB;
+
+    if (this._compare(this._heap[goodChild], this._heap[currentIndex])) {
+      var temp = this._heap[currentIndex];
+      this._heap[currentIndex] = this._heap[goodChild];
+      this._heap[goodChild] = temp;
+    }
+
+    inner(goodChild);
+  }
+
+  const childIndexA = 0 * 2 + 1;
+  const childIndexB = 0 * 2 + 2;
+
+  const goodChild = this._compare(
+      this._heap[childIndexA], this._heap[childIndexB])
+      ? childIndexA
+      : childIndexB;
+
+  inner(0);
+
+  return ret;
 }
