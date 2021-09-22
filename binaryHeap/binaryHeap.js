@@ -145,7 +145,7 @@ binaryHeap.removeRoot();
 var compare = binaryHeap;
 var heap = binaryHeap._heap;
 // should be all true:
-console.log(compare(heap[0], heap[1])); // (1,4)
-console.log(compare(heap[0], heap[2])); // (1,9)
-console.log(compare(heap[1], heap[3])); // (4,8)
-console.log(compare(heap[1], heap[4])); // (4,5)
+// console.log(compare(heap[0], heap[1])); // (1,4)
+// console.log(compare(heap[0], heap[2])); // (1,9)
+// console.log(compare(heap[1], heap[3])); // (4,8)
+// console.log(compare(heap[1], heap[4])); // (4,5)
