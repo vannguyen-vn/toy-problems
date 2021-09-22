@@ -102,23 +102,17 @@ BinaryHeap.prototype.insert = function (value) {
 }
 
 BinaryHeap.prototype.removeRoot = function () {
-  // TODO: Your code here
-  // switch the values at the first and last indicies of the array
   let root = this._heap[0];
   this._heap = this._heap.slice(1);
   this._heap.unshift(this._heap[this._heap.length - 1]);
   this._heap.pop();
   var context = this;
-  // remove the last value
-  // context
   var swapper = (index, context) => {
     var currentValue = context._heap[index];
-    // console.log('CURRENT VALUE', currentValue)
     var firstChildIndex = index * 2 + 1;
     var secondChildIndex = index * 2 + 2;
     var firstChildValue = context._heap[firstChildIndex];
     var secondChildValue = context._heap[secondChildIndex];
-
     if (currentValue > firstChildValue) {
       context._heap[index] = firstChildValue;
       context._heap[firstChildIndex] = currentValue;
@@ -131,28 +125,6 @@ BinaryHeap.prototype.removeRoot = function () {
       return;
     }
   }
-  // swapper (index, context)
-  // use fn provided to get child indicies
-  // then get child values
-  // if the current value < first child value
-  // swap
-  // swapper (first child index, context)
-  // if current value < second child value
-  // swap
-  // swapper (second child index, context)
-  // else
-  // return
   swapper(0, context)
-  // console.log(root)
   return root
 }
-
-var heap = new BinaryHeap();
-heap.insert(5)
-heap.insert(6)
-heap.insert(3)
-heap.insert(1)
-
-console.log(heap._heap)
-console.log(heap.removeRoot())
-console.log(heap._heap)
