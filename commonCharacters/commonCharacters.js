@@ -19,7 +19,7 @@ var commonCharacters = function(string1, string2) {
   for (var i = 0; i < string1.length; i++) {
     var char = string1[i];
     for (var j = 0; j < string2.length; j++) {
-      if (char === string2[i]) {
+      if (char === string2[j]) {
         result.push(char);
       }
     }
