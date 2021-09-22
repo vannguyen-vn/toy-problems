@@ -13,20 +13,22 @@
   */
 
 var allAnagrams = function(string) {
-  // Your code here.
-  // declare result array
   var result = [];
 
-  // iterate over array i = 1
-  for (var i = 0; i < string.length; i++) {
-    // declare a char var
-    var char = string[i];
-    // iterate again j = 0
-    // declare temp variable
-    // swap the characters
-    // push to result array
-  }
+  var getAnagram = function(string, anagram) {
+    anagram = anagram || '';
 
-  // return result
+    if (!string) {
+      result.push(anagram);
+    }
+
+    for (var i = 0; i < string.length; i++) {
+      anagram = string[i];
+      getAnagram(string.splice(0, i) + string.splice(i+1), anagram);
+      anagram = anagram.slice(0, anagram.length - 1);
+    }
+  }
+  getAnagram(string);
+
   return result;
 };
