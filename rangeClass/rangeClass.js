@@ -44,24 +44,34 @@ var Range = function (start, end, step) {
   //if no step provided, default step to 1
   //if no start value, return null
   //if end is not defined, return the start value
-  if (!step) step = 1;
-  if (!start) return null;
-  if (!end) return start;
-  if (step < 0 || start > end) {
-    //decrement step
-    // end - step until start
-    var temp = end;
-    end = start;
-    start = temp;
-  }
-  var length = 0;
+  this.start = start;
+  this.end = end === undefined ? start : end;
+  this.step = Math.abs(step) || 1;
 
 };
 
 Range.prototype.size = function () {
+  if (this.start === this.end) {
+    return 1;
+  } else if (this.start < this.end) {
+    return Math.floor(((this.end - this.start) / this.step) + 1);
+  } else {
+    return Math.floor(((this.start - this.end) / this.step) + 1);
+  }
 };
 
 Range.prototype.each = function (callback) {
+  if (this.start === this.end) {
+    callback(this.start)
+  } else if (this.start = this.end) {
+    for (let i = this.start; i <= this.end; i += this.step) {
+      callback(i);
+    }
+  } else {
+    for (let i = this.start; i >= this.end; i -= this.step) {
+      callback(i);
+    }
+  }
 };
 
 Range.prototype.includes = function (val) {
