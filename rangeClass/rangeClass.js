@@ -77,7 +77,7 @@ Range.prototype.each = function (callback) {
   }
   if (this.step === undefined) {
     if (this.start > this.end) {
-      for (var i = this.end; i <= this.start; i++) {
+      for (var i = this.start; i >= this.end; i--) {
         callback(i);
       }
     }
@@ -85,8 +85,14 @@ Range.prototype.each = function (callback) {
       callback(i);
     }
   }
-  for (var i = this.start; i <= this.end; i += this.step) {
-    callback(i);
+  if (this.start > this.end) {
+    for (var i = this.start; i >= this.end; i = i + this.step) {
+      callback(i);
+    }
+  } else {
+    for (var i = this.start; i <= this.end; i = i + this.step) {
+      callback(i);
+    }
   }
 };
 
