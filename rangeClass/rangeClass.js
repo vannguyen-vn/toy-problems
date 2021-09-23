@@ -41,7 +41,8 @@
 
 var Range = function(start, end, step) {
   if (start > end) {
-    step = step < 0 ? step : step * -1;
+    step = step === undefined ? -1 : step * -1;
+    step = step < 1 ? step : step * -1;
   }
 
   this.start = start === undefined ? null : start;
@@ -50,7 +51,7 @@ var Range = function(start, end, step) {
 };
 
 Range.prototype.size = function () {
-  let size = 0;
+  var size = 0;
 
   this.each(() => {
     size += 1;
@@ -74,4 +75,3 @@ Range.prototype.includes = function (val) {
   })
   return true;
 };
-
