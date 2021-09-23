@@ -22,11 +22,11 @@
 
 var mixEvents = function(obj) {
   var res = [];
-  obj.on = (string, cb) => {
+  obj.on = function(string, cb) {
     res.push(cb);
   }
 
-  obj.trigger = (string) => {
+  obj.trigger = function(string) {
     var args = Array.prototype.slice.call(arguments, 1);
 
     for (var i = 0; i < res.length; i++) {
