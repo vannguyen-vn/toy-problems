@@ -54,20 +54,28 @@ var Range = function(start, end, step) {
 };
 
 Range.prototype.size = function () {
-  var count = 0;
-  var position = this.start
-  if (this.direction === 'pos') {
-    while (position <= this.end) {
-      count ++;
-      position += this.step;
-    }
+  if (this.start === this.end) {
+    return 1;
+  } else if (this.direction === 'pos') {
+    return Math.floor((this.end - this.start) / this.step) + 1;
   } else {
-    while (position >= this.end) {
-      count ++;
-      position -= this.step;
-    }
+    return Math.floor((this.start - this.end) / this.step) +1;
   }
-  return count;
+
+  // var count = 0;
+  // var position = this.start
+  // if (this.direction === 'pos') {
+  //   while (position <= this.end) {
+  //     count ++;
+  //     position += this.step;
+  //   }
+  // } else {
+  //   while (position >= this.end) {
+  //     count ++;
+  //     position -= this.step;
+  //   }
+  // }
+  // return count;
 };
 
 Range.prototype.each = function (callback) {
@@ -86,23 +94,34 @@ Range.prototype.each = function (callback) {
 };
 
 Range.prototype.includes = function (val) {
-  var position = this.start;
-  if (this.direction === 'pos') {
-    while (position <= this.end) {
-      if (position === val) {
-        return true;
-      }
-      position += this.step;
-    }
+  if((val > this.start && val > this.end) || (val < this.start && val < this.end)) {
+    return false;
+  }
+  if (this.start === val) {
+    return true;
+  } else if (this.start < val) {
+    return (val - this.start) % this.step === 0;
   } else {
-    while (position >= this.end) {
-      if (position === val) {
-        return true;
-      }
-      position -= this.step;
-    }
+    return (this.start - val) % this.step === 0;
   }
   return false;
+  // var position = this.start;
+  // if (this.direction === 'pos') {
+  //   while (position <= this.end) {
+  //     if (position === val) {
+  //       return true;
+  //     }
+  //     position += this.step;
+  //   }
+  // } else {
+  //   while (position >= this.end) {
+  //     if (position === val) {
+  //       return true;
+  //     }
+  //     position -= this.step;
+  //   }
+  // }
+  // return false;
 };
 
 var range = new Range(1);
