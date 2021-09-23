@@ -23,7 +23,7 @@
  *
  * Range should use constant space, even during the `each` method. i.e. you should *not*
  * use an Array as backing storage. Any given range could potentially be thousands of numbers long,
- * so find a way to represent the range without actually storing each element.
+ * so find a way to represent the range without actually storing each element. ???????
  *
  * USAGE EXAMPLES:
  * var myRange = new Range(0,10); // a new range representing the numbers between 0 and 10 (inclusively)
@@ -39,7 +39,7 @@
  */
 
 
-var Range = function(start, end, step) {
+var Range = function (start, end, step) {
 };
 
 Range.prototype.size = function () {
@@ -53,3 +53,32 @@ Range.prototype.includes = function (val) {
 
 var range = new Range(1);
 
+console.log(range)
+// Range
+// I - start -int, end-int, step- an integer that represents an interval
+// O - whatever data structure that holds the values in the range
+// C -
+// E - allow for negative value for "step" to count backwards
+//    - if the step is negative or start value is greater than the end value, count backwards
+//          - if no step provided, default to 0
+//    - if no start value, return null
+//    - if end is not defined, return the start value
+
+// Size
+// I - none
+// O - integer -number of items represented by the range
+// C - no constraints?
+// E - none -- handled in range
+
+// Each
+// I - callback
+// O - a callback function that takes in each value
+//    - the range after the callback funcation has been invoked on each element of the range
+// C -
+// E -
+
+// includes
+// I - integer that represents a value in the range
+// O - boolean
+// C -
+// E -
