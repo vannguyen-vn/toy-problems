@@ -63,7 +63,7 @@ Range.prototype.size = function () {
 Range.prototype.each = function (callback) {
   if (this.start === this.end) {
     callback(this.start)
-  } else if (this.start = this.end) {
+  } else if (this.start < this.end) {
     for (let i = this.start; i <= this.end; i += this.step) {
       callback(i);
     }
@@ -87,33 +87,12 @@ Range.prototype.includes = function (val) {
   return false;
 };
 
-var range = new Range(1);
+var range = new Range(10, 0);
+// console.log(range)
 
-// Range
-// I - start -int, end-int, step- an integer that represents an interval
-// O - whatever data structure that holds the values in the range
-// C -
-// E - allow for negative value for "step" to count backwards
-//    - if the step is negative or start value is greater than the end value, count backwards
-//          - if no step provided, default to 0
-//    - if no start value, return null
-//    - if end is not defined, return the start value
 
-// Size
-// I - none
-// O - integer -number of items represented by the range
-// C - no constraints?
-// E - none -- handled in range
-
-// Each
-// I - callback
-// O - a callback function that takes in each value
-//    - the range after the callback funcation has been invoked on each element of the range
-// C -
-// E -
-
-// includes
-// I - integer that represents a value in the range
-// O - boolean
-// C -
-// E -
+// var countdown = new Range(10, 0, -1);
+// var elements = [];
+// countdown.each(function (val) {
+//   elements.push(val);
+// });
