@@ -64,8 +64,15 @@ Range.prototype.each = function (callback, currentIndex) {
 
 };
 
-Range.prototype.includes = function (val) {
-  return (value % step === 0 && value >= this.start && value <= this.end)
+Range.prototype.includes = function (value) {
+  if (this.end === null) {
+    if (value === this.start) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  return (value % this.step === 0 && value >= this.start && value <= this.end)
 };
 
 Range.prototype._calculateNext = function(currentIndex) {
@@ -75,3 +82,39 @@ Range.prototype._calculateNext = function(currentIndex) {
 var range = new Range(1);
 
 //WHITEBOARD: https://excalidraw.com/#json=5043386759249920,ZsIDVi2fU5YbdVNWoy5KOQ
+
+
+var justOne = new Range(1);
+console.log('should be true', justOne.includes(1))
+console.log('should be false', justOne.includes(50))
+var threes = new Range(3, 100, 3);
+console.log('should be true', threes.includes(3))
+
+  console.log('should be false', threes.includes(4))
+
+  console.log('should be true', threes.includes(33))
+
+  console.log('should be true', threes.includes(99))
+
+
+
+
+// function () {
+
+//   var justOne = new Range(1);
+
+//   justOne.includes(1).should.eql(true);
+
+//   justOne.includes(50).should.eql(false);
+
+//   var threes = new Range(3, 100, 3);
+
+//   threes.includes(3).should.eql(true);
+
+//   threes.includes(4).should.eql(false);
+
+//   threes.includes(33).should.eql(true);
+
+//   threes.includes(99).should.eql(true);
+
+// }
