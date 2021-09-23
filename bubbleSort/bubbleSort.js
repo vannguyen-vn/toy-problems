@@ -33,7 +33,7 @@
 // Feel free to add helper functions if needed.
 var bubbleSort = function(array) {
   for (var i = 0; i < array.length; i++) {
-    for (var j = 0; j < array.length - 2; j++) {
+    for (var j = 0; j < array.length - i - 1; j++) {
       if (array[j] < array[j+1]) {
         var temp = array[j]
         array[j] = array[j+1]
@@ -45,14 +45,19 @@ var bubbleSort = function(array) {
 }
 
 /*
-I:
-O:
-C:
-E :
+I: Array (unordered)
+O: ordered array
+C: values must be numbers
+E: length of one, already ordered
 
 PROCESS
-For each element in the array, look at the next element
-  If the number is greater than the current number
+For each element in the array,
+  look at the next element
+    If the number is greater than the current number
+      create a temp variable to refer to the first value
+      move the second value to the first index
+      move the first value to the second index
+//after looping, return the array
 */
 
 
