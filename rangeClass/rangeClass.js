@@ -83,13 +83,12 @@ Range.prototype.each = function (callback) {
 };
 
 Range.prototype.includes = function (val) {
-  if (this.end === null) {
+  if (isNaN(this.end)) {
     return this.start === val;
-  } else if (this.end !== null && val < this.end) {
+  } else if (!isNaN(this.end) && val < this.end) {
     return val % this.step === 0;
   }
-
-  return false;
+  return false
 };
 
 var range = new Range(1);
