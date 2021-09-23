@@ -74,8 +74,7 @@ Range.prototype.each = function (callback) {
     for (var i = 0; i <= Math.abs(this.start); i++) {
       callback(i);
     }
-  }
-  if (this.step === undefined) {
+  } else if (this.step === undefined) {
     if (this.start > this.end) {
       for (var i = this.start; i >= this.end; i--) {
         callback(i);
@@ -85,8 +84,7 @@ Range.prototype.each = function (callback) {
         callback(i);
       }
     }
-  }
-  if (this.start > this.end) {
+  } else if (this.start > this.end) {
     for (var i = this.start; i >= this.end; i = i + this.step) {
       callback(i);
     }
