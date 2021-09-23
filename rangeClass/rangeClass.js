@@ -69,14 +69,6 @@ Range.prototype.includes = function (val) {
 
 var range = new Range(1);
 
-var Node = (value) => {
-  var node = {};
-  node.value = value;
-  node.next = null;
-  return node;
-}
-
-console.log(range)
 // Range
 // I - start -int, end-int, step- an integer that represents an interval
 // O - whatever data structure that holds the values in the range
