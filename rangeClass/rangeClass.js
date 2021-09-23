@@ -40,16 +40,38 @@
 
 
 var Range = function(start, end, step) {
+  this.start = start;
+  this.end = end || null;
+  this.step = step || 1;
 };
 
 Range.prototype.size = function () {
+  return (this.end - this.start) + 1
 };
 
-Range.prototype.each = function (callback) {
+Range.prototype.each = function (callback, currentIndex) {
+
+  currentIndex = currentIndex || this.start;
+
+    if (currentIndex > this.end) {
+      return [];
+    }
+
+    var result = callback(currentIndex);
+    var nextIndex = this._calculateNext(currentIndex);
+
+    return [result].concat(this.each(nextIndex));
+
 };
 
 Range.prototype.includes = function (val) {
+  return (value % step === 0 && value >= this.start && value <= this.end)
 };
+
+Range.prototype._calculateNext = function(currentIndex) {
+  return currentIndex += this.step;
+}
 
 var range = new Range(1);
 
+//WHITEBOARD: https://excalidraw.com/#json=5043386759249920,ZsIDVi2fU5YbdVNWoy5KOQ
