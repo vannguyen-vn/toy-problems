@@ -61,7 +61,11 @@ Range.prototype.size = function () {
 };
 
 Range.prototype.each = function (callback) {
-  for (let i = this.start; i !== this.end + this.step; i += this.step) {
+  const condition = (val, start, end) => {
+    return end < start ? val >= end : val <= end;
+  }
+
+  for (let i = this.start; condition(i, this.start, this.end); i += this.step) {
     callback(i);
   }
 };
