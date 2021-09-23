@@ -39,10 +39,34 @@
  */
 
 
-var Range = function(start, end, step) {
+var Range = function (start, end, step) {
+  this.start = start;
+  this.end = end;
+  this.step = step;
 };
 
 Range.prototype.size = function () {
+  if (this.start === undefined) {
+    return null;
+  } else if (this.end === undefined) {
+    return Math.abs(this.start) + 1;
+  } else if (this.step === undefined) {
+    if (this.start > this.end) {
+      return this.start - this.end + 1;
+    }
+    return this.end - this.start + 1;
+  }
+  if (this.start > this.end) {
+    if (this.step >= 0) {
+      return 0;
+    }
+    return Math.floor((this.start - this.end) / Math.abs(this.step)) + 1;
+  } else {
+    if (this.step <= 0) {
+      return 0;
+    }
+    return Math.floor((this.end - this.start) / this.step) + 1;
+  }
 };
 
 Range.prototype.each = function (callback) {
