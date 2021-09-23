@@ -109,14 +109,14 @@ BinaryHeap.prototype.insert = function (value) {
 }
 
 BinaryHeap.prototype.removeRoot = function () {
-  this._heap.swap(0, this._heap.length - 1);
+  this._swap(0, this._heap.length - 1);
   var removed = this._heap.pop();
 
   var i = 0, j;
 
   while (i < this._heap.length) {
     j = i;
-    i = this._minChild([i * 2 + 1, i * 2 + 2]);
+    i = this._minChild([j * 2 + 1, j * 2 + 2]);
 
     if (this._compare(this._heap[i]), this._heap[j]) {
       this._swap(i, j);
