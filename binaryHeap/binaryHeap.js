@@ -67,10 +67,10 @@
 // and then iteratively returns the root of the `BinaryHeap` until its empty, thus returning a sorted array.
 
 
-function BinaryHeap (filter) {
+function BinaryHeap(sort) {
   this._heap = [];
   // this compare function will result in a minHeap, use it to make comparisons between nodes in your solution
-  this._compare = filter || function (i, j) { return i < j };
+  this._compare = sort ? (i, j) => sort(i, j) : (i, j) => i < j;
 }
 
 // This function works just fine and shouldn't be modified
@@ -80,56 +80,61 @@ BinaryHeap.prototype.getRoot = function () {
 
 BinaryHeap.prototype.insert = function (value) {
   this._heap.push(value);
-  if (this._heap.length === 1) return;
-  const inner = (current, parent) => {
-    if (current === 0) return;
-    if (this._compare(this._heap[current], this._heap[parent])) {
-      let temp = this._heap[parent];
-      this._heap[parent] = this._heap[current];
-      this._heap[current] = temp;
-    }
-    inner(parent, Math.floor((parent - 1) / 2));
-  }
-  const current = this._heap.length - 1;
-  const parent = Math.floor((current - 1) / 2);
-  inner(current, parent);
-}
+  let endI = this._heap.length - 1;
+  let compareParent = function (childI) {
+    if (childI === 0) return;
 
-let heapSort = (array) => {
-  let sort = new BinaryHeap();
-  array.forEach((item) => sort.insert(item));
-  const sortedArray = [];
-  for (let i = 0; i < array.length; i++) {
-    sortedArray.push(sort.removeRoot());
+    let parentI = Math.floor((childI - 1) / 2);
+    let child = this._heap[childI];
+    if (this._compare(child, this._heap[parentI])) {
+      this._heap[childI] = this._heap[parentI];
+      this._heap[parentI] = child;
+      compareParent(parentI);
+    }
   }
-  return sortedArray;
+  compareParent = compareParent.bind(this);
+  compareParent(endI);
 }
 
 BinaryHeap.prototype.removeRoot = function () {
-  if (this._heap.length > 1) let root = this._heap.splice(0, 1, this._heap.pop())[0];
-  else let root = this._heap[0];
+  let root;
+  if (this._heap.length > 1) root = this._heap.splice(0, 1, this._heap.pop())[0];
+  else root = this._heap[0];
+
   let compareChildren = function (parentI) {
-    var childrenI = [parentI * 2 + 1, parentI * 2 + 2];
-    if (!this._heap[childrenI[0]]) return;
-    else if (!this._heap[childrenI[1]]) {
+    let childrenI = [parentI * 2 + 1, parentI * 2 + 2];
+    if (this._heap[childrenI[0]] === undefined) return;
+    else if (this._heap[childrenI[1]] === undefined) {
       if (this._compare(this._heap[childrenI[0]], this._heap[parentI])) {
-        var parent = this._heap[parentI]
+        let parent = this._heap[parentI]
         this._heap[parentI] = this._heap[childrenI[0]];
         this._heap[childrenI[0]] = parent;
       }
       return;
     } else {
-      if (this._compare(this._heap[childrenI[0]], this._heap[childrenI[1]])) let small = childrenI[0];
-      else let small = childrenI[1];
-      if (this._compare(this._heap[smallerChild], this._heap[parentI])) {
-        var parent = this._heap[parentI];
-        this._heap[parentI] = this._heap[smallerChild];
-        this._heap[smallerChild] = parent;
-        compareChildren(smallerChild);
+      let smallChild;
+      if (this._compare(this._heap[childrenI[0]], this._heap[childrenI[1]])) smallChild = childrenI[0];
+      else smallChild = childrenI[1];
+
+      if (this._compare(this._heap[smallChild], this._heap[parentI])) {
+        let parent = this._heap[parentI];
+        this._heap[parentI] = this._heap[smallChild];
+        this._heap[smallChild] = parent;
+        compareChildren(smallChild);
       }
     }
   }
   compareChildren = compareChildren.bind(this);
   compareChildren(0);
   return root;
+}
+
+let heapSort = (arr) => {
+  let sortedArr = [];
+  let sortHeap = new BinaryHeap();
+  arr.forEach((item) => sortHeap.insert(item));
+  for (var i = 0; i < arr.length; i++) {
+    sortedArr.push(sortHeap.removeRoot());
+  }
+  return sortedArr;
 }
