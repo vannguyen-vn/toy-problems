@@ -116,7 +116,7 @@ BinaryHeap.prototype.removeRoot = function () {
 
   while (i < this._heap.length) {
     j = i;
-    i = this._minChild([j * 2 + 1, j * 2 + 2]);
+    i = this._minChild(j * 2 + 1, j * 2 + 2);
 
     if (this._compare(this._heap[i]), this._heap[j]) {
       this._swap(i, j);
