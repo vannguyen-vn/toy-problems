@@ -86,7 +86,7 @@ Range.prototype.includes = function (val) {
   if (this.end === null) {
     return this.start === val;
   } else if (this.end !== null && val < this.end) {
-    return val % this.end === 0;
+    return val % this.step === 0;
   }
 
   return false;
