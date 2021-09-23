@@ -82,12 +82,8 @@ function BinaryHeap() {
   }
 
   this._minChild = function (i, j) {
-    if (this._heap[i] < this._heap[j]) {
-      return i;
-    } else {
-      return j;
-    }
-  }
+    return this._heap[i] < this._heap[j] ? i : j;
+  };
 }
 
 // This function works just fine and shouldn't be modified
@@ -110,18 +106,14 @@ BinaryHeap.prototype.insert = function (value) {
 
 BinaryHeap.prototype.removeRoot = function () {
   this._swap(0, this._heap.length - 1);
-  var removed = this._heap.pop();
-
-  var i = 0, j;
-
+  const removed = this._heap.pop();
+  let i = 0, j;
   while (i < this._heap.length) {
     j = i;
     i = this._minChild(j * 2 + 1, j * 2 + 2);
-
-    if (this._compare(this._heap[i]), this._heap[j]) {
+    if (this._compare(this._heap[i], this._heap[j])) {
       this._swap(i, j);
     }
   }
-
   return removed;
 }
