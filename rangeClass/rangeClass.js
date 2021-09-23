@@ -46,7 +46,13 @@ var Range = function(start, end, step) {
 };
 
 Range.prototype.size = function () {
-  return (this.end - this.start) + 1
+  if (this.step > 0) {
+    return (this.end - this.start) + 1
+  } else if (this.step < 0) {
+    return (this.start - this.end) - 1
+  } else {
+    return 0;
+  }
 };
 
 Range.prototype.each = function (callback, currentIndex) {
@@ -76,7 +82,9 @@ Range.prototype.includes = function (value) {
 };
 
 Range.prototype._calculateNext = function(currentIndex) {
-  return currentIndex += this.step;
+  if (this.step === 0) {return 0}
+  if (this.step > 0) {return currentIndex += this.step;}
+  if (this.step < 0) {return currentIndex -= this.step;}
 }
 
 var range = new Range(1);
