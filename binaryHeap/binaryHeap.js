@@ -142,8 +142,8 @@ binaryHeap.insert(1);
 binaryHeap.insert(0);
 binaryHeap.removeRoot();
 
-var compare = binaryHeap;
-var heap = binaryHeap._heap;
+// var compare = binaryHeap;
+// var heap = binaryHeap._heap;
 // should be all true:
 // console.log(compare(heap[0], heap[1])); // (1,4)
 // console.log(compare(heap[0], heap[2])); // (1,9)

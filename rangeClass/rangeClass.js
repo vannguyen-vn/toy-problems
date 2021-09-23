@@ -40,15 +40,33 @@
 
 
 var Range = function(start, end, step) {
+  this.start = start;
+  this.end = end === undefined ? start : end;
+  this.step = !step ? (end > start ? 1 : -1) : step;
+
 };
 
-Range.prototype.size = function () {
+//return the number of items represented by the range
+Range.prototype.size = function (callback) {
+  return Math.floor((this.end -this.start)/this.step + 1);
 };
 
+//iterate over the range, passing each value to a callback function
 Range.prototype.each = function (callback) {
+  for (let i = 0; i < this.size(); i++) {
+    callback(this.start + this.step * i);
+  }
 };
 
+//return whether or not the range includes the passed value
 Range.prototype.includes = function (val) {
+  let included = false;
+  this.each((num) => {
+    if(num === val) {
+      included = true;
+    }
+  })
+  return included;
 };
 
 var range = new Range(1);
