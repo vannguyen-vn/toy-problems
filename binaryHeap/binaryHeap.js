@@ -98,7 +98,7 @@ BinaryHeap.prototype.insert = function (value) {
 let heapSort = (array) => {
   let sort = new BinaryHeap();
   array.forEach((item) => sort.insert(item));
-  let sortedArray = [];
+  const sortedArray = [];
   for (let i = 0; i < array.length; i++) {
     sortedArray.push(sort.removeRoot());
   }
