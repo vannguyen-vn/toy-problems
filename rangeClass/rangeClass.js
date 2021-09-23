@@ -37,19 +37,44 @@
  * evenNumbers.size() should be 4
  * evenNumbers.includes(2) should be true, evenNumbers.includes(3) should be false
  */
+var Range = function (start, end, step) {
+  if (!start) {
+    return null;
+  }
+  this.obj = new Set();
+  var step = step || 1;
 
-
-var Range = function(start, end, step) {
+  if (!end) {
+    this.obj.add(start);
+  } else if (start < end) {
+    for (var i = start; i <= end; i = i + step) {
+      this.obj.add(i);
+    }
+  } else {
+    for (var i = end; i = start; i = i - step) {
+      this.obj.add(i);
+    }
+  }
 };
 
 Range.prototype.size = function () {
+  return this.obj.size;
 };
 
 Range.prototype.each = function (callback) {
+  this.obj.forEach((value) => {
+    callback(value);
+  })
 };
 
 Range.prototype.includes = function (val) {
+  return this.obj.has(val);
 };
 
-var range = new Range(1);
+// var range = new Range(2,8,2); // A range with the even numbers 2, 4, 6, and 8.
+// range.each(function(val){
+//   console.log(val+"!");
+// });
+// console.log(range.size());
+// console.log(range.includes(2));
 
