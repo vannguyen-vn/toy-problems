@@ -75,6 +75,16 @@ Range.prototype.each = function (callback) {
 };
 
 Range.prototype.includes = function (val) {
+  if (this.start === this.end) {
+    return val === this.start;
+  } else if (this.start < this.end) {
+    for (let i = this.start; i <= this.end; i += this.step) {
+      if (val === i) {
+        return true;
+      }
+    }
+  }
+  return false;
 };
 
 var range = new Range(1);
