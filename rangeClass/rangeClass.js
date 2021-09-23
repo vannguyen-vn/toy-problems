@@ -40,16 +40,35 @@
 
 
 var Range = function(start, end, step) {
+  this.start = start;
+  this.end = end === undefined ? start : end;
+  this.step = !step ? ( start > end ? -1 : 1) : step;
 };
 
 Range.prototype.size = function () {
+  var totalRange = Math.abs(this.start - this.end);
+  return Math.floor(totalRange/this.step) + 1;
 };
 
 Range.prototype.each = function (callback) {
+  for (var i = 0; i < this.size(); i++) {
+    // console.log(this.start, this.step);
+    callback(this.start + (this.step * i));
+  }
 };
 
 Range.prototype.includes = function (val) {
+  let included = false;
+  this.each((num) => {
+    if (num === val) {
+      included = true;
+    }
+  })
+  return included;
 };
 
 var range = new Range(1);
 
+// var range2 = new Range(-1, 8, 2);
+// console.log(range2);
+// range2.each((val) => console.log(val));
