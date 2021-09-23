@@ -31,73 +31,103 @@
 */
 
 // Feel free to add helper functions if needed.
-
-
 var bubbleSort = function(array) {
-
-  //create a "manipulation array" variable set equal to a copy of the array
-  var manipArr = array.slice();
-
-  //create an index 1 variable
-  index1 = 0
-  //create an index 2 variable
-  index2 = 1
-
-  //create a flag to tell if any variables were swapped
-  var wasSwapped = false;
-
-  //create an inner function that takes two elements
-  var compareValues = function(index1, index2) {
-
-
-    if (manipArr[index1] < manipArr[index2] && manipArr[index2 + 1] !== undefined) {
-      //if the value at index 1 is less than index two and the value at index2 + 2 is NOT undefined, you are in the middle of the array.
-
-      //increment indexes
-      index1 ++;
-      index2 ++;
-
-      //return a call to the inner function with the updated idexes
-      return compareValues(index1, index2);
-
-    } else if (manipArr[index1] < manipArr[index2] && manipArr[index2 + 1] === undefined && wasSwapped === false) {
-      //if the value at index1 is less than the value at index 2 and the value at index2 + 1 is undefined (you are at the end of the array) AND wasSwapped is false- return the manipulated array as the final array
-      return manipArr;
-    }
-
-    if (manipArr[index1] > manipArr[index2]) {
-      //if the value at index 1 is greater than the value at index 2
-      //create a temp var to hold the zero index value
-      var temp = manipArr[index1];
-      manipArr[index1] = manipArr[index2];
-      manipArr[index2] = temp;
-
-      wasSwapped = true;
-
-      index1 ++;
-      index2 ++;
-
-      if (manipArr[index2] === undefined && wasSwapped === false) {
-        //if you reach an undefined value (you are at the end of the array) and the wasSwapped flag is false, return the array as the final answer.
-        return manipArr;
-      } else if (manipArr[index2 + 1] === undefined && wasSwapped === true) {
-        //otherwise if you reach an undefined value(you are at the end of the array) and the wasSwapped flag is true, reset the indexes at the beginning of the array and return a call to the inner function with the updated array.
-        index1 = 0;
-        index2 = 1;
-        wasSwapped = false;
-        return compareValues(index1, index2)
-      } else {
-        //otherwise, you are still in the middle of an array, so return a call to the inner function with the indexes incremented as they are.
-        return compareValues(index1, index2)
+  for (var i = 0; i < array.length; i++) {
+    for (var j = 0; j < array.length - 2; j++) {
+      if (array[j] < array[j+1]) {
+        var temp = array[j]
+        array[j] = array[j+1]
+        array[j+1] = temp
       }
-
     }
+  }
+  return array
+}
 
-    }
-    //call the function with index 1 and index 2 to start off
-    compareValues(index1, index2);
+/*
+I:
+O:
+C:
+E :
 
-  return manipArr;
-};
+PROCESS
+For each element in the array, look at the next element
+  If the number is greater than the current number
+*/
+
+
+
+
+
+//Old logic
+// var bubbleSort = function(array) {
+
+//   //create a "manipulation array" variable set equal to a copy of the array
+//   var manipArr = array.slice();
+
+//   //create an index 1 variable
+//   index1 = 0
+//   //create an index 2 variable
+//   index2 = 1
+
+//   //create a flag to tell if any variables were swapped
+//   var wasSwapped = false;
+
+//   //create an inner function that takes two elements
+//   var compareValues = function(index1, index2) {
+
+
+//     if (manipArr[index1] < manipArr[index2] && manipArr[index2 + 1] !== undefined) {
+//       //if the value at index 1 is less than index two and the value at index2 + 2 is NOT undefined, you are in the middle of the array.
+
+//       //increment indexes
+//       index1 ++;
+//       index2 ++;
+
+//       //return a call to the inner function with the updated idexes
+//       return compareValues(index1, index2);
+
+//     } else if (manipArr[index1] < manipArr[index2] && manipArr[index2 + 1] === undefined && wasSwapped === false) {
+//       //if the value at index1 is less than the value at index 2 and the value at index2 + 1 is undefined (you are at the end of the array) AND wasSwapped is false- return the manipulated array as the final array
+//       return manipArr;
+//     }
+
+//     if (manipArr[index1] > manipArr[index2]) {
+//       //if the value at index 1 is greater than the value at index 2
+//       //create a temp var to hold the zero index value
+//       var temp = manipArr[index1];
+//       manipArr[index1] = manipArr[index2];
+//       manipArr[index2] = temp;
+
+//       wasSwapped = true;
+
+//       index1 ++;
+//       index2 ++;
+
+//       if (manipArr[index2] === undefined && wasSwapped === false) {
+//         //if you reach an undefined value (you are at the end of the array) and the wasSwapped flag is false, return the array as the final answer.
+//         return manipArr;
+//       } else if (manipArr[index2 + 1] === undefined && wasSwapped === true) {
+//         //otherwise if you reach an undefined value(you are at the end of the array) and the wasSwapped flag is true, reset the indexes at the beginning of the array and return a call to the inner function with the updated array.
+//         index1 = 0;
+//         index2 = 1;
+//         wasSwapped = false;
+//         return compareValues(index1, index2)
+//       } else {
+//         //otherwise, you are still in the middle of an array, so return a call to the inner function with the indexes incremented as they are.
+//         return compareValues(index1, index2)
+//       }
+
+//     }
+
+//     }
+//     //call the function with index 1 and index 2 to start off
+//     compareValues(index1, index2);
+
+//   return manipArr;
+// };
 
 console.log(bubbleSort([4, 2, 3, 1])) //==> returned [2, 1, 3, 4]
+console.log(bubbleSort([ 1, 2, 43, 100, 100, 21, 21 ])) //==> [ 1, 2, 21, 21, 43, 100, 100 ]
+console.log(bubbleSort([24.7, 24.3, 23, 9, 3, 3, 100, 25, 100])) //=> [3, 3, 9, 23, 24.3, 24.7, 25, 100, 100]
+console.log(bubbleSort([5, 4, 3, 2, 1]))//[1, 2, 3, 4, 5]
