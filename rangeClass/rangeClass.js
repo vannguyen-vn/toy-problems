@@ -80,9 +80,10 @@ Range.prototype.each = function (callback) {
       for (var i = this.start; i >= this.end; i--) {
         callback(i);
       }
-    }
-    for (var i = this.start; i <= this.end; i++) {
-      callback(i);
+    } else {
+      for (var i = this.start; i <= this.end; i++) {
+        callback(i);
+      }
     }
   }
   if (this.start > this.end) {
