@@ -10,7 +10,7 @@
  * parent of the 3rd and 4th nodes, and the 2nd node will be the parent of the 5th and
  * 6th nodes. In a specific kind of binary heap, the binary min heap, every node is
  * less than its immediate children:
- * 
+ *
  *          0
  *     1         2
  *   3   4     5   6
@@ -80,8 +80,71 @@ BinaryHeap.prototype.getRoot = function () {
 
 BinaryHeap.prototype.insert = function (value) {
   // TODO: Your code here
+  // add to end
+  this._heap.push(value);
+
+  var climbUpTheHeap = (i) => {
+    //  compare the new value with the value of its parent node (using above formula)
+    var parentIndex = (Math.floor( (i - 1) / 2 ));
+    var parentValue = this._heap[parentIndex(i)];
+
+    if (this._compare(this._heap[i], parentValue)) {
+      //    if it's less,
+      //      switch the two
+      this._heap.splice(i, 1, parentValue);
+      this._healp.splice(parentIndex, 1, value);
+      //      compare with the new parent (recursive)
+      return climbUpTheHeap(parentIndex);
+    } else {
+      //    if it's more (or it's the root)
+      //      leave it where it is (base)
+      return;
+    }
+  }
+
+  return climbUpTheHeap(this._heap.length - 1);
+
+
 }
 
 BinaryHeap.prototype.removeRoot = function () {
-  // TODO: Your code here
+  // swap first and last
+  var rootValue = this.getRoot();
+  var lastValue = this._heap[this._heap.length - 1];
+  this._heap.splice(0, 1, lastValue);
+  this._heap.splice(this._heap.length - 1, 1);
+  // pop out the last
+  // compare the first with its chidlren
+  var climbDownTheHeap = (i) => {
+    var child1Index = i * 2 + 1;
+    var child1Value = this._heap[Child1Index];
+    var child2Index = i * 2 + 2;
+    var child2Value = this._heap[Child2Index];
+
+    if (child1Value === undefined) {
+      return;
+    }
+
+    if (this._compare(lastValue, child1Value) || this._compare(lastValue, child2Value)) {
+      if (this._compare(child1Value, child2Value)) {
+        // switch with child1
+        this._heap.splice(child1Index, 1, lastValue);
+        this._heap.splice(i, 1, child1Value);
+        return climbDownTheHeap(child1Index);
+      } else {
+        // switch with child2
+        this._heap.splice[child2Index, 1, lastValue];
+        this._heap.splice[i, 1, child2Value];
+        return climbDownTheHeap(child2Index);
+      }
+    } else {
+      return;
+    }
+  }
+  //   if it's less (or no children)
+  //    leave it where it is (base)
+  //   if it's more
+  //    switch with the (lesser) child
+
+  return climbDownTheHeap(0);
 }
