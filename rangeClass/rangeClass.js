@@ -70,7 +70,7 @@ Range.prototype.each = function (callback) {
       callback(i);
     }
   } else {
-    for (var i = this.start i >= this.end; i+= this.step) {
+    for (var i = this.start; i >= this.end; i+= this.step) {
       callback(i);
     }
   }
