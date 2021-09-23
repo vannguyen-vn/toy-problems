@@ -37,6 +37,7 @@
  * evenNumbers.size() should be 4
  * evenNumbers.includes(2) should be true, evenNumbers.includes(3) should be false
  */
+
 var Range = function (start, end, step) {
   if (!start) {
     return null;
@@ -44,14 +45,14 @@ var Range = function (start, end, step) {
   this.obj = new Set();
   var step = step || 1;
 
-  if (!end) {
+  if (end !== 0 && (!end)) {
     this.obj.add(start);
   } else if (start < end) {
     for (var i = start; i <= end; i = i + step) {
       this.obj.add(i);
     }
   } else {
-    for (var i = end; i = start; i = i - step) {
+    for (var i = start; i >= end; i = i - Math.abs(step)) {
       this.obj.add(i);
     }
   }
@@ -78,3 +79,5 @@ Range.prototype.includes = function (val) {
 // console.log(range.size());
 // console.log(range.includes(2));
 
+// var range = new Range(10, 0);
+// console.log(range.size());
