@@ -79,7 +79,7 @@ function BinaryHeap () {
   }
 
   this._minChild = function(i, j) {
-    return this.heap[i] < this.heap[j] ? i : j;
+    return this._heap[i] < this._heap[j] ? i : j;
   }
 }
 
@@ -94,8 +94,8 @@ BinaryHeap.prototype.insert = function (value) {
 
   while (i !== 0) {
     j = i;
-    i = Math.floor((i - 1) / 2);
-    if (this._compare(this.heap[j], this.heap[i])) {
+    i = Math.floor((j - 1) / 2);
+    if (this._compare(this._heap[j], this._heap[i])) {
       this._swap(j, i)
     }
   }
