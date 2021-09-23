@@ -72,15 +72,15 @@ function BinaryHeap () {
   // this compare function will result in a minHeap, use it to make comparisons between nodes in your solution
   this._compare = function (i, j) { return i < j };
 
-  this._swap = function(i, j) {
+  this._swap = function (i, j) {
     var temp = this._heap[i];
     this._heap[i] = this._heap[j];
     this._heap[j] = temp;
   }
 
-  this._minChild = function(i, j) {
+  this._minChild = function (i, j) {
     return this._heap[i] < this._heap[j] ? i : j;
-  }
+  };
 }
 
 // This function works just fine and shouldn't be modified
@@ -89,30 +89,28 @@ BinaryHeap.prototype.getRoot = function () {
 }
 
 BinaryHeap.prototype.insert = function (value) {
-  const i = this._heap.length, j;
-  this._heap.push(value)
+  var j = this._heap.length, i;
+  this._heap.push(value);
 
-  while (i !== 0) {
-    j = i;
-    i = Math.floor((j - 1) / 2);
-    if (this._compare(this._heap[j], this._heap[i])) {
-      this._swap(j, i)
+  while (j !== 0) {
+    i = j;
+    j = Math.floor((i - 1) / 2);
+    if (this._compare(this._heap[i], this._heap[j])) {
+      this._swap(i, j);
     }
   }
-  return this._heap
 
 }
 
 BinaryHeap.prototype.removeRoot = function () {
-  this.swap(this.length-1, 0);
-
+  this._swap(0, this._heap.length - 1);
   const removed = this._heap.pop();
-  const i = 0, j;
+  let i = 0, j;
   while (i < this._heap.length) {
     j = i;
-    i = this.minChild(j * 2 + 1, j * 2 + 1)；
+    i = this._minChild(j * 2 + 1, j * 2 + 2);
     if (this._compare(this._heap[i], this._heap[j])) {
-      this.swap(i, j)
+      this._swap(i, j);
     }
   }
   return removed;
