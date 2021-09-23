@@ -21,15 +21,17 @@
  */
 
 var mixEvents = function(obj) {
-  obj['on'] = (string, cb) => {
-    obj['on'][string] = cb;
+  var res = [];
+  obj.on = (string, cb) => {
+    res.push(cb);
   }
 
-  obj['trigger'] = (string) => {
-    if (obj['on'][string] === undefined) {
-      return null;
+  obj.trigger = (string) => {
+    var args = Array.prototype.slice.call(arguments, 1);
+
+    for (var i = 0; i < res.length; i++) {
+      res[i].apply(null, args);
     }
-    return obj['on'][string]();
   }
 
   return obj;
