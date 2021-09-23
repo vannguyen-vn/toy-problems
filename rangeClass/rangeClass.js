@@ -40,6 +40,22 @@
 
 
 var Range = function (start, end, step) {
+  //if the step is negative or start value is greater than the end value, count backwards
+  //if no step provided, default step to 1
+  //if no start value, return null
+  //if end is not defined, return the start value
+  if (!step) step = 1;
+  if (!start) return null;
+  if (!end) return start;
+  if (step < 0 || start > end) {
+    //decrement step
+    // end - step until start
+    var temp = end;
+    end = start;
+    start = temp;
+  }
+  var length = 0;
+
 };
 
 Range.prototype.size = function () {
@@ -52,6 +68,13 @@ Range.prototype.includes = function (val) {
 };
 
 var range = new Range(1);
+
+var Node = (value) => {
+  var node = {};
+  node.value = value;
+  node.next = null;
+  return node;
+}
 
 console.log(range)
 // Range
