@@ -45,15 +45,15 @@ var Range = function(start, end, step) {
   }
 
   this.start = start === undefined ? null : start;
-  this.end = end || start;
-  this.step = step || 1;
+  this.end = end === undefined ? start : end;
+  this.step = step === undefined ? 1 : step;
 };
 
 Range.prototype.size = function () {
   let size = 0;
 
   this.each(() => {
-    count += 1;
+    size += 1;
   })
 
   return size;
