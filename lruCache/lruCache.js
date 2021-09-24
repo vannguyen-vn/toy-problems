@@ -30,20 +30,49 @@
  * You will need a doubly-linked list (provided).
  */
 
+//whiteboard: https://lucid.app/lucidchart/58f5bd75-9294-46bb-b359-1bdbc8064208/edit?beaconFlowId=A774DBCA8A83BD3E&invitationId=inv_815c38dc-bebd-4246-b0b1-8e4e256b2819&page=0_0#
+
 var LRUCache = function (limit) {
+  this.limit = limit;
+  this.length = 0;
+  this._queue = new List();
+  this._storage = {};
 };
 
 var LRUCacheItem = function (val, key) {
+  return {key:key, value:value}
 };
 
 LRUCache.prototype.size = function () {
+  return this.length;
 };
 
+//key is equal to node value
 LRUCache.prototype.get = function (key) {
+  //access the list position in constant time
+  return this._storage[key]
 };
 
 LRUCache.prototype.set = function (key, val) {
+  if (this.length < this.limit) {
+    this.unshift(key);
+    this._storage[key] = value;
+    this.length ++;
+  } else {
+    var deleted = this.pop()
+    this._delete(deleted.val)
+  }
+
 };
+
+//node value equal to cache input key. Val equal to chache input value
+LRUCache.prototype._delete = function(nodeVal) {
+  delete this._storage[nodeVal]
+}
+
+LRUCache.prototype._insert = function(nodeVal, value) {
+  this._storage[nodeVal] = value;
+}
 
 
 
