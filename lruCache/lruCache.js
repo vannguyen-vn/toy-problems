@@ -31,20 +31,37 @@
  */
 
 var LRUCache = function (limit) {
+  this.limit = limit;
+  this.cache = {};
+  this.list = new List;
+  this.fill = 0;
 };
 
 var LRUCacheItem = function (val, key) {
 };
 
 LRUCache.prototype.size = function () {
+  return this.fill;
 };
 
 LRUCache.prototype.get = function (key) {
+  this.list.moveToFront(this.cache[key]);
+  this.fill --;
+  return this.cache[key];
+  //move value at key to front of dll
+  //return value with key
 };
 
 LRUCache.prototype.set = function (key, val) {
+  var node = this.list.unshift({key: key, val: val});
+  this.fill ++;
+  if (this.fill > this.limit) {
+    var node = this.list.pop();
+    delete this.cache[node.val.key]
+  }
+  this.cache[key] = node;
 };
-
+module.exports = LRUCache;
 
 
 var List = function () {
