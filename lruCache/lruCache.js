@@ -31,18 +31,30 @@
  */
 
 var LRUCache = function (limit) {
+  this.limit = 3;
+  this.size = 0;
 };
 
 var LRUCacheItem = function (val, key) {
+
 };
 
 LRUCache.prototype.size = function () {
+  return this.size;
 };
 
 LRUCache.prototype.get = function (key) {
+  // check if any of the nodes values.key matches the input key
+    // return value associatied with that key
+    // move node to the head of the list to establish a least recently used pattern with tail being LRU
+  // if none match return null
 };
 
 LRUCache.prototype.set = function (key, val) {
+  // if linked list size is equal to the limit
+    // pop off the tail and add current key, val pair to be the head of the list
+  // else just add the the head of the list
+    // increase this.size by one
 };
 
 
