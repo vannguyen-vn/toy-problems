@@ -40,61 +40,58 @@
 
 
 var Range = function(start, end, step) {
-  this.result = [];
+  this.start = start;
+  this.end = end;
+  this.step = step;
 
   if (start === undefined) {
     return null;
   }
 
-  if (end === undefined || start === end) {
-    this.result.push(start);
-  }
-
-  if (step === undefined) {
-    if (start > end) {
-      for (var i = end; i <= start; i++) {
-        this.result.push(i);
-      }
-    } else {
-      for (var i = start; i <= end; i++) {
-        this.result.push(i);
-      }
-    }
-  } else if (step > 0) {
-    if (start > end) {
-      for (var i = end; i <= start; i+=step) {
-        this.result.push(i);
-      }
-    } else {
-      for (var i = start; i <= end; i+=step) {
-        this.result.push(i);
-      }
-    }
-  } else if (step < 0) {
-    if (start > end) {
-      for (var i = end; i <= start; i-=step) {
-        this.result.push(i);
-      }
-    } else {
-      for (var i = start; i <= end; i-=step) {
-        this.result.push(i);
-      }
-    }
-  }
 };
 
 Range.prototype.size = function () {
-  return this.result.length;
+  if (this.end === undefined) {
+    return 1;
+  } else {
+    return Math.floor(Math.abs(this.end - this.start)/Math.abs(this.step) + 1);
+  }
 };
 
 Range.prototype.each = function (callback) {
-  for (var i = 0; i < this.result.length; i++) {
-    callback(this.result[i]);
+  if (this.end === undefined) {
+    callback(this.start);
+  } else {
+    if(this.start <= this.end) {
+      if (this.step > 0) {
+        for (var i = this.start; i <= this.end; i+=this.step) {
+          callback(i);
+        }
+      } else {
+        for (var i = this.end; i >= this.start; i+=Math.abs(this.step)) {
+          callback(i);
+        }
+      }
+    } else {
+      if (this.step > 0) {
+        for (var i = this.end; i <= this.start; i+=this.step) {
+          callback(i);
+        }
+      } else {
+        for (var i = this.start; i >= this.end; i+=Math.abs(this.step)) {
+          callback(i);
+        }
+      }
+    }
   }
 };
 
 Range.prototype.includes = function (val) {
-  return this.result.includes(val);
+  if (this.start <= this.end) {
+    return ((val - this.start) % Math.abs(this.step) === 0);
+  } else {
+    return ((val - this.end) % Math.abs(this.step) === 0);
+  }
 };
 
 var range = new Range(1);
