@@ -86,41 +86,42 @@ BinaryHeap.prototype.getRoot = function () {
 BinaryHeap.prototype.insert = function (value) {
   // TODO: Your code here
   this._heap.push(value);
+  var scope = this;
   var checkParent = function (val, ind) {
     var parentInd = Math.floor((ind - 1) / 2);
-    if (this._compare(val, this[parentInd])) {
-      this._swap(ind, parentInd);
+    if (scope._compare(val, scope._heap[parentInd])) {
+      scope._swap(ind, parentInd);
       checkParent(val, parentInd);
     }
   }
 
   checkParent(value, this._heap.length - 1);
-
 }
 
 BinaryHeap.prototype.removeRoot = function () {
   // TODO: Your code here
   this._swap(0, this._heap.length - 1);
   this._heap.pop();
+  var scope = this;
   var checkChildren = function (val, ind) {
     var childInd = [ind * 2 + 1, ind * 2 + 2];
-    if (this._compare(this[childInd[0]], this[childInd[1]])) {
-      if (this._compare(this[childInd[0]], val)) {
-        this._swap(childInd[0], ind);
+    if (scope._compare(scope._heap[childInd[0]], scope._heap[childInd[1]])) {
+      if (scope._compare(scope._heap[childInd[0]], val)) {
+        scope._swap(childInd[0], ind);
         checkChildren(val, childInd[0]);
       } else {
-        if (this._compare(this[childInd[1]], val)) {
-          this._swap(childInd[1], ind);
+        if (scope._compare(scope._heap[childInd[1]], val)) {
+          scope._swap(childInd[1], ind);
           checkChildren(val, childInd[1]);
         }
       }
     } else {
-      if (this._compare(this[childInd[1]], val)) {
-        this._swap(childInd[1], ind);
+      if (scope._compare(scope._heap[childInd[1]], val)) {
+        scope._swap(childInd[1], ind);
         checkChildren(val, childInd[1]);
       } else {
-        if (this._compare(this[childInd[0]], val)) {
-          this._swap(childInd[0], ind);
+        if (scope._compare(scope._heap[childInd[0]], val)) {
+          scope._swap(childInd[0], ind);
           checkChildren(val, childInd[0]);
         }
       }
