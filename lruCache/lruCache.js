@@ -31,18 +31,29 @@
  */
 
 var LRUCache = function (limit) {
-  return new List(limit);
+  this.cacheMap = {};
+  // Object.keys(cacheMap) <= limit
+  // this.head = null;
+  this.list = new List();
+  this.limit = limit;
 };
 
 var LRUCacheItem = function (val, key) {
-  this.val = val;
   this.key = key;
+  this.node = new ListNode(null, val, null);
 };
 
 LRUCache.prototype.size = function () {
+  return Object.keys(this.cacheMap);
 };
 
 LRUCache.prototype.get = function (key) {
+  const existingNode = this.cacheMap[key];
+  if (existingNode) {
+    this.list.moveToFront(existingNode);
+    return existingNode.val;
+  }
+  return null;
 };
 
 LRUCache.prototype.set = function (key, val) {
