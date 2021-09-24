@@ -32,15 +32,13 @@
 
 var LRUCache = function (limit) {
   this.cacheMap = {};
-  // Object.keys(cacheMap) <= limit
-  // this.head = null;
   this.list = new List();
   this.limit = limit;
 };
 
 var LRUCacheItem = function (val, key) {
   this.key = key;
-  this.node = new ListNode(null, val, null);
+  this.val = val;
 };
 
 LRUCache.prototype.size = function () {
@@ -51,7 +49,7 @@ LRUCache.prototype.get = function (key) {
   const existingNode = this.cacheMap[key];
   if (existingNode) {
     this.list.moveToFront(existingNode);
-    return existingNode.val;
+    return existingNode.val.val;
   }
   return null;
 };
@@ -59,17 +57,18 @@ LRUCache.prototype.get = function (key) {
 LRUCache.prototype.set = function (key, val) {
   const existingNode = this.cacheMap[key];
   if (existingNode) {
-    existingNode.val = val;
+    existingNode.val.val = val;
     this.list.moveToFront(existingNode);
   } else {
-    if (this.size() < this.limit) {
-      const newNode = this.list.unshift(val)
-      this.cacheMap[key] = newNode;
-    } else {
-      const newNode = this.list.unshift(val)
-      this.cacheMap[key] = newNode;
-      this.list.pop();
+    if (this.size() >= this.limit) {
+      const deletedCacheItem = this.list.pop();
+      delete this.cacheMap[deletedCacheItem.key];
     }
+    const newCacheItem = new LRUCacheItem(val, key);
+    const newNode = this.list.unshift(newCacheItem);
+    this.cacheMap[key] = newNode;
+    // const newNode = this.list.unshift(val);
+    // this.cacheMap[key] = newNode;
   }
 };
 
