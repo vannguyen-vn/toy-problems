@@ -72,9 +72,9 @@ function BinaryHeap () {
   // this compare function will result in a minHeap, use it to make comparisons between nodes in your solution
   this._compare = function (i, j) { return i < j };
   this._swap = function (a, b) {
-    var temp = this[a];
-    this[a] = this[b];
-    this[b] = temp;
+    var temp = this._heap[a];
+    this._heap[a] = this._heap[b];
+    this._heap[b] = temp;
   };
 }
 
@@ -115,17 +115,14 @@ BinaryHeap.prototype.removeRoot = function () {
           checkChildren(val, childInd[1]);
         }
       }
-    } else {
-      if (scope._compare(scope._heap[childInd[1]], val)) {
+    } else if (scope._compare(scope._heap[childInd[1]], val)) {
         scope._swap(childInd[1], ind);
         checkChildren(val, childInd[1]);
-      } else {
-        if (scope._compare(scope._heap[childInd[0]], val)) {
+    } else if (scope._compare(scope._heap[childInd[0]], val)) {
           scope._swap(childInd[0], ind);
           checkChildren(val, childInd[0]);
-        }
-      }
+    } else {
+      return scope.getRoot();
     }
-  };
-
-}
+  }
+};
