@@ -43,7 +43,7 @@
 // output: new Range instance
 // constraints: NO arrays!
 // edge cases:
-var Range = function(start, end, step) {
+var Range = function (start, end, step) {
   if (start === undefined) {
     return null
   }
@@ -74,13 +74,15 @@ Range.prototype.size = function () {
 // constraints: N/A
 // edge cases:  N/A
 Range.prototype.each = function (callback) {
+  var absStep = Math.abs(this.step)
+
   // iterate over the range, passing each value to a callback function
   if (this.end > this.start) {
-    for (var i = this.start; i <= this.end; i += this.step) {
+    for (var i = this.start; i <= this.end; i += absStep) {
       callback(i)
     }
   } else {
-    for (var i = this.start; i >= this.end; i -= this.step) {
+    for (var i = this.start; i >= this.end; i -= absStep) {
       callback(i)
     }
   }
@@ -89,19 +91,22 @@ Range.prototype.each = function (callback) {
 };
 
 Range.prototype.includes = function (val) {
+  var absStep = Math.abs(this.step)
+
   if (this.end > this.start) {
-    for (var i = this.start; i <= this.end; i += this.step) {
-       if (i === val) {
-         return true
-       }
+    for (var i = this.start; i <= this.end; i += absStep) {
+      if (i === val) {
+        return true
+      }
     }
   } else {
-    for (var i = this.start; i >= this.end; i -= this.step) {
+    for (var i = this.start; i >= this.end; i -= absStep) {
       if (i === val) {
         return true
       }
     }
   }
+
   return false;
   // return whether or not the range includes the passed value
 };
@@ -109,17 +114,17 @@ Range.prototype.includes = function (val) {
 var range = new Range(1);
 
 //USAGE EXAMPLES:
-var myRange = new Range(0,10); // a new range representing the numbers between 0 and 10 (inclusively)
+var myRange = new Range(0, 10); // a new range representing the numbers between 0 and 10 (inclusively)
 
-var evenNumbers = new Range(2,8,2); // A range with the even numbers 2, 4, 6, and 8.
-evenNumbers.each(function(val){
-  console.log(val+"!");
+var evenNumbers = new Range(2, 8, 2); // A range with the even numbers 2, 4, 6, and 8.
+evenNumbers.each(function (val) {
+  console.log(val + "!");
 });
 console.log("Who do we appreciate!?");
 
-evenNumbers.size() // should be 4
-evenNumbers.includes(2) // should be true,
-evenNumbers.includes(3) //should be false
+console.log(evenNumbers.size()) // should be 4
+console.log(evenNumbers.includes(2)) // should be true,
+console.log(evenNumbers.includes(3)) //should be false
 
 
 
