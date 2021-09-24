@@ -203,21 +203,22 @@ ListNode.prototype.delete = function () {
   if (this.next) { this.next.prev = this.prev; }
 };
 
-var cache = new LRUCache(3); // limit of 3 items
-cache.set("item1", 1);
-cache.set("item2", 2);
-cache.set("item3", 3);
-cache.set("item4", 4);
+// var cache = new LRUCache(3); // limit of 3 items
+// cache.set("item1", 1);
+// cache.set("item2", 2);
+// cache.set("item3", 3);
+// cache.set("item4", 4);
 
-console.log(cache.get("item3")) //=> 3
-console.log(cache.get("item2")) //=> 2
-// item1 was removed because it was the oldest item by insertion/usage
-console.log(cache.get("item1")) //=> null
+// console.log('get item3', cache.get("item3")) //=> 3
+// console.log('get item2', cache.get("item2")) //=> 2
+// // item1 was removed because it was the oldest item by insertion/usage
+// console.log('get item1', cache.get("item1")) //=> null
 
-// item4 is removed to make room, because it is the oldest by usage,
-// which takes priority.
-cache.set("item5", 5);
+// // item4 is removed to make room, because it is the oldest by usage,
+// // which takes priority.
+// cache.set("item5", 5);
 
-// item3 is also removed, because it was retrieved before item2 was
-// last retrieved.
-cache.set("item6", 6);
+// // item3 is also removed, because it was retrieved before item2 was
+// // last retrieved.
+// cache.set("item6", 6);
+// console.log('size', cache.size)
