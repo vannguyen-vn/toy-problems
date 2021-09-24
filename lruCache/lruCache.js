@@ -42,7 +42,7 @@ var LRUCacheItem = function (val, key) {
 };
 
 LRUCache.prototype.size = function () {
-  return Object.keys(this.cacheMap);
+  return Object.keys(this.cacheMap).length;
 };
 
 LRUCache.prototype.get = function (key) {
