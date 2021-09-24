@@ -30,6 +30,8 @@
  * You will need a doubly-linked list (provided).
  */
 
+// debugger;
+
 var LRUCache = function (limit) {
   this.items = {};
   this.cache = new List();
@@ -39,8 +41,8 @@ var LRUCache = function (limit) {
 };
 
 var LRUCacheItem = function (val, key) {
-  this.val = val ? val : null;
-  this.key = key ? key : null;
+  this.val = val === undefined ? null : val;
+  this.key = key === undefined ? null : key;
   this.node = null;
 };
 
@@ -222,3 +224,35 @@ ListNode.prototype.delete = function () {
 // // last retrieved.
 // cache.set("item6", 6);
 // console.log('size', cache.size)
+
+// var cache = new LRUCache(10);
+
+// for (var i = 0; i < 8; i++) {
+//   cache.set(i, i);
+// }
+
+// cache.get(0);
+
+// for (i = 8; i < 14; i++) {
+//   cache.set(i, i);
+// }
+
+// console.log(cache.get(0))
+
+// var cache = new LRUCache(10);
+
+//   for (var i = 0; i < 15; i++) {
+//     cache.set(i, i);
+//   }
+
+// console.log(cache.size)
+
+// var cache = new LRUCache(5);
+
+//   for (var i = 0; i < 4; i++) {
+//     cache.set(i, i);
+//   }
+
+//   for (i = 0; i < 4; i++) {
+//     console.log((cache.get(i)))
+//   }
