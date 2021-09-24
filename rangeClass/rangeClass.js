@@ -40,15 +40,61 @@
 
 
 var Range = function(start, end, step) {
+  this.result = [];
+
+  if (start === undefined) {
+    return null;
+  }
+
+  if (end === undefined || start === end) {
+    this.result.push(start);
+  }
+
+  if (step === undefined) {
+    if (start > end) {
+      for (var i = end; i <= start; i++) {
+        this.result.push(i);
+      }
+    } else {
+      for (var i = start; i <= end; i++) {
+        this.result.push(i);
+      }
+    }
+  } else if (step > 0) {
+    if (start > end) {
+      for (var i = end; i <= start; i+=step) {
+        this.result.push(i);
+      }
+    } else {
+      for (var i = start; i <= end; i+=step) {
+        this.result.push(i);
+      }
+    }
+  } else if (step < 0) {
+    if (start > end) {
+      for (var i = end; i <= start; i-=step) {
+        this.result.push(i);
+      }
+    } else {
+      for (var i = start; i <= end; i-=step) {
+        this.result.push(i);
+      }
+    }
+  }
 };
 
 Range.prototype.size = function () {
+  return this.result.length;
 };
 
 Range.prototype.each = function (callback) {
+  for (var i = 0; i < this.result.length; i++) {
+    callback(this.result[i]);
+  }
 };
 
 Range.prototype.includes = function (val) {
+  return this.result.includes(val);
 };
 
 var range = new Range(1);
