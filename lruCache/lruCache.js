@@ -31,18 +31,59 @@
  */
 
 var LRUCache = function (limit) {
+  this.mapping = {};
+  this.order = new List();
+
+  this.count = 0;
+  this.limit = limit || 10;
 };
 
-var LRUCacheItem = function (val, key) {
+var LRUCacheItem = function (key, val) {
+  this.key = key;
+  this.val = val;
+  this.nodeRef = null;
 };
 
 LRUCache.prototype.size = function () {
+  return this.count;
+};
+
+LRUCache.prototype.isFull = function () {
+  return this.count >= this.limit;
+};
+
+LRUCache.prototype.viewOldestKey = function () {
+  return this.order.tail.val.key;
 };
 
 LRUCache.prototype.get = function (key) {
+  if (key in this.mapping) {
+    const item = this.mapping[key];
+    this.order.moveToFront(item.nodeRef);
+    return item.val;
+  }
+
+  return null;
 };
 
 LRUCache.prototype.set = function (key, val) {
+  if (key in this.mapping) {
+    const item = this.mapping[key];
+    item.val = val;
+    this.order.moveToFront(item.nodeRef);
+    return;
+  }
+
+  if (this.isFull()) {
+    const lrUsed = this.order.pop();
+    delete this.mapping[lrUsed.key];
+    this.count -= this.count > 0 ? 1 : 0;
+  }
+
+  const item = new LRUCacheItem(key, val);
+  item.nodeRef = this.order.unshift(item);
+  this.mapping[key] = item;
+  this.count += 1;
 };
 
 
@@ -171,3 +212,4 @@ ListNode.prototype.delete = function () {
   if (this.next) { this.next.prev = this.prev; }
 };
 
+module.exports = { Node, ListNode, LRUCache }

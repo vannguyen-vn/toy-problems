@@ -81,11 +81,4 @@ Range.prototype.includes = function (val) {
   return ret;
 };
 
-var justOne = new Range(1);
-console.log(justOne.includes(1)) // true
-console.log(justOne.includes(50)) // false
-var threes = new Range(3, 100, 3);
-// threes.includes(3).should.eql(true);
-// threes.includes(4).should.eql(false);
-// threes.includes(33).should.eql(true);
-// threes.includes(99).should.eql(true);
+module.exports = Range;
