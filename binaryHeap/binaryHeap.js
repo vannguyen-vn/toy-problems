@@ -100,6 +100,7 @@ BinaryHeap.prototype.insert = function (value) {
 
 BinaryHeap.prototype.removeRoot = function () {
   // TODO: Your code here
+  var removed = this.getRoot();
   this._swap(0, this._heap.length - 1);
   this._heap.pop();
   var scope = this;
@@ -121,8 +122,8 @@ BinaryHeap.prototype.removeRoot = function () {
     } else if (scope._compare(scope._heap[childInd[0]], val)) {
           scope._swap(childInd[0], ind);
           checkChildren(val, childInd[0]);
-    } else {
-      return scope.getRoot();
     }
   }
+  checkChildren(this._heap[this._heap.length - 1], 0);
+  return removed;
 };
