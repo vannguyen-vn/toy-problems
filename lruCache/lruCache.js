@@ -31,21 +31,49 @@
  */
 
 var LRUCache = function (limit) {
+  // list
+  // limit
+  // count
+
+  this.list = new List();
+  this.limit = limit;
+  this.count = 0;
 };
 
 var LRUCacheItem = function (val, key) {
 };
 
 LRUCache.prototype.size = function () {
+  return this.count;
 };
 
 LRUCache.prototype.get = function (key) {
+  var returnVal = null;
+  var cur = this.list.head;
+
+  while (cur.next !== null) {
+    if (cur.val[key] !== undefined) {
+      returnVal = cur.val[key];
+      this.moveToEnd(node);
+      break;
+    } else {
+      cur = cur.next;
+    }
+  }
+  return returnVal;
 };
 
 LRUCache.prototype.set = function (key, val) {
+  if (ths.count === this.limit) {
+    this.list.shift();
+    this.count--;
+  }
+
+  var item = {};
+  item[key] = val;
+  this.list.push(item);
+  this.count++;
 };
-
-
 
 var List = function () {
   this.head = null;
@@ -63,7 +91,7 @@ List.prototype.unshift = function (val) {
   // Empty list
   if (this.head === null && this.tail === null) {
     this.head = this.tail = new ListNode(null, val, null);
-  // Not empty list.
+    // Not empty list.
   } else {
     this.head = new ListNode(null, val, this.head);
     this.head.next.prev = this.head;
@@ -77,7 +105,7 @@ List.prototype.shift = function () {
   // Empty list
   if (this.head === null && this.tail === null) {
     return null;
-  // Not empty list.
+    // Not empty list.
   } else {
     var head = this.head;
     this.head = this.head.next;
@@ -91,7 +119,7 @@ List.prototype.push = function (val) {
   // Empty list
   if (this.head === null && this.tail === null) {
     this.head = this.tail = new ListNode(null, val, null);
-  // Not empty list.
+    // Not empty list.
   } else {
     this.tail = new ListNode(this.tail, val, null);
     this.tail.prev.next = this.tail;
@@ -105,7 +133,7 @@ List.prototype.pop = function () {
   // Empty list
   if (this.head === null && this.tail === null) {
     return null;
-  // Not empty list.
+    // Not empty list.
   } else {
     var tail = this.tail;
     this.tail = this.tail.prev;
@@ -132,7 +160,7 @@ List.prototype.moveToFront = function (node) {
   // Empty list
   if (this.head === null && this.tail === null) {
     this.head = this.tail = node;
-  // At least one node.
+    // At least one node.
   } else {
     this.head.prev = node;
     node.next = this.head;
@@ -158,7 +186,7 @@ List.prototype.moveToEnd = function (node) {
   // Empty list
   if (this.head === null && this.tail === null) {
     this.head = this.tail = node;
-  // At least one node.
+    // At least one node.
   } else {
     this.tail.next = node;
     node.prev = this.tail;
