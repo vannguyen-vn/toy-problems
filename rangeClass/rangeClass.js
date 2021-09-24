@@ -81,4 +81,4 @@ Range.prototype.includes = function (val) {
   return ret;
 };
 
-module.exports = Range;
+// module.exports = Range;
