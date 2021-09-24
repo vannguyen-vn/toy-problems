@@ -45,9 +45,12 @@ LRUCache.prototype.size = function () {
 };
 
 LRUCache.prototype.get = function (key) {
+  if (this.cache[key] === undefined) {
+    return undefined;
+  }
   this.list.moveToFront(this.cache[key]);
   this.fill --;
-  return this.cache[key];
+  return this.cache[key].val.val;
   //move value at key to front of dll
   //return value with key
 };
@@ -58,10 +61,11 @@ LRUCache.prototype.set = function (key, val) {
   if (this.fill > this.limit) {
     var node = this.list.pop();
     delete this.cache[node.val.key]
+    this.fill --;
   }
   this.cache[key] = node;
 };
-module.exports = LRUCache;
+// module.exports = LRUCache;
 
 
 var List = function () {
