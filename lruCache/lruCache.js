@@ -30,19 +30,43 @@
  * You will need a doubly-linked list (provided).
  */
 
+// input limit
+// output ?
+// constraints N/A
+// edge cases N/A
 var LRUCache = function (limit) {
 };
 
+// input value, key
+// output
+// constraints N/A
+// edge cases N/A
 var LRUCacheItem = function (val, key) {
 };
 
+// input none
+// output size (number)
+// constraints N/A
+// edge cases N/A
 LRUCache.prototype.size = function () {
+
+  // return size
 };
 
+// input key
+// output value
+// constraints N/A
+// edge cases N/A
 LRUCache.prototype.get = function (key) {
+  // return value at that key
 };
 
+// input key, value
+// output side effect node is created
+// constraints N/A
+// edge cases N/A
 LRUCache.prototype.set = function (key, val) {
+
 };
 
 
@@ -171,3 +195,21 @@ ListNode.prototype.delete = function () {
   if (this.next) { this.next.prev = this.prev; }
 };
 
+var cache = new LRUCache(3); // limit of 3 items
+cache.set("item1", 1);
+cache.set("item2", 2);
+cache.set("item3", 3);
+cache.set("item4", 4);
+
+cache.get("item3") //=> 3
+cache.get("item2") //=> 2
+// item1 was removed because it was the oldest item by insertion/usage
+cache.get("item1") //=> null
+
+// item4 is removed to make room, because it is the oldest by usage,
+// which takes priority.
+cache.set("item5", 5);
+
+// item3 is also removed, because it was retrieved before item2 was
+// last retrieved.
+cache.set("item6", 6);
