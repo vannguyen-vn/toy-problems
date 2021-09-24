@@ -65,7 +65,6 @@ LRUCache.prototype.set = function (key, val) {
   }
   this.cache[key] = node;
 };
-// module.exports = LRUCache;
 
 
 var List = function () {
