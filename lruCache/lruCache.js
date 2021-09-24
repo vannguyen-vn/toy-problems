@@ -57,6 +57,20 @@ LRUCache.prototype.get = function (key) {
 };
 
 LRUCache.prototype.set = function (key, val) {
+  const existingNode = this.cacheMap[key];
+  if (existingNode) {
+    existingNode.val = val;
+    this.list.moveToFront(existingNode);
+  } else {
+    if (this.size() < limit) {
+      const newNode = this.list.unshift(val)
+      this.cacheMap[key] = newNode;
+    } else {
+      const newNode = this.list.unshift(val)
+      this.cacheMap[key] = newNode;
+      this.list.pop();
+    }
+  }
 };
 
 
@@ -77,7 +91,7 @@ List.prototype.unshift = function (val) {
   // Empty list
   if (this.head === null && this.tail === null) {
     this.head = this.tail = new ListNode(null, val, null);
-  // Not empty list.
+    // Not empty list.
   } else {
     this.head = new ListNode(null, val, this.head);
     this.head.next.prev = this.head;
@@ -91,7 +105,7 @@ List.prototype.shift = function () {
   // Empty list
   if (this.head === null && this.tail === null) {
     return null;
-  // Not empty list.
+    // Not empty list.
   } else {
     var head = this.head;
     this.head = this.head.next;
@@ -105,7 +119,7 @@ List.prototype.push = function (val) {
   // Empty list
   if (this.head === null && this.tail === null) {
     this.head = this.tail = new ListNode(null, val, null);
-  // Not empty list.
+    // Not empty list.
   } else {
     this.tail = new ListNode(this.tail, val, null);
     this.tail.prev.next = this.tail;
@@ -119,7 +133,7 @@ List.prototype.pop = function () {
   // Empty list
   if (this.head === null && this.tail === null) {
     return null;
-  // Not empty list.
+    // Not empty list.
   } else {
     var tail = this.tail;
     this.tail = this.tail.prev;
@@ -146,7 +160,7 @@ List.prototype.moveToFront = function (node) {
   // Empty list
   if (this.head === null && this.tail === null) {
     this.head = this.tail = node;
-  // At least one node.
+    // At least one node.
   } else {
     this.head.prev = node;
     node.next = this.head;
@@ -172,7 +186,7 @@ List.prototype.moveToEnd = function (node) {
   // Empty list
   if (this.head === null && this.tail === null) {
     this.head = this.tail = node;
-  // At least one node.
+    // At least one node.
   } else {
     this.tail.next = node;
     node.prev = this.tail;
