@@ -62,7 +62,7 @@ LRUCache.prototype.set = function (key, val) {
     existingNode.val = val;
     this.list.moveToFront(existingNode);
   } else {
-    if (this.size() < limit) {
+    if (this.size() < this.limit) {
       const newNode = this.list.unshift(val)
       this.cacheMap[key] = newNode;
     } else {
