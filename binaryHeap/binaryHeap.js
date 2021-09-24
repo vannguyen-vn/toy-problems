@@ -10,7 +10,7 @@
  * parent of the 3rd and 4th nodes, and the 2nd node will be the parent of the 5th and
  * 6th nodes. In a specific kind of binary heap, the binary min heap, every node is
  * less than its immediate children:
- * 
+ *
  *          0
  *     1         2
  *   3   4     5   6
@@ -71,6 +71,11 @@ function BinaryHeap () {
   this._heap = [];
   // this compare function will result in a minHeap, use it to make comparisons between nodes in your solution
   this._compare = function (i, j) { return i < j };
+  this._swap = function (a, b) {
+    var temp = this[a];
+    this[a] = this[b];
+    this[b] = temp;
+  };
 }
 
 // This function works just fine and shouldn't be modified
@@ -80,8 +85,46 @@ BinaryHeap.prototype.getRoot = function () {
 
 BinaryHeap.prototype.insert = function (value) {
   // TODO: Your code here
+  this._heap.push(value);
+  var checkParent = function (val, ind) {
+    var parentInd = Math.floor((ind - 1) / 2);
+    if (this._compare(val, this[parentInd])) {
+      this._swap(ind, parentInd);
+      checkParent(val, parentInd);
+    }
+  }
+
+  checkParent(value, this._heap.length - 1);
+
 }
 
 BinaryHeap.prototype.removeRoot = function () {
   // TODO: Your code here
+  this._swap(0, this._heap.length - 1);
+  this._heap.pop();
+  var checkChildren = function (val, ind) {
+    var childInd = [ind * 2 + 1, ind * 2 + 2];
+    if (this._compare(this[childInd[0]], this[childInd[1]])) {
+      if (this._compare(this[childInd[0]], val)) {
+        this._swap(childInd[0], ind);
+        checkChildren(val, childInd[0]);
+      } else {
+        if (this._compare(this[childInd[1]], val)) {
+          this._swap(childInd[1], ind);
+          checkChildren(val, childInd[1]);
+        }
+      }
+    } else {
+      if (this._compare(this[childInd[1]], val)) {
+        this._swap(childInd[1], ind);
+        checkChildren(val, childInd[1]);
+      } else {
+        if (this._compare(this[childInd[0]], val)) {
+          this._swap(childInd[0], ind);
+          checkChildren(val, childInd[0]);
+        }
+      }
+    }
+  };
+
 }
