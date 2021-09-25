@@ -39,16 +39,19 @@ function Node(val) {
 
 function linkedListIntersection(list1, list2) {
   // TODO: Implement this function!
-  // i - two linked lists. may be intersected or not
-  // o - null if not intersected, or the node itself if intersected
-  // c - constraints
-  // e - case of no node
-  // start at the head of each linked list
-  // while node exists, traverse and store values
-  // check for repeated values of the node
-  // if any values are repeated return the value
-  // if none of the values are repeated, return null
-
-
+  var one = list1;
+  var two = list2;
+  while (one !== two) {
+    if (one !== null) {
+      one = one.next;
+    } else {
+      one = list2;
+    }
+    if (two !== null) {
+      two = two.next;
+    } else {
+      two = list1;
+    }
+  }
+  return one;
 }
-
