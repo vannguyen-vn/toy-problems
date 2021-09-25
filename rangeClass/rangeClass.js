@@ -40,17 +40,16 @@
 
 
 var Range = function(start, end, step) {
+  if (step === undefined) {
+    step = 1;
+  }
+
+  if (start === undefined) {
+    return null;
+  }
   this.start = start;
   this.end = end;
   this.step = step;
-
-  if (this.step === undefined) {
-    this.step = 1;
-  }
-
-  if (this.start === undefined) {
-    return null;
-  }
 };
 
 Range.prototype.size = function () {
