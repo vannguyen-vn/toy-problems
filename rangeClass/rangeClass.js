@@ -61,8 +61,16 @@ Range.prototype.each = function (callback) {
   if (this.end === undefined) {
     callback(this.start);
   } else {
-    for (var i = this.start; i <= this.end; i+=this.step) {
-      callback(i);
+    if(this.start <= this.end) {
+      if (this.step > 0) {
+        for (var i = this.start; i <= this.end; i+=this.step) {
+          callback(i);
+        }
+      }
+    } else {
+      for (var i = this.start; i >= this.end; i+=this.step) {
+        callback(i);
+      }
     }
   }
 };
