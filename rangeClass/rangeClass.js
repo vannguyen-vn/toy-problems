@@ -46,32 +46,16 @@ var Range = function(start, end, step) {
     this.end = end;
   }
 
-  this.step = step || 1;
+  this.step = !step ? (end > start ? 1 : -1) : step;
 };
 
 Range.prototype.size = function () {
-  if (this.end) {
-    return Math.round((this.end - this.start) / this.step);
-  } else {
-    return 1;
-  }
+  return Math.floor((this.end - this.start) / this.step + 1);
 };
 
 Range.prototype.each = function (callback) {
-  if (this.start < this.end) {
-    for (var i = this.start; i <= this.end; i += this.step) {
-      callback(i);
-    }
-  } else if (this.start > this.end) {
-    if (this.step < 0) {
-      for (var i = this.start; i >= this.end; i += this.step) {
-        callback(i);
-      }
-    } else {
-      for (var i = this.start; i >= this.end; i -= this.step) {
-        callback(i);
-      }
-    }
+  for (var i = 0; i < this.size(); i++) {
+    callback(this.start + this.step * i);
   }
 };
 
