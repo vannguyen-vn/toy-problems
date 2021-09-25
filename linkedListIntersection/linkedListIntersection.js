@@ -35,28 +35,37 @@ function Node (val) {
   return obj;
 }
 
-
+function getListLength(list) {
+  if (list.next === null) {
+    return 1;
+  } else {
+    return getListLength(list.next) + 1;
+  }
+}
 
 function linkedListIntersection(list1, list2) {
-  var listOne = new Node(list1);
-  var listTwo = new Node(list2);
+  var listOneLength = getListLength(list1);
+  var listTwoLength = getListLength(list2);
 
-  for (var i = 0; i < listOne.value.length; i++) {
-    if (listTwo.value.indexOf(listOne.value[i]) > -1) {
-      return listOne.value[i];
+  var diff = Math.abs(listTwoLength - listOneLength);
+  var longerNode = listOneLength >= listTwoLength ? list1 : list2;
+  var shorterNode = listOneLength >= listTwoLength ? list2 : list1;
+
+  while (longerNode && shorterNode) {
+    if (diff > 0) {
+      longerNode = longerNode.next;
+      diff--;
+      continue;
     }
+
+    if (longerNode === shorterNode) {
+      return longerNode
+    }
+
+    longerNode = longerNode.next;
+    shorterNode = shorterNode.next;
   }
 
   return null;
-
-  // listOne.next = listOne.value[0];
-  // listTwo.next = listTwo.value[0];
-
-  // while (listOne.next || listTwo.next) {
-  //   if (listOne.next )
-  // }
-
 }
-
-// console.log(linkedListIntersection([1,2,3], [2,3,4]))
 
