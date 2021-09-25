@@ -41,45 +41,37 @@
 
 var Range = function(start, end, step) {
   this.start = start === undefined ? null : start;
-  this.end = end;
+  this.end = end === undefined ? start : end;
   this.step = step === undefined ? 1 : step;
 };
 
 Range.prototype.size = function () {
-  if (this.end === undefined) {
-    return 1;
-  } else {
-    return Math.floor(Math.abs(this.end - this.start)/Math.abs(this.step) + 1);
-  }
+  return Math.floor(Math.abs(this.end - this.start)/Math.abs(this.step) + 1);
 };
 
 Range.prototype.each = function (callback) {
-  if (this.end === undefined) {
-    callback(this.start);
-  } else {
-    if(this.start <= this.end) {
-      if (this.step > 0) {
-        for (var i = this.start; i <= this.end; i+=this.step) {
-          callback(i);
-        }
-      } else {
-        for (var i = this.end; i >= this.start; i+=this.step) {
-          callback(i);
-        }
-      }
-    } else {
-      for (var i = this.start; i >= this.end; i+=this.step) {
+  if(this.start <= this.end) {
+    if (this.step > 0) {
+      for (var i = this.start; i <= this.end; i+=this.step) {
         callback(i);
       }
+    } else {
+      for (var i = this.end; i >= this.start; i+=this.step) {
+        callback(i);
+      }
+    }
+  } else {
+    for (var i = this.start; i >= this.end; i-=this.step) {
+      callback(i);
     }
   }
 };
 
 Range.prototype.includes = function (val) {
   if (this.start <= this.end) {
-    return ((val - this.start) % Math.abs(this.step) === 0);
+    return ((val - this.start) % Math.abs(this.step)) === 0 && (val - this.start) > 0;
   } else {
-    return ((val - this.end) % Math.abs(this.step) === 0);
+    return ((val - this.end) % Math.abs(this.step)) === 0 && (val - this.end) > 0;
   }
 };
 
