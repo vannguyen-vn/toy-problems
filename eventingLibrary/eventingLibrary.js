@@ -20,7 +20,29 @@
  * - It is not necessary to write a way to remove listeners.
  */
 
-var mixEvents = function(obj) {
+// score properties in the object in the format of {event: function} related to that event
+// e.g. {'trigger': ageChangeFunction};
+// store callbacks in an array so that multiple callbacks can be associated with the event
+
+var mixEvents = function (obj) {
   // TODO: Your code here
+  // input: an event name and a callback function
+  obj.on = (event, callback) => {
+    if (!obj[event]) {
+      obj[event] = [callback];
+    } else {
+      obj[event].push(callback);
+    }
+  };
+
+  // input: an event, could also have multiple arguments after it
+  obj.trigger = (event, ...args) => {
+    if (obj[event]) {
+      obj[event].forEach((callback) => {
+        callback(...args);
+      });
+    }
+  };
+
   return obj;
 };
