@@ -43,7 +43,7 @@ function linkedListIntersection(list1, list2) {
     return null;
   }
 
-  var set = {};
+  var set = new Set();
 
   var head1 = list1;
   var head2 = list2;
