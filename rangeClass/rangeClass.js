@@ -57,7 +57,7 @@ var Range = function (start, end, step) {
 // constraints:
 // edge cases:
 Range.prototype.size = function () {
-  if (this.start === this.end) {
+  if (this.start === this.end || this.end === undefined) {
     return 1
   }
   // check if start or end is bigger
@@ -92,7 +92,9 @@ Range.prototype.each = function (callback) {
 
 Range.prototype.includes = function (val) {
   var absStep = Math.abs(this.step)
-
+  if (this.start === val) {
+    return true
+  }
   if (this.end > this.start) {
     for (var i = this.start; i <= this.end; i += absStep) {
       if (i === val) {
