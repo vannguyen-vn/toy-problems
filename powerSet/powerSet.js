@@ -32,8 +32,7 @@ var powerSet = function(str) {
     return self.indexOf(value) === index
   }
 
-  const uniqueStr = str.filter(unique)
-
+  const uniqueStr = str.split('').filter(unique).join('')
 
   var nextLetter = uniqueStr[0]
 
