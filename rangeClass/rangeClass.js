@@ -74,11 +74,13 @@ Range.prototype.each = function (callback) {
 };
 
 Range.prototype.includes = function (val) {
-  if (this.start <= this.end) {
-    return ((val - this.start) % Math.abs(this.step)) === 0 && (val - this.start) > 0;
-  } else {
-    return ((val - this.end) % Math.abs(this.step)) === 0 && (val - this.end) > 0;
-  }
+  var result = false;
+  this.each((data) => {
+    if (data === val) {
+      result = true;
+    }
+  })
+  return result;
 };
 
 var range = new Range(1);
