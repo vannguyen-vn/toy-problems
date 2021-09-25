@@ -42,9 +42,7 @@
 var Range = function(start, end, step) {
   this.start = start;
 
-  if (end) {
-    this.end = end;
-  }
+  this.end = end === undefined ? start : end;
 
   this.step = !step ? (end > start ? 1 : -1) : step;
 };
