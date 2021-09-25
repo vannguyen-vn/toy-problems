@@ -44,6 +44,10 @@ var Range = function(start, end, step) {
   this.end = end;
   this.step = step;
 
+  if (this.step === undefined) {
+    this.step = 1;
+  }
+
   if (start === undefined) {
     return null;
   }
