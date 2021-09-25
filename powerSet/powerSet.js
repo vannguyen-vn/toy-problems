@@ -28,9 +28,16 @@ var powerSet = function(str) {
     return ['']
   }
 
-  var nextLetter = str[0]
+  const unique = (value, index, self) => {
+    return self.indexOf(value) === index
+  }
 
-  var set = powerSet(str.slice(1))
+  const uniqueStr = str.filter(unique)
+
+
+  var nextLetter = uniqueStr[0]
+
+  var set = powerSet(uniqueStr.slice(1))
   return set.concat(set.map(currentWord => nextLetter + currentWord)).sort()
 
 };
@@ -40,3 +47,6 @@ powerSet("abc")
 
 powerSet("jump")
 //-> ["", "j", "ju", "jm", "jp", "jmu", "jmp", "jpu", "jmpu", "u", "m", "p", "mu", "mp", "pu", "mpu"]
+
+powerSet('bbbaaa')
+//-> [" ", "a", "b", "ab"]
