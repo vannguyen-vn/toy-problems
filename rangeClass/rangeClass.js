@@ -40,15 +40,24 @@
 
 
 var Range = function(start, end, step) {
+  var start = start || null;
+  var end = end;
+  var step = step || 1;
+
 };
 
 Range.prototype.size = function () {
+  // use basic math to calculate the size 
 };
 
 Range.prototype.each = function (callback) {
+  //use a for loop where i increments according to the step value
 };
 
 Range.prototype.includes = function (val) {
+  //DO NOT use an arra
+  //  calculate one value at a time, see if any are equal to val?
+  // **find a way to do that logarithmically--maybe similar to a binary search
 };
 
 var range = new Range(1);

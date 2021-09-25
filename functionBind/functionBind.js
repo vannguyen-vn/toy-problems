@@ -23,8 +23,7 @@
  *
 */
 
-var bind = function(
-) {
+var bind = function() {
   var func = arguments[0];
   var context = arguments[1];
   // TODO: Your code here
