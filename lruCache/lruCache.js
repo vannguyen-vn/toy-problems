@@ -33,13 +33,14 @@
 var LRUCache = function (limit) {
   this._items = {};
   this._ordering = new List();
-  // this._limit = limit || 10000;
+  this._limit = limit || 10000;
   this._size = 0;
-  };
+};
 
 var LRUCacheItem = function (val, key) {
-  this.val = !val ? null : val;
-  this.key = !key ? null : key;
+
+  this.val = val === undefined ? null : val;
+  this.key = key === undefined ? null : key;
   this.node = null;
 };
 
@@ -69,7 +70,6 @@ LRUCache.prototype.set = function (key, val) {
   }
 };
 
-
 LRUCache.prototype.full = function () {
   return this._size >= this._limit;
 };
@@ -97,26 +97,21 @@ var ListNode = function (prev, val, next) {
 
 // Insert at the head of the list.
 List.prototype.unshift = function (val) {
-  // Empty list
   if (this.head === null && this.tail === null) {
     this.head = this.tail = new ListNode(null, val, null);
-  // Not empty list.
   } else {
     this.head = new ListNode(null, val, this.head);
     this.head.next.prev = this.head;
   }
-
   return this.head;
 };
 
 // Delete at the head of the list.
 List.prototype.shift = function () {
-  // Empty list
   if (this.head === null && this.tail === null) {
     return null;
-  // Not empty list.
   } else {
-    let head = this.head;
+    var head = this.head;
     this.head = this.head.next;
     head.delete();
     return head.val;
@@ -125,26 +120,21 @@ List.prototype.shift = function () {
 
 // Insert at the end of the list.
 List.prototype.push = function (val) {
-  // Empty list
   if (this.head === null && this.tail === null) {
     this.head = this.tail = new ListNode(null, val, null);
-  // Not empty list.
   } else {
     this.tail = new ListNode(this.tail, val, null);
     this.tail.prev.next = this.tail;
   }
-
   return this.tail;
 };
 
 // Delete at the end of the list.
 List.prototype.pop = function () {
-  // Empty list
   if (this.head === null && this.tail === null) {
     return null;
-  // Not empty list.
   } else {
-    let tail = this.tail;
+    var tail = this.tail;
     this.tail = this.tail.prev;
     tail.delete();
     return tail.val;
@@ -207,17 +197,3 @@ ListNode.prototype.delete = function () {
   if (this.prev) { this.prev.next = this.next; }
   if (this.next) { this.next.prev = this.prev; }
 };
-
-var cache = new LRUCache(3);
-cache.set("item1", 1);
-cache.set("item2", 2);
-cache.set("item3", 3);
-cache.set("item4", 4);
-
-console.log('cache.get("item3"): ', cache.get("item3"));
-console.log('cache.get("item2"): ', cache.get("item2"));
-console.log('cache.get("item1"): ', cache.get("item1"));
-cache.set("item5", 5)
-cache.set("item6", 6)
-console.log('cache.get("item5"): ', cache.get("item5"));
-console.log('cache.get("item6"): ', cache.get("item6"));
