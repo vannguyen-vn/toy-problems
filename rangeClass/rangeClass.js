@@ -40,16 +40,9 @@
 
 
 var Range = function(start, end, step) {
-  if (step === undefined) {
-    step = 1;
-  }
-
-  if (start === undefined) {
-    return null;
-  }
-  this.start = start;
+  this.start = start === undefined ? null : start;
   this.end = end;
-  this.step = step;
+  this.step = step === undefined ? 1 : step;
 };
 
 Range.prototype.size = function () {
@@ -67,6 +60,10 @@ Range.prototype.each = function (callback) {
     if(this.start <= this.end) {
       if (this.step > 0) {
         for (var i = this.start; i <= this.end; i+=this.step) {
+          callback(i);
+        }
+      } else {
+        for (var i = this.end; i >= this.start; i+=this.step) {
           callback(i);
         }
       }
