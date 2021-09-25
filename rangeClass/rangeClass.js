@@ -58,19 +58,21 @@ Range.prototype.size = function () {
 };
 
 Range.prototype.each = function (callback) {
-  const test = (value, start, end) => {
-    return end < start ? value >= end : value <= end;
+  const condition = (val, start, end) => {
+    return end < start ? val >= end : val <= end;
   }
-
-  for (let i = this.start; test(i, this.start, this.end); i += this.step) {
+  for (let i = this.start; condition(i, this.start, this.end); i += this.step) {
     callback(i);
   }
 };
 
-Range.prototype.includes = function (value) {
+Range.prototype.includes = function (val) {
   let result = false;
   this.each((item) => {
-    if (item === value) result = true;
+    if (item === val) {
+      console.log(item, val);
+      result = true;
+    }
   })
   return result;
 };
