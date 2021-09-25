@@ -72,3 +72,5 @@ var range = new Range(1);
 // var range2 = new Range(-1, 8, 2);
 // console.log(range2);
 // range2.each((val) => console.log(val));
+
+//should be able to count backwards implicity and count down by 2
