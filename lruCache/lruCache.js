@@ -64,7 +64,7 @@ LRUCache.prototype.get = function (key) {
 };
 
 LRUCache.prototype.set = function (key, val) {
-  if (ths.count === this.limit) {
+  if (this.count === this.limit) {
     this.list.shift();
     this.count--;
   }
