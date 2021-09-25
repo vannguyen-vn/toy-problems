@@ -48,7 +48,7 @@ var Range = function(start, end, step) {
     this.step = 1;
   }
 
-  if (start === undefined) {
+  if (this.start === undefined) {
     return null;
   }
 };
