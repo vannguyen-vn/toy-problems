@@ -39,12 +39,16 @@ function Node(val) {
 
 function linkedListIntersection(list1, list2) {
   // TODO: Implement this function!
-  // i - a linked list. may be intersected or not
+  // i - two linked lists. may be intersected or not
   // o - null if not intersected, or the node itself if intersected
   // c - constraints
   // e - case of no node
-  // start at the head
-  // move at the
+  // start at the head of each linked list
+  // while node exists, traverse and store values
+  // check for repeated values of the node
+  // if any values are repeated return the value
+  // if none of the values are repeated, return null
+
 
 }
 
