@@ -41,12 +41,12 @@
 
  var Range = function(start, end, step) {
   if (start > end) {
-    step = step === undefined ? -1 : step * -1;
+    step = !step ? -1 : step * -1;
     step = step < 1 ? step : step * -1;
   }
-  this.start = start === undefined ? null : start;
-  this.end = end === undefined ? start : end;
-  this.step = step === undefined ? 1 : step;
+  this.start = !start ? null : start;
+  this.end = !end ? start : end;
+  this.step = !step ? 1 : step;
 };
 
 Range.prototype.size = function () {
@@ -75,13 +75,13 @@ Range.prototype.includes = function (value) {
   return result;
 };
 
-// var myRange = new Range(0,10); // a new range representing the numbers between 0 and 10 (inclusively)
-// var evenNumbers = new Range(2,8,2); // A range with the even numbers 2, 4, 6, and 8.
-// evenNumbers.each(function(val){
-//   console.log(val+"!");
-// });
-// console.log("Who do we appreciate!?");
-// // evenNumbers.size() //should be 4
-// console.log('evenNumbers.size(): ', evenNumbers.size());
-// // evenNumbers.includes(2) //should be true, evenNumbers.includes(3) should be false
-// console.log('evenNumbers.includes(2): ', evenNumbers.includes(2));
+var myRange = new Range(0,10); // a new range representing the numbers between 0 and 10 (inclusively)
+var evenNumbers = new Range(2,8,2); // A range with the even numbers 2, 4, 6, and 8.
+evenNumbers.each(function(val){
+  console.log(val+"!");
+});
+console.log("Who do we appreciate!?");
+// evenNumbers.size() //should be 4
+console.log('evenNumbers.size(): ', evenNumbers.size());
+// evenNumbers.includes(2) //should be true, evenNumbers.includes(3) should be false
+console.log('evenNumbers.includes(2): ', evenNumbers.includes(2));
