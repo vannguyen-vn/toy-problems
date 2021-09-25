@@ -31,21 +31,58 @@
  */
 
 var LRUCache = function (limit) {
-};
+  this._items = {};
+  this._ordering = new List();
+  // this._limit = limit || 10000;
+  this._size = 0;
+  };
 
 var LRUCacheItem = function (val, key) {
+  this.val = !val ? null : val;
+  this.key = !key ? null : key;
+  this.node = null;
 };
 
 LRUCache.prototype.size = function () {
+  return this._size;
 };
 
 LRUCache.prototype.get = function (key) {
+  if (!(key in this._items)) return null;
+  let item = this._items[key];
+  this.promote(item);
+  return item.val;
 };
 
 LRUCache.prototype.set = function (key, val) {
+  let item;
+  if (key in this._items) {
+    item = this._items[key];
+    item.val = val;
+    this.promote(item);
+  } else {
+    if (this.full()) this.prune();
+    this._size += 1;
+    item = new LRUCacheItem(val, key);
+    item.node = this._ordering.unshift(item);
+    this._items[key] = item;
+  }
 };
 
 
+LRUCache.prototype.full = function () {
+  return this._size >= this._limit;
+};
+
+LRUCache.prototype.prune = function () {
+  let oldest = this._ordering.pop();
+  delete this._items[oldest.key];
+  this._size = Math.max(0, this._size - 1);
+};
+
+LRUCache.prototype.promote = function (item) {
+  this._ordering.moveToFront(item.node);
+};
 
 var List = function () {
   this.head = null;
@@ -79,7 +116,7 @@ List.prototype.shift = function () {
     return null;
   // Not empty list.
   } else {
-    var head = this.head;
+    let head = this.head;
     this.head = this.head.next;
     head.delete();
     return head.val;
@@ -107,7 +144,7 @@ List.prototype.pop = function () {
     return null;
   // Not empty list.
   } else {
-    var tail = this.tail;
+    let tail = this.tail;
     this.tail = this.tail.prev;
     tail.delete();
     return tail.val;
@@ -171,3 +208,16 @@ ListNode.prototype.delete = function () {
   if (this.next) { this.next.prev = this.prev; }
 };
 
+var cache = new LRUCache(3);
+cache.set("item1", 1);
+cache.set("item2", 2);
+cache.set("item3", 3);
+cache.set("item4", 4);
+
+console.log('cache.get("item3"): ', cache.get("item3"));
+console.log('cache.get("item2"): ', cache.get("item2"));
+console.log('cache.get("item1"): ', cache.get("item1"));
+cache.set("item5", 5)
+cache.set("item6", 6)
+console.log('cache.get("item5"): ', cache.get("item5"));
+console.log('cache.get("item6"): ', cache.get("item6"));
