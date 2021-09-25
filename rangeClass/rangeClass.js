@@ -53,7 +53,7 @@ Range.prototype.size = function () {
   if (this.end === undefined) {
     return 1;
   } else {
-    return Math.floor(Math.abs(end - start)/Math.abs(step) + 1);
+    return Math.floor(Math.abs(this.end - this.start)/Math.abs(this.step) + 1);
   }
 };
 
@@ -61,29 +61,17 @@ Range.prototype.each = function (callback) {
   if (this.end === undefined) {
     callback(this.start);
   } else {
-    if(this.start <= this.end) {
-      if (this.step > 0) {
-        for (var i = this.start; i <= this.end; i+=this.step) {
-          callback(i);
-        }
-      } else {
-        for (var i = this.end; i >= this.start; i+=this.step) {
-          callback(i);
-        }
-      }
-    } else {
-      for (var i = this.end; i <= this.start; i+=Math.abs(this.step)) {
-        callback(i);
-      }
+    for (var i = this.start; i <= this.end; i+=this.step) {
+      callback(i);
     }
   }
 };
 
 Range.prototype.includes = function (val) {
   if (this.start <= this.end) {
-    return ((val - this.start) % Math.abs(step) === 0);
+    return ((val - this.start) % Math.abs(this.step) === 0);
   } else {
-    return ((val - this.end) % Math.abs(step) === 0);
+    return ((val - this.end) % Math.abs(this.step) === 0);
   }
 };
 
