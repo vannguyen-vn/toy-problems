@@ -54,7 +54,7 @@ LRUCache.prototype.get = function (key) {
   while (cur.next !== null) {
     if (cur.val[key] !== undefined) {
       returnVal = cur.val[key];
-      this.list.moveToEnd(node);
+      this.list.moveToEnd(cur);
       break;
     } else {
       cur = cur.next;
