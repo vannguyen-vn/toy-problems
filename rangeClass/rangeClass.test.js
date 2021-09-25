@@ -1,6 +1,6 @@
 const Range = require('./rangeClass.js');
 
-describe('range class', () => {
+describe.skip('range class', () => {
   var testRange = new Range(0, 10, 2);
   test.skip('it shoud handle positive direction ranges', () => {
     expect(testRange.size()).toEqual(6);
