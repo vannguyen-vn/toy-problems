@@ -62,7 +62,7 @@ Range.prototype.each = function (callback) {
     return end < start ? value >= end : value <= end;
   }
 
-  for (let i = this.start; condition(i, this.start, this.end); i += this.step) {
+  for (let i = this.start; test(i, this.start, this.end); i += this.step) {
     callback(i);
   }
 };
