@@ -58,5 +58,5 @@ function linkedListIntersection(list1, list2) {
 
 }
 
-console.log(linkedListIntersection([1,2,3], [2,3,4]))
+// console.log(linkedListIntersection([1,2,3], [2,3,4]))
 
