@@ -47,18 +47,38 @@ var Range = function(start, end, step) {
 };
 
 Range.prototype.size = function () {
-  // use basic math to calculate the size 
+  // use basic math to calculate the size
+
+  // for Range(1, 10, 1)
+  //   size = (end - start) / step + 1 = 10
+  // for Range(2, 8, 2)
+  //   size = 4 = (8 - 2)/2 + 1
+  // for Range(0, 21, 3) = (21 - 0)/3 + 1 = 8 // 0, 3, 6, 9, 12, 15, 18, 21
+
+  return (this.end - this.start)/this.step + 1;
 };
 
 Range.prototype.each = function (callback) {
   //use a for loop where i increments according to the step value
+
+  for (var i = this.start; i <= this.end; i += this.step) {
+    callback(i);
+  }
 };
 
 Range.prototype.includes = function (val) {
-  //DO NOT use an arra
+  //DO NOT use an array
   //  calculate one value at a time, see if any are equal to val?
   // **find a way to do that logarithmically--maybe similar to a binary search
+
+  // var result = false;
+
+  for (var i = this.start; i <= this.end; i += this.step) {
+    if (i === val) {
+      return true;
+    }
+  }
 };
 
-var range = new Range(1);
+// var range = new Range(1);
 
