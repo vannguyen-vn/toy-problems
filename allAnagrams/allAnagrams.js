@@ -16,13 +16,13 @@
 
   var result = [];
 
-  var innerFunc = (string, resultString) => {
+  var innerFunc = (innerString, resultString) => {
     if (resultString.length === string.length) {
       result.push(resultString)
       return
     }
-    for (var i = 0; i < string.length; i++) {
-      innerFunc(string, resultString + string[i]);
+    for (var i = 0; i < innerString.length; i++) {
+      innerFunc(innerString.slice(0, i) + innerString.slice(i + 1), resultString + innerString[i]);
     }
     return;
   }
