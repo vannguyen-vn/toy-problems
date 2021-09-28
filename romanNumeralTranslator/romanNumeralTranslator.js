@@ -37,9 +37,10 @@ var translateRomanNumeral = function (romanNumeral) {
     return 0;
   }
 
-  var total = 0;
+  var len = romanNumeral.length;
+  var total = DIGIT_VALUES[romanNumeral[len - 1]];
 
-  for (var i = romanNumeral.length - 1; i >= 0; i--) {
+  for (var i = len - 2; i >= 0; i--) {
     if (DIGIT_VALUES[romanNumeral[i]] < DIGIT_VALUES[romanNumeral[i + 1]]) {
       total -= DIGIT_VALUES[romanNumeral[i]];
     } else {
@@ -51,3 +52,28 @@ var translateRomanNumeral = function (romanNumeral) {
 
 // 01
 // IV
+
+
+// var translateRomanNumeral = function (romanNumeral) {
+
+//   if (typeof (romanNumeral) !== 'string') {
+//     return null;
+//   }
+
+//   if (romanNumeral === "") {
+//     return 0;
+//   }
+
+//   var total = 0;
+
+//   for (var i = romanNumeral.length - 1; i >= 0; i--) {
+//     if (DIGIT_VALUES[romanNumeral[i]] < DIGIT_VALUES[romanNumeral[i + 1]]) {
+//       total -= DIGIT_VALUES[romanNumeral[i]];
+//     } else {
+//       total += DIGIT_VALUES[romanNumeral[i]];
+//     }
+//   }
+//   return total;
+// };
+
+
