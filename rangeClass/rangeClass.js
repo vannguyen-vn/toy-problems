@@ -48,9 +48,9 @@ var Range = function (start, end, step) {
 Range.prototype.size = function () {
   if (this.start === this.end) return 1;
   if (this.start < this.end) {
-    return ((this.end - this.start) / this.step);
+    return Math.floor(((this.end - this.start) / this.step) + 1);
   } else {
-    return ((this.start - this.end) / this.step);
+    return Math.floor(((this.start - this.end) / this.step) + 1);
   }
 };
 
@@ -61,21 +61,21 @@ Range.prototype.each = function (callback) {
       callback(i);
     }
   } else {
-    for (let i = this.end; i <= this.start; i += this.step) {
+    for (let i = this.start; i >= this.end; i += this.step) {
       callback(i);
     }
   }
 };
 
 Range.prototype.includes = function (val) {
-  if (this.start < this.end) {
-    for (let i = this.start; i < this.end; i += this.step) {
+  if (this.start <= this.end) {
+    for (let i = this.start; i <= this.end; i += this.step) {
       if (val === i) {
         return true;
       }
     }
   } else {
-    for (let i = this.end; i < this.end; i += this.step) {
+    for (let i = this.start; i >= this.end; i += this.step) {
       if (val === i) {
         return true;
       }
