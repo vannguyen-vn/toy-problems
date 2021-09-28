@@ -59,12 +59,13 @@ Range.prototype.each = function (callback) {
   if (this.start < this.end) {
     for (let i = this.start; i <= this.end; i += this.step) {
       callback(i);
-    } else {
-      for (let i = this.end; i <= this.start; i += this.step) {
-        callback(i);
-      }
+    }
+  } else {
+    for (let i = this.end; i <= this.start; i += this.step) {
+      callback(i);
     }
   }
+}
 };
 
 Range.prototype.includes = function (val) {
@@ -74,7 +75,7 @@ Range.prototype.includes = function (val) {
         return true;
       }
     } else {
-      for (let i = this.end; i < this.end; i+= this.step) {
+      for (let i = this.end; i < this.end; i += this.step) {
         if (val === i) {
           return true;
         }
