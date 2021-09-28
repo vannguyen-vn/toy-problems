@@ -28,6 +28,25 @@ var DIGIT_VALUES = {
 };
 
 var translateRomanNumeral = function(romanNumeral) {
-// TODO: Implement me!
+  var result = 0;
 
+  for (var i = 0; i < romanNumeral.length; i++) {
+    if (romanNumeral[i] === 'I') {
+      if (romanNumeral[i + 1] === undefined) {
+        result += 1;
+        return result;
+      } else if (romanNumeral[i + 1] === 'V') {
+        result -= 1;
+        continue;
+      } else if (romanNumeral[i + 1] === 'I') {
+        result += 1;
+        continue;
+      }
+    } else {
+      var numeral = romanNumeral[i];
+      result += DIGIT_VALUES[numeral];
+    }
+  }
+
+  return result;
 };
