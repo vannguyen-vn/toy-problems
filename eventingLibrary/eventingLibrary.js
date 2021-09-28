@@ -1,4 +1,4 @@
-//attempted Sep 20 2021
+//Complete 11/11
 
 /*
  * Make an eventing system mix-in that adds .trigger() and .on() to any input
