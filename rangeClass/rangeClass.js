@@ -17,7 +17,7 @@
  *
  * You should also be aware of the following caveats:
  *   - You should allow a negative value for 'step' to count backwards.
- *   - If no step is provided, it should default to 1.
+ *   - If no step is provided, it should default to 1.s
  *   - If the start value is greater than the end value, assume we're counting backwards.
  *   - Should return null if we are given no 'start' value.
  *
@@ -39,17 +39,53 @@
  */
 
 
-var Range = function(start, end, step) {
+var Range = function (start, end, step) {
+  this.start = start;
+  this.end = end || 1;
+  this.step = Math.abs(step) || 1;
 };
 
 Range.prototype.size = function () {
+  if (this.start === this.end) return 1;
+  if (this.start < this.end) {
+    return ((this.end - this.start) / this.step);
+  } else {
+    return ((this.start - this.end) / this.step);
+  }
 };
 
 Range.prototype.each = function (callback) {
+  if (this.start === this.end) callback(this.start);
+  if (this.start < this.end) {
+    for (let i = this.start; i <= this.end; i += this.step) {
+      callback(i);
+    } else {
+      for (let i = this.end; i <= this.start; i += this.step) {
+        callback(i);
+      }
+    }
+  }
 };
 
 Range.prototype.includes = function (val) {
+  if (this.start < this.end) {
+    for (let i = this.start; i < this.end; i += this.step) {
+      if (val === i) {
+        return true;
+      }
+    } else {
+      for (let i = this.end; i < this.end; i+= this.step) {
+        if (val === i) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
 };
 
-var range = new Range(1);
+var range = new Range(1, 10, 2);
+
+console.log(range.includes(6));
+
 
