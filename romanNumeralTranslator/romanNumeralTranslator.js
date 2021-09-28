@@ -29,7 +29,7 @@ var DIGIT_VALUES = {
 
 var translateRomanNumeral = function (romanNumeral) {
 
-  if (typeof (romanNumeral) !=== 'string') {
+  if (typeof (romanNumeral) !== 'string') {
     return null;
   }
 
