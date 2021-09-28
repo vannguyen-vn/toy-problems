@@ -36,12 +36,21 @@ var translateRomanNumeral = function(romanNumeral) {
     return null
   }
 
+  if (romanNumeral.length === 0) {
+    return 0
+  }
+
+
   var numbers = []
 
   // loop through each char
   for (var i = 0; i < romanNumeral.length; i++) {
     // for each check the value for that letter in the obj and push to array
     numbers.push(DIGIT_VALUES[romanNumeral[i]])
+  }
+
+  if (numbers.length === 1) {
+    return numbers[0]
   }
 
    // loop through number array
