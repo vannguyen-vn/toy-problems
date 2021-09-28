@@ -42,7 +42,7 @@ var translateRomanNumeral = function (romanNumeral) {
       }
     }
     return finalValue;
-  } else {
+  } else if (romanNumeral === '') {
     return 0;
   }
   return null
