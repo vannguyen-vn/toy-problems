@@ -39,3 +39,5 @@ var translateRomanNumeral = function(romanNumeral) {
   }
   return sum;
 };
+
+// console.log(translateRomanNumeral("IX"));
