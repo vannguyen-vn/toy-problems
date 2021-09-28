@@ -27,7 +27,21 @@ var DIGIT_VALUES = {
   M: 1000
 };
 
-var translateRomanNumeral = function(romanNumeral) {
-// TODO: Implement me!
-
+var translateRomanNumeral = function (romanNumeral) {
+  if (!romanNumeral) {
+    return null;
+  }
+  if (!romanNumeral[1]) {
+    return DIGIT_VALUES[romanNumeral[0]]
+  } else {
+    var firstValue = DIGIT_VALUES[romanNumeral[0]]
+    var secondValue = DIGIT_VALUES[romanNumeral[1]]
+    if (firstValue < secondValue) {
+      return secondValue - firstValue + translateRomanNumeral(romanNumeral.slice(2));
+    } else {
+      return firstValue + translateRomanNumeral(romanNumeral.slice(1));
+    }
+  }
 };
+
+// module.exports = translateRomanNumeral;
