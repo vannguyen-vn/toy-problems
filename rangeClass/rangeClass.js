@@ -40,14 +40,9 @@
 
 
 var Range = function (start, end, step) {
-  //if the step is negative or start value is greater than the end value, count backwards
-  //if no step provided, default step to 1
-  //if no start value, return null
-  //if end is not defined, return the start value
   this.start = start;
   this.end = end === undefined ? start : end;
   this.step = Math.abs(step) || 1;
-
 };
 
 Range.prototype.size = function () {
@@ -77,6 +72,12 @@ Range.prototype.each = function (callback) {
 Range.prototype.includes = function (val) {
   if (this.start === this.end) {
     return val === this.start;
+  } if (this.start > this.end) {
+    for (let i = this.start; i >= this.end; i -= this.step) {
+      if (val === i) {
+        return true;
+      }
+    }
   } else if (this.start < this.end) {
     for (let i = this.start; i <= this.end; i += this.step) {
       if (val === i) {
@@ -87,12 +88,5 @@ Range.prototype.includes = function (val) {
   return false;
 };
 
-var range = new Range(10, 0);
-// console.log(range)
-
-
-// var countdown = new Range(10, 0, -1);
-// var elements = [];
-// countdown.each(function (val) {
-//   elements.push(val);
-// });
+// var range = new Range(10,1, 2);
+// console.log(range.includes(6))
