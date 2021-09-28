@@ -43,15 +43,15 @@ function linkedListIntersection(list1, list2) {
       return helper(list1[key1], list2[key2])
     }
   }
-
-  var helper = function (node1, node2) {
-    if (node1.value === node2.value) {
-      return node1.value;
-    } else if (node1.next !== null && node2.next !== null) {
-      helper(node1.next, node2.next);
-    } else {
-      return false;
-    }
-  };
 }
+
+var helper = function (node1, node2) {
+  if (node1.value === node2.value) {
+    return node1.value;
+  } else if (node1.next !== null && node2.next !== null) {
+    helper(node1.next, node2.next);
+  } else {
+    return false;
+  }
+};
 
