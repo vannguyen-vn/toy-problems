@@ -29,5 +29,48 @@ var DIGIT_VALUES = {
 
 var translateRomanNumeral = function(romanNumeral) {
 // TODO: Implement me!
+const letters = Object.keys(DIGIT_VALUES);
+
+if (typeof romanNumeral !== 'string') return null;
+let lettersArray = romanNumeral.split('')
+var isRomanNumeral = true;
+for (let i = 0; i< lettersArray.length; i++){
+  if(letters.indexOf(lettersArray[i]) === -1) {
+    isRomanNumeral = false;
+  }
+}
+// i - roman numeral - string
+// o - number
+// c - constrained to digit values
+//   - if a smaller numeral appears before larger, subtract! limit one smaller numeral before the larger
+// e - if input is not a string return null
+//   - if input is not a digit value, return "not a roman numeral"
+var result = 0;
+
+if (!isRomanNumeral) return 'not a roman numeral';
+let allNumbersArr = []
+for(let i = 0; i<lettersArray.length; i++){
+  let currentLetter = lettersArray[i];
+  let num = DIGIT_VALUES[currentLetter];
+  allNumbersArr.push(num)
+}
+for(let i = 0; i<allNumbersArr.length; i++){
+  if(allNumbersArr[i+1] === undefined) {
+    return result += allNumbersArr[i]
+  }
+  if (allNumbersArr[i] < allNumbersArr[i+1]) {
+    result -= allNumbersArr[i]
+  }
+  else {
+    result += allNumbersArr[i]
+  }
+}
+return result;
+
 
 };
+// console.log(translateRomanNumeral("IVB"))
+console.log(translateRomanNumeral("CXLIX"))
+console.log(translateRomanNumeral("DCCLXXIX"))
+console.log(translateRomanNumeral(""))
+console.log(translateRomanNumeral(82137891))
