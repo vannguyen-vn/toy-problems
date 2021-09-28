@@ -28,8 +28,11 @@ var DIGIT_VALUES = {
 };
 
 var translateRomanNumeral = function (romanNumeral) {
-  if (!romanNumeral) {
+  if(typeof romanNumeral !== 'string') {
     return null;
+  }
+  if (!romanNumeral) {
+    return 0;
   }
   if (!romanNumeral[1]) {
     return DIGIT_VALUES[romanNumeral[0]]
