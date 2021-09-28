@@ -32,17 +32,62 @@
 
 // Feel free to add helper functions if needed.
 var bubbleSort = function(array) {
+  if (array.length <= 1) {
+    return array;
+  }
+
+  var currentIndex = 0
+  var nextIndex = 1
+
+  while (array[currentIndex] < array[nextIndex]) {
+    if (array[nextIndex] === undefined) {
+      return array
+    }
+
+    currentIndex = nextIndex;
+    nextIndex = nextIndex++
+  }
+
   for (var i = 0; i < array.length; i++) {
-    for (var j = 0; j < array.length - i - 1; j++) {
-      if (array[j] < array[j+1]) {
-        var temp = array[j]
-        array[j] = array[j+1]
-        array[j+1] = temp
+    for (var j = 1; j < array.length; j++) {
+      if (array[i] > array[j]) {
+        var temp = array[i]
+        array[i] = array[j]
+        array[j] = temp
+      } else if (array[i] === array[j]) {
+        var temp = array.splice(j, 1)
+        array.splice(i, 0, temp)
       }
     }
   }
+
   return array
 }
+
+
+
+var test1 = bubbleSort([1, 3, 2])
+var test2 = bubbleSort([2, 1, 3])
+var test3 = bubbleSort([2, 3, 1])
+var test4 = bubbleSort([1, 3, 2, 2])
+
+console.log(
+  test1, test2, test3, test4
+)
+
+
+// var bubbleSort = function(array) {
+//   for (var i = 0; i < array.length; i++) {
+//     for (var j = 0; j < array.length - i - 1; j++) {
+//       if (array[j] < array[j+1]) {
+//         var temp = array[j]
+//         array[j] = array[j+1]
+//         array[j+1] = temp
+//       }
+//     }
+//   }
+//   return array
+// }
 
 /*
 I: Array (unordered)

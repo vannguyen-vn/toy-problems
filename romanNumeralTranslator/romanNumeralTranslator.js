@@ -55,4 +55,8 @@ var translateRomanNumeral = function(romanNumeral) {
   return total;
 };
 
+// var test1 = translateRomanNumeral('IV')
+var test2 = translateRomanNumeral('XIV')
+var test3 = translateRomanNumeral('MCM')
 
+console.log(test1, test2, test3)
