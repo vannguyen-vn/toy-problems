@@ -58,7 +58,7 @@ function linkedListIntersection(list1, list2) {
   var findIntersect = function(list) {
     if (objList.hasOwnProperty(list.value)) {
       console.log(`1: ${JSON.stringify(Node(list.value))}`);
-      return Node(list.value);
+      return list;
     } else if ( list.next === null ) {
       console.log(`2: ${list.value}`);
       return null;
@@ -72,9 +72,9 @@ function linkedListIntersection(list1, list2) {
 
 }
 /*
+
 const ls1 = {value: 'A', next: {value: 'B', next: {value: 'C', next: {value: 'D', next: {value: 'E', next:{value: 'F', next: null}}}}}};
 const ls2 = {value: 'X', next: {value: 'Y', next: {value: 'D', next: {value: 'E', next: {value: 'F', next: null}}}}};
-console.log(`ls1 & ls2: ${linkedListIntersection(ls1, ls2)}`);
-
-
+console.log(`ls1 & ls2: ${JSON.stringify(linkedListIntersection(ls1, ls2))}`);
 */
+
