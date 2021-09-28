@@ -65,7 +65,6 @@ Range.prototype.each = function (callback) {
       callback(i);
     }
   }
-}
 };
 
 Range.prototype.includes = function (val) {
