@@ -29,5 +29,39 @@ var DIGIT_VALUES = {
 
 var translateRomanNumeral = function(romanNumeral) {
 // TODO: Implement me!
+// if it's not a string
+//   return null
+
+// iterate along the string
+  // if the character's value is less than the next character's value
+    // subtract
+    // add the result to the running total
+    // move on to the next next character
+// else
+  // add the current number to the total
+  // move on to the next character
+
+// return the total
+if (typeof romanNumeral !== 'string') {
+  return null;
+}
+
+var totalValue = 0;
+
+for (i = 0; i < romanNumeral.length;) {
+  if (DIGIT_VALUES[romanNumeral[i]] < DIGIT_VALUES[romanNumeral[i + 1]]) {
+    let value = DIGIT_VALUES[romanNumeral[i + 1]] - DIGIT_VALUES[romanNumeral[i]];
+    totalValue += value;
+    i += 2;
+  } else {
+    totalValue += DIGIT_VALUES[romanNumeral[i]];
+    i++;
+  }
+}
+
+return totalValue;
 
 };
+
+// exports.romanNumeralTranslator = romanNumeralTranslator;
+// exports.DIGIT_VALUES = DIGIT_VALUES;
