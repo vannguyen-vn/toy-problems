@@ -29,7 +29,6 @@ var DIGIT_VALUES = {
 
 var translateRomanNumeral = function(romanNumeral) {
 // TODO: Implement me!
-  if (romanNumeral.length === 0 || romanNumeral.length === undefined) { return null; }
 
   let sum = 0;
   for (var i = 0; i < romanNumeral.length; i++)   {
