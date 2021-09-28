@@ -43,6 +43,7 @@ var translateRomanNumeral = function (romanNumeral) {
       }
     }
     return finalValue;
+  } else if (typeof romanNumeral !== 'string') {
+    return null;
   }
-  return null;
 };
