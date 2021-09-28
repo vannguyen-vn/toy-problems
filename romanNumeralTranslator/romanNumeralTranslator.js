@@ -17,6 +17,13 @@
  * all non-empty string inputs to be valid roman numerals.
  */
 
+/*
+I: roman munberal
+O: number
+C: only one smaller numeral may appear in front of larger one
+E: input is not string --> null
+ */
+
 var DIGIT_VALUES = {
   I: 1,
   V: 5,
@@ -28,6 +35,25 @@ var DIGIT_VALUES = {
 };
 
 var translateRomanNumeral = function(romanNumeral) {
-// TODO: Implement me!
 
+  var result = 0;
+  for(var i = 0; i < romanNumeral.length; i++) {
+    var romanVal = DIGIT_VALUES[romanNumeral[i]];
+    var nextRomanVal = DIGIT_VALUES[romanNumeral[i + 1]]
+
+    if (romanVal === undefined) {
+      return null
+    } else if (i === romanNumeral.length - 1) {
+      result += romanVal
+      return result;
+    } else if (romanVal < nextRomanVal) {
+      result -= romanVal;
+    } else {
+      result += romanVal;
+    }
+  }
+  return result;
 };
+
+translateRomanNumeral("LX") // 60
+translateRomanNumeral("IV") // 4
