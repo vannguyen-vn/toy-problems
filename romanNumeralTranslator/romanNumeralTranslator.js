@@ -39,14 +39,7 @@ for (let i = 0; i< lettersArray.length; i++){
     isRomanNumeral = false;
   }
 }
-// i - roman numeral - string
-// o - number
-// c - constrained to digit values
-//   - if a smaller numeral appears before larger, subtract! limit one smaller numeral before the larger
-// e - if input is not a string return null
-//   - if input is not a digit value, return "not a roman numeral"
 var result = 0;
-
 if (!isRomanNumeral) return 'not a roman numeral';
 let allNumbersArr = []
 for(let i = 0; i<lettersArray.length; i++){
@@ -66,11 +59,4 @@ for(let i = 0; i<allNumbersArr.length; i++){
   }
 }
 return result;
-
-
 };
-// console.log(translateRomanNumeral("IVB"))
-console.log(translateRomanNumeral("CXLIX"))
-console.log(translateRomanNumeral("DCCLXXIX"))
-console.log(translateRomanNumeral(""))
-console.log(translateRomanNumeral(82137891))
