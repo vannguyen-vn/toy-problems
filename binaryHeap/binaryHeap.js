@@ -10,7 +10,7 @@
  * parent of the 3rd and 4th nodes, and the 2nd node will be the parent of the 5th and
  * 6th nodes. In a specific kind of binary heap, the binary min heap, every node is
  * less than its immediate children:
- * 
+ *
  *          0
  *     1         2
  *   3   4     5   6
@@ -79,9 +79,49 @@ BinaryHeap.prototype.getRoot = function () {
 }
 
 BinaryHeap.prototype.insert = function (value) {
-  // TODO: Your code here
+  this._heap.push(value);
+  var currIndex = this._heap.length - 1;
+  var currVal = this._heap[currIndex];
+  var parentIndex = Math.floor( (currIndex - 1) / 2 );
+  var parentVal = this._heap[parentIndex];
+  while (this._compare(currVal, parentVal)) {
+    this.swapNodes(currIndex, parentIndex);
+    currIndex = parentIndex;
+    parentIndex = Math.floor( (currIndex - 1) / 2 );
+    parentVal = this._heap[parentIndex];
+  }
 }
 
 BinaryHeap.prototype.removeRoot = function () {
-  // TODO: Your code here
+  this.swapNodes(0, this._heap.length - 1);
+  this._heap.pop();
+  var size = this._heap.length;
+  if (size <= 1) {
+    return;
+  }
+  var currIndex = 0;
+  var currVal = this._heap[currIndex];
+  var lowChildInd = currIndex * 2 + 1;
+  var lowChildVal = this._heap[lowChildInd];
+  if (lowChildInd < size - 1 && lowChildVal > this._heap[lowChildInd++]) {
+    lowChildInd++;
+    lowChildVal = this._heap(lowChildInd);
+  }
+  while (lowChildInd < size && this._compare(lowChildVal, currVal)) {
+    this.swapNodes(currIndex, lowChildInd);
+    currIndex = lowChildInd;
+    lowChildInd = currIndex * 2 + 1;
+    lowChildVal = this._heap[lowChildInd];
+    if (lowChildInd < size - 1 && lowChildVal > this._heap[lowChildInd++]) {
+      lowChildInd++;
+      lowChildVal = this._heap(lowChildInd);
+    }
+  }
+}
+
+BinaryHeap.prototype.swapNodes = function (index1, index2) {
+  var val1 = this._heap[index1];
+  var val2 = this._heap[index2];
+  this._heap[index1] = val2;
+  this._heap[index2] = val1;
 }
