@@ -28,6 +28,14 @@ var DIGIT_VALUES = {
 };
 
 var translateRomanNumeral = function(romanNumeral) {
-// TODO: Implement me!
-
+  if (typeof(romanNumeral) !== 'string') return null;
+  var sum = 0;
+  for (var i = 0; i < romanNumeral.length; i++) {
+    if (DIGIT_VALUES[romanNumeral[i]] < DIGIT_VALUES[romanNumeral[i + 1]]) {
+      sum -= DIGIT_VALUES[romanNumeral[i]];
+    } else {
+      sum+= DIGIT_VALUES[romanNumeral[i]]
+    }
+  }
+  return sum;
 };
