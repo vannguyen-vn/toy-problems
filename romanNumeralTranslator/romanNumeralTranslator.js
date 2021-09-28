@@ -27,7 +27,37 @@ var DIGIT_VALUES = {
   M: 1000
 };
 
+// input: string (Roman Numeral)
+// output: number
+// constraints: N/A
+// edge cases: if not string, return null
 var translateRomanNumeral = function(romanNumeral) {
-// TODO: Implement me!
+  if (typeof romanNumeral !== 'string') {
+    return null
+  }
+
+  var numbers = []
+
+  // loop through each char
+  for (var i = 0; i < romanNumeral.length; i++) {
+    // for each check the value for that letter in the obj and push to array
+    numbers.push(DIGIT_VALUES[romanNumeral[i]])
+  }
+
+   // loop through number array
+   for (var j = 0; j < numbers.length; j++) {
+    // compare each two numbers
+    // if the first number is smaller than the second number
+    if(numbers[j] < numbers[j + 1]) {
+      // return second value minus first value
+      return numbers[j + 1] - numbers[j]
+    } else {// otherwise
+      // return second value plus first value
+      return numbers[j + 1] + numbers[j]
+    }
+   }
 
 };
+
+translateRomanNumeral("LX") // 60
+translateRomanNumeral("IV") // 4
