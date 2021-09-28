@@ -27,7 +27,28 @@ var DIGIT_VALUES = {
   M: 1000
 };
 
-var translateRomanNumeral = function(romanNumeral) {
-// TODO: Implement me!
-
+var translateRomanNumeral = function (romanNumeral) {
+  const letters = Object.keys(DIGIT_VALUES);
+  if (typeof romanNumeral !== 'string') return null;
+  let numerals = romanNumeral.split('')
+  var result = 0;
+  for (let i = 0; i < numerals.length; i++) {
+    if (letters.indexOf(numerals[i]) === -1) {
+      return false;
+    } else {
+      let num = DIGIT_VALUES[numerals[i]];
+      let next = DIGIT_VALUES[numerals[i + 1]];
+      if (next === undefined) {
+        return result += num;
+      }
+      if (num < next) {
+        result -= num;
+      } else {
+        result += num;
+      }
+    }
+  }
+  return result;
 };
+
+console.log(translateRomanNumeral('CXLIX'));
