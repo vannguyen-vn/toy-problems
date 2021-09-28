@@ -28,6 +28,26 @@ var DIGIT_VALUES = {
 };
 
 var translateRomanNumeral = function(romanNumeral) {
-// TODO: Implement me!
+  if(typeof romanNumeral !== 'string') {
+    return null;
+  }
 
+  var returnVal = 0;
+
+  for(let i = 0; i < romanNumeral.length; i++) {
+    let first = DIGIT_VALUES[romanNumeral[i]];
+    let second = DIGIT_VALUES[romanNumeral[i + 1]];
+    let add;
+
+    if(first < second) {
+      add = second - first;
+      i++;
+    }
+
+    returnVal += add ? add : DIGIT_VALUES[romanNumeral[i]];
+  }
+
+  return returnVal;
 };
+
+module.exports = { translateRomanNumeral };
