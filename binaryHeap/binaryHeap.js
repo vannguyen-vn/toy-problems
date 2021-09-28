@@ -93,11 +93,12 @@ BinaryHeap.prototype.insert = function (value) {
 }
 
 BinaryHeap.prototype.removeRoot = function () {
+  var root = this.getRoot();
   this.swapNodes(0, this._heap.length - 1);
   this._heap.pop();
   var size = this._heap.length;
   if (size <= 1) {
-    return;
+    return root;
   }
   var currIndex = 0;
   var currVal = this._heap[currIndex];
@@ -117,6 +118,7 @@ BinaryHeap.prototype.removeRoot = function () {
       lowChildVal = this._heap(lowChildInd);
     }
   }
+  return root;
 }
 
 BinaryHeap.prototype.swapNodes = function (index1, index2) {
