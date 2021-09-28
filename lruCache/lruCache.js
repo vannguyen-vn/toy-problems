@@ -31,19 +31,44 @@
  */
 
 var LRUCache = function (limit) {
+  this.list = new List();
+  this.count = 0;
+  this.limit = limit;
 };
 
 var LRUCacheItem = function (val, key) {
 };
 
 LRUCache.prototype.size = function () {
+  return this.count;
 };
 
 LRUCache.prototype.get = function (key) {
+  let returnVal = null;
+  let node = this.list.head;
+  while (node.next) {
+    if (node.val[key] !== undefined) {
+      returnVal = node.val[key];
+      this.list.moveToEnd(node);
+      break;
+    } else {
+      node = node.next;
+    }
+  }
+  return returnVal;
 };
 
 LRUCache.prototype.set = function (key, val) {
+  if (this.count === this.limit) {
+    this.list.shift();
+    this.count--;
+  }
+  let item = {};
+  item[key] = val;
+  this.list.push(item);
+  this.count++;
 };
+
 
 
 
