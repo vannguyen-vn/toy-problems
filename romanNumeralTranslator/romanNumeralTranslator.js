@@ -28,33 +28,27 @@ var DIGIT_VALUES = {
 };
 
 var translateRomanNumeral = function (romanNumeral) {
-  // const letters = Object.keys(DIGIT_VALUES);
-  // if (typeof romanNumeral !== 'string') return null;
-  // let lettersArray = romanNumeral.split('')
-  // var isRomanNumeral = true;
-  // for (let i = 0; i < lettersArray.length; i++) {
-  //   if (letters.indexOf(lettersArray[i]) === -1) {
-  //     isRomanNumeral = false;
-  //   }
-  // }
-  // var result = 0;
-  // if (!isRomanNumeral) return ‘not a roman numeral’;
-  // let allNumbersArr = []
-  // for (let i = 0; i < lettersArray.length; i++) {
-  //   let currentLetter = lettersArray[i];
-  //   let num = DIGIT_VALUES[currentLetter];
-  //   allNumbersArr.push(num)
-  // }
-  // for (let i = 0; i < allNumbersArr.length; i++) {
-  //   if (allNumbersArr[i + 1] === undefined) {
-  //     return result += allNumbersArr[i]
-  //   }
-  //   if (allNumbersArr[i] < allNumbersArr[i + 1]) {
-  //     result -= allNumbersArr[i]
-  //   }
-  //   else {
-  //     result += allNumbersArr[i]
-  //   }
-  // }
-  // return result;
+  const letters = Object.keys(DIGIT_VALUES);
+  if (typeof romanNumeral !== 'string') return null;
+  let numerals = romanNumeral.split('')
+  var result = 0;
+  for (let i = 0; i < numerals.length; i++) {
+    if (letters.indexOf(numerals[i]) === -1) {
+      return false;
+    } else {
+      let num = DIGIT_VALUES[numerals[i]];
+      let next = DIGIT_VALUES[numerals[i + 1]];
+      if (next === undefined) {
+        return result += num;
+      }
+      if (num < next) {
+        result -= num;
+      } else {
+        result += num;
+      }
+    }
+  }
+  return result;
 };
+
+console.log(translateRomanNumeral('CXLIX'));
