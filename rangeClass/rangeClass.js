@@ -73,11 +73,11 @@ Range.prototype.includes = function (val) {
       if (val === i) {
         return true;
       }
-    } else {
-      for (let i = this.end; i < this.end; i += this.step) {
-        if (val === i) {
-          return true;
-        }
+    }
+  } else {
+    for (let i = this.end; i < this.end; i += this.step) {
+      if (val === i) {
+        return true;
       }
     }
   }
