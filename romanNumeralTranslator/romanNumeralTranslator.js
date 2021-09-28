@@ -27,7 +27,27 @@ var DIGIT_VALUES = {
   M: 1000
 };
 
-var translateRomanNumeral = function(romanNumeral) {
-// TODO: Implement me!
+var translateRomanNumeral = function (romanNumeral) {
 
+  if (typeof (romanNumeral) !=== 'string') {
+    return null;
+  }
+
+  if (romanNumeral === "") {
+    return 0;
+  }
+
+  var total = 0;
+
+  for (var i = romanNumeral.length - 1; i >= 0; i--) {
+    if (DIGIT_VALUES[romanNumeral[i]] < DIGIT_VALUES[romanNumeral[i + 1]]) {
+      total -= DIGIT_VALUES[romanNumeral[i]];
+    } else {
+      total += DIGIT_VALUES[romanNumeral[i]];
+    }
+  }
+  return total;
 };
+
+// 01
+// IV
