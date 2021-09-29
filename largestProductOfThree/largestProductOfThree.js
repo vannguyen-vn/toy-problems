@@ -9,5 +9,20 @@
 
 
 var largestProductOfThree = function(array) {
-  // TODO: everything
+  var largest = [];
+  array.forEach((num) => {
+    if (largest.length < 3) {
+      largest.push(num);
+    } else {
+      for (var i = 0; i < largest.length; i++) {
+        if (num > largest[i]) {
+          num = largest.splice(i, 1, num)[0];
+        }
+      }
+    }
+  });
+  console.log(largest)
+  return largest.reduce((a, b) => a * b)
 };
+
+module.exports = largestProductOfThree;
