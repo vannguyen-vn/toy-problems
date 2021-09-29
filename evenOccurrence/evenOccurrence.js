@@ -1,10 +1,6 @@
 /*
  * Find the first item that occurs an even number of times in an array.
-<<<<<<< HEAD
  * Remember to handle multiple even-occurrence items and return the first one.
-=======
- * Remember to handle multiple even-occurrence items and return the first one. 
->>>>>>> 6e1323bdff6d323af09becd959c4904d3ebee8fc
  * Return null if there are no even-occurrence items.
 */
 
@@ -14,7 +10,6 @@
  * console.log(onlyEven); //  4
 */
 
-<<<<<<< HEAD
 // input: array
 // output: number
 // constraints: first item that occurs even times
@@ -48,8 +43,3 @@ var evenOccurrence = function(arr) {
 var onlyEven = evenOccurrence([1, 7, 2, 4, 5, 6, 8, 9, 6, 4]);
 console.log(onlyEven); //  4
 console.log(evenOccurrence([2, 1, 7, 8, 2, 7, 7, 7, 5])) // 2
-=======
-var evenOccurrence = function(arr) {
-  // Your code here.
-};
->>>>>>> 6e1323bdff6d323af09becd959c4904d3ebee8fc
