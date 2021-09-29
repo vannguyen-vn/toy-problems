@@ -9,5 +9,18 @@
 
 
 var largestProductOfThree = function(array) {
-  // TODO: everything
+  array.sort((a, b) => {
+    if (a < b) { return -1; }
+    if (a > b) { return 1; }
+    return 0;
+  });
+
+  const negativeProduct = array[0] * array[1] * array[array.length - 1];
+  const positiveProduct = array[array.length - 1] * array[array.length - 2] * array[array.length - 3];
+
+  console.log(array);
+  return Math.max(negativeProduct, positiveProduct);
 };
+
+// module.exports = { largestProductOfThree };
+
