@@ -9,5 +9,11 @@
 
 
 var largestProductOfThree = function(array) {
-  // TODO: everything
+  var sorted = array.sort((a, b) => a - b);
+  var length = array.length;
+  let productPos = sorted[length - 1] * sorted[length - 2] * sorted[length - 3];
+  let productNeg = sorted[0] * sorted[1] * Math.max(...sorted);
+  return Math.max(productNeg, productPos);
 };
+
+// console.log(largestProductOfThree([2, 1, 3, 7]))
