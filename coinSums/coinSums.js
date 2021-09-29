@@ -25,6 +25,10 @@ makeChange(2) === 2
 */
 
 var makeChange = function(total) {
+  if (total === 0) {
+    return 1;
+  }
+
   var values = {
     '1p': 1,
     '2p': 2,
@@ -63,10 +67,10 @@ var makeChange = function(total) {
       return combo.concat(findCombo(total - sumOfCoins, highestValueIndex));
     }
   }
-  
+
   //find all possibilities (rethink):
   //  find it using all 1p
-  //  if it doesn't exist in the array (as a joined string)
+  //  if it doesn't exist in the array (as a  joined string)
   //    push it into the combinations array
   //  if it does
   //    iterate across the combo array
@@ -77,25 +81,56 @@ var makeChange = function(total) {
   //        push it in
   //      if it does
   //        continue the loop
-  
-  // var findAllCombos = function(total, highestValueIndex) {
 
-  // }
-  
-  findAllCombos(total, coins.length - 1);
+  var findAllCombos = function(total, valueIndex) {
+    for (var c = 0; c <= valueIndex; c++) {
+      //find a combo with c as the highestValueIndex;
+      //if it's not in the combinations array
+        //push it in
+      //if it is
+        //iterate across combo
+          //combine two coins into one
+          //find a combo with c as the highestValueIndex for the remaining total
+          //add the combined coin to that combo
+          //if it's not in the combinations array
+            //push it in
+          //if it is
+            //increment i
+      //increment c
+    }
+
+
+    var combo = findCombo(total, 0)
+    var sortedCombo = combo.sort();
+    var joinedCombo = sortedCombo.join();
+    if (!combinations.includes(joinedCombo)) {
+      combinations.push(joinedCombo);
+    } else {
+      for (var i = 0; i < sortedCombo.length;) {
+        let firstTwoTotal = values[sortedCombo[i]] + values[sortedCombo[i + 1]]
+        if (valuesArray.contains(firstTwoTotal)) {
+          let firstTWoCombined = values[coins[values.indexOf(firstTwoTotal)]]
+          var newCombo = findCombo(total - firstTwoTotal, valueIndex);
+          newCombo.push(firstTWoCombined);
+          var newSorted = newCombo.sort();
+          var newJoined = newSorted.join();
+          if (!combinations.includes(newJoined)) {
+            combinations.push(newJoined);
+          }
+        }
+        i++;
+      }
+    }
+  }
+
+  //if values contains the total
+  //  return the coin that matches that value
+  //then findAllCombos only going up to that coin value's index - 1
+  //
+
+  findAllCombos(total, 0);
   return combinations.length;
 };
-
-
-// //find all possibilities:
-// //  find one possibility
-// //  if it doesn't exist in the array (as a joined string)
-// //    push it into the array
-// //  if it exists in the array (as a joined string),
-// //    iterate across the combo array (starting at end)
-// //      remove THAT coin from the combo (array.splice)
-// //      search for a combo of THAT coin's value, starting at its index - 1
-// //      concat that result with the combo array
 
 // var findAllCombos = function(total, highestValueIndex) {
 //   var combo = findCombo(total, highestValueIndex)
@@ -125,3 +160,12 @@ var makeChange = function(total) {
 //     return combinations;
 //   }
 // }
+// //find all possibilities:
+// //  find one possibility
+// //  if it doesn't exist in the array (as a joined string)
+// //    push it into the array
+// //  if it exists in the array (as a joined string),
+// //    iterate across the combo array (starting at end)
+// //      remove THAT coin from the combo (array.splice)
+// //      search for a combo of THAT coin's value, starting at its index - 1
+// //      concat that result with the combo array
