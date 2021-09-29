@@ -16,7 +16,8 @@
 // multiply them together
 
 var largestProductOfThree = function(array) {
-  array.sort()
+  array.sort(function(a, b) { return a - b })
+  console.log(array)
   var threeNums = array.slice(array.length - 3)
   return threeNums.reduce(function(previousValue, currentValue) {
     return previousValue * currentValue
