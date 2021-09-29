@@ -7,7 +7,18 @@
  * Extra credit: Make your function handle negative numbers.
  */
 
+// input: array of numbers
+// output: number
+
+// iterate over the array
+// sort the array
+// take the 3 numbers at the end
+// multiply them together
 
 var largestProductOfThree = function(array) {
-  // TODO: everything
+  array.sort()
+  var threeNums = array.slice(array.length - 3)
+  return threeNums.reduce(function(previousValue, currentValue) {
+    return previousValue * currentValue
+  }, 1);
 };
