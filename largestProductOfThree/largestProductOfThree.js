@@ -55,4 +55,4 @@ var largestProductOfThree = function (array) {
   return largest.reduce((a, b) => a * b)
 };
 
-module.exports = largestProductOfThree;
+// module.exports = largestProductOfThree;
