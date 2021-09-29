@@ -9,5 +9,13 @@
 
 
 var largestProductOfThree = function(array) {
-  // TODO: everything
+  var storage = {};
+
+  for (var i = 0; i < array.length; i++) {
+    storage[array[i]] = array[i];
+  }
+
+  var arr = Object.keys(storage)
+
+  return arr[arr.length - 1] * arr[arr.length - 2] * arr[arr.length - 3];
 };
