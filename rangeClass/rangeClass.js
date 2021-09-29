@@ -89,4 +89,13 @@ Range.prototype.includes = function (val) {
 };
 
 // var range = new Range(10,1, 2);
+// function addOne(val){
+//   return val+= 1
+// }
+
+// console.log(range.each(addOne))
+// console.log(range.each(function(val){
+//   console.log(val)
+// }))
+// console.log(range.each((val) => addOne(val)))
 // console.log(range.includes(6))
