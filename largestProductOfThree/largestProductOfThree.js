@@ -8,6 +8,16 @@
  */
 
 
-var largestProductOfThree = function(array) {
-  // TODO: everything
+var largestProductOfThree = function (array) {
+  if (array.length <= 3) {
+    return array.reduce((prev, next) => {
+      return prev * next;
+    })
+  }
+
+  array.sort((a, b) => { return b - a });
+
+  return array[0] * array[1] * array[2];
 };
+
+console.log(largestProductOfThree([20, 4, 3, 7, 8]));
