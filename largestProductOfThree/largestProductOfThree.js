@@ -9,5 +9,16 @@
 
 
 var largestProductOfThree = function(array) {
-  // TODO: everything
+  array = array.sort((a, b) => {
+    return a - b
+  })
+
+  var highest = array[array.length - 1];
+  var secondHighest = array[array.length - 2];
+  var thirdHighest = array[array.length - 3];
+
+  var negative = array[0];
+  var secondNegative = array[1];
+
+  return Math.max(highest * secondHighest * thirdHighest, highest * negative * secondNegative);
 };
