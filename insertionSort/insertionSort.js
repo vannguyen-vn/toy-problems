@@ -35,18 +35,84 @@
 
 // This function is to help you test, and should not be incorporated in your solution.
 // It will transform an array of numbers into an array of valid objects.
-var testingTransform = function(array) {
+var testingTransform = function (array) {
   var transform = [];
-  
+
   for (var i = 0; i < array.length; i++) {
-    transform.push({value: array[i], i: i});
+    transform.push({ value: array[i], i: i });
   }
 
   return transform;
 };
 
-var insertionSort = function(array
-) {
-  // Your code goes here. Feel free to add helper functions if needed.
-  return array;
-};
+// // Working solution for single values
+// var insertionSort = function (array
+// ) {
+//   // Your code goes here. Feel free to add helper functions if needed.
+//   for (var i = 0; i < array.length; i++) {
+//     // innerInsertionSort(array, array[i]);
+//     if (i === 0) {
+//       continue;
+//     }
+//     for (var j = 0; j < i; j++) {
+//       if (j === 0) {
+//         if (array[i] < array[0]) {
+//           array.unshift(array.splice(i, 1)[0]);
+//           break;
+//         }
+//       } else {
+//         let lower = array[j - 1];
+//         let higher = array[j];
+//         if (array[i] === higher) {
+//           continue;
+//         } else {
+//           if (lower <= array[i] && array[i] <= higher) {
+//             array.splice(j, 0, array.splice(i, 1)[0]);
+//             break;
+//           }
+//         }
+//       }
+//     }
+//   }
+//   return array;
+// };
+
+// console.log(insertionSort([3,2,1]))
+// console.log(insertionSort([4,3,2,10,12,1,5,6]))
+
+// Working solution for objects
+var insertionSort = function (array
+  ) {
+    // Your code goes here. Feel free to add helper functions if needed.
+    for (var i = 0; i < array.length; i++) {
+      // innerInsertionSort(array, array[i]);
+      if (i === 0) {
+        continue;
+      }
+      for (var j = 0; j < i; j++) {
+        if (j === 0) {
+          if (array[i].value < array[0].value) {
+            array.unshift(array.splice(i, 1)[0]);
+            break;
+          }
+        } else {
+          let lower = array[j - 1];
+          let higher = array[j];
+          if (array[i].value === higher.value) {
+            continue;
+          } else {
+            if (lower.value <= array[i].value && array[i].value <= higher.value) {
+              array.splice(j, 0, array.splice(i, 1)[0]);
+              break;
+            }
+          }
+        }
+      }
+    }
+    return array;
+  };
+
+  // console.log(insertionSort(testingTransform([3,2,1])))
+  // console.log(insertionSort(testingTransform([4,1,2,13,5,5,10,12,1,5,6])))
+  // console.log(insertionSort(testingTransform([3,3,3,3,3,2,1,3,4,3])))
+
