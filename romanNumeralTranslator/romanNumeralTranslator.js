@@ -28,6 +28,19 @@ var DIGIT_VALUES = {
 };
 
 var translateRomanNumeral = function(romanNumeral) {
-// TODO: Implement me!
+  if (typeof romanNumeral !== 'string') {
+    return null;
+  }
+  var result = 0
 
+  for (var i = 0; i < romanNumeral.length; i++) {
+    var numeral = romanNumeral[i];
+    if (DIGIT_VALUES[numeral] < DIGIT_VALUES[romanNumeral[i+1]]) {
+      result += DIGIT_VALUES[romanNumeral[i+1]] - DIGIT_VALUES[numeral]
+      i += 1
+    } else {
+      result += DIGIT_VALUES[numeral]
+    }
+  }
+  return result;
 };
