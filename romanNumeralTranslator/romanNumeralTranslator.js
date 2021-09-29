@@ -70,3 +70,5 @@ var translateRomanNumeral = function(romanNumeral) {
 
 translateRomanNumeral("LX") // 60
 translateRomanNumeral("IV") // 4
+translateRomanNumeral("D") // 500
+translateRomanNumeral("") // 0
