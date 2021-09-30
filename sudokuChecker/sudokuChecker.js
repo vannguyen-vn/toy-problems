@@ -18,16 +18,38 @@ Example input:
 157638429"
 */
 
-function sudokuChecker(board) {
-  var rows = board.split('\n');
 
-  for(const row of rows) {
-    if (row.length !== 9 || isInvalid(row)) {
-      return 'invalid';
+function getColumns(rows) {
+  var cols = [];
+
+  for(let j = 0; j < rows.length; j++) {
+    let str = '';
+    for(let i = 0; i < 9; i++) {
+      str += rows[i][j];
+    }
+    cols.push(str);
+  }
+
+  return cols;
+}
+
+function getBoxes(rows) {
+  var boxes = [];
+
+  for(let o = 0; o < 9; o+=3) {
+    let str = '';
+    for(let i = 0; i < 9; i++) {
+      for(let j = o; j < (o + 3); j++) {
+        str += rows[i][j];
+      }
+      if ((i + 1) % 3 === 0) {
+        boxes.push(str);
+        str = '';
+      }
     }
   }
 
-  return 'solved';
+  return boxes;
 }
 
 function isInvalid(row) {
@@ -53,4 +75,32 @@ function isInvalid(row) {
   return false;
 }
 
-// module.exports = { sudokuChecker };
+function sudokuChecker(board) {
+  const rows = board.split('\n');
+  const columns = getColumns(rows);
+  const boxes = getBoxes(rows, columns);
+
+  console.log(rows, columns, boxes);
+
+  if(rows.length !== 9 || columns.length !== 9 || boxes.length !== 9) {
+    return 'invalid';
+  }
+
+  for(let i = 0; i < 9; i++) {
+    if (
+      rows[i].length !== 9 ||
+      columns[i].length !== 9 ||
+      boxes[i].length !== 9 ||
+      isInvalid(rows[i]) ||
+      isInvalid(columns[i]) ||
+      isInvalid(boxes[i])
+    ) {
+      return 'invalid';
+    }
+  }
+
+  return 'solved';
+}
+
+
+module.exports = { sudokuChecker };
