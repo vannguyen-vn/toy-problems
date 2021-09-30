@@ -32,11 +32,11 @@ var translateRomanNumeral = function(romanNumeral) {
   if (typeof romanNumeral !== 'string') {
     return null;
   }
-  const char = romanNumeral.split('');
-  const result = 0;
+  let char = romanNumeral.split('');
+  let result = 0;
   for (var i = 0; i < char.length; i++) {
-    const val = DIGIT_VALUES[char[i]];
-    const nextVal = DIGIT_VALUES[char[i + 1]];
+    let val = DIGIT_VALUES[char[i]];
+    let nextVal = DIGIT_VALUES[char[i + 1]];
     if (val < nextVal) {
       result += nextVal - val;
       i++;
