@@ -19,13 +19,48 @@ Example input:
 */
 
 
-let board = '735814296\n896275314\n214963857\n589427163\n362189745\n471356982\n923541678\n648792531\n157638429'
+
+const validate = (array) => {
+  let result = {};
+  for (let i = 0; i < array.length; i++){
+    if (result[array[i]] === undefined){
+      result[array[i]] = true;
+    } else{
+      return false;
+    }
+  }
+  return true;
+}
+
 function sudokuChecker(board) {
   // Your code here.
   // organize board into an array of arrays of integers
+  let rows = board.split('\n')
   // validate rows
   // validate columns
+  for(let i = 0; i < rows.length; i++){
+    if (!validate(rows[i])){
+      // return 'invalid' if not
+      return 'invalid';
+    }
+    if (!validate( rows[i][0] + rows[i][1] + rows[i][2] + rows[i][3] + rows[i][4] + rows[i][5] + rows[i][6] + rows[i][7] + rows[i][8] )){
+      return 'invalid';
+    }
+  }
   // validate grid
+  for(let i = 0; i < rows.length; i+= 3){
+    if (!validate(rows[i][i] + rows[i + 1][i] + rows[i + 2][i] + rows[i][i + 1] + rows[i + 1][i + 1] + rows[i + 2][i + 1] + rows[i][i + 2] + rows[i + 1][i + 2] + rows[i + 2][i + 2])) {
+      return 'invalid';
+    }
+    if (!validate(rows[i][i + 3] + rows[i + 1][i + 3] + rows[i + 2][i + 3] + rows[i][i + 4] + rows[i + 1][i + 4] + rows[i + 2][i + 4] + rows[i][i + 5] + rows[i + 1][i + 5] + rows[i + 2][i + 5])) {
+      return 'invalid';
+    }
+    if (!validate(rows[i][i + 6] + rows[i + 1][i + 6] + rows[i + 2][i + 6] + rows[i][i + 7] + rows[i + 1][i + 7] + rows[i + 2][i + 7] + rows[i][i + 8] + rows[i + 1][i + 8] + rows[i + 2][i + 8])) {
+      return 'invalid';
+    }
+  }
   // return 'solved' if conditions have been met
-  // return 'invalid' if not
+  return 'solved'
 }
+
+// console.log(sudokuChecker(board))
