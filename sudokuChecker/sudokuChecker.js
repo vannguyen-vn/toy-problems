@@ -21,7 +21,7 @@ Example input:
 
 
 function sudokuChecker(board) {
-  var result = 'valid';
+  var result = 'solved';
 
   //make an array of strings from the rows
   var rows = board.split('\n');
@@ -56,28 +56,23 @@ function sudokuChecker(board) {
   }
   console.log(grids);
 
-  //slice 3-6 in rows 0-2
-  //slice 6-9 in rows 0-2
-
-  //repeat for rows 3-5, 6-8
-
-  //iterate 0-2 in row 0
-  //iterate 0-2 in row 1
-  //iterate 0-2 in row 2
-
-  //iterate 3-5 in row 0
-  //iterate 3-5 in row 1
-  //iterate 3-5 in row 2
-
-  //iterate 6-8 in row 0
-  //iterate 6-8 in row 1
-  //iterate 6-8 in row 2
-
-  //repeat for rows 3-5
-  //repeat for rows 6-8
-
   //helper function to check the array
-  //iterate along that array
-    //check that each contains all numbers 1-9
-    //if it doesn't, switch to 'invalid'
+  var check9s = function(array) {
+    //iterate along that array
+    for (var i = 0; i < array.length; i ++) {
+      //check that each contains all numbers 1-9
+      for (var n = 1; n <= 9; n++) {
+        //if it doesn't, switch to 'invalid'
+        if (!array[i].includes(`${n}`)) {
+          result = 'invalid';
+        }
+      }
+    }
+  }
+
+  check9s(rows);
+  check9s(columns);
+  check9s(grids);
+
+  return result;
 }
