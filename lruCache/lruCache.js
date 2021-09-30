@@ -31,18 +31,42 @@
  */
 
 var LRUCache = function (limit) {
+  this.limit = limit;
+  this.count = 0;
+  this.list = new List();
+  this.storage = {};
 };
 
 var LRUCacheItem = function (val, key) {
+  var obj = {};
+  obj[key] = val;
+  return obj;
 };
 
 LRUCache.prototype.size = function () {
+  return this.count;
 };
 
 LRUCache.prototype.get = function (key) {
+  var node = this.storage[key];
+  if (node === undefined) {
+    return null;
+  } else {
+    this.list.moveToFront(node)
+    return node.val[key];
+  }
 };
 
 LRUCache.prototype.set = function (key, val) {
+  var item = LRUCacheItem(val, key);
+  var newNode = this.list.unshift(item);
+  this.storage[key] = newNode;
+  if (this.count === this.limit) {
+    var key = Object.keys(this.list.pop())[0];
+    delete this.storage[key];
+  } else {
+    this.count++;
+  }
 };
 
 
