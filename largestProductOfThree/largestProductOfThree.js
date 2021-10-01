@@ -9,5 +9,20 @@
 
 
 var largestProductOfThree = function(array) {
-  // TODO: everything
+  let result = null;
+    for (var i = 0; i < nums.length; i++) {
+        for (var j = i+1; j < nums.length; j++) {
+            for (var k = j+1; k < nums.length; k++) {
+                let temp = nums[i] * nums[j] * nums[k];
+                if (result === null) {
+                    result = temp;
+                } else {
+                    if (temp > result) {
+                        result = temp;
+                    }
+                }
+            }
+        }
+    }
+    return result;
 };
