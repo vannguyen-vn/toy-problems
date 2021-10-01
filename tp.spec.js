@@ -4,6 +4,8 @@ const shuffleDeck = require('./shuffleDeck/shuffleDeck.js').shuffleDeck;
 const orderedDeck = require('./shuffleDeck/shuffleDeck.js').orderedDeck;
 const Tree = require('./treeCountLeaves/treeCountLeaves.js');
 const commonCharacters = require('./commonCharacters/commonCharacters.js');
+const translateRomanNumeral = require('./romanNumeralTranslator/romanNumeralTranslator.js').translateRomanNumeral;
+const DIGIT_VALUES = require('./romanNumeralTranslator/romanNumeralTranslator.js').DIGIT_VALUES;
 
 /*
 A "describe" block can be used to group together multiple tests
@@ -72,3 +74,42 @@ xdescribe("commonCharacters", function(){
     expect(result).toBe('aeiou');
   });
 });
+
+xdescribe("translateRomanNumeral", function(){
+  it("should translate a simple Roman Numeral of one or two characters", function() {
+    var testNumeral1 = "C";
+    var result1 = translateRomanNumeral(testNumeral1);
+    var testNumeral2 = "XI";
+    var result2 = translateRomanNumeral(testNumeral2);
+    var testNumeral3 = "III";
+    var result3 = translateRomanNumeral(testNumeral3);
+
+    expect(result1).toEqual(100);
+    expect(result2).toEqual(12);
+    expect(result3).toEqual(3);
+  });
+
+  it("should translate a more complex Roman Numeral of multiple characters", function() {
+    var testNumeral1977 = "MCMLXXVII";
+    var result1977 = translateRomanNumeral(testNumeral1977);
+    var testNumeral3719 = "MMMDCCXIX";
+    var result3719 = translateRomanNumeral(testNumeral3719);
+
+    expect(result1977).toEqual(1977);
+    expect(result3719).toEqual(3719);
+  });
+
+  it("should return null for non-strings", function() {
+    var testNumber = 42;
+    var resultNumber = translateRomanNumeral(testNumber);
+
+    expect(resultNumber).toBeNull();
+  });
+
+  // it("should return an error for disordered Roman Numerals", function() {
+  //   var testBadNumeral = "MCXVIMD";
+  //   var badResult = translateRomanNumeral(testBadNumeral);
+
+  //   expect(badResult).
+  // })
+})

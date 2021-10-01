@@ -68,104 +68,137 @@ var makeChange = function(total) {
     }
   }
 
-  //find all possibilities (rethink):
-  //  find it using all 1p
-  //  if it doesn't exist in the array (as a  joined string)
-  //    push it into the combinations array
-  //  if it does
-  //    iterate across the combo array
-  //    if current coin plus next coin add up to an available coin
-  //      replace the pair with that coin
-  //      sort and join
-  //      if it doesn't exist in the array
-  //        push it in
-  //      if it does
-  //        continue the loop
+  var findSmallerCombos = function(combo) {
+    for (var i = 0; i < combo.length; i++) {
+      let currentCoin = combo[i];
+      let smallerCombo = findCombo(values[currentCoin], valuesArray[coins.indexOf(currentCoin)]);
 
-  var findAllCombos = function(total, valueIndex) {
-    for (var c = 0; c <= valueIndex; c++) {
-      //find a combo with c as the highestValueIndex;
-      //if it's not in the combinations array
-        //push it in
-      //if it is
-        //iterate across combo
-          //combine two coins into one
-          //find a combo with c as the highestValueIndex for the remaining total
-          //add the combined coin to that combo
-          //if it's not in the combinations array
-            //push it in
-          //if it is
-            //increment i
-      //increment c
-    }
-
-
-    var combo = findCombo(total, 0)
-    var sortedCombo = combo.sort();
-    var joinedCombo = sortedCombo.join();
-    if (!combinations.includes(joinedCombo)) {
-      combinations.push(joinedCombo);
-    } else {
-      for (var i = 0; i < sortedCombo.length;) {
-        let firstTwoTotal = values[sortedCombo[i]] + values[sortedCombo[i + 1]]
-        if (valuesArray.contains(firstTwoTotal)) {
-          let firstTWoCombined = values[coins[values.indexOf(firstTwoTotal)]]
-          var newCombo = findCombo(total - firstTwoTotal, valueIndex);
-          newCombo.push(firstTWoCombined);
-          var newSorted = newCombo.sort();
-          var newJoined = newSorted.join();
-          if (!combinations.includes(newJoined)) {
-            combinations.push(newJoined);
-          }
-        }
-        i++;
-      }
     }
   }
+  //if value is already represented by a coin
+    //push that single coin into the combinations array
+    //find a combo for the total - 1, concat with 1p, push that into combinations array
+    //THEN iterate across the coins
+      //find a combo for each (highestValueIndex = one less than the coin's index)
+  //if not
+    //run findCombo with total, closest value as highestValueIndex
+    //THEN iterate across the coins
+      //find a combo for each (highestValueIndex = one less than the coin's index)
+      //THEN iterate across each of those combos
+        //find a combo for each coin (highestValueIndex = one less than the coin's index)
 
-  //if values contains the total
-  //  return the coin that matches that value
-  //then findAllCombos only going up to that coin value's index - 1
-  //
+  var firstCombo;
 
-  findAllCombos(total, 0);
-  return combinations.length;
+  if valuesArray.includes(total) {
+    firstCombo = coins[valuesArray.indexOf(total)];
+  } else {
+    firstCombo = findCombo(total, 7);
+  }
+
+
+
 };
 
 // var findAllCombos = function(total, highestValueIndex) {
-//   var combo = findCombo(total, highestValueIndex)
-//   var sortedCombo = combo.sort();
-//   var joinedCombo = sortedCombo.join();
-//   if (!combinations.includes(joinedCombo)) {
-//     combinations.push(joinedCombo);
-//   } else {
-//     for (var i = sortedCombo.length - 1; i >= 0; i--) {
-//       var currentCoin = sortedCombo[i];
-//       var littleCombo, newCombo;
-//       if (currentCoin !== '1p') {
-//         littleCombo = findCombo(values[currentCoin], coins.indexOf(currentCoin) - 1);
-//         newCombo = sortedCombo.slice(0, i).concat(littleCombo).concat(sortedCombo.slice(i + 1));
-//         var newComboSorted = newCombo.sort();
-//         var newComboJoined = newComboSorted.join();
-//         if (!combinations.includes(newComboJoined)) {
-//           combinations.push(newComboJoined);
+  //   var combo = findCombo(total, highestValueIndex)
+  //   var sortedCombo = combo.sort();
+  //   var joinedCombo = sortedCombo.join();
+  //   if (!combinations.includes(joinedCombo)) {
+    //     combinations.push(joinedCombo);
+    //   } else {
+      //     for (var i = sortedCombo.length - 1; i >= 0; i--) {
+        //       var currentCoin = sortedCombo[i];
+        //       var littleCombo, newCombo;
+        //       if (currentCoin !== '1p') {
+          //         littleCombo = findCombo(values[currentCoin], coins.indexOf(currentCoin) - 1);
+          //         newCombo = sortedCombo.slice(0, i).concat(littleCombo).concat(sortedCombo.slice(i + 1));
+          //         var newComboSorted = newCombo.sort();
+          //         var newComboJoined = newComboSorted.join();
+          //         if (!combinations.includes(newComboJoined)) {
+            //           combinations.push(newComboJoined);
+            //         }
+            //       }
+            //     }
+            //   }
+            //   if (highestValueIndex >= 1) {
+              //     return findAllCombos(total, highestValueIndex - 1);
+              //   } else {
+                //     console.log(combinations);
+                //     return combinations;
+                //   }
+                // }
+                // //find all possibilities:
+                // //  find one possibility
+                // //  if it doesn't exist in the array (as a joined string)
+                // //    push it into the array
+                // //  if it exists in the array (as a joined string),
+                // //    iterate across the combo array (starting at end)
+                // //      remove THAT coin from the combo (array.splice)
+                // //      search for a combo of THAT coin's value, starting at its index - 1
+                // //      concat that result with the combo array
+
+// //find all possibilities (rethink):
+// //  find it using all 1p
+// //  if it doesn't exist in the array (as a  joined string)
+// //    push it into the combinations array
+// //  if it does
+// //    iterate across the combo array
+// //    if current coin plus next coin add up to an available coin
+// //      replace the pair with that coin
+// //      sort and join
+// //      if it doesn't exist in the array
+// //        push it in
+// //      if it does
+// //        continue the loop
+
+// var findAllCombos = function(total, valueIndex) {
+//   for (var c = 0; c <= valueIndex; c++) {
+//     //find a combo with c as the highestValueIndex;
+//     var combo = findCombo(total, c);
+//     var sortedCombo = combo.sort();
+//     var joinedCombo = sortedCombo.join();
+//     //if it's not in the combinations array
+//     if (!combinations.includes(joinedCombo)) {
+//       //push it in
+//       combinations.push(joinedCombo);
+//     //if it is
+//     } else {
+//       //iterate across combo
+//       for (var i = 0; i < sortedCombo.length;) {
+//         // if the first two coins can combine into one
+//         var firstTwoTotal = values[sortedCombo[i]] + values[sortedCombo[i + 1]];
+//         if (valuesArray.includes(firstTwoTotal)) {
+//           // combine them
+//           var firstTwoCombined = coins[values.indexOf(firstTwoTotal)];
+//           combo.splice(0, 2, firstTwoCombined);
+//           // sort and join the array
+//           var newSorted = combo.sort();
+//           var newJoined = combo.join();
+//           // if it's not in the combinations array
+//           if (!combinations.includes(newJoined)) {
+//             // push it in
+//             combinations.push(joinedCombo);
+//           }
+//         // if they don't combine into one
+//         } else {
+//           // try
 //         }
 //       }
+//     //increment c
 //     }
 //   }
-//   if (highestValueIndex >= 1) {
-//     return findAllCombos(total, highestValueIndex - 1);
-//   } else {
-//     console.log(combinations);
-//     return combinations;
-//   }
 // }
-// //find all possibilities:
-// //  find one possibility
-// //  if it doesn't exist in the array (as a joined string)
-// //    push it into the array
-// //  if it exists in the array (as a joined string),
-// //    iterate across the combo array (starting at end)
-// //      remove THAT coin from the combo (array.splice)
-// //      search for a combo of THAT coin's value, starting at its index - 1
-// //      concat that result with the combo array
+
+// var biggestCoin = 7;
+
+// //if values contains the total
+// if (valuesArray.includes(total)) {
+//   //  add the coin that matches that value to combinations
+//   biggestCoin = valuesArray.indexOf(total);
+//   combinations.push(coins[biggestCoin]);
+// }
+// //  then findAllCombos only going up to that coin value's index - 1
+// //if not
+//   //start at 7
+// findAllCombos(total, biggestCoin);
+// return combinations.length;
