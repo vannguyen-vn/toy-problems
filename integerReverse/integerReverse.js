@@ -10,33 +10,33 @@
 */
 
 function reverseInteger(number){
-  // TODO: Implement this function!
-  if (number < 10) {
-    return number;
-  } else if (number < 100) {
-    let ones = number % 10;
-    let tens = Math.floor(number / 10);
-    return (10 * ones) + tens;
-  } else if (number < 1000) {
-    let ones = number % 10;
-    let tens = (Math.floor(number / 10)) % 10;
-    let hundreds = Math.floor(number / 100);
-    return (100 * ones) + (10 * tens) + hundreds;
-  } else if (number < 10000) {
-    let ones = number % 10;
-    let tens = (Math.floor(number / 10)) % 10;
-    let hundreds = (Math.floor(number / 100)) % 10;
-    let thousands = Math.floor(number / 1000);
-    return (1000 * ones) + (100 * tens) + (10 * hundreds) + thousands;
-  } else if (number < 1000000) {
-    let ones = number % 10;
-    let tens = (Math.floor(number / 10)) % 10;
-    let hundreds = (Math.floor(number / 100)) % 10;
-    let thousands = Math.floor(number / 1000) % 10;
-    let tenThousands = Math.floor(number / 10000) % 10;
-    return (10000 * ones) + (1000 * tens) + (100 * hundreds) + (10 * thousands) + (1 * tenThousands);
+  var findDigit = function(placeValue) {
+    return (Math.floor(number / placeValue)) % 10;
   }
 
+  //create array of numbers using findDigit
+  var digitsReversed = [];
+  //iterate from 1 to ? // while loop: while iterater is less than number?
+  for (var place = 1; place <= number; place *= 10) {
+    // use *= 10 to multiply by ten each time
+    // run findDigit with iterator as placeValue
+    let digit = findDigit(place);
+    // push each one into the array
+    digitsReversed.push(digit);
+  }
+  console.log(digitsReversed);
+
+  //iterate across array starting at highest place-value number
+  var result = 0;
+  var newPlace = 1;
+  for (var i = digitsReversed.length - 1; i >= 0; i--) {
+    result += (digitsReversed[i] * newPlace);
+    newPlace *= 10;
+  }
+    // increment iterator in the same way
+    // add each product to a running total result
+
+    return result;
 }
 
 // module.exports = reverseInteger;
