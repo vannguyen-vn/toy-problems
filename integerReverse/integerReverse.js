@@ -34,4 +34,4 @@ function reverseInteger(number){
   return (negative ? -reverse : reverse);
 }
 
-module.exports = reverseInteger;
+// module.exports = reverseInteger;

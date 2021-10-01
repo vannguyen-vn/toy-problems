@@ -32,12 +32,12 @@ function sudokuChecker(board) {
 
 
         if (rows[i].includes(cell)) {
-          return false
+          return 'invalid'
         } else {
           rows[i].push(cell);
         }
         if (columns[j].includes(cell)) {
-          return false;
+          return 'invalid';
         } else {
         columns[j].push(cell);
         }
@@ -45,7 +45,7 @@ function sudokuChecker(board) {
         let boxIndex = Math.floor((i / 3)) * 3 + Math.floor(j / 3);
 
         if (boxes[boxIndex].includes(cell)) {
-          return false;
+          return 'invalid';
         } else {
           boxes[boxIndex].push(cell);
         }
@@ -54,7 +54,7 @@ function sudokuChecker(board) {
     }
 
 
-  return true;
+  return 'valid';
 }
 
 function sudokuMatrix(string) {
