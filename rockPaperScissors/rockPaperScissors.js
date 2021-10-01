@@ -57,7 +57,7 @@ var rockPaperScissors = function (rounds) {
     }
   }
 
-  // comboBuilder('');
+  comboBuilder('');
 
   return combinations;
 
