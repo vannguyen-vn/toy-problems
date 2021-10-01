@@ -11,11 +11,14 @@
 
 function reverseInteger(number){
   // TODO: Implement this function!
-  // assign a value of 0 to a variable
-  // while that number is not equal to input
-  // increment the variable
-  // return the number when the variable === number
-  console.log(number[0])
+
+  var revNumber = 0;
+  while (number > 0) {
+    revNumber = (revNumber * 10) + (number % 10);
+    number = Math.floor(number / 10);
+  }
+  return revNumber;
+
 }
 // i- a positive number
 // c- cant split, cant convert to string
@@ -28,7 +31,7 @@ function reverseInteger(number){
 // 56 => 65
 // 98 => 89
 // 399 => 993
-console.log(reverseInteger(56))
+// console.log(reverseInteger(56))
 // 65 = 56 + y //9 = 9 * 1
 // 98 = 89 + y //9 = 9 *1
 // 10 = 1 + y // 9 = 9 * 1
