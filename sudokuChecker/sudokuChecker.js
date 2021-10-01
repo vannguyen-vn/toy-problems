@@ -49,6 +49,7 @@ function sudokuChecker(board) {
       const three = solution[row + 2].splice(0, 3)
 
       const square = one.concat(two, three)
+
       if (conflicts(square)) return 'invalid';
     }
   }
