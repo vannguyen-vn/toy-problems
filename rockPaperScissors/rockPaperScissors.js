@@ -24,18 +24,7 @@ var rockPaperScissors = function (rounds) {
   // var roundsPlayed = 0;
   var throws = ['R', 'P', 'S'];
   var combinations = [];
-  // iterate across possible throws array
-  // for (var i = 0; i < throws.length; i++) {
-  //   // make a string with that letter first
-  //   // currentCombo += throws[i];
-  //   for (var j = 0; j < throws.length; j++) {
-  //     // currentCombo += throws[j]
-  //     for (var k = 0; k < throws.length; k++) {
-  //       // currentCombo += throws[k];
-  //       combinations.push(throws[i] + throws[j] + throws[k]);
-  //     }
-  //   }
-  // }
+
 
   // recursor
   // var combo = ''
