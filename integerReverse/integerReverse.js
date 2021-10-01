@@ -14,8 +14,7 @@ function reverseInteger(number) {
   var result = [];
 
   function inner(number) {
-    if (number === 1 || number === 0) {
-      result.push(number);
+    if (number === 0) {
       return;
     }
 
@@ -24,7 +23,6 @@ function reverseInteger(number) {
 
     inner((number - digit) / 10);
   }
-
   inner(number);
 
   return Number(result.join(''));
