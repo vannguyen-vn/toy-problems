@@ -11,8 +11,9 @@
 var largestProductOfThree = function (array) {
   // TODO: everything
   let product;
-  var sorted = array.sort((a, b) => a > b ? 1 : -1);
-  sorted.map((num) => Math.abs(num));
+  var sorted = array.map((num) => Math.abs(num))
+    .sort((a, b) => a > b ? 1 : -1);
+
   if (sorted.length >= 3) {
     var last = sorted.length - 1;
     product = sorted[last] * sorted[last - 1] * sorted[last - 2];

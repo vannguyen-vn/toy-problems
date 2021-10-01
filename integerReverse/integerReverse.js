@@ -1,14 +1,31 @@
-/* 
-* 
+/*
+*
 * Integer Reverse
-* 
-* Given a positive integer, return its digits reversed. 
-* 
-* - DO NOT CONVERT THE INPUT INTO A STRING OR ARRAY. 
+*
+* Given a positive integer, return its digits reversed.
+*
+* - DO NOT CONVERT THE INPUT INTO A STRING OR ARRAY.
 * - Only use integers and math in your solution.
 *
 */
-
-function reverseInteger(number){
+// 123456
+function reverseInteger(number) {
   // TODO: Implement this function!
+  var result = [];
+
+  function inner(number) {
+    if (number === 1) {
+      result.push(number);
+      return;
+    }
+
+    const digit = number % 10;
+    result.push(digit);
+
+    inner((number - digit) / 10);
+  }
+
+  inner(number);
+
+  return Number(result.join(''));
 }
