@@ -3,10 +3,10 @@ Given a full sudoku board, return 'solved' if the board is solved, or 'invalid' 
 
 A sudoku board is solved if each column, row, and 3 x 3 subgrid contains all of the digits from 1 to 9.
 
-Input: A String representing the board. 
+Input: A String representing the board.
 Output: 'solved' if the board is valid, 'invalid' if it isn't
 
-Example input: 
+Example input:
 "735814296\n
 896275314\n
 214963857\n
@@ -18,9 +18,13 @@ Example input:
 157638429"
 */
 
+// sum 1 - 9
+
 
 
 function sudokuChecker(board) {
-  // Your code here.
-  
+
+
+  return 'solved';
+
 }
