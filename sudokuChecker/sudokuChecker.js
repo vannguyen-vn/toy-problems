@@ -18,7 +18,7 @@ Example input:
 157638429"
 */
 
-function hasConflicts(numbers) {
+function conflicts(numbers) {
   return (
     numbers.length !== 9 ||
     numbers.reduce((sum, digit) => sum + digit, 0) != 45 ||
@@ -38,9 +38,7 @@ function sudokuChecker(board) {
     const row = solution[i]
     const column = solution.map((row) => row[i])
 
-    if (hasConflicts(row) || hasConflicts(column)) {
-      return 'invalid'
-    }
+    if (conflicts(row) || conflicts(column)) return 'invalid'
   }
 
   for (let column = 0; column < 9; column += 3) {
@@ -51,9 +49,9 @@ function sudokuChecker(board) {
       const three = solution[row + 2].splice(0, 3)
 
       const square = one.concat(two, three)
-      if (hasConflicts(square)) return 'invalid';
+      if (conflicts(square)) return 'invalid';
     }
   }
 
   return 'solved'
-  }
+}
