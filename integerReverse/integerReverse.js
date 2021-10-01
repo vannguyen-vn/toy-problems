@@ -14,7 +14,7 @@ function reverseInteger(number) {
   var result = [];
 
   function inner(number) {
-    if (number === 1) {
+    if (number === 1 || number === 0) {
       result.push(number);
       return;
     }
