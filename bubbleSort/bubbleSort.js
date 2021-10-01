@@ -50,6 +50,3 @@ var bubbleSort = function(array) {
     return array;
   }
 };
-
-console.log(bubbleSort([2, 1, 3]));
-console.log(bubbleSort([5, 4, 3, 2, 1]));
