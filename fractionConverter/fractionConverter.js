@@ -23,13 +23,25 @@ var toFraction = function(number) {
     number *= 10;
     denominator *= 10;
   }
-  for (var i = number; i > 1; i--) {
-    if (number % i === 0 && denominator % i ===0) {
-      number /= i;
-      denominator /= i;
+  number = Math.floor(number);
+  if (number > 0) {
+    for (var i = number; i > 1; i--) {
+      if (number % i === 0 && denominator % i === 0) {
+        number /= i;
+        denominator /= i;
+      }
     }
-  }
   return `${number}/${denominator}`
+} else {
+    for (var i = number; i < -1; i++) {
+      if (number % i === 0 && denominator %i === 0) {
+        number /= i;
+        denominator /= i;
+      }
+    }
+    return `-${Math.abs(number)}/${Math.abs(denominator)}`
+  }
+
 };
 
 // module.exports = toFraction;
