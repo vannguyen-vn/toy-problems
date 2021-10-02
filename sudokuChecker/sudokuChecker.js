@@ -22,7 +22,10 @@ Example input:
 function sudokuChecker(board) {
   var array = board.split('\n');
   var newArr = [];
+  var newBoxArr = [];
   var str = "";
+  var boxStr = "";
+
   for (var i = 0; i < array.length; i++) {
     if (!validation(array[i])) {
       return 'invalid';
@@ -35,11 +38,26 @@ function sudokuChecker(board) {
     str = "";
   }
 
+  for (var l = 0; l < array.length; l += 3) {
+    for (var a = 0; a < array.length; a += 3) {
+      boxStr += array[l].slice(a, a + 3) + array[l + 1].slice(a, a + 3) + array[l + 2].slice(a, a + 3);
+      newBoxArr.push(boxStr);
+      boxStr = "";
+    }
+  }
+
   for (var m = 0; m < newArr.length; m++) {
     if (!validation(array[m])) {
       return 'invalid';
     }
   }
+
+  for (var b = 0; b < newBoxArr.length; b++) {
+    if (!validation(array[b])) {
+      return 'invalid';
+    }
+  }
+
   return 'solved';
 }
 
