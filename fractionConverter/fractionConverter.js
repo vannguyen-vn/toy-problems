@@ -18,7 +18,7 @@ var toFraction = function(number) {
   // 'whole number / (whole number / original number)'
   //what should the condition be to check if its a whole number
   var original = number;
-  console.log(Number.isInteger(number), number);
+  // console.log(Number.isInteger(number), number);
   while (!Number.isInteger(number)) {
     number = number * 2;
     if (Number.isInteger(number)) {
