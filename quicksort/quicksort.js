@@ -12,4 +12,28 @@
 
 
 var quicksort = function(array) {
+  if (array.length <= 1) {
+    return array;
+  }
+  var pivotNum = Math.floor(Math.random() * array.length);
+  var pivot = array[pivotNum];
+  var lesser = [];
+  var greater = [];
+  for (var i = 0; i < array.length; i++) {
+    if (i === pivotNum) {
+      continue;
+    } else {
+      if (array[i] <= pivot) {
+        lesser.push(array[i]);
+      } else {
+        greater.push(array[i]);
+      }
+    }
+  }
+  // console.log(lesser)
+  // console.log(greater)
+  return [].concat(quicksort(lesser), pivot, quicksort(greater));
 };
+
+// console.log(quicksort([5,1,4,2,3]));
+// console.log(quicksort([]));
