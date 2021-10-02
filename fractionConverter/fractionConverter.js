@@ -17,11 +17,11 @@
 // constraints: use irregular fractions, simplified fraction
 // edge cases: whole number could be returned as itself over 1
 var toFraction = function(number) {
-  var fraction = ''
+  var fraction = number < 0 ? '-' : ''
   // covert number to string
   var stringNum = number.toString()
   // whole num will be string slice before the . converted back to a number
-  var wholeNum = Number(stringNum.split('.')[0])
+  var wholeNum = Math.abs(Number(stringNum.split('.')[0]))
   // numerator will be string slice after the . converted back to a number
   var numerator = Number(stringNum.split('.')[1]) || 0
   // while denominator is less than or equal to numerator
@@ -44,7 +44,7 @@ var toFraction = function(number) {
   }
   // updatedNumerator add (multiply denominator times wholeNum) + numerator
   var updatedNumerator = numerator + denominator * wholeNum
-  fraction = updatedNumerator + '/' + denominator
+  fraction += updatedNumerator + '/' + denominator
   return fraction
 };
 
@@ -54,3 +54,4 @@ console.log(toFraction(3.0)) // === '3/1'
 console.log(toFraction(2.5)) // === '5/2'
 console.log(toFraction(0.1)) // === '1/10'
 console.log(toFraction(0.24)) // === '6/25'
+console.log(toFraction(-1.75))//.should.equal('-7/4');
