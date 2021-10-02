@@ -26,4 +26,3 @@ function reverseInteger(number){
   return Number(result);
 }
 
-console.log(reverseInteger(1234));
