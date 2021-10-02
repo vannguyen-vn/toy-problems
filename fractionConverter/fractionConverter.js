@@ -32,4 +32,4 @@ var toFraction = function(number) {
   return `${number}/${denominator}`
 };
 
-module.exports = toFraction;
+// module.exports = toFraction;
