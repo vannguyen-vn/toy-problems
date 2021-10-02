@@ -17,7 +17,7 @@ function reverseInteger(number){
   var num = number / 10;
   var digit = (num - Math.floor(num)) * 10;
   digits.push(Math.round(digit));
-  while (Math.floor(num) > 10) {
+  while (Math.floor(num) >= 10) {
     num = Math.floor(num) / 10;
     digit = (num - Math.floor(num)) * 10;
     digits.push(Math.round(digit));
