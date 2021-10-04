@@ -9,6 +9,8 @@
 *
 */
 
+// DONE
+
 function reverseInteger(number){
   var result = [];
   var recursiveFunction = (number, subtract) => {

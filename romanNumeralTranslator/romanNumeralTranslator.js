@@ -28,6 +28,22 @@ var DIGIT_VALUES = {
 };
 
 var translateRomanNumeral = function(romanNumeral) {
-// TODO: Implement me!
-
+  if (typeof romanNumeral !== 'string' || romanNumeral === '') return null;
+  var previous;
+  var total = 0;
+  romanNumeral = romanNumeral.split('');
+  romanNumeral.forEach((letter, i) => {
+    if (i === 0) {
+      total += DIGIT_VALUES[letter];
+      previous = DIGIT_VALUES[letter];
+    } else if (DIGIT_VALUES[letter] > previous) {
+      total -= previous;
+      total += DIGIT_VALUES[letter] - previous;
+      previous = DIGIT_VALUES[letter];
+    } else {
+      total += DIGIT_VALUES[letter];
+      previous = DIGIT_VALUES[letter];
+    }
+  });
+  return total;
 };
