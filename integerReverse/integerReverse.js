@@ -21,5 +21,5 @@ function reverseInteger(number){
     if (number > 0) recursiveFunction(number, subtract * 10)
   }
   recursiveFunction(number, 1);
-  return result.join('');
+  return Number(result.join(''));
 }
