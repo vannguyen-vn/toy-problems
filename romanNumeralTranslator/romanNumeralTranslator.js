@@ -28,7 +28,11 @@ var DIGIT_VALUES = {
 };
 
 var translateRomanNumeral = function(romanNumeral) {
-  if (typeof romanNumeral !== 'string' || romanNumeral === '') return null;
+  if (typeof romanNumeral !== 'string') {
+    return null;
+  } else if (romanNumeral === '') {
+    return 0;
+  }
   var previous;
   var total = 0;
   romanNumeral = romanNumeral.split('');
