@@ -29,5 +29,3 @@ var longestPalindrome = function (string) {
 
   return longest;
 };
-
-console.log(longestPalindrome('My dad is a racecar athlete'));
