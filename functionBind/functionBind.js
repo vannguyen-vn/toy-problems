@@ -23,8 +23,7 @@
  *
 */
 
-var bind = function(
-) {
+var bind = function(function, this) {
   // TODO: Your code here
 };
 
