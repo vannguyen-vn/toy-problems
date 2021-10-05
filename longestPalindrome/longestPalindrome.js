@@ -11,7 +11,7 @@ var longestPalindrome = function (string) {
 
   if (string !== '') {
     for (var i = 0; i < string.length; i++) {
-      for (var j = 0; j < string.length; j++) {
+      for (var j = 0; j <= string.length; j++) {
         var sub = string.substring(i, j);
         var reverse = sub.split('').reverse().join('');
         if (sub === reverse && reverse.length > result.length) {
