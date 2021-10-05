@@ -26,8 +26,8 @@ var toFraction = function(number) {
   var numAsString = '' + number;
   var decInd = numAsString.indexOf('.');
   var wholeString = numAsString.slice(0, decInd);
-  if (decInd <= 0) {
-    wholeString = '0';
+  if (wholeString === '') {
+    return '' + number + '/1';
   }
   var numeratorString = numAsString.slice(decInd + 1);
   var denominator = 10 ** (numeratorString.length);
