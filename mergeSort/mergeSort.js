@@ -131,7 +131,6 @@ var mergeSort = function (array) {
     return array;
   }
   var arraySplit = array.map((item) => [item]);
-  debugger;
   // console.log(arraySplit);
   while (arraySplit.length > 1) {
     var arraySplitCopy = [];
