@@ -26,18 +26,21 @@ var toFraction = function(number) {
   var numAsString = '' + number;
   var decInd = numAsString.indexOf('.');
   var wholeString = numAsString.slice(0, decInd);
+  if (decInd <= 0) {
+    wholeString = '0';
+  }
   var numeratorString = numAsString.slice(decInd + 1);
   var denominator = 10 ** (numeratorString.length);
   var whole = parseInt(wholeString);
   var numerator = parseInt(numeratorString);
 
   var simplify = () => {
-    if (numerator % 5 === 0) {
+    if (numerator % 5 === 0 && denominator % 5 === 0) {
       numerator /= 5;
       denominator /= 5;
       simplify();
     }
-    if (numerator % 2 === 0) {
+    if (numerator % 2 === 0 && denominator % 2 === 0) {
       numerator /= 2;
       denominator /= 2;
       simplify();
