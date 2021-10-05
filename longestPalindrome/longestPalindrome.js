@@ -8,6 +8,9 @@ const isPalindrome = (string) => {
 }
 
 const longestPalindrome = function (string) {
+  if (string.length === 0) {
+    return '';
+  }
   string = string.toLowerCase();
   var palindromeList = [];
   var possiblePalindrome = ''
