@@ -20,7 +20,12 @@ var gcd = function (a, b) {
 };
 
 var toFraction = function (number) {
-
+  var neg = false;
+  if (number < 0) {
+    number = number.toString();
+    var number = number.substring(1);
+    neg = true;
+  }
 
   var len = number.toString().length - 2
   var denominator = Math.pow(10, len);
@@ -32,6 +37,10 @@ var toFraction = function (number) {
   denominator /= GCD;
 
   var res = Math.floor(numerator) + "/" + Math.floor(denominator);
+
+  if (neg) {
+    res = '-' + res;
+  }
 
   return res;
 };
