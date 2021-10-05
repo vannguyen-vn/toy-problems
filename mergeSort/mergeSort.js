@@ -96,7 +96,64 @@
  */
 
 
-
-var mergeSort = function(array) {
-  // Your code here.
+var insertionSort = function (array
+) {
+  for (var i = 0; i < array.length; i++) {
+    if (i === 0) {
+      continue;
+    }
+    for (var j = 0; j < i; j++) {
+      if (j === 0) {
+        if (array[i] < array[0]) {
+          array.unshift(array.splice(i, 1)[0]);
+          break;
+        }
+      } else {
+        let lower = array[j - 1];
+        let higher = array[j];
+        if (array[i] === higher) {
+          continue;
+        } else {
+          if (lower <= array[i] && array[i] <= higher) {
+            array.splice(j, 0, array.splice(i, 1)[0]);
+            break;
+          }
+        }
+      }
+    }
+  }
+  return array;
 };
+
+var mergeSort = function (array) {
+  // Your code here.
+  if (array.length === 0 || array.length === 1) {
+    return array;
+  }
+  var arraySplit = array.map((item) => [item]);
+  debugger;
+  // console.log(arraySplit);
+  while (arraySplit.length > 1) {
+    var arraySplitCopy = [];
+    for (i = 0; i < arraySplit.length; i += 2) {
+      if (arraySplit[i + 1] === undefined || arraySplit[i + 1][0] === undefined) {
+        arraySplitCopy.push(arraySplit[i]);
+      } else {
+        var arrayCombined = arraySplit[i].concat(arraySplit[i + 1]);
+        var arraySorted = insertionSort(arrayCombined);
+        arraySplitCopy.push(arraySorted);
+      }
+    }
+    arraySplit = arraySplitCopy;
+  }
+  return arraySplit[0];
+};
+
+// console.log(mergeSort([5, 2, 4, 3, 1]));
+// console.log(mergeSort([5,2,4,3]));
+// console.log(mergeSort([5,2,4]));
+// console.log(mergeSort([5,2]));
+// console.log(mergeSort([5]));
+// console.log(mergeSort([]));
+
+// console.log(mergeSort([5, 2, 10, 4, 3, 17, 1]));
