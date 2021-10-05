@@ -26,7 +26,7 @@ var toFraction = function(number) {
   var numAsString = '' + number;
   var decInd = numAsString.indexOf('.');
   var wholeString = numAsString.slice(0, decInd);
-  if (wholeString === '') {
+  if (decInd <= 0) {
     return '' + number + '/1';
   }
   var numeratorString = numAsString.slice(decInd + 1);
