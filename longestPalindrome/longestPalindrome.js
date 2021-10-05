@@ -25,8 +25,7 @@ const longestPalindrome = function (string) {
       }
     }
   }
-  debugger;
-  var longest = possiblePalindrome[0];
+  var longest = palindromeList[0];
   for (var k = 0; k < palindromeList.length; k++) {
     var palindrome = palindromeList[k];
     if (palindrome.length > longest.length) {
