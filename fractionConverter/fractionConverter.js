@@ -16,9 +16,9 @@ var toFraction = function(number) {
   if (number % 1 === 0) return (`${number}/1`)
 
   let denominator = 1
-  let decimalPlaces = number.toString().split('.')[1].length;
+  let decimal = number.toString().split('.')[1].length;
 
-  for (let i = 1; i <= decimalPlaces; i++) {
+  for (let i = 1; i <= decimal; i++) {
     number *= 10;
     denominator *= 10;
   }
@@ -26,13 +26,13 @@ var toFraction = function(number) {
   if (number > 0) {
     for (let i = number; i > 1; i--) {
       if (number % i === 0 && denominator % i === 0) {
-        number /= i;
         denominator /= i;
+        number /= i;
       }
     }
   return `${number}/${denominator}`;
 
-} else {
+  } else {
     for (let i = number; i < -1; i++) {
       if (number % i === 0 && denominator %i === 0) {
         number /= i;
