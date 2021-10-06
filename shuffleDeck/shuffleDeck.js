@@ -39,7 +39,7 @@ var shuffleDeck = function(deck) {
  // loop through deck
   for (var i = 0; i < deck.length; i++) {
     // randomly select a spot to move the current card to
-    var randomNum = Math.floor(Math.random() * deck.length)
+    var randomNum = i + Math.floor(Math.random() * (deck.length - i))
     var currentCard = deck[i]
     // move the current card to the new random spot
     deck[i] = deck[randomNum]
