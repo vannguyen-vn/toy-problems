@@ -7,4 +7,19 @@
 */
 
 var longestPalindrome = function (string) {
+  var reverseStr = string.split('').reverse().join('');
+  var startInd = 0;
+  var endInd = 0;
+  var result = '';
+  while (endInd < string.length) {
+    var currStr = string.slice(startInd, endInd + 1);
+    if (reverseStr.indexOf(currStr) === -1) {
+      startInd++;
+      endInd++;
+    } else {
+      result = currStr;
+      endInd++;
+    }
+  }
+  return result;
 };
