@@ -26,3 +26,5 @@ var isPalindrome = function (string) {
   if (beg === end && string[beg] === string[end]) {
     return true;
   }
+};
+
