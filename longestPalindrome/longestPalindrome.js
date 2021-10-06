@@ -26,5 +26,10 @@ var isPalindrome = function (string) {
   if (beg === end && string[beg] === string[end]) {
     return true;
   }
-};
+
+  if (string[beg] !== string[end]) {
+    return false;
+  }
+  return isPalindrome(string.substring(beg + 1, end));
+}
 
