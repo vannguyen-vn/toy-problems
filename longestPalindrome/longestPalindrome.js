@@ -7,38 +7,58 @@
 */
 
 var longestPalindrome = function (string) {
-
-  var start = 0;
-  var end = 0;
+  var result = '';
 
   for (var i = 0; i < string.length; i++) {
-    var even = palindrome(start, end);
-    var odd = palindrome(start, end + 1);
+    var current = string[i];
+    var next;
 
-    var temp = Math.max(even[1] - even[0], odd[1] - odd[0]);
-
-    if (temp > (end - start)) {
-      if (temp === (even[1] - even[0])) {
-        start = even[0];
-        end = even[1];
+    for (var j = i + 1; j < string.length; j++) {
+      if (current === string[j]) {
+        next = j;
+        var subString = string.slice(i, next + 1);
+        if (subString.length > result.length && subString.toLowerCase() === subString.split('').reverse().join('').toLowerCase()) {
+          result = subString;
+        }
       }
-    } else {
-      start = odd[0];
-      end = odd[1];
     }
   }
 
-  return string.substring(start, end + 1);
+  return result;
 };
 
+// var longestPalindrome = function (string) {
+//   var start = 0;
+//   var end = 0;
 
-var palindrome = function (string, start, end) {
-  while (start >= 0 && end <= string.length - 1 && string[start] === string[end]) {
-    start--;
-    end++;
-  }
+//   for (var i = 0; i < string.length; i++) {
+//     var even = palindrome(string, start, end);
+//     var odd = palindrome(string, start, end + 1);
 
-  var res = [start, end];
+//     var temp = Math.max(even[1] - even[0], odd[1] - odd[0]);
 
-  return res;
-}
+//     if (temp > (end - start)) {
+//       if (temp === (even[1] - even[0])) {
+//         start = even[0];
+//         end = even[1];
+//       }
+//     } else {
+//       start = odd[0];
+//       end = odd[1];
+//     }
+//   }
+
+//   return string.substring(start, end + 1);
+// };
+
+
+// var palindrome = function (string, start, end) {
+//   while (start >= 0 && end <= string.length - 1 && string[start] === string[end]) {
+//     start--;
+//     end++;
+//   }
+
+//   var res = [start + 1, end - 1];
+
+//   return res;
+// }
