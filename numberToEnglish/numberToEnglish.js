@@ -53,6 +53,20 @@ var numbersToPlace = {
     1000000000000000000: 'quintillion',
 };
 
-Number.prototype.toEnglish = function() {
+// input: this
+// output: string
+// constraints: n/a
+// edge cases: anything involving zero that isn't just '0'
+Number.prototype.toEnglish = function () {
+    var stringifiedNumber = this.toString()
+    // base case
+    if (stringifiedNumber.length === 1) {
+        return numbersToWords[stringifiedNumber]
+    }
+    // convert number to string
+    // break string into groups of three digits
     // return my value as english words
 };
+
+// example
+(7).toEnglish(); // > "seven"
