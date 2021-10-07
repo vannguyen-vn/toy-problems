@@ -46,7 +46,11 @@ var numbersToPlace = {
     10: 'ten',
     100: 'hundred',
     1000: 'thousand',
+    // ten thousand
+    // one hundred thousand
     1000000: 'million',
+    // ten million
+    // one hundred million
     1000000000: 'billion',
     1000000000000: 'trillion',
     1000000000000000: 'quadrillion',
@@ -54,5 +58,41 @@ var numbersToPlace = {
 };
 
 Number.prototype.toEnglish = function() {
-    // return my value as english words
+  // rules
+  // 0 - 20 have special rules, so can return right away
+  let num = this.valueOf();
+  let englishNum = '';
+
+  // go through it left to right
+  // find highest place and subtract from main num
+  while(num !== 0) {
+    let place = 1;
+    let placeNum = num;
+    let newWord = '';
+
+    while(placeNum >= 10) {
+      placeNum = Math.floor(placeNum / 10);
+      place *= 10;
+    }
+
+    let first = placeNum;
+    placeNum = placeNum * place;
+
+    let commonNumberWord = numbersToWords[placeNum];
+    let placeNumberWord = numbersToPlace[place];
+    let prefix = numbersToWords[first];
+
+    if(commonNumberWord) {
+      newWord += commonNumberWord;
+    } else {
+      newWord += prefix + ' ' + placeNumberWord;
+    }
+
+    englishNum += newWord + ' ';
+    num -= placeNum;
+  }
+
+  return englishNum;
 };
+
+// module.exports = { Number };
