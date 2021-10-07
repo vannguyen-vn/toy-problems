@@ -63,6 +63,10 @@ Number.prototype.toEnglish = function() {
   let num = this.valueOf();
   let englishNum = '';
 
+  if(num < 20) {
+    return numbersToWords[num];
+  }
+
   // go through it left to right
   // find highest place and subtract from main num
   while(num !== 0) {
@@ -92,7 +96,7 @@ Number.prototype.toEnglish = function() {
     num -= placeNum;
   }
 
-  return englishNum;
+  return englishNum.slice(0, englishNum.length - 1);
 };
 
 // module.exports = { Number };
