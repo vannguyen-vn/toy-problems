@@ -15,10 +15,44 @@
 // constraints: use recursion
 // edge cases: empty array, one value, two values
 var quicksort = function(array) {
-  // use midpoint as "pivot"- calculate midpoint in array using its length (round down if necesssary)
+  // use midpoint as "pivot"- calculate midpoint in array using its length (round down if necessary)
+  if (array.length <= 1) {
+    return array
+  }
   var pivot = array[Math.floor(array.length/2)]
-  console.log(pivot)
-  // split the array in two using that midpoint
+  var lessThan = []
+  var greaterThan = []
+  var middle = []
+  // loop through array
+  for (var i = 0; i < array.length; i++) {
+    var num = array[i]
+     // if value less than pivot
+     if (num < pivot) {
+        // add to less than group
+        lessThan.push(num)
+     } else if (num === pivot) {
+       middle.push(num)
+     } else {// otherwise
+      // add to greater than group
+      greaterThan.push(num)
+
+     }
+  }
+
+  // re-sort less than group
+  lessThan = quicksort(lessThan)
+
+  // resort greater than group
+  greaterThan = quicksort(greaterThan)
+
+  // return both groups with pivot in between
+  return lessThan.concat(middle).concat(greaterThan)
+};
+
+//example
+// var numbers = [4, 16, 2, 7, 9, 15, 8]
+// "pivot" would be 7
+// is 4 < 7 ? yes, is 16 < 7 ? no  // split the array in two using that midpoint
   // then loop through both arrays
   // for left side
     // for each element
@@ -28,11 +62,5 @@ var quicksort = function(array) {
      // check if current number > "pivot"
   // identify base case: when array has 1 value left?
   // on each recursive call send in a slightly smaller array
-};
-
-//example
-var numbers = [4, 16, 2, 7, 9, 15, 8]
-// "pivot" would be 7
-// is 4 < 7 ? yes, is 16 < 7 ? no
 // is 9 > 7 ? yes, is 15 > 7 ? yes
-console.log(quicksort(numbers))
+// console.log(quicksort(numbers))
