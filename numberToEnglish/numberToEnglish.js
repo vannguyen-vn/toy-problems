@@ -76,7 +76,7 @@ Number.prototype.toEnglish = function() {
     return numbersToWords[number];
     }
     var ones = numbersToWords[number % 10];
-    var tens = numbersToWords[Math.floor((number % 100) / 10)];
+    var tens = numbersToWords[Math.floor((number % 100) / 10) * 10];
     if (ones === 'zero') {
       return tens;
     }
@@ -156,25 +156,25 @@ Number.prototype.toEnglish = function() {
 
   result += tensAndOnes(this);
   if (this > 100) {
-    result = hundreds(number) + ' ' + result;
+    result = hundreds(this) + ' ' + result;
   }
   if (this > 1000) {
-    result = thousands(number) + ' ' + result;
+    result = thousands(this) + ' ' + result;
   }
   if (this > 1000000) {
-    result = millions(number) + ' ' + result;
+    result = millions(this) + ' ' + result;
   }
   if (this > 1000000000) {
-    result = billions(number) + ' ' + result;
+    result = billions(this) + ' ' + result;
   }
   if (this > 1000000000000) {
-    result = trillions(number) + ' ' + result;
+    result = trillions(this) + ' ' + result;
   }
   if (this > 1000000000000000) {
-    result = quadrillions(number) + ' ' + result;
+    result = quadrillions(this) + ' ' + result;
   }
   if (this > 1000000000000000000) {
-    result = quintillions(number) + ' ' + result;
+    result = quintillions(this) + ' ' + result;
   }
 
   return result;
