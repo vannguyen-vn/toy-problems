@@ -16,31 +16,36 @@
 // output: array of str
 // constraints: N/A (don't worry about repeated str)
 // edge cases: if all same letter
-var allAnagrams = function(string) {
+var allAnagrams = function (string, memo) {
+  var memo = memo || {}
+  if (memo[string]) {
+    return memo[string]
+  }
   var possibilities = []
-  var length = string.length
-
-  if (length === 1) {
-    return string
+  if (string.length === 0) {
+    return []
+  }
+  // base case
+  if (string.length === 1) {
+    return [string]
   }
 
-  // loop through string chars
   for (var i = 0; i < string.length; i++) {
-    // save first character to use later
-    var firstChar = string[0]
-    // use recursion, sending in a smaller string
-    var shortened = allAnagrams(string.slice(1, length))
-    // loop through the smaller string
-    for (var j = 0; j < shortened.length; j++) {
-      // add the original first char and the char at current index
-      possibilities.push(firstChar + shortened[j])
-      string = string.substr(1, length - 1) + firstChar
+    var currentLetter = string[i]
+    var nextLetters = string.slice(0, i) + string.slice(i + 1)
+    var laterCombos = allAnagrams(nextLetters)
+    for (var j = 0; j < laterCombos.length; j++) {
+      var currentCombo = laterCombos[j]
+      possibilities.push(currentLetter + currentCombo)
     }
   }
+  possibilities = new Set(possibilities)
+  possibilities = Array.from(possibilities)
+  memo[string] = possibilities
 
   return possibilities
 };
 
 // example usage:
-var anagrams = allAnagrams('abc');
-console.log(anagrams); // [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
+// var anagrams = allAnagrams('abc');
+// console.log(anagrams); // [ 'abc', 'acb', 'bac', 'bca', 'cab', 'cba' ]
