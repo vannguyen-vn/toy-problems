@@ -69,11 +69,13 @@ Number.prototype.toEnglish = function () {
 
         if (quotient > 0) {
             if (number < 100) {
-                return `${numbersToWords[quotient * 10]}${remainder === 0 ? '' : '-' + numbersToWords[remainder]} `
+                return numbersToWords[quotient * 10] + (remainder === 0 ? '' : ('-' + numbersToWords[remainder]));
             } else {
-                return `${quotient.toEnglish()}${numbersToPlace[divisor[i]]}${remainder === 0 ? '' : ' ' + remainder.toEnglish()}`
+                return quotient.toEnglish() + ' ' + numbersToPlace[divisor[i]] + (remainder === 0 ? '' : (' ' + remainder.toEnglish()));
             }
         }
     }
     return null;
 };
+
+console.log((7777).toEnglish())
