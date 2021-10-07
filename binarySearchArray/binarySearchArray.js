@@ -40,4 +40,3 @@ var binarySearch = function (array, target) {
     return  recursiveResult;
   }
 };
-

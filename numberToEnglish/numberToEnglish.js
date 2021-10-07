@@ -73,15 +73,19 @@ Number.prototype.toEnglish = function() {
 
   var tensAndOnes = (number) => {
     var tensOnesInt = number % 100;
-    if (tensOnesInt < 21) {
-    return numbersToWords[tensOnesInt];
+    var tensOnesString = '';
+    if (tensOnesInt < 21 && tensOnesInt > 0) {
+      return numbersToWords[tensOnesInt];
     }
-    var ones = numbersToWords[number % 10];
-    var tens = numbersToWords[Math.floor(tensOnesInt / 10) * 10];
-    if (ones === 'zero') {
-      return tens;
+    var tensInt = Math.floor(tensOnesInt / 10) * 10;
+    var onesInt = number % 10;
+    if (tensInt) {
+      tensOnesString += numbersToWords[tensInt];
     }
-    return '' + tens + '-' + ones;
+    if (onesInt) {
+      tensOnesString += numbersToWords[onesInt];
+    }
+    return tensOnesString;
   };
 
   var hundreds = (number) => {
@@ -155,6 +159,9 @@ Number.prototype.toEnglish = function() {
     return quintillionsString + ' ' + numbersToPlace[1000000000000000000];
   };
 
+  if (this < 21) {
+    return numbersToWords[this];
+  }
   result += tensAndOnes(this);
   if (this > 100) {
     result = hundreds(this) + ' ' + result;
