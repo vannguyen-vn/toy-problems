@@ -72,11 +72,12 @@ Number.prototype.toEnglish = function() {
 //   }
 
   var tensAndOnes = (number) => {
-    if (number < 21) {
-    return numbersToWords[number];
+    var tensOnesInt = number % 100;
+    if (tensOnesInt < 21) {
+    return numbersToWords[tensOnesInt];
     }
     var ones = numbersToWords[number % 10];
-    var tens = numbersToWords[Math.floor((number % 100) / 10)];
+    var tens = numbersToWords[Math.floor(tensOnesInt / 10) * 10];
     if (ones === 'zero') {
       return tens;
     }
@@ -93,9 +94,9 @@ Number.prototype.toEnglish = function() {
     var thousandsInt = Math.floor((number % 1000000) / 1000);
     var thousandsString = '';
     if (thousandsInt > 100) {
-      thousandsString += hundreds(number);
+      thousandsString += hundreds(thousandsInt) + ' ';
     }
-    thousandsString += tensAndOnes(number);
+    thousandsString += tensAndOnes(thousandsInt);
     return thousandsString + ' ' + numbersToPlace[1000];
   };
 
@@ -104,10 +105,10 @@ Number.prototype.toEnglish = function() {
     var millionsInt = Math.floor((number % 1000000000) / 1000000);
     var millionsString = '';
     if (millionsInt > 100) {
-        millionsString += hundreds(number);
+        millionsString += hundreds(millionsInt) + ' ';
     }
-    millionsString += tensAndOnes(number);
-    return millionsString + numbersToPlace[1000000];
+    millionsString += tensAndOnes(millionsInt);
+    return millionsString + ' ' + numbersToPlace[1000000];
   };
 
   var billions = (number) => {
@@ -115,10 +116,10 @@ Number.prototype.toEnglish = function() {
     var billionsInt = Math.floor((number % 1000000000000) / 1000000000);
     var billionsString = '';
     if (billionsInt > 100) {
-        billionsString += hundreds(number);
+        billionsString += hundreds(billionsInt) + ' ';
     }
-    billionsString += tensAndOnes(number);
-    return billionsString + numbersToPlace[1000000000];
+    billionsString += tensAndOnes(billionsInt);
+    return billionsString + ' ' + numbersToPlace[1000000000];
   };
 
   var trillions = (number) => {
@@ -126,10 +127,10 @@ Number.prototype.toEnglish = function() {
     var trillionsInt = Math.floor((number % 1000000000000000) / 1000000000000);
     var trillionsString = '';
     if (trillionsInt > 100) {
-        trillionsString += hundreds(number);
+        trillionsString += hundreds(trillionsInt) + ' ';
     }
-    trillionsString += tensAndOnes(number);
-    return trillionsString + numbersToPlace[1000000000000];
+    trillionsString += tensAndOnes(trillionsInt);
+    return trillionsString + ' ' + numbersToPlace[1000000000000];
   };
 
   var quadrillions = (number) => {
@@ -137,10 +138,10 @@ Number.prototype.toEnglish = function() {
     var quadrillionsInt = Math.floor((number % 1000000000000000000) / 1000000000000000);
     var quadrillionsString = '';
     if (quadrillionsInt > 100) {
-        quadrillionsString += hundreds(number);
+        quadrillionsString += hundreds(quadrillionsInt) + ' ';
     }
-    quadrillionsString += tensAndOnes(number);
-    return quadrillionsString + numbersToPlace[1000000000000000];
+    quadrillionsString += tensAndOnes(quadrillionsInt);
+    return quadrillionsString + ' ' + numbersToPlace[1000000000000000];
   };
 
   var quintillions = (number) => {
@@ -148,33 +149,33 @@ Number.prototype.toEnglish = function() {
     var quintillionsInt = Math.floor((number % 1000000000000000000000) / 1000000000000000000);
     var quintillionsString = '';
     if (quintillionsInt > 100) {
-        quintillionsString += hundreds(number);
+        quintillionsString += hundreds(quintillionsInt) + ' ';
     }
-    quintillionsString += tensAndOnes(number);
-    return quintillionsString + numbersToPlace[1000000000000000000];
+    quintillionsString += tensAndOnes(quintillionsInt);
+    return quintillionsString + ' ' + numbersToPlace[1000000000000000000];
   };
 
   result += tensAndOnes(this);
   if (this > 100) {
-    result = hundreds(number) + ' ' + result;
+    result = hundreds(this) + ' ' + result;
   }
   if (this > 1000) {
-    result = thousands(number) + ' ' + result;
+    result = thousands(this) + ' ' + result;
   }
   if (this > 1000000) {
-    result = millions(number) + ' ' + result;
+    result = millions(this) + ' ' + result;
   }
   if (this > 1000000000) {
-    result = billions(number) + ' ' + result;
+    result = billions(this) + ' ' + result;
   }
   if (this > 1000000000000) {
-    result = trillions(number) + ' ' + result;
+    result = trillions(this) + ' ' + result;
   }
   if (this > 1000000000000000) {
-    result = quadrillions(number) + ' ' + result;
+    result = quadrillions(this) + ' ' + result;
   }
   if (this > 1000000000000000000) {
-    result = quintillions(number) + ' ' + result;
+    result = quintillions(this) + ' ' + result;
   }
 
   return result;
