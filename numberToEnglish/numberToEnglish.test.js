@@ -1,3 +1,3 @@
 const { Number } = require('./numberToEnglish.js');
 
-console.log((1234).toEnglish());
+console.log((0).toEnglish());
