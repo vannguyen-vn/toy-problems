@@ -53,6 +53,27 @@ var numbersToPlace = {
     1000000000000000000: 'quintillion',
 };
 
-Number.prototype.toEnglish = function() {
-    // return my value as english words
+Number.prototype.toEnglish = function () {
+    var number = this.valueOf();
+    var divisor = Object.keys(numbersToPlace);
+    var quotient = 0;
+    var remainder = 0;
+
+    if (number < 20) {
+        return numbersToWords[number];
+    }
+
+    for (var i = divisor.length - 1; i >= 0; i--) {
+        quotient = Math.floor(number / divisor[i]);
+        remainder = number % divisor[i];
+
+        if (quotient > 0) {
+            if (number < 100) {
+                return `${numbersToWords[quotient * 10]}${remainder === 0 ? '' : '-' + numbersToWords[remainder]} `
+            } else {
+                return `${quotient.toEnglish()}${numbersToPlace[divisor[i]]}${remainder === 0 ? '' : ' ' + remainder.toEnglish()}`
+            }
+        }
+    }
+    return null;
 };
