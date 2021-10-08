@@ -12,7 +12,7 @@
  *
  */
 
-var numbersToWords = {
+ var numbersToWords = {
   0: 'zero',
   1: 'one',
   2: 'two',
@@ -85,6 +85,10 @@ Number.prototype.toEnglish = function() {
     return hundredsWords.join(' ');
   };
 
+//   if (numbersToPlace[this]) {
+//     return 'one' + numbersToPlace[this];
+//   }
+
   if (this < 21) {
     return numbersToWords[this];
   }
@@ -93,17 +97,17 @@ Number.prototype.toEnglish = function() {
     resultWords.push(tensOnesString);
   }
   var hundredsString = hundreds(this);
-  if (this > 100 && hundredsString.length) {
-    resultWords.unshift(hundreds(this));
+  if (this >= 100 && hundredsString.length) {
+    resultWords.unshift(hundredsString);
   }
 
   //iterate along places array while the key is less than "this"
 
-  for (var i = 1000; i < this; i *= 1000) {
+  for (var i = 1000; i <= this; i *= 1000) {
     var setInt = Math.floor((this % (1000 * i)) / i);
     var setWords = [];
     if (setInt) {
-      if (setInt > 100) {
+      if (setInt >= 100) {
         setWords.push(hundreds(setInt));
       }
       if (tensAndOnes(setInt).length) {
