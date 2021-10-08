@@ -104,6 +104,6 @@ Number.prototype.toEnglish = function() {
   return results
 };
 
-console.log((2).toEnglish());
-console.log((1234).toEnglish());
-console.log((123.456).toEnglish());
+// console.log((2).toEnglish());
+// console.log((1234).toEnglish());
+// console.log((123.456).toEnglish());
