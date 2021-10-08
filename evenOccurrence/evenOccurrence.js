@@ -29,17 +29,18 @@ var evenOccurrence = function(arr) {
   }
 
   // loop through obj
-  for (var number in numberOccurences) {
+  for (var i = 0; i < arr.length;i++) {
+    var number = arr[i]
     // if value is even
     if (numberOccurences[number] % 2 === 0) {
       // return value
       return number
     }
   }
-
+  return null
 };
 
-// examples
-var onlyEven = evenOccurrence([1, 7, 2, 4, 5, 6, 8, 9, 6, 4]);
-console.log(onlyEven); //  4
-console.log(evenOccurrence([2, 1, 7, 8, 2, 7, 7, 7, 5])) // 2
+// // examples
+// var onlyEven = evenOccurrence([1, 7, 2, 4, 5, 6, 8, 9, 6, 4]);
+// console.log(onlyEven); //  4
+// console.log(evenOccurrence([2, 1, 7, 8, 2, 7, 7, 7, 5])) // 2
