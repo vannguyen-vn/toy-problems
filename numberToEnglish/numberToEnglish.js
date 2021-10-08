@@ -88,27 +88,33 @@ Number.prototype.toEnglish = function() {
   if (this < 21) {
     return numbersToWords[this];
   }
-  resultWords.push(tensAndOnes(this));
-  if (this > 100) {
+  var tensOnesString = tensAndOnes(this);
+  if (tensOnesString.length) {
+    resultWords.push(tensOnesString);
+  }
+  var hundredsString = hundreds(this);
+  if (this > 100 && hundredsString.length) {
     resultWords.unshift(hundreds(this));
   }
-
 
   //iterate along places array while the key is less than "this"
 
   for (var i = 1000; i < this; i *= 1000) {
-    var setInt = Math.floor((number % (1000 * i)) / i);
+    var setInt = Math.floor((this % (1000 * i)) / i);
     var setWords = [];
     if (setInt) {
       if (setInt > 100) {
         setWords.push(hundreds(setInt));
       }
       setWords.push(tensAndOnes(setInt));
-      setWords.push(numberstoPlace[i])
+      setWords.push(numbersToPlace[i])
     }
-    resultWords.unshift(setWords.join(' '));
+    if (setWords.length) {
+      resultWords.unshift(setWords.join(' '));
+    }
   }
 
+  return resultWords.join(' ');
 
 };
 
