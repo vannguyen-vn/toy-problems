@@ -106,7 +106,9 @@ Number.prototype.toEnglish = function() {
       if (setInt > 100) {
         setWords.push(hundreds(setInt));
       }
-      setWords.push(tensAndOnes(setInt));
+      if (tensAndOnes(setInt).length) {
+        setWords.push(tensAndOnes(setInt));
+      }
       setWords.push(numbersToPlace[i])
     }
     if (setWords.length) {
