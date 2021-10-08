@@ -19,26 +19,39 @@ var commonCharacters = function(string1, string2) {
   // create obj
   var inCommon = ''
   var letters = {}
+  var unique1 = uniques(string1)
+  var unique2 = uniques(string2)
+
   // loop through string1
-  for (var i = 0; i < string1.length; i++) {
+  for (var i = 0; i < string2.length; i++) {
     // if letter doesn't exist in obj
-    if (letters[string1[i]] === undefined) {
+    if (letters[string2[i]] === undefined) {
       // add it as a key with value false (for more than two strings could use an array)
-      letters[string1[i]] = false
+      letters[string2[i]] = false
     }
   }
 
   // loop through string2
-  for (var j = 0; j < string2.length; j++) {
+  for (var j = 0; j < string1.length; j++) {
      // if letter exists as a key
-     if (letters[string2[j]] !== undefined) { // if more strings, could push true or false to the array for that letter depending on if it has the letter
+     if (letters[string1[j]] !== undefined) { // if more strings, could push true or false to the array for that letter depending on if it has the letter
        // add it to the return str
-       inCommon += string2[j]
+       inCommon += string1[j]
      }
   }
    return inCommon
 };
 
+var uniques =  function(string) {
+  var seen = {}
+  var uniqueString = ''
+  var uniqueLetters = new Set (string.split(''))
+  uniqueString = Array.from(uniqueLetters).join('')
+  console.log(uniqueString)
+  return uniqueString
+}
+
 //Example:
-console.log( commonCharacters('acexivou', 'aegihobu') )
-// Returns: 'aeiou'
+console.log( commonCharacters('acexivou', 'aegihobu') ) // Returns: 'aeiou'
+commonCharacters('zyx', 'xzy')
+commonCharacters('qwerty', 'wertyu', 'ertyui', 'rtyui', 'tyuiop', 'yuiopa') // 'y'
