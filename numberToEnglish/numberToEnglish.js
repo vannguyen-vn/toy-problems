@@ -54,5 +54,12 @@ var numbersToPlace = {
 };
 
 Number.prototype.toEnglish = function() {
-    // return my value as english words
+    var str = this.toString();
+    var arr = [];
+    for (var i = str.length - 1; i >= 0; i -= 3) {
+        var curStr = '',
+        curStr += str.substring(i - 3, i + 1);
+        arr.push(curStr);
+    }
+
 };
