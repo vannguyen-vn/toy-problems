@@ -10,7 +10,7 @@
  * parent of the 3rd and 4th nodes, and the 2nd node will be the parent of the 5th and
  * 6th nodes. In a specific kind of binary heap, the binary min heap, every node is
  * less than its immediate children:
- * 
+ *
  *          0
  *     1         2
  *   3   4     5   6
@@ -79,10 +79,100 @@ BinaryHeap.prototype.getRoot = function () {
 }
 
 BinaryHeap.prototype.insert = function (value) {
-  // TODO: Your code here
-  // when we insert
+
+  this._heap.push(value)
+
+  const innerFunc = (value, heap) => {
+    var valueIndex = heap.indexOf(value)
+    var parentIndex = Math.floor( (valueIndex - 1) / 2 )
+    var newNode = heap[valueIndex]
+    var oldNode = heap[parentIndex]
+    if (heap.length === 1) {
+      return;
+    }
+    if (!this._compare(heap[valueIndex], heap[parentIndex])) {
+      this._heap = heap
+      return
+    } else {
+      heap[parentIndex] = newNode
+      heap[valueIndex] = oldNode
+      innerFunc(value, heap)
+    }
+  }
+  innerFunc(value, this._heap)
 }
 
 BinaryHeap.prototype.removeRoot = function () {
   // TODO: Your code here
+  debugger;
+  if (this._heap.length === 0) {
+    return undefined;
+  }
+  var root = this._heap[0];
+  var newNode = this._heap[this._heap.length - 1];
+  this._heap[0] = newNode;
+  this._heap[this._heap.length - 1] = root;
+  var removedNode = this._heap.pop();
+
+  var innerFunc = (value, heap) => {
+    if (heap.length === 1) {
+      return;
+    }
+    if (heap.length === 2) {
+      if (heap[0] < heap[1]) {
+        return;
+      } else {
+        var first = heap[0]
+        var second = heap[1]
+        this._heap[0] = second
+        this._heap[1] = first
+        return;
+      }
+    }
+    var valueIndex = heap.indexOf(value)
+    var childIndex1 = valueIndex * 2 + 1
+    var childIndex2 = valueIndex * 2 + 2
+
+    var child1 = heap[childIndex1];
+    if (child1 === undefined) {
+      return;
+    }
+
+    var child2 = heap[childIndex2]
+    if (child2 === undefined) {
+      if (this._heap[childIndex1] > value) {
+        return
+      } else {
+        this._heap[valueIndex] = heap[childIndex1];
+        this._heap[childIndex1] = value;
+      }
+    }
+    var newRoot = heap[valueIndex];
+    var smallestChild;
+    var smallestIndex;
+    if (child1 < child2) {
+      smallestChild = heap[childIndex1];
+      smallestIndex = childIndex1
+    } else {
+      smallestChild = heap[childIndex2];
+      smallestIndex = childIndex2;
+    }
+    if (newRoot < child1 && newRoot < child2) {
+      return
+    } else if (newRoot < child1 && newRoot > child2) {
+      this._heap[childIndex2] = newRoot;
+      this._heap[valueIndex] = child2;
+      innerFunc(value, this._heap)
+    } else if (newRoot > child1 && newRoot < child2) {
+      this._heap[childIndex1] = newRoot;
+      this._heap[valueIndex] = child1;
+      innerFunc(value, this._heap)
+    } else {
+      this._heap[smallestIndex] = newRoot;
+      this._heap[valueIndex] = smallestChild
+      innerFunc(value, this._heap)
+    }
+  }
+  innerFunc(this._heap[0], this._heap)
+  return removedNode;
 }
