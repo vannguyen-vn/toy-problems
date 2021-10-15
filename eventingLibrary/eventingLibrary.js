@@ -24,3 +24,10 @@ var mixEvents = function(obj) {
   // TODO: Your code here
   return obj;
 };
+
+// var obj = mixEvents({ name: 'Alice', age: 30 });
+// obj.on('ageChange', function(){
+//   console.log('Age changed');
+// });
+// obj.age++;
+// obj.trigger('ageChange');

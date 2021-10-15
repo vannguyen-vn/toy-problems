@@ -1,6 +1,6 @@
 /*
 
-In England the currency is made up of pound, £, and pence, p, and there are eight coins in general circulation:
+In England the currency is made up of pound, £, and pence, p, and there are eight dn in general circulation:
 
 1p piece
 2p piece
@@ -14,7 +14,7 @@ In England the currency is made up of pound, £, and pence, p, and there are eig
 It is possible to make £2 in the following way:
 
 1 * £1 + 1 * 50p + 2 * 20p + 1 * 5p + 1 * 2p + 3 * 1p
-How many different ways can £2 be made using any number of coins?
+How many different ways can £2 be made using any number of dn?
 
 example usage of `makeChange`:
 
@@ -25,13 +25,19 @@ makeChange(2) === 2
 */
 
 var makeChange = function(total) {
-  // array of denominations
   var dn = [1, 2, 5, 10, 20, 50, 100, 200];
-  //
-  
-  return;
-}
 
-var test1 = 30;
+  var inner = (total, left) => {
+    if (total < 0 || left < 0) { return 0; }
+    if (total === 0) {
+      return 1;
+    }
 
-console.log(makeChange(test1));
+    var used = inner(total - dn[left], left);
+    var unused = inner(total, left - 1);
+
+    return used + unused;
+  }
+
+  return inner(total, dn.length - 1);
+};

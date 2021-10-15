@@ -32,14 +32,31 @@
  */
 
 'use strict';
+// Given
+// var compose = (...functions) => (args) => functions.reduceRight((arg, fn) => fn(arg), args);
 
-var compose = (...functions) => (args) => functions.reduceRight((arg, fn) => fn(arg), args);
+// var pipe = (...functions) => (args) => functions.reduce((arg, fn) => fn(arg), args);
 
-var pipe = (...functions) => (args) => functions.reduce((arg, fn) => fn(arg), args);
+var compose = function(...funcs) {
+  return (...args) => {
+    var result = funcs[funcs.length - 1](...args);
 
-// var compose = function() {
+    for (var i = funcs.length - 2; i >= 0; i--) {
+      result = funcs[i](result);
+    }
 
-// };
+    return result;
+  }
+};
 
-// var pipe = function() {
-// };
+var pipe = function(...funcs) {
+  return (...args) => {
+    var result = funcs[0](...args);
+
+    for (var i = 1; i < funcs.length; i++) {
+      result = funcs[i](result);
+    }
+
+    return result;
+  }
+};
