@@ -10,7 +10,7 @@
  * parent of the 3rd and 4th nodes, and the 2nd node will be the parent of the 5th and
  * 6th nodes. In a specific kind of binary heap, the binary min heap, every node is
  * less than its immediate children:
- * 
+ *
  *          0
  *     1         2
  *   3   4     5   6
@@ -29,7 +29,7 @@
  * A well known fact, utilized with binary heaps stored in arrays, is that
  * we can calculate the index of a node's parent or children using math:
  *
- * parentIndex = Math.floor( (index - 1) / 2 )
+ * parent = Math.floor( (index - 1) / 2 )
  * childrenIndices = [index * 2 + 1, index * 2 + 2]
  *
  * When adding a new node to a binary min heap, it could be that we violate the property of the
@@ -61,9 +61,9 @@
 //
 // Extra credit: `BinaryHeap`'s `this._compare` is hard-coded to assist in making a min heap, modify `BinaryHeap`
 // to accept an optional argument which is a function used as the sorting mechanism for the heap.
-// That way you can use your `BinaryHeap` class to construct a max heap or min heap or whatever.
+// That way you can use your `BinaryHeap` class to letruct a max heap or min heap or whatever.
 //
-// Extra extra credit: Implement `heapSort`. `heapSort` takes an array, constructs it into a `BinaryHeap`
+// Extra extra credit: Implement `heapSort`. `heapSort` takes an array, letructs it into a `BinaryHeap`
 // and then iteratively returns the root of the `BinaryHeap` until its empty, thus returning a sorted array.
 
 
@@ -79,9 +79,58 @@ BinaryHeap.prototype.getRoot = function () {
 }
 
 BinaryHeap.prototype.insert = function (value) {
-  // TODO: Your code here
+  this._heap.push(value);
+  if (this._heap.length === 1) { return; }
+
+  let inner = (index, parent) => {
+    if (index === 0) { return; }
+
+    if (this._compare(this._heap[index], this._heap[parent])) {
+      var temp = this._heap[parent];
+      this._heap[parent] = this._heap[index];
+      this._heap[index] = temp;
+    }
+
+    inner(parent, Math.floor((parent - 1) / 2));
+  }
+
+  let index = this._heap.length - 1;
+  let parent = Math.floor((index - 1) / 2);
+  inner(index, parent);
 }
 
 BinaryHeap.prototype.removeRoot = function () {
-  // TODO: Your code here
+  // var lastIndex = this._heap.length - 1;
+  var temp = this._heap[this._heap.length - 1];
+  this._heap[this._heap.length - 1] = this.getRoot();
+  var result = this._heap.pop();
+
+  this._heap[0] = temp;
+
+  let inner = (index) => {
+    let leftChild = index * 2 + 1;
+    let rightChild = index * 2 + 2;
+
+    if (!this._heap[leftChild] && !this._heap[rightChild]) {
+      return;
+    }
+
+    let child = this._compare(this._heap[leftChild], this._heap[rightChild]) ? leftChild : rightChild;
+
+    if (this._compare(this._heap[child], this._heap[index])) {
+      var temp = this._heap[index];
+      this._heap[index] = this._heap[child];
+      this._heap[child] = temp;
+    }
+
+    inner(child);
+  }
+
+  let leftChild = 0 * 2 + 1;
+  let rightChild = 0 * 2 + 2;
+  let child = this._compare(this._heap[leftChild], this._heap[rightChild]) ? leftChild : rightChild;
+
+  inner(0);
+
+  return result;
 }
