@@ -28,6 +28,31 @@ var DIGIT_VALUES = {
 };
 
 var translateRomanNumeral = function(romanNumeral) {
-// TODO: Implement me!
+  // Check if string, if not return null
+  if (typeof romanNumeral !== 'string') {
+    return null;
+  }
 
+  // variable to hold final result
+  let result = 0;
+
+  // iterate through given string
+  for (let i = 0; i < romanNumeral.length; i++) {
+    // Grab the first two characters of the roman numeral
+    let first = DIGIT_VALUES[romanNumeral[i]];
+    let second = DIGIT_VALUES[romanNumeral[i + 1]];
+    let sum;
+
+    // If the first value is smaller than the second, subtract the first from the second
+    if(first < second) {
+      sum = second - first;
+      i++;
+    }
+
+    // If the result and sum combine to 0, return the current roman numeral, else return t
+    result += sum ? sum : DIGIT_VALUES[romanNumeral[i]];
+  }
+
+  // Return the final result
+  return result;
 };

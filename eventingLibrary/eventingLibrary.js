@@ -20,9 +20,26 @@
  * - It is not necessary to write a way to remove listeners.
  */
 
-var mixEvents = function(obj) {
-  // TODO: Your code here
-  return obj;
+var mixEvents = function(input) {
+  var events = {};
+
+  Object.assign(input, { on: (name, callback) => {
+    if (!events[name]) {
+      events[name] = [callback];
+    } else {
+      events[name].push(callback);
+    }
+  }});
+
+  Object.assign(input, { trigger: (name, ...args) => {
+    if (events[name]) {
+      for (callback of events[name]) {
+        callback(...args);
+      }
+    }
+  }});
+
+  return input;
 };
 
 // var obj = mixEvents({ name: 'Alice', age: 30 });
