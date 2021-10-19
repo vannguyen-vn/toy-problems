@@ -26,8 +26,8 @@ var makeHashTable = function () {
   var storageLimit = 4;
   var size = 0;
 
+  // TODO: implement `insert`
   result.insert = function (key, value) {
-    // TODO: implement `insert`
     size++ // increase table size
     var i = getIndexBelowMaxForKey(key, storageLimit); //declare index as the output of hashing fn
     // declare bucket
@@ -51,6 +51,7 @@ var makeHashTable = function () {
   };
 
 
+  // TODO: implement `retrieve`
   result.retrieve = function (key) {
     var i = getIndexBelowMaxForKey(key, storageLimit);
     var bucket = storage[i]
@@ -65,7 +66,6 @@ var makeHashTable = function () {
     }
     // otherwise return undefined
     return undefined;
-    // TODO: implement `retrieve`
   };
 
   result.remove = function (key) {
@@ -91,6 +91,10 @@ var makeHashTable = function () {
     }
   }
 
+
   return result;
 };
 
+
+//TODO: comment out!
+module.exports = makeHashTable;

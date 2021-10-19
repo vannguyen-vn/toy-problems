@@ -8,12 +8,11 @@
  */
 
 const getProduct = (objOrArr) => {
-  if(typeof objOrArr === 'object'){
-    let arr = Object.values(objOrArr);
-    let product = arr.reduce((previous, current) => {return previous*current})
-    return product;
+  if(!Array.isArray(objOrArr)){
+    return  Object.values(objOrArr).reduce((previous, current) => {return previous*current})
   } else {
-    arr.reduce((previous, current) => { return previous*current})
+    console.log(objOrArr)
+    return objOrArr.reduce((previous, current) => { return previous*current})
   }
 }
 
@@ -48,8 +47,21 @@ var largestProductOfThree = function(array) {
       result.least = current
     }
   }
+  console.log('resultObj', result)
   return getProduct(Object.values(result))
 };
 
 
 // console.log(largestProductOfThree([2,1,3,7])) // 42
+
+let oneA = largestProductOfThree([2, 3, -11, 7, 5, -13]) // 1001;
+let oneB = largestProductOfThree([2, 3, 11, 7, 5, 13]) // 1001;
+let two = largestProductOfThree([-31, 41, 34, -37, -17, 29]) // 47027;
+let twoB = largestProductOfThree([31, 41, 34, 37, 17, 29]) // 47027;
+let three = largestProductOfThree([-1, -2, -3, -4, -5, -6]) //-6
+let threeB = largestProductOfThree([1, 2, 3, 4, 5, 6]) //-6
+let threeC = largestProductOfThree([1, 2]) //2
+
+console.log( oneA, two, three )
+console.log( oneB, twoB, threeB, threeC)
+console.log(Math.max(1*2*3, 2*2*2))
