@@ -141,8 +141,11 @@ let merge = function (l, r) {
 
   }
   // return concatenated array
-  return result.concat(l.slice(li).concat(r.slice(ri)))
+  // return result.concat(l.slice(li).concat(r.slice(ri)))
+  // console.log(l)
+  return [...result, ...l.slice(li), ...r.slice(ri)]
+  // return [...result]
 }
 
-// console.log(mergeSort([4, 7, 4, 3, 9, 1, 2]));
+console.log(mergeSort([4, 7, 4, 3, 9, 1, 2]));
 // module.exports = mergeSort;

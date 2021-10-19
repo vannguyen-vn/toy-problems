@@ -27,11 +27,13 @@ var rockPaperScissors = function (rounds) {
       results.push(playedSoFar)
     } else {
       for (var i = 0; i < choices.length; i++) {
+        // console.log(playedSoFar += choices[i])
         getResults(playedSoFar.concat(choices[i]), rounds - 1)
       }
     }
   }
   getResults('', rounds);
+  console.log(results.length)
   return results;
 };
-// console.log(rockPaperScissors(5))
+console.log(rockPaperScissors(3))
