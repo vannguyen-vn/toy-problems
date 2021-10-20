@@ -13,8 +13,33 @@
  * inputs well.
  */
 
-var longestRun = function (string) {
+ var longestRun = function (string) {
   // TODO: Your code here!
+  if (string === '') {
+    return null;
+  }
+  var pointer1 = string[0]
+  var pointer1Index = 0
+  var pointer2 = string[0]
+  var pointer2Index = 0
+  var length = 0
+  var result;
+  for (var i = 1; i < string.length; i++) {
+    if (string[i] === pointer1) {
+      pointer2 = string[i]
+      pointer2Index = i
+    } else {
+      if (pointer2Index - pointer1Index + 1 > length) {
+        length = pointer2Index - pointer1Index +1
+        result = [pointer1Index, pointer2Index]
+      }
+      pointer1 = string[i]
+      pointer1Index = i
+      pointer2 = string[i]
+      pointer2Index = i
+    }
+  }
+  return result;
 };
 
 // If you need a random string generator, use this!
