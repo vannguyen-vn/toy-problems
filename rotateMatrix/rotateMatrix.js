@@ -47,7 +47,11 @@ var rotateMatrix = function(matrix) {
   //save length of matrix array as rows variable (m)
   var m = matrix.length;
   //save length of submatrices as columns variable (n)
-  var n = matrix[0].length;
+  if (m > 0) {
+    var n = matrix[0].length;
+  } else {
+    return matrix;
+  }
   var newMatrix = [];
   var clockwise = true;
 
