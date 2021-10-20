@@ -51,9 +51,20 @@ Tree.prototype.getClosestCommonAncestor = function(/*...*/
   * 3.) me.getAncestorPath(me) -> [me]
   * 4.) grandma.getAncestorPath(H R Giger) -> null
   */
-Tree.prototype.getAncestorPath = function(/*...*/
-) {
-  // TODO: implement me!
+Tree.prototype.getAncestorPath = function(target, child) {
+  var result = [];
+  var child = child || this;
+
+  if (child.value === target) {
+    return result.push(child.value);
+  }
+
+  result.push(child.value)
+  for (var i = 0; i < child.children.length; i++) {
+     result = result.concat(child.getAncestorPath(target, child.children[i]));
+  }
+
+  return result;
 };
 
 /**
@@ -87,3 +98,10 @@ Tree.prototype.removeChild = function(child) {
     throw new Error('That node is not an immediate child of this tree');
   }
 };
+
+var grandma = new Tree();
+var mom = new Tree();
+grandma.addChild(mom);
+var me = new Tree();
+mom.addChild(me);
+console.log(grandma.getAncestorPath(me)); // => [grandma, mom, me]

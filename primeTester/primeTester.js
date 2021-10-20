@@ -9,6 +9,14 @@ var primeTester = function(n) {
     // n isn't a number or n is less than 1 or n is not an integer
     return false;
   }
+
+  for (var i = 2; i < n; i++) {
+    if (n % i === 0) {
+      return false
+    }
+  }
+
+  return true;
   // TODO: return true if n is prime, false otherwise
 };
 

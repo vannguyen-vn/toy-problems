@@ -3,5 +3,14 @@
 // Challenge: Do this in O(m x n) time, where m, n are the respective lengths of str1 and str2.
 
 function editDistance(str1, str2) {
-  // Your code here.
+
+  if (str1.length <= str2.length) {
+    for (var i = 0; < str1.length; i++) {
+      
+    }
+  }
+
+  for (var i = 0; i < shortest.length)
 }
+
+console.log(editDistance('hello', 'hiiii'))
