@@ -43,10 +43,17 @@
  *  - Make your function accept a parameter for the direction of rotation (1 = clockwise, -1 = counterclockwise)
  */
 
-var rotateMatrix = function(matrix, direction) {
-  // Your code here.
+var rotateMatrix = function(matrix) {
   //save length of matrix array as rows variable (m)
+  var m = matrix.length;
   //save length of submatrices as columns variable (n)
+  var n = matrix[0].length;
+  var newMatrix = [];
+  var clockwise = true;
+
+  if (arguments[1] === -1) {
+    clockwise = false;
+  }
 
   //CLOCKWISE:
   //nested iteration:
@@ -56,6 +63,17 @@ var rotateMatrix = function(matrix, direction) {
       // pusht that array into a new matrix array
   //return the new matrix array
 
+  if (clockwise) {
+    for (var j = 0; j < n; j++) {
+      let subArray = [];
+      for (var i = m - 1; i >= 0; i--) {
+        subArray.push(matrix[i][j]);
+      }
+      newMatrix.push(subArray);
+    }
+    return newMatrix;
+  }
+
   // COUNTER-CLOCKWISE:
   //nested iteration:
   //iterate across columns (DECREASE j from n - 1 to 0). at each column:
@@ -64,5 +82,12 @@ var rotateMatrix = function(matrix, direction) {
       // pusht that array into a new matrix array
   //return the new matrix array
 
-
+  for (var j = n - 1; j >= 0; j--) {
+    let subArray = [];
+    for (var i = 0; i < m; i++) {
+      subArray.push(matrix[i][j]);
+    }
+    newMatrix.push(subArray);
+  }
+  return newMatrix;
 };
