@@ -28,6 +28,22 @@ var primeTester = function(n) {
  */
 
 var primeSieve = function (start, end) {
+
+  var primes = [];
+
+  for (n = start; n = end; n++) {
+    let isPrime = true;
+    for (var j = 2; j <= Math.floor(n / 2); j++) {
+      if (n % j === 0) {
+        isPrime = false;
+      }
+    }
+    if (isPrime) {
+      primes.push(n);
+    }
+  }
+
+  return primes;
 };
 
 
