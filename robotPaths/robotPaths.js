@@ -63,7 +63,7 @@ var robotPaths = function (n, board, i, j) {
     }
   }
 
-  return board[n - 1][n - 1];
+  return dp[n - 1][n - 1];
 
 };
 
