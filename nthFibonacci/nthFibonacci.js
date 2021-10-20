@@ -27,11 +27,30 @@ Fn = Fn-1 + Fn-2
 */
 
 var nthFibonacci = function (n) {
-  if (n <= 1) {
+  // if (n <= 1) {
+  //   return n;
+  // }
+
+  // return nthFibonacci(n - 1) + nthFibonacci(n - 2);
+
+  var prev = 0;
+  var next = 1;
+  var result = 0;
+  var count = 2;
+
+  if (n === 0 || n === 1) {
     return n;
   }
 
-  return nthFibonacci(n - 1) + nthFibonacci(n - 2);
+  while (count <= n) {
+    result = prev + next;
+    prev = next;
+    next = result;
+
+    count++;
+  }
+
+  return result;
 };
 
 
