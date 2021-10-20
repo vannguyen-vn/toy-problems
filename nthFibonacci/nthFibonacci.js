@@ -22,6 +22,25 @@
 
 var nthFibonacci = function (n) {
   // TODO: implement me!
+  //set a counter variable
+  //set current value as and previous value variables
+  //use a helper function to increase the current value by the previous value and update the counter
+  var counter = 0;
+  var prevVal = 0;
+  var currVal = 1;
+  var countFibonacci = () => {
+    if (counter === n) {
+      return prevVal;
+    }
+    let newPrevious = currVal;
+    currVal += prevVal;
+    prevVal = newPrevious;
+    counter++;
+    return countFibonacci();
+  }
+
+  return countFibonacci();
+
 };
 
 
