@@ -28,42 +28,65 @@ var makeBoard = function (n) {
   return board;
 };
 
+/*
+initialize paths
+create board
+
+base case - path found, reached bottom left corner
+  path++
+  return
+
+if out of boundary
+  return
+
+if visited
+  return
+if not visited
+  recursive call all paths
+  up
+  down
+  left
+  right
+  toggle piece back
+
+return paths
+*/
+
 var robotPaths = function (n, board, i, j) {
-  // if (!board) {
-  //   board = makeBoard(n);
-  //   i = 0;
-  //   j = 0;
-  // }
+  var paths = 0;
 
-  // var m = board.length;
-  // var n = board[0].length;
+  if (!board) {
+    board = makeBoard(n);
+    i = 0;
+    j = 0;
+  }
 
-  // for (var i = 0; i < m; i++) {
-  //   board[i][0] = 1;
-  // }
+  var findPaths = function (i, j) {
+    if (i === n - 1 && j === n - 1) {
+      paths++;
+      return;
+    }
 
-  // for (var j = 0; j < n; i++) {
-  //   board[0][j] = 1;
-  // }
+    if (i < 0 || j < 0 || i >= n || j >= n) {
+      return;
+    }
 
-  // for (var i = 1; i < m; i++) {
-  //   for (var j = 1; j < n; j++) {
-  //     board[i][j] = board[i][j - 1] + board[i - 1][j];
-  //   }
-  // }
+    if (board.hasBeenVisited(i, j)) {
+      return;
+    } else {
+      board.togglePiece(i, j);
 
+      findPaths(i, j + 1);
+      findPaths(i + 1, j);
+      findPaths(i, j - 1);
+      findPaths(i - 1, j);
 
-  const dp = Array(n).fill(
-    Array(n).fill(1)
-  );
-
-  for (let i = 1; i < n; i++) {
-    for (let j = 1; j < n; j++) {
-      dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+      board.togglePiece(i, j);
     }
   }
 
-  return dp[n - 1][n - 1];
+  findPaths(0, 0);
 
+  return paths;
 };
 
