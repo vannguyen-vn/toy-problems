@@ -10,9 +10,9 @@ var primeTester = function(n) {
     return false;
   }
 
-
+  var sqrt = Math.sqrt(n);
   // TODO: return true if n is prime, false otherwise
-  for (var i = Math.floor(n/2); i > 1; i--) {
+  for (var i = 2; i <= sqrt; i++) {
     if (n % i === 0) {
       return false;
     }
@@ -27,23 +27,23 @@ var primeTester = function(n) {
  * saucy, check out the Sieve of Atkin.)
  */
 
-// var primeSieve = function (start, end) {
+var primeSieve = function (start, end) {
 
-//   var primes = [];
+  var primes = [];
 
-//   for (n = start; n <= end; n++) {
-//     let isPrime = true;
-//     for (var j = 2; j <= Math.floor(n / 2); j++) {
-//       if (n % j === 0) {
-//         isPrime = false;
-//       }
-//     }
-//     if (isPrime) {
-//       primes.push(n);
-//     }
-//   }
+  for (n = start; n <= end; n++) {
+    let isPrime = true;
+    for (var j = 2; j <= Math.sqrt(n); j++) {
+      if (n % j === 0) {
+        isPrime = false;
+      }
+    }
+    if (isPrime) {
+      primes.push(n);
+    }
+  }
 
-//   return primes;
-// };
+  return primes;
+};
 
 
