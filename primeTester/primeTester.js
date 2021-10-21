@@ -9,7 +9,21 @@ var primeTester = function(n) {
     // n isn't a number or n is less than 1 or n is not an integer
     return false;
   }
-  // TODO: return true if n is prime, false otherwise
+  var min = Math.floor(Math.sqrt(n));
+  var primeNums = [2];
+  for (var i = 3; i < min + 1; i++) {
+    for (var j = 0; j < primeNums.length; j++) {
+      if (i %% primeNums[j] === 0) {
+        primeNums.push[i];
+      }
+    }
+  }
+  for (var k = 0; k < primeNums.length; k++) {
+    if (n %% primeNums[k] === 0) {
+      return false;
+    }
+  }
+  return true;
 };
 
 /* Extra credit: Write a function that generates a list of all prime numbers
