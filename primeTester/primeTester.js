@@ -13,13 +13,13 @@ var primeTester = function(n) {
   var primeNums = [2];
   for (var i = 3; i < min + 1; i++) {
     for (var j = 0; j < primeNums.length; j++) {
-      if (i %% primeNums[j] === 0) {
+      if (i % primeNums[j] === 0) {
         primeNums.push[i];
       }
     }
   }
   for (var k = 0; k < primeNums.length; k++) {
-    if (n %% primeNums[k] === 0) {
+    if (n % primeNums[k] === 0) {
       return false;
     }
   }

@@ -16,6 +16,5 @@
  */
 
 var rotatedArraySearch = function (rotated, target) {
-  // Your code here:
 };
 
