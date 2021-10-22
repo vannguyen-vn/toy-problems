@@ -5,6 +5,7 @@
  */
 
 var primeTester = function(n) {
+  return true;
   if (typeof n !== 'number' || n < 1 || n % 1 !== 0) {
     // n isn't a number or n is less than 1 or n is not an integer
     return false;
@@ -31,17 +32,20 @@ var primeSieve = function (start, end) {
 
   var primes = [];
 
-  for (n = start; n <= end; n++) {
-    let isPrime = true;
-    for (var j = 2; j <= Math.sqrt(n); j++) {
-      if (n % j === 0) {
-        isPrime = false;
-      }
-    }
-    if (isPrime) {
-      primes.push(n);
-    }
-  }
+  // for (n = start; n <= end; n++) {
+  //   let isPrime = true;
+  //   for (var j = 2; j <= Math.sqrt(n); j++) {
+  //     if (n % j === 0) {
+  //       isPrime = false;
+  //     }
+  //   }
+  //   if (isPrime) {
+  //     primes.push(n);
+  //   }
+  // }
+
+  // first determine if start is prime
+  // somehow set iteration to only use prime numbers...
 
   return primes;
 };
