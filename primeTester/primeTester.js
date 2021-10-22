@@ -14,14 +14,12 @@ var primeTester = function (n) {
     return false;
   }
 
-  for (var i = 2; i < n; i++) {
-    if (n % i === 0) {
+  var m = Math.sqrt(n);
+
+  for (var i = 2; i <= m; i++) {
+    if (m % i === 0) {
       return false;
     }
-  }
-
-  if (n % n === 0) {
-    return true;
   }
 
   return false;
@@ -34,6 +32,19 @@ var primeTester = function (n) {
  */
 
 // var primeSieve = function (start, end) {
+//   var length = end - start + 1;
+//   var notPrime = new Array(length).fill(false);
+//   var count = 0;
+
+//   for (var i = start; i < end; i++) {
+//     if (notPrime[i] === false) {
+//       count++;
+//       for (var j = start; i * j < end; j++) {
+//         notPrime[i * j] = true;
+//       }
+//     }
+//   }
+//   return count;
 // };
 
 
