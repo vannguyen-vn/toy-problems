@@ -101,12 +101,23 @@ var characterFrequency = function (string) {
     result.push([key, value]);
   }
 
-  result.sort((a, b) => b[1] - a[1]);
   result.sort(function (a, b) {
-    if (a[1] === b[1] && a[0] > b[0]) {
-      return 1;
+    if (a[1] > b[1]) return -1;
+    if (a[1] < b[1]) return 1;
+    if (a[1] === b[1]) {
+      if (a[0] < b[0]) return -1;
+      if (a[0] > b[0]) return 1;
     }
+    return 0;
   });
+
+
+  // result.sort((a, b) => b[1] - a[1]);
+  // result.sort(function (a, b) {
+  //   if (a[1] === b[1] && a[0] > b[0]) {
+  //     return 1;
+  //   }
+  // });
 
   return result;
 };
