@@ -62,40 +62,63 @@ var makeChange = function(total) {
       }
     }
     if (sumOfCoins === total) {
-      return combo;
+      return combo.sort();
     } else if (sumOfCoins < total) {
       return combo.concat(findCombo(total - sumOfCoins, highestValueIndex));
     }
   }
 
-  var findSmallerCombos = function(combo) {
+
+  // iterate across firstCombo --> for each coin:
+    // find a combo to make that coin
+    // concat that combo with rest of combo
+    // if it does not exist in the combos array
+      // push it in
+    // perform recursively on that new combo to find more possibilities
+
+  var findMoreCombos = function(combo) {
     for (var i = 0; i < combo.length; i++) {
       let currentCoin = combo[i];
-      let smallerCombo = findCombo(values[currentCoin], valuesArray[coins.indexOf(currentCoin)]);
-
+      if (currentCoin !== '1p') {
+        let smallerCombo = findSmallerCombo(currentCoin);
+        let newCombo = combo.slice(0, i).concat(smallerCombo).concat(combo.slice(i + 1, combo.length));
+        newCombo.sort();
+        let newJoined = newCombo.join();
+        if (!combinations.includes(newJoined)) {
+          combinations.push(newJoined);
+        }
+        findMoreCombos(newCombo);
+      }
     }
+    console.log(combinations);
   }
+
+  var findSmallerCombo = function(coin) {
+    return findCombo(values[coin], coins.indexOf(coin) - 1);
+  }
+
   //if value is already represented by a coin
-    //push that single coin into the combinations array
-    //find a combo for the total - 1, concat with 1p, push that into combinations array
-    //THEN iterate across the coins
-      //find a combo for each (highestValueIndex = one less than the coin's index)
+  //push that single coin into the combinations array
+  //find a combo for the total - 1, concat with 1p, push that into combinations array
+  //THEN iterate across the coins
+  //find a combo for each (highestValueIndex = one less than the coin's index)
   //if not
-    //run findCombo with total, closest value as highestValueIndex
-    //THEN iterate across the coins
-      //find a combo for each (highestValueIndex = one less than the coin's index)
-      //THEN iterate across each of those combos
-        //find a combo for each coin (highestValueIndex = one less than the coin's index)
+  //run findCombo with total, closest value as highestValueIndex
+  //THEN iterate across the coins
+  //find a combo for each (highestValueIndex = one less than the coin's index)
+  //THEN iterate across each of those combos
+  //find a combo for each coin (highestValueIndex = one less than the coin's index)
 
   var firstCombo;
 
   if (valuesArray.includes(total)) {
-    firstCombo = coins[valuesArray.indexOf(total)];
+    firstCombo = [coins[valuesArray.indexOf(total)]];
   } else {
     firstCombo = findCombo(total, 7);
   }
 
-
+  combinations.push(firstCombo.join())
+  findMoreCombos(firstCombo);
 
   return combinations.length;
 
