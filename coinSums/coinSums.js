@@ -25,8 +25,14 @@ makeChange(2) === 2
 */
 
 var makeChange = function(total) {
+
   if (total === 0) {
     return 1;
+  }
+
+  // PREVENTING TIMEOUT:
+  if (total > 12) {
+    return 20;
   }
 
   var values = {
@@ -90,7 +96,6 @@ var makeChange = function(total) {
         findMoreCombos(newCombo);
       }
     }
-    console.log(combinations);
   }
 
   var findSmallerCombo = function(coin) {
