@@ -89,13 +89,15 @@ var makeChange = function(total) {
 
   var firstCombo;
 
-  if valuesArray.includes(total) {
+  if (valuesArray.includes(total)) {
     firstCombo = coins[valuesArray.indexOf(total)];
   } else {
     firstCombo = findCombo(total, 7);
   }
 
 
+
+  return combinations.length;
 
 };
 
