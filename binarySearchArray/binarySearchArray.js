@@ -10,6 +10,8 @@
  * console.log(index); // null
  */
 
+// DONE
+
 var binarySearch = function (array, target) {
   if (target > array[array.length -1]) return null;
   var middleIndex = Math.floor(array.length / 2);
