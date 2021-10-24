@@ -13,5 +13,13 @@
 
 
 var commonCharacters = function(string1, string2) {
-  // TODO: Your code here!
+  if (typeof string1 !== 'string' || typeof string2 !== 'string') return null;
+  let commonChar = '';
+  string1.split('').forEach((letter) => {
+    if (letter === ' ') return;
+    if (string2.indexOf(letter) !== -1 && commonChar.indexOf(letter) === -1) {
+      commonChar += letter;
+    }
+  })
+  return commonChar;
 };
