@@ -15,6 +15,23 @@
  */
 
 var spiralTraversal = function(matrix) {
-
-  // TODO: Implement me!
+  let result = matrix.shift();
+  matrix.forEach((array) => {
+    const lastElem = array.pop();
+    result.push(lastElem);
+  })
+  const lastArray = matrix.pop();
+  if (lastArray) {
+    for (let i = 0; i < lastArray.length; i++) {
+      const lastElem = lastArray.pop();
+      result.push(lastElem);
+      i--;
+    }
+  }
+  for (let i = matrix.length - 1; i >= 0; i--) {
+    const firstElem = matrix[i].shift();
+    result.push(firstElem);
+  }
+  result = result ? result.concat(spiralTraversal(matrix)) : []
+  return result;
 };
