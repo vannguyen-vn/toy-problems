@@ -11,17 +11,23 @@
  */
 
 var binarySearch = function (array, target) {
+  if (target > array[array.length -1]) return null;
   var middleIndex = Math.floor(array.length / 2);
   var middle = array[middleIndex];
   var result = middleIndex;
-  if (target > array[array.length -1]) {return null;}
   if (target === middle) {
     return result;
   } else if (target > middle) {
     result++;
-    return result + binarySearch(array.slice(middleIndex + 1), target);
+    const nextSearch = binarySearch(array.slice(middleIndex + 1), target);
+    if (nextSearch === null) {
+      return null;
+    } else {
+      return result + nextSearch;
+    }
+  } else if (array.length === 1) {
+    return null;
   } else {
-    result--;
     return binarySearch(array.slice(0, middleIndex), target);
   }
   return result
