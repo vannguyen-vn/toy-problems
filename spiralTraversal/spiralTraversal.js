@@ -14,6 +14,8 @@
     returns [1, 2, 3, 6, 9, 8, 7, 4, 5]
  */
 
+// DONE
+
 var spiralTraversal = function(matrix) {
   let result = matrix.shift();
   matrix.forEach((array) => {
