@@ -10,7 +10,7 @@
  * Extra credit: Extend your function to handle more than two input strings.
  */
 
-
+// DONE
 
 var commonCharacters = function(string1, string2) {
   if (typeof string1 !== 'string' || typeof string2 !== 'string') return null;

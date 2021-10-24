@@ -21,8 +21,17 @@
  */
 
 var nthFibonacci = function (n) {
-  // TODO: implement me!
+  if (typeof n !== 'number') return null;
+  const sequence = [0, 1];
+  let nth;
+  const recursiveFunction = (array) => {
+    if (n < array.length) {
+      nth = array[n];
+    } else {
+      array.push(array[array.length - 1] + array[array.length - 2]);
+      recursiveFunction(sequence);
+    }
+  }
+  recursiveFunction(sequence);
+  return nth;
 };
-
-
-
