@@ -18,7 +18,7 @@ var spiralTraversal = function(matrix) {
   let result = matrix.shift();
   matrix.forEach((array) => {
     const lastElem = array.pop();
-    result.push(lastElem);
+    if (lastElem) result.push(lastElem);
   })
   const lastArray = matrix.pop();
   if (lastArray) {
@@ -30,7 +30,7 @@ var spiralTraversal = function(matrix) {
   }
   for (let i = matrix.length - 1; i >= 0; i--) {
     const firstElem = matrix[i].shift();
-    result.push(firstElem);
+    if (firstElem) result.push(firstElem);
   }
   result = result ? result.concat(spiralTraversal(matrix)) : []
   return result;
