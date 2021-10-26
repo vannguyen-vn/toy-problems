@@ -14,7 +14,26 @@
  */
 
 var longestRun = function (string) {
-  // TODO: Your code here!
+  if (string.length === 0) {
+    return null;
+  }
+  var result = [0, 0];
+  var length = 1;
+  var prev = string[0];
+  var prevInd = 0;
+  for (var i = 1; i < string.length; i++) {
+    var cur = string[i];
+    if (cur !== prev) {
+      if (i - prevInd > length) {
+        length = i - prevInd;
+        result[0] = prevInd;
+        result[1] = i - 1;
+      }
+        prev = cur;
+        prevInd = i;
+    }
+  }
+  return result;
 };
 
 // If you need a random string generator, use this!

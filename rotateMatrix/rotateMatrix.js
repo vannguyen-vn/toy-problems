@@ -25,8 +25,8 @@
  *  [9,'A','B','C'],
  *  ['D','E','F','G']
  * ];
- * matrix[0][0]; // 1
- * matrix[3][2]; // 'F'
+ * matrix[0][0]; // 1 [0][3]
+ * matrix[3][2]; // 'F' [2][1]
  *
  * var rotatedMatrix = rotateMatrix(matrix); // Rotate 90 degrees clockwise
  * // rotatedMatrix is:
@@ -44,6 +44,16 @@
  */
 
 var rotateMatrix = function(matrix
-) {
-  // Your code here.
-};
+  ) {
+    // all rows will become columns m => m - n
+    var result = [];
+    var len = matrix.length;
+    for (var i = 0; i < len; i++) {
+        var subArr = [];
+      for (var j = len - 1; j >= 0; j--) {
+        subArr.push(matrix[j][i]);
+      }
+      result.push(subArr);
+    }
+    return result;
+  };
