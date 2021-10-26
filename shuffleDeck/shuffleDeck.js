@@ -32,58 +32,41 @@
  */
 
 // ordered deck returns
-// var resultOfOrderedDeck = [
-//   'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥',
-//   '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥', 'A♣',
-//   '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣',
-//   '9♣', '10♣', 'J♣', 'Q♣', 'K♣', 'A♠', '2♠',
-//   '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠',
-//   '10♠', 'J♠', 'Q♠', 'K♠', 'A♦', '2♦', '3♦',
-//   '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦',
-//   'J♦', 'Q♦', 'K♦'
-// ]
+var resultOfOrderedDeck = [
+  'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥',
+  '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥', 'A♣',
+  '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣',
+  '9♣', '10♣', 'J♣', 'Q♣', 'K♣', 'A♠', '2♠',
+  '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠',
+  '10♠', 'J♠', 'Q♠', 'K♠', 'A♦', '2♦', '3♦',
+  '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦',
+  'J♦', 'Q♦', 'K♦'
+]
 var shuffleDeck = function (deck) {
-  // iterate over the deck,
-  for (let i = 0; i < deck.length; i++) {
-    let randoNumba = Math.floor(Math.random() * (deck.length - 1))
-    temp = deck[i];
-    deck[i] = temp
-    deck[randoNumba] = temp;
+   var swap = function (a, b) {
+    var temp = deck[a];
+    deck[a] = deck[b];
+    deck[b] = temp;
+  };
+  for (var i = 0; i < deck.length; i++) {
+    var pick = i + Math.floor(Math.random() * (deck.length - i));
+    swap(i, pick);
   }
-  // console.log(deck)
   return deck;
-  // assign temp to a random card determined by random num 1-52
-  // swap with current card
-  // return the deck
-};
+  };
 
-// Ordered deck generator provided for your testing convenience
-// (You may alter this function, but an un  altered copy will be used for tests.)
-var orderedDeck = function () {
-  var suits = ['♥', '♣', '♠', '♦'];
-  var values = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
+var orderedDeck = function() {
+  var suits = [ '♥', '♣', '♠', '♦' ];
+  var values = [ 'A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K' ];
   var deck = [];
 
-  suits.forEach(function (suit) {
-    values.forEach(function (value) {
+  suits.forEach(function(suit) {
+    values.forEach(function(value) {
       deck.push(value + suit);
     });
   });
 
   return deck;
-};
-
-// shuffleDeck(resultOfOrderedDeck)
-
-let result = [];
-while (deck.length > 0) {
-
-  if (deck.length === 1) {
-    result.push(deck[0]);
-    break;
-  }
-
-  let randomIdx = Math.floor(Math.random() * deck.length);
-  result.push(deck.splice(randomIdx, 1).join(''));
 }
-return result;
+
+// console.log(shuffleDeck(resultOfOrderedDeck))
