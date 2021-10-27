@@ -37,5 +37,33 @@
 
 
 var characterFrequency = function(string) {
+  const characters = string.toLowerCase().split('').sort();
+  let result = [];
+  let currChar = '';
+  let currCount = 0;
+  for (let i = 0; i < characters.length; i++) {
+    if (i === 0) {
+      currChar = characters[i];
+      currCount++;
+    } else if (i === characters.length - 1){
+      currCount++;
+      result.push([currChar, currCount]);
+    } else if (characters[i] === currChar) {
+      currCount++;
+    } else {
+      result.push([currChar, currCount]);
+      currChar = characters[i];
+      currCount = 1;
+    }
+  }
+  result.sort(function compare(a, b) {
+    if (a[1] > b[1]) {
+      return -1;
+    } else if (a[1] < b[1]) {
+      return 1;
+    } else {
+      return 0;
+    }
+  })
   return result;
 };
