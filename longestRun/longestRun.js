@@ -13,8 +13,50 @@
  * inputs well.
  */
 
+/*
+[1, 3]
+a b b b c c
+
+a b
+  b b
+  b b b
+        c c
+
+check string is valid - null or length 0, return null
+create return var result = [0,0]
+create return var temp = [0,0]
+
+iterate through string - starting from 1
+  check if cur ith char is not equal to prev ith char
+    check if temp diff is greater than result diff
+      update result to be diff
+    set temp to i, i
+  else
+    set temp[1] to i
+return result
+*/
+
+
 var longestRun = function (string) {
-  // TODO: Your code here!
+  if (string === null || string.length === 0) {
+    return null;
+  }
+
+  var result = [0, 0];
+  var temp = [0, 0];
+
+  for (var i = 1; i < string.length; i++) {
+    if (string[i] !== string[i - 1]) {
+      if (temp[1] - temp[0] > result[1] - result[0]) {
+        result = temp;
+      }
+      temp = [i, i];
+    } else {
+      temp[1] = i;
+    }
+  }
+
+  return result;
 };
 
 // If you need a random string generator, use this!
