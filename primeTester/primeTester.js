@@ -7,12 +7,9 @@ var primeTester = function(n) {
     return false
   }
   // TODO: return true if n is prime, false otherwise
-  var divider = Math.floor(n / 2)
-  while (divider > 1) {
-    if (n % divider === 0) {
+  for (var i = 2, s = Math.sqrt(n); i <= s; i++) {
+    if (n % i === 0) {
       return false;
-    } else {
-      divider--;
     }
   }
   return true;
