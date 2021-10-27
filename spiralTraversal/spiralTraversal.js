@@ -15,6 +15,15 @@
  */
 
 var spiralTraversal = function(matrix) {
+  const arr = [];
 
-  // TODO: Implement me!
+  while (matrix.length) {
+    arr.push(
+      ...matrix.shift(),
+      ...matrix.map(a => a.pop()),
+      ...(matrix.pop() || []).reverse(),
+      ...matrix.map(a => a.shift()).reverse()
+    );
+  }
+  return arr;
 };
