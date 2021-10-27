@@ -3,8 +3,11 @@ var primeTester = function(n) {
     // n isn't a number or n is less than 1 or n is not an integer
     return false;
   }
+  if (n === 1) {
+    return false
+  }
   // TODO: return true if n is prime, false otherwise
-  var divider = n - 1
+  var divider = Math.floor(n / 2)
   while (divider > 1) {
     if (n % divider === 0) {
       return false;
