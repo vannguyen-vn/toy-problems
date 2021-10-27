@@ -45,15 +45,15 @@ var characterFrequency = function(string) {
     if (i === 0) {
       currChar = characters[i];
       currCount++;
-    } else if (i === characters.length - 1){
-      currCount++;
-      result.push([currChar, currCount]);
     } else if (characters[i] === currChar) {
       currCount++;
     } else {
       result.push([currChar, currCount]);
       currChar = characters[i];
       currCount = 1;
+    }
+    if (i === characters.length - 1) {
+      result.push([currChar, currCount]);
     }
   }
   result.sort(function compare(a, b) {
