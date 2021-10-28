@@ -10,6 +10,39 @@
  * console.log(onlyEven); //  4
 */
 
+
+const evenOccurrence = (arr) => {
+
+  if (arr.length <= 1) {
+    return null;
+  }
+
+  var elementCounts = {};
+
+  arr.forEach((element) => {
+    elementCounts[element] ? elementCounts[element]++ : elementCounts[element] = 1;
+  })
+
+  for (var i = 0; i < arr.length; i++) {
+    if (elementCounts[arr[i]] % 2 === 0) {
+      return arr[i];
+    }
+  }
+
+  return null;
+}
+
+
+// console.log('should be 4', evenOccurrence([1, 7, 2, 4, 5, 6, 8, 9, 6, 4]));
+// console.log('should be 4', evenOccurrence([1]));
+
+
+
+
+
+
+
+/* // First Attempt -------
 var evenOccurrence = arr => {
 
   var storage = {};
@@ -34,3 +67,4 @@ var evenOccurrence = arr => {
 
 };
 
+*/
