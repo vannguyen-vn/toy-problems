@@ -23,19 +23,21 @@ Tree.prototype.addChild = function(child) {
   *  3.) between my grandma and my grandma -> my grandma
   *  4.) between me and a potato -> null
   */
-Tree.prototype.getClosestCommonAncestor = function(node1, node2) {
+ Tree.prototype.getClosestCommonAncestor = function(node1, node2) {
   if (node1 === node2) {
     return node1
   }
   var firstPath = this.getAncestorPath(node1)
   var secondPath = this.getAncestorPath(node2)
+  if (firstPath === null || secondPath === null) {
+    return null;
+  }
   for (var i = firstPath.length - 1; i >= 0; i--) {
     if (secondPath.indexOf(firstPath[i]) > -1) {
       return firstPath[i]
-    } else {
-      return null
     }
   }
+  return null
 };
 
 /**
