@@ -22,7 +22,7 @@
 //PRACTICE: recursive - master for databses
 //Remember to remove comments from code after implementing
 
-var rockPaperScissors = function (n) { //3
+var rockPaperScissors = function (n = 3) { //3
 
   const options = ["R", "P", "S"]
 
@@ -63,7 +63,7 @@ var rockPaperScissors = function (n) { //3
 
 }
 
-// console.log('rps 3', rockPaperScissors(5))
+console.log('rps 5', rockPaperScissors())
 
 /* First Solve
 var rockPaperScissors1 = function () {
