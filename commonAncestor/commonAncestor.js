@@ -1,18 +1,3 @@
-
-/**
-  * implement the function `getClosestCommonAncestor` and `getAncestorPath`
-  * in the following Tree class
-  */
-
-/** example usage:
-  * var grandma = new Tree();
-  * var mom = new Tree();
-  * grandma.addChild(mom);
-  * var me = new Tree();
-  * mom.addChild(me);
-  * grandma.getAncestorPath(me); // => [grandma, mom, me]
-*/
-
 var Tree = function() {
   this.children = [];
 };
@@ -38,9 +23,17 @@ Tree.prototype.addChild = function(child) {
   *  3.) between my grandma and my grandma -> my grandma
   *  4.) between me and a potato -> null
   */
-Tree.prototype.getClosestCommonAncestor = function(/*...*/
-) {
-  // TODO: implement me!
+Tree.prototype.getClosestCommonAncestor = function(node1, node2) {
+  if (node1 === node2) {
+    return node1
+  }
+  var firstPath = this.getAncestorPath(node1)
+  var secondPath = this.getAncestorPath(node2)
+  for (var i = firstPath.length - 1; i >= 0; i--) {
+    if (secondPath.indexOf(firstPath[i]) > -1) {
+      return firstPath[i]
+    }
+  }
 };
 
 /**
@@ -51,9 +44,38 @@ Tree.prototype.getClosestCommonAncestor = function(/*...*/
   * 3.) me.getAncestorPath(me) -> [me]
   * 4.) grandma.getAncestorPath(H R Giger) -> null
   */
-Tree.prototype.getAncestorPath = function(/*...*/
-) {
+Tree.prototype.getAncestorPath = function(node) {
   // TODO: implement me!
+  var result = [];
+  var innerFunc = (parent, node) => {
+    if (result.length > 0) {
+      result.unshift(parent);
+      return
+    }
+    if (parent.children.length === 0) {
+      return
+    }     
+    for (var i = 0; i < parent.children.length; i++) {
+      if (result.length > 0) {
+        result.unshift(parent)
+        return
+      }
+      if (parent.children[i] === node) {
+        result.push(parent.children[i]);
+        result.unshift(parent)
+        return;  
+      } else {
+        innerFunc(parent.children[i], node)
+      }
+    }
+  }
+  innerFunc(this, node)
+  if (result.length === 0) {
+    return null;
+  } else {
+    result.unshift(this)
+    return result;
+  }
 };
 
 /**
