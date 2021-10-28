@@ -14,7 +14,29 @@
  */
 
 var longestRun = function (string) {
-  // TODO: Your code here!
+  if (!string.length) {
+    return null
+  }
+  const arr = string.toLowerCase().split('');
+  let maxStart = 0;
+  let maxCount = 1;
+  let currStart = 0;
+  let currCount = 1;
+  let currChar = arr[0];
+  for (let i = 1; i < string.length; i++) {
+    if (arr[i] === currChar) {
+      currCount++;
+    } else {
+      currChar = arr[i];
+      currStart = i;
+      currCount = 1;
+    }
+    if (currCount > maxCount) {
+      maxCount = currCount;
+      maxStart = currStart;
+    }
+  }
+  return [maxStart, maxStart + maxCount - 1]
 };
 
 // If you need a random string generator, use this!
