@@ -32,6 +32,8 @@ Tree.prototype.getClosestCommonAncestor = function(node1, node2) {
   for (var i = firstPath.length - 1; i >= 0; i--) {
     if (secondPath.indexOf(firstPath[i]) > -1) {
       return firstPath[i]
+    } else {
+      return null
     }
   }
 };
@@ -44,7 +46,7 @@ Tree.prototype.getClosestCommonAncestor = function(node1, node2) {
   * 3.) me.getAncestorPath(me) -> [me]
   * 4.) grandma.getAncestorPath(H R Giger) -> null
   */
-Tree.prototype.getAncestorPath = function(node) {
+ Tree.prototype.getAncestorPath = function(node) {
   // TODO: implement me!
   var result = [];
   var innerFunc = (parent, node) => {
@@ -73,8 +75,7 @@ Tree.prototype.getAncestorPath = function(node) {
   if (result.length === 0) {
     return null;
   } else {
-    result.unshift(this)
-    return result;
+    return result
   }
 };
 
