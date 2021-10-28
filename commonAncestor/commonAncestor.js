@@ -1,3 +1,18 @@
+
+/**
+  * implement the function `getClosestCommonAncestor` and `getAncestorPath`
+  * in the following Tree class
+  */
+
+/** example usage:
+  * var grandma = new Tree();
+  * var mom = new Tree();
+  * grandma.addChild(mom);
+  * var me = new Tree();
+  * mom.addChild(me);
+  * grandma.getAncestorPath(me); // => [grandma, mom, me]
+*/
+
 var Tree = function() {
   this.children = [];
 };
@@ -23,7 +38,7 @@ Tree.prototype.addChild = function(child) {
   *  3.) between my grandma and my grandma -> my grandma
   *  4.) between me and a potato -> null
   */
- Tree.prototype.getClosestCommonAncestor = function(node1, node2) {
+Tree.prototype.getClosestCommonAncestor = function(node1, node2) {
   if (node1 === node2) {
     return node1
   }
@@ -48,7 +63,7 @@ Tree.prototype.addChild = function(child) {
   * 3.) me.getAncestorPath(me) -> [me]
   * 4.) grandma.getAncestorPath(H R Giger) -> null
   */
- Tree.prototype.getAncestorPath = function(node) {
+Tree.prototype.getAncestorPath = function(node) {
   // TODO: implement me!
   var result = [];
   var innerFunc = (parent, node) => {
@@ -71,6 +86,10 @@ Tree.prototype.addChild = function(child) {
       } else {
         innerFunc(parent.children[i], node)
       }
+    }
+    if (result.length > 0) {
+      result.unshift(parent)
+      return
     }
   }
   innerFunc(this, node)
