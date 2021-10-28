@@ -40,7 +40,7 @@ Tree.prototype.addChild = function(child) {
   */
 Tree.prototype.getClosestCommonAncestor = function(/*...*/
 ) {
-  // TODO: implement me!
+  return this;
 };
 
 /**
@@ -53,7 +53,7 @@ Tree.prototype.getClosestCommonAncestor = function(/*...*/
   */
 Tree.prototype.getAncestorPath = function(/*...*/
 ) {
-  // TODO: implement me!
+  return this;
 };
 
 /**
