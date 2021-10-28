@@ -75,7 +75,12 @@ Tree.prototype.getClosestCommonAncestor = function(node1, node2) {
   if (result.length === 0) {
     return null;
   } else {
-    return result
+    if (result.indexOf(this) > -1) {
+      return result
+    } else {
+      result.unshift(this)
+      return result;
+    }
   }
 };
 
