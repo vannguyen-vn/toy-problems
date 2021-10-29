@@ -54,5 +54,58 @@ var numbersToPlace = {
 };
 
 Number.prototype.toEnglish = function() {
-    // return my value as english words
+  const numStr = this.toString();
+  const translate = function(numStr) {
+    let result = '';
+    const len = numStr.length;
+    if (len === 1) {
+      return numbersToWords[numStr];
+    }
+    if (numStr === '000') {
+      return '';
+    }
+    if (len === 3 && numStr.substring(0, 2) === '00') {
+      return numbersToWords[numStr[2]];
+    }
+    if (len === 3 && numStr.substring(1) === '00') {
+      return numbersToWords[numStr[0]] + ' hundred';
+    }
+    if (len === 3 && numStr[1] === '0') {
+      return numbersToWords[numStr[0]] + ' hundred' + numbersToWords[numStr[2]];
+    }
+    if (numStr[len - 2] === '1' || numStr[len - 1] === '0') {
+      result = numbersToWords[numStr.substring(len - 2, len)];
+    } else if (numStr[len - 2] !== '0') {
+      const val = numStr[len - 2] + '0';
+      result = numbersToWords[val] + '-' + numbersToWords[numStr[len - 1]] ;
+    }
+    if (len === 3 && numStr[0] !== '0') {
+      result = numbersToWords[numStr[0]] + ' hundred ' + result;
+    }
+    return result;
+  };
+  let result = '';
+  let str = '';
+  let endInd = numStr.length;
+  let startInd = endInd >= 3 ? endInd - 3 : 0;
+  let count = 1;
+  while (endInd > 0) {
+    str = translate(numStr.substring(startInd, endInd));
+    if (count > 1 && str !== '') {
+      str += ' ' + numbersToPlace[count];
+    }
+    if (result !== '') {
+      result = str + ' ' + result;
+    } else {
+      result = str;
+    }
+    endInd -= 3;
+    startInd = endInd >= 3 ? endInd - 3 : 0;
+    if (count === 1000000000000000000) {
+      count = 1;
+    } else {
+      count *= 1000;
+    }
+  }
+  return result;
 };
