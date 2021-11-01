@@ -31,6 +31,59 @@
 */
 
 // Feel free to add helper functions if needed.
+
+const bubbleSort = (array) => { //[4,2,3,1], [2,4,1,3]
+
+  //create pointer variables and hasSwapped flag
+  let pointer1 = 0; //0
+  let pointer2 = 1; //1
+  let hasSwapped = false; //false
+
+  //use a for loop to iterate through the array
+  while (array[pointer2] !== undefined) {
+
+    //if pointer 1 is less than pointer 2
+    if (array[pointer1] > array[pointer2]) { //[2,4,1,3]
+      //swap pointers (use temp variable)
+      let temp = array[pointer1];
+      array[pointer1] = array[pointer2];
+      array[pointer2] = temp;
+
+      //if isSwapped is false, change to true
+      if (hasSwapped === false) {
+        hasSwapped = true;
+      }
+    }
+
+    //if at the end of the array, start over
+    if (array[pointer2 + 1] === undefined) {
+      //if flag hasn't been tripped, return
+      if (hasSwapped === false) {
+        return array;
+      }
+
+      //reassign pointers to the beginning of the array
+      pointer1 = 0;
+      pointer2 = 1;
+
+      //reset flag
+      hasSwapped = false;
+    } else {
+      //reassign pointer 1 and pointer 2 values
+      pointer1 ++;
+      pointer2 ++;
+    }
+  }
+}
+
+// console.log(bubbleSort([4, 2, 3, 1])) //==> returned [2, 1, 3, 4]
+// console.log(bubbleSort([ 1, 2, 43, 100, 100, 21, 21 ])) //==> [ 1, 2, 21, 21, 43, 100, 100 ]
+// console.log(bubbleSort([24.7, 24.3, 23, 9, 3, 3, 100, 25, 100])) //=> [3, 3, 9, 23, 24.3, 24.7, 25, 100, 100]
+// console.log(bubbleSort([5, 4, 3, 2, 1]))//[1, 2, 3, 4, 5]
+
+
+
+/* // second attempt
 var bubbleSort = function(array) {
   if (array.length <= 1) {
     return array;
@@ -88,6 +141,7 @@ console.log(
 //   }
 //   return array
 // }
+*/
 
 /*
 I: Array (unordered)
@@ -177,7 +231,3 @@ For each element in the array,
 //   return manipArr;
 // };
 
-console.log(bubbleSort([4, 2, 3, 1])) //==> returned [2, 1, 3, 4]
-console.log(bubbleSort([ 1, 2, 43, 100, 100, 21, 21 ])) //==> [ 1, 2, 21, 21, 43, 100, 100 ]
-console.log(bubbleSort([24.7, 24.3, 23, 9, 3, 3, 100, 25, 100])) //=> [3, 3, 9, 23, 24.3, 24.7, 25, 100, 100]
-console.log(bubbleSort([5, 4, 3, 2, 1]))//[1, 2, 3, 4, 5]
